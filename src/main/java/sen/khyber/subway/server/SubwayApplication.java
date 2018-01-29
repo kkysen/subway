@@ -1,4 +1,4 @@
-package sen.khyber.subway;
+package sen.khyber.subway.server;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;

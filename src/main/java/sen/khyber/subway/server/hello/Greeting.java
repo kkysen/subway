@@ -1,4 +1,4 @@
-package sen.khyber.subway.hello;
+package sen.khyber.subway.server.hello;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
