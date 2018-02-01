@@ -3,9 +3,11 @@
 
 package sen.khyber.web.subway.client.proto;
 
-public interface FeedMessageOrBuilder extends
-        // @@protoc_insertion_point(interface_extends:transit_realtime.FeedMessage)
-        com.google.protobuf.MessageOrBuilder {
+import java.util.List;
+
+import com.google.protobuf.MessageOrBuilder;
+
+public interface FeedMessageOrBuilder extends MessageOrBuilder {
     
     /**
      * <pre>
@@ -41,8 +43,7 @@ public interface FeedMessageOrBuilder extends
      * <p>
      * <code>repeated .transit_realtime.FeedEntity entity = 2;</code>
      */
-    java.util.List<FeedEntity>
-    getEntityList();
+    List<FeedEntity> getEntityList();
     
     /**
      * <pre>
@@ -69,8 +70,7 @@ public interface FeedMessageOrBuilder extends
      * <p>
      * <code>repeated .transit_realtime.FeedEntity entity = 2;</code>
      */
-    java.util.List<? extends FeedEntityOrBuilder>
-    getEntityOrBuilderList();
+    List<? extends FeedEntityOrBuilder> getEntityOrBuilderList();
     
     /**
      * <pre>
@@ -79,6 +79,6 @@ public interface FeedMessageOrBuilder extends
      * <p>
      * <code>repeated .transit_realtime.FeedEntity entity = 2;</code>
      */
-    FeedEntityOrBuilder getEntityOrBuilder(
-            int index);
+    FeedEntityOrBuilder getEntityOrBuilder(int index);
+    
 }

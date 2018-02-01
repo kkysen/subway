@@ -5,10 +5,10 @@ package sen.khyber.web.subway.client.proto;
 
 import sen.khyber.web.subway.client.proto.TripDescriptor.ScheduleRelationship;
 
-public interface TripDescriptorOrBuilder extends
-        // @@protoc_insertion_point(interface_extends:transit_realtime.TripDescriptor)
-        com.google.protobuf.GeneratedMessageV3.
-                ExtendableMessageOrBuilder<TripDescriptor> {
+import com.google.protobuf.ByteString;
+import com.google.protobuf.GeneratedMessageV3.ExtendableMessageOrBuilder;
+
+public interface TripDescriptorOrBuilder extends ExtendableMessageOrBuilder<TripDescriptor> {
     
     /**
      * <pre>
@@ -32,7 +32,7 @@ public interface TripDescriptorOrBuilder extends
      * <p>
      * <code>optional string trip_id = 1;</code>
      */
-    java.lang.String getTripId();
+    String getTripId();
     
     /**
      * <pre>
@@ -44,8 +44,7 @@ public interface TripDescriptorOrBuilder extends
      * <p>
      * <code>optional string trip_id = 1;</code>
      */
-    com.google.protobuf.ByteString
-    getTripIdBytes();
+    ByteString getTripIdBytes();
     
     /**
      * <pre>
@@ -63,7 +62,7 @@ public interface TripDescriptorOrBuilder extends
      * <p>
      * <code>optional string route_id = 5;</code>
      */
-    java.lang.String getRouteId();
+    String getRouteId();
     
     /**
      * <pre>
@@ -72,8 +71,7 @@ public interface TripDescriptorOrBuilder extends
      * <p>
      * <code>optional string route_id = 5;</code>
      */
-    com.google.protobuf.ByteString
-    getRouteIdBytes();
+    ByteString getRouteIdBytes();
     
     /**
      * <pre>
@@ -101,7 +99,7 @@ public interface TripDescriptorOrBuilder extends
      * <p>
      * <code>optional string start_time = 2;</code>
      */
-    java.lang.String getStartTime();
+    String getStartTime();
     
     /**
      * <pre>
@@ -115,8 +113,7 @@ public interface TripDescriptorOrBuilder extends
      * <p>
      * <code>optional string start_time = 2;</code>
      */
-    com.google.protobuf.ByteString
-    getStartTimeBytes();
+    ByteString getStartTimeBytes();
     
     /**
      * <pre>
@@ -152,7 +149,7 @@ public interface TripDescriptorOrBuilder extends
      * <p>
      * <code>optional string start_date = 3;</code>
      */
-    java.lang.String getStartDate();
+    String getStartDate();
     
     /**
      * <pre>
@@ -170,8 +167,7 @@ public interface TripDescriptorOrBuilder extends
      * <p>
      * <code>optional string start_date = 3;</code>
      */
-    com.google.protobuf.ByteString
-    getStartDateBytes();
+    ByteString getStartDateBytes();
     
     /**
      * <code>optional .transit_realtime.TripDescriptor.ScheduleRelationship schedule_relationship =
@@ -184,4 +180,5 @@ public interface TripDescriptorOrBuilder extends
      * 4;</code>
      */
     ScheduleRelationship getScheduleRelationship();
+    
 }

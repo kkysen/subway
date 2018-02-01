@@ -3,6 +3,35 @@
 
 package sen.khyber.web.subway.client.proto;
 
+import sen.khyber.proto.ProtoUtils;
+
+import lombok.AccessLevel;
+import lombok.Setter;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.ByteBuffer;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Objects;
+
+import com.google.protobuf.AbstractMessageLite;
+import com.google.protobuf.AbstractParser;
+import com.google.protobuf.ByteString;
+import com.google.protobuf.CodedInputStream;
+import com.google.protobuf.CodedOutputStream;
+import com.google.protobuf.Descriptors.Descriptor;
+import com.google.protobuf.Descriptors.FieldDescriptor;
+import com.google.protobuf.Descriptors.OneofDescriptor;
+import com.google.protobuf.ExtensionRegistryLite;
+import com.google.protobuf.GeneratedMessageV3;
+import com.google.protobuf.InvalidProtocolBufferException;
+import com.google.protobuf.Message;
+import com.google.protobuf.Parser;
+import com.google.protobuf.RepeatedFieldBuilderV3;
+import com.google.protobuf.UnknownFieldSet;
+
 /**
  * <pre>
  * NYCT Subway extensions for the feed header
@@ -10,37 +39,30 @@ package sen.khyber.web.subway.client.proto;
  * <p>
  * Protobuf type {@code NyctFeedHeader}
  */
-public final class NyctFeedHeader extends
-        com.google.protobuf.GeneratedMessageV3 implements
-        // @@protoc_insertion_point(message_implements:NyctFeedHeader)
-        NyctFeedHeaderOrBuilder {
+public final class NyctFeedHeader extends GeneratedMessageV3 implements NyctFeedHeaderOrBuilder {
     
     private static final long serialVersionUID = 0L;
     
     // Use NyctFeedHeader.newBuilder() to construct.
-    private NyctFeedHeader(final com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    private NyctFeedHeader(final GeneratedMessageV3.Builder<?> builder) {
         super(builder);
     }
     
     private NyctFeedHeader() {
         nyctSubwayVersion_ = "";
-        tripReplacementPeriod_ = java.util.Collections.emptyList();
+        tripReplacementPeriod_ = Collections.emptyList();
     }
     
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
+    @Override
+    public final UnknownFieldSet getUnknownFields() {
         return unknownFields;
     }
     
-    private NyctFeedHeader(
-            final com.google.protobuf.CodedInputStream input,
-            final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
+    private NyctFeedHeader(final CodedInputStream input,
+            final ExtensionRegistryLite extensionRegistry) throws InvalidProtocolBufferException {
         this();
         int mutable_bitField0_ = 0;
-        final com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-                com.google.protobuf.UnknownFieldSet.newBuilder();
+        final UnknownFieldSet.Builder unknownFields = UnknownFieldSet.newBuilder();
         try {
             boolean done = false;
             while (!done) {
@@ -50,60 +72,54 @@ public final class NyctFeedHeader extends
                         done = true;
                         break;
                     default: {
-                        if (!parseUnknownField(
-                                input, unknownFields, extensionRegistry, tag)) {
+                        if (!parseUnknownField(input, unknownFields, extensionRegistry, tag)) {
                             done = true;
                         }
                         break;
                     }
                     case 10: {
-                        final com.google.protobuf.ByteString bs = input.readBytes();
+                        final ByteString bs = input.readBytes();
                         bitField0_ |= 0x00000001;
                         nyctSubwayVersion_ = bs;
                         break;
                     }
                     case 18: {
                         if (!((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
-                            tripReplacementPeriod_ = new java.util.ArrayList<>();
+                            tripReplacementPeriod_ = new ArrayList<>();
                             mutable_bitField0_ |= 0x00000002;
                         }
-                        tripReplacementPeriod_.add(
-                                input.readMessage(TripReplacementPeriod.PARSER, extensionRegistry));
+                        tripReplacementPeriod_.add(input
+                                .readMessage(TripReplacementPeriod.PARSER, extensionRegistry));
                         break;
                     }
                 }
             }
-        } catch (final com.google.protobuf.InvalidProtocolBufferException e) {
+        } catch (final InvalidProtocolBufferException e) {
             throw e.setUnfinishedMessage(this);
-        } catch (final java.io.IOException e) {
-            throw new com.google.protobuf.InvalidProtocolBufferException(
-                    e).setUnfinishedMessage(this);
+        } catch (final IOException e) {
+            throw new InvalidProtocolBufferException(e).setUnfinishedMessage(this);
         } finally {
             if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
-                tripReplacementPeriod_ =
-                        java.util.Collections.unmodifiableList(tripReplacementPeriod_);
+                tripReplacementPeriod_ = Collections.unmodifiableList(tripReplacementPeriod_);
             }
             this.unknownFields = unknownFields.build();
             makeExtensionsImmutable();
         }
     }
     
-    public static final com.google.protobuf.Descriptors.Descriptor
-    getDescriptor() {
+    public static final Descriptor getDescriptor() {
         return NyctSubway.internal_static_NyctFeedHeader_descriptor;
     }
     
     @Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-    internalGetFieldAccessorTable() {
+    protected FieldAccessorTable internalGetFieldAccessorTable() {
         return NyctSubway.internal_static_NyctFeedHeader_fieldAccessorTable
-                .ensureFieldAccessorsInitialized(
-                        NyctFeedHeader.class, NyctFeedHeader.Builder.class);
+                .ensureFieldAccessorsInitialized(NyctFeedHeader.class, Builder.class);
     }
     
     private int bitField0_;
     public static final int NYCT_SUBWAY_VERSION_FIELD_NUMBER = 1;
-    private volatile java.lang.Object nyctSubwayVersion_;
+    private volatile @Setter(AccessLevel.PRIVATE) Object nyctSubwayVersion_;
     
     /**
      * <pre>
@@ -127,19 +143,8 @@ public final class NyctFeedHeader extends
      * <code>required string nyct_subway_version = 1;</code>
      */
     @Override
-    public java.lang.String getNyctSubwayVersion() {
-        final java.lang.Object ref = nyctSubwayVersion_;
-        if (ref instanceof java.lang.String) {
-            return (java.lang.String) ref;
-        } else {
-            final com.google.protobuf.ByteString bs =
-                    (com.google.protobuf.ByteString) ref;
-            final java.lang.String s = bs.toStringUtf8();
-            if (bs.isValidUtf8()) {
-                nyctSubwayVersion_ = s;
-            }
-            return s;
-        }
+    public String getNyctSubwayVersion() {
+        return ProtoUtils.asString(nyctSubwayVersion_, this::setNyctSubwayVersion_);
     }
     
     /**
@@ -151,22 +156,12 @@ public final class NyctFeedHeader extends
      * <code>required string nyct_subway_version = 1;</code>
      */
     @Override
-    public com.google.protobuf.ByteString
-    getNyctSubwayVersionBytes() {
-        final java.lang.Object ref = nyctSubwayVersion_;
-        if (ref instanceof java.lang.String) {
-            final com.google.protobuf.ByteString b =
-                    com.google.protobuf.ByteString.copyFromUtf8(
-                            (java.lang.String) ref);
-            nyctSubwayVersion_ = b;
-            return b;
-        } else {
-            return (com.google.protobuf.ByteString) ref;
-        }
+    public ByteString getNyctSubwayVersionBytes() {
+        return ProtoUtils.asBytes(nyctSubwayVersion_, this::setNyctSubwayVersion_);
     }
     
     public static final int TRIP_REPLACEMENT_PERIOD_FIELD_NUMBER = 2;
-    private java.util.List<TripReplacementPeriod> tripReplacementPeriod_;
+    private List<TripReplacementPeriod> tripReplacementPeriod_;
     
     /**
      * <pre>
@@ -183,7 +178,7 @@ public final class NyctFeedHeader extends
      * <code>repeated .TripReplacementPeriod trip_replacement_period = 2;</code>
      */
     @Override
-    public java.util.List<TripReplacementPeriod> getTripReplacementPeriodList() {
+    public List<TripReplacementPeriod> getTripReplacementPeriodList() {
         return tripReplacementPeriod_;
     }
     
@@ -202,8 +197,7 @@ public final class NyctFeedHeader extends
      * <code>repeated .TripReplacementPeriod trip_replacement_period = 2;</code>
      */
     @Override
-    public java.util.List<? extends TripReplacementPeriodOrBuilder>
-    getTripReplacementPeriodOrBuilderList() {
+    public List<? extends TripReplacementPeriodOrBuilder> getTripReplacementPeriodOrBuilderList() {
         return tripReplacementPeriod_;
     }
     
@@ -260,8 +254,7 @@ public final class NyctFeedHeader extends
      * <code>repeated .TripReplacementPeriod trip_replacement_period = 2;</code>
      */
     @Override
-    public TripReplacementPeriodOrBuilder getTripReplacementPeriodOrBuilder(
-            final int index) {
+    public TripReplacementPeriodOrBuilder getTripReplacementPeriodOrBuilder(final int index) {
         return tripReplacementPeriod_.get(index);
     }
     
@@ -282,10 +275,9 @@ public final class NyctFeedHeader extends
     }
     
     @Override
-    public void writeTo(final com.google.protobuf.CodedOutputStream output)
-            throws java.io.IOException {
+    public void writeTo(final CodedOutputStream output) throws IOException {
         if (((bitField0_ & 0x00000001) == 0x00000001)) {
-            com.google.protobuf.GeneratedMessageV3.writeString(output, 1, nyctSubwayVersion_);
+            GeneratedMessageV3.writeString(output, 1, nyctSubwayVersion_);
         }
         for (int i = 0; i < tripReplacementPeriod_.size(); i++) {
             output.writeMessage(2, tripReplacementPeriod_.get(i));
@@ -300,19 +292,18 @@ public final class NyctFeedHeader extends
         
         size = 0;
         if (((bitField0_ & 0x00000001) == 0x00000001)) {
-            size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, nyctSubwayVersion_);
+            size += GeneratedMessageV3.computeStringSize(1, nyctSubwayVersion_);
         }
         for (int i = 0; i < tripReplacementPeriod_.size(); i++) {
-            size += com.google.protobuf.CodedOutputStream
-                    .computeMessageSize(2, tripReplacementPeriod_.get(i));
+            size += CodedOutputStream.computeMessageSize(2, tripReplacementPeriod_.get(i));
         }
         size += unknownFields.getSerializedSize();
         memoizedSize = size;
         return size;
     }
     
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
+    @Override
+    public boolean equals(final Object obj) {
         if (obj == this) {
             return true;
         }
@@ -324,8 +315,7 @@ public final class NyctFeedHeader extends
         boolean result = true;
         result = result && (hasNyctSubwayVersion() == other.hasNyctSubwayVersion());
         if (hasNyctSubwayVersion()) {
-            result = result && getNyctSubwayVersion()
-                    .equals(other.getNyctSubwayVersion());
+            result = result && getNyctSubwayVersion().equals(other.getNyctSubwayVersion());
         }
         result = result && getTripReplacementPeriodList()
                 .equals(other.getTripReplacementPeriodList());
@@ -333,7 +323,7 @@ public final class NyctFeedHeader extends
         return result;
     }
     
-    @java.lang.Override
+    @Override
     public int hashCode() {
         if (memoizedHashCode != 0) {
             return memoizedHashCode;
@@ -353,85 +343,61 @@ public final class NyctFeedHeader extends
         return hash;
     }
     
-    public static NyctFeedHeader parseFrom(
-            final java.nio.ByteBuffer data)
-            throws com.google.protobuf.InvalidProtocolBufferException {
+    public static NyctFeedHeader parseFrom(final ByteBuffer data)
+            throws InvalidProtocolBufferException {
         return PARSER.parseFrom(data);
     }
     
-    public static NyctFeedHeader parseFrom(
-            final java.nio.ByteBuffer data,
-            final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
+    public static NyctFeedHeader parseFrom(final ByteBuffer data,
+            final ExtensionRegistryLite extensionRegistry) throws InvalidProtocolBufferException {
         return PARSER.parseFrom(data, extensionRegistry);
     }
     
-    public static NyctFeedHeader parseFrom(
-            final com.google.protobuf.ByteString data)
-            throws com.google.protobuf.InvalidProtocolBufferException {
+    public static NyctFeedHeader parseFrom(final ByteString data)
+            throws InvalidProtocolBufferException {
         return PARSER.parseFrom(data);
     }
     
-    public static NyctFeedHeader parseFrom(
-            final com.google.protobuf.ByteString data,
-            final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
+    public static NyctFeedHeader parseFrom(final ByteString data,
+            final ExtensionRegistryLite extensionRegistry) throws InvalidProtocolBufferException {
         return PARSER.parseFrom(data, extensionRegistry);
     }
     
     public static NyctFeedHeader parseFrom(final byte[] data)
-            throws com.google.protobuf.InvalidProtocolBufferException {
+            throws InvalidProtocolBufferException {
         return PARSER.parseFrom(data);
     }
     
-    public static NyctFeedHeader parseFrom(
-            final byte[] data,
-            final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
+    public static NyctFeedHeader parseFrom(final byte[] data,
+            final ExtensionRegistryLite extensionRegistry) throws InvalidProtocolBufferException {
         return PARSER.parseFrom(data, extensionRegistry);
     }
     
-    public static NyctFeedHeader parseFrom(final java.io.InputStream input)
-            throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-                .parseWithIOException(PARSER, input);
+    public static NyctFeedHeader parseFrom(final InputStream input) throws IOException {
+        return GeneratedMessageV3.parseWithIOException(PARSER, input);
     }
     
-    public static NyctFeedHeader parseFrom(
-            final java.io.InputStream input,
-            final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-                .parseWithIOException(PARSER, input, extensionRegistry);
+    public static NyctFeedHeader parseFrom(final InputStream input,
+            final ExtensionRegistryLite extensionRegistry) throws IOException {
+        return GeneratedMessageV3.parseWithIOException(PARSER, input, extensionRegistry);
     }
     
-    public static NyctFeedHeader parseDelimitedFrom(final java.io.InputStream input)
-            throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-                .parseDelimitedWithIOException(PARSER, input);
+    public static NyctFeedHeader parseDelimitedFrom(final InputStream input) throws IOException {
+        return GeneratedMessageV3.parseDelimitedWithIOException(PARSER, input);
     }
     
-    public static NyctFeedHeader parseDelimitedFrom(
-            final java.io.InputStream input,
-            final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-                .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    public static NyctFeedHeader parseDelimitedFrom(final InputStream input,
+            final ExtensionRegistryLite extensionRegistry) throws IOException {
+        return GeneratedMessageV3.parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
     
-    public static NyctFeedHeader parseFrom(
-            final com.google.protobuf.CodedInputStream input)
-            throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-                .parseWithIOException(PARSER, input);
+    public static NyctFeedHeader parseFrom(final CodedInputStream input) throws IOException {
+        return GeneratedMessageV3.parseWithIOException(PARSER, input);
     }
     
-    public static NyctFeedHeader parseFrom(
-            final com.google.protobuf.CodedInputStream input,
-            final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-                .parseWithIOException(PARSER, input, extensionRegistry);
+    public static NyctFeedHeader parseFrom(final CodedInputStream input,
+            final ExtensionRegistryLite extensionRegistry) throws IOException {
+        return GeneratedMessageV3.parseWithIOException(PARSER, input, extensionRegistry);
     }
     
     @Override
@@ -447,13 +413,11 @@ public final class NyctFeedHeader extends
     
     @Override
     public Builder toBuilder() {
-        return this == DEFAULT_INSTANCE
-                ? new Builder() : new Builder().mergeFrom(this);
+        return this == DEFAULT_INSTANCE ? new Builder() : new Builder().mergeFrom(this);
     }
     
-    @java.lang.Override
-    protected Builder newBuilderForType(
-            final com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+    @Override
+    protected Builder newBuilderForType(final BuilderParent parent) {
         final Builder builder = new Builder(parent);
         return builder;
     }
@@ -465,22 +429,18 @@ public final class NyctFeedHeader extends
      * <p>
      * Protobuf type {@code NyctFeedHeader}
      */
-    public static final class Builder extends
-            com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+    public static final class Builder extends GeneratedMessageV3.Builder<Builder> implements
             // @@protoc_insertion_point(builder_implements:NyctFeedHeader)
             NyctFeedHeaderOrBuilder {
         
-        public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
+        public static final Descriptor getDescriptor() {
             return NyctSubway.internal_static_NyctFeedHeader_descriptor;
         }
         
         @Override
-        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
+        protected FieldAccessorTable internalGetFieldAccessorTable() {
             return NyctSubway.internal_static_NyctFeedHeader_fieldAccessorTable
-                    .ensureFieldAccessorsInitialized(
-                            NyctFeedHeader.class, NyctFeedHeader.Builder.class);
+                    .ensureFieldAccessorsInitialized(NyctFeedHeader.class, Builder.class);
         }
         
         // Construct using sen.khyber.subway.client.proto.NyctFeedHeader.newBuilder()
@@ -488,15 +448,13 @@ public final class NyctFeedHeader extends
             maybeForceBuilderInitialization();
         }
         
-        private Builder(
-                final com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        private Builder(final BuilderParent parent) {
             super(parent);
             maybeForceBuilderInitialization();
         }
         
         private void maybeForceBuilderInitialization() {
-            if (com.google.protobuf.GeneratedMessageV3
-                    .alwaysUseFieldBuilders) {
+            if (GeneratedMessageV3.alwaysUseFieldBuilders) {
                 getTripReplacementPeriodFieldBuilder();
             }
         }
@@ -507,7 +465,7 @@ public final class NyctFeedHeader extends
             nyctSubwayVersion_ = "";
             bitField0_ = (bitField0_ & ~0x00000001);
             if (tripReplacementPeriodBuilder_ == null) {
-                tripReplacementPeriod_ = java.util.Collections.emptyList();
+                tripReplacementPeriod_ = Collections.emptyList();
                 bitField0_ = (bitField0_ & ~0x00000002);
             } else {
                 tripReplacementPeriodBuilder_.clear();
@@ -516,14 +474,13 @@ public final class NyctFeedHeader extends
         }
         
         @Override
-        public com.google.protobuf.Descriptors.Descriptor
-        getDescriptorForType() {
+        public Descriptor getDescriptorForType() {
             return NyctSubway.internal_static_NyctFeedHeader_descriptor;
         }
         
         @Override
         public NyctFeedHeader getDefaultInstanceForType() {
-            return NyctFeedHeader.getDefaultInstance();
+            return getDefaultInstance();
         }
         
         @Override
@@ -546,8 +503,7 @@ public final class NyctFeedHeader extends
             result.nyctSubwayVersion_ = nyctSubwayVersion_;
             if (tripReplacementPeriodBuilder_ == null) {
                 if (((bitField0_ & 0x00000002) == 0x00000002)) {
-                    tripReplacementPeriod_ =
-                            java.util.Collections.unmodifiableList(tripReplacementPeriod_);
+                    tripReplacementPeriod_ = Collections.unmodifiableList(tripReplacementPeriod_);
                     bitField0_ = (bitField0_ & ~0x00000002);
                 }
                 result.tripReplacementPeriod_ = tripReplacementPeriod_;
@@ -561,44 +517,37 @@ public final class NyctFeedHeader extends
         
         @Override
         public Builder clone() {
-            return (Builder) super.clone();
+            return super.clone();
         }
         
         @Override
-        public Builder setField(
-                final com.google.protobuf.Descriptors.FieldDescriptor field,
-                final java.lang.Object value) {
-            return (Builder) super.setField(field, value);
+        public Builder setField(final FieldDescriptor field, final Object value) {
+            return super.setField(field, value);
         }
         
         @Override
-        public Builder clearField(
-                final com.google.protobuf.Descriptors.FieldDescriptor field) {
-            return (Builder) super.clearField(field);
+        public Builder clearField(final FieldDescriptor field) {
+            return super.clearField(field);
         }
         
         @Override
-        public Builder clearOneof(
-                final com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-            return (Builder) super.clearOneof(oneof);
+        public Builder clearOneof(final OneofDescriptor oneof) {
+            return super.clearOneof(oneof);
         }
         
         @Override
-        public Builder setRepeatedField(
-                final com.google.protobuf.Descriptors.FieldDescriptor field,
-                final int index, final java.lang.Object value) {
-            return (Builder) super.setRepeatedField(field, index, value);
+        public Builder setRepeatedField(final FieldDescriptor field, final int index,
+                final Object value) {
+            return super.setRepeatedField(field, index, value);
         }
         
         @Override
-        public Builder addRepeatedField(
-                final com.google.protobuf.Descriptors.FieldDescriptor field,
-                final java.lang.Object value) {
-            return (Builder) super.addRepeatedField(field, value);
+        public Builder addRepeatedField(final FieldDescriptor field, final Object value) {
+            return super.addRepeatedField(field, value);
         }
         
         @Override
-        public Builder mergeFrom(final com.google.protobuf.Message other) {
+        public Builder mergeFrom(final Message other) {
             if (other instanceof NyctFeedHeader) {
                 return mergeFrom((NyctFeedHeader) other);
             } else {
@@ -608,7 +557,7 @@ public final class NyctFeedHeader extends
         }
         
         public Builder mergeFrom(final NyctFeedHeader other) {
-            if (other == NyctFeedHeader.getDefaultInstance()) {return this;}
+            if (other == getDefaultInstance()) {return this;}
             if (other.hasNyctSubwayVersion()) {
                 bitField0_ |= 0x00000001;
                 nyctSubwayVersion_ = other.nyctSubwayVersion_;
@@ -632,9 +581,8 @@ public final class NyctFeedHeader extends
                         tripReplacementPeriodBuilder_ = null;
                         tripReplacementPeriod_ = other.tripReplacementPeriod_;
                         bitField0_ = (bitField0_ & ~0x00000002);
-                        tripReplacementPeriodBuilder_ =
-                                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
-                                        getTripReplacementPeriodFieldBuilder() : null;
+                        tripReplacementPeriodBuilder_ = GeneratedMessageV3.alwaysUseFieldBuilders
+                                ? getTripReplacementPeriodFieldBuilder() : null;
                     } else {
                         tripReplacementPeriodBuilder_.addAllMessages(other.tripReplacementPeriod_);
                     }
@@ -647,21 +595,16 @@ public final class NyctFeedHeader extends
         
         @Override
         public final boolean isInitialized() {
-            if (!hasNyctSubwayVersion()) {
-                return false;
-            }
-            return true;
+            return hasNyctSubwayVersion();
         }
         
         @Override
-        public Builder mergeFrom(
-                final com.google.protobuf.CodedInputStream input,
-                final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws java.io.IOException {
+        public Builder mergeFrom(final CodedInputStream input,
+                final ExtensionRegistryLite extensionRegistry) throws IOException {
             NyctFeedHeader parsedMessage = null;
             try {
                 parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-            } catch (final com.google.protobuf.InvalidProtocolBufferException e) {
+            } catch (final InvalidProtocolBufferException e) {
                 parsedMessage = (NyctFeedHeader) e.getUnfinishedMessage();
                 throw e.unwrapIOException();
             } finally {
@@ -674,7 +617,7 @@ public final class NyctFeedHeader extends
         
         private int bitField0_;
         
-        private java.lang.Object nyctSubwayVersion_ = "";
+        private @Setter(AccessLevel.PRIVATE) Object nyctSubwayVersion_ = "";
         
         /**
          * <pre>
@@ -698,19 +641,8 @@ public final class NyctFeedHeader extends
          * <code>required string nyct_subway_version = 1;</code>
          */
         @Override
-        public java.lang.String getNyctSubwayVersion() {
-            final java.lang.Object ref = nyctSubwayVersion_;
-            if (!(ref instanceof java.lang.String)) {
-                final com.google.protobuf.ByteString bs =
-                        (com.google.protobuf.ByteString) ref;
-                final java.lang.String s = bs.toStringUtf8();
-                if (bs.isValidUtf8()) {
-                    nyctSubwayVersion_ = s;
-                }
-                return s;
-            } else {
-                return (java.lang.String) ref;
-            }
+        public String getNyctSubwayVersion() {
+            return ProtoUtils.asString(nyctSubwayVersion_, this::setNyctSubwayVersion_);
         }
         
         /**
@@ -722,18 +654,8 @@ public final class NyctFeedHeader extends
          * <code>required string nyct_subway_version = 1;</code>
          */
         @Override
-        public com.google.protobuf.ByteString
-        getNyctSubwayVersionBytes() {
-            final java.lang.Object ref = nyctSubwayVersion_;
-            if (ref instanceof String) {
-                final com.google.protobuf.ByteString b =
-                        com.google.protobuf.ByteString.copyFromUtf8(
-                                (java.lang.String) ref);
-                nyctSubwayVersion_ = b;
-                return b;
-            } else {
-                return (com.google.protobuf.ByteString) ref;
-            }
+        public ByteString getNyctSubwayVersionBytes() {
+            return ProtoUtils.asBytes(nyctSubwayVersion_, this::setNyctSubwayVersion_);
         }
         
         /**
@@ -744,11 +666,8 @@ public final class NyctFeedHeader extends
          * <p>
          * <code>required string nyct_subway_version = 1;</code>
          */
-        public Builder setNyctSubwayVersion(
-                final java.lang.String value) {
-            if (value == null) {
-                throw new NullPointerException();
-            }
+        public Builder setNyctSubwayVersion(final String value) {
+            Objects.requireNonNull(value);
             bitField0_ |= 0x00000001;
             nyctSubwayVersion_ = value;
             onChanged();
@@ -778,29 +697,24 @@ public final class NyctFeedHeader extends
          * <p>
          * <code>required string nyct_subway_version = 1;</code>
          */
-        public Builder setNyctSubwayVersionBytes(
-                final com.google.protobuf.ByteString value) {
-            if (value == null) {
-                throw new NullPointerException();
-            }
+        public Builder setNyctSubwayVersionBytes(final ByteString value) {
+            Objects.requireNonNull(value);
             bitField0_ |= 0x00000001;
             nyctSubwayVersion_ = value;
             onChanged();
             return this;
         }
         
-        private java.util.List<TripReplacementPeriod> tripReplacementPeriod_ =
-                java.util.Collections.emptyList();
+        private List<TripReplacementPeriod> tripReplacementPeriod_ = Collections.emptyList();
         
         private void ensureTripReplacementPeriodIsMutable() {
             if (!((bitField0_ & 0x00000002) == 0x00000002)) {
-                tripReplacementPeriod_ = new java.util.ArrayList<>(tripReplacementPeriod_);
+                tripReplacementPeriod_ = new ArrayList<>(tripReplacementPeriod_);
                 bitField0_ |= 0x00000002;
             }
         }
         
-        private com.google.protobuf.RepeatedFieldBuilderV3<
-                TripReplacementPeriod, TripReplacementPeriod.Builder,
+        private RepeatedFieldBuilderV3<TripReplacementPeriod, TripReplacementPeriod.Builder, 
                 TripReplacementPeriodOrBuilder>
                 tripReplacementPeriodBuilder_;
         
@@ -819,9 +733,9 @@ public final class NyctFeedHeader extends
          * <code>repeated .TripReplacementPeriod trip_replacement_period = 2;</code>
          */
         @Override
-        public java.util.List<TripReplacementPeriod> getTripReplacementPeriodList() {
+        public List<TripReplacementPeriod> getTripReplacementPeriodList() {
             if (tripReplacementPeriodBuilder_ == null) {
-                return java.util.Collections.unmodifiableList(tripReplacementPeriod_);
+                return Collections.unmodifiableList(tripReplacementPeriod_);
             } else {
                 return tripReplacementPeriodBuilder_.getMessageList();
             }
@@ -887,12 +801,10 @@ public final class NyctFeedHeader extends
          * <p>
          * <code>repeated .TripReplacementPeriod trip_replacement_period = 2;</code>
          */
-        public Builder setTripReplacementPeriod(
-                final int index, final TripReplacementPeriod value) {
+        public Builder setTripReplacementPeriod(final int index,
+                final TripReplacementPeriod value) {
             if (tripReplacementPeriodBuilder_ == null) {
-                if (value == null) {
-                    throw new NullPointerException();
-                }
+                Objects.requireNonNull(value);
                 ensureTripReplacementPeriodIsMutable();
                 tripReplacementPeriod_.set(index, value);
                 onChanged();
@@ -916,8 +828,8 @@ public final class NyctFeedHeader extends
          * <p>
          * <code>repeated .TripReplacementPeriod trip_replacement_period = 2;</code>
          */
-        public Builder setTripReplacementPeriod(
-                final int index, final TripReplacementPeriod.Builder builderForValue) {
+        public Builder setTripReplacementPeriod(final int index,
+                final TripReplacementPeriod.Builder builderForValue) {
             if (tripReplacementPeriodBuilder_ == null) {
                 ensureTripReplacementPeriodIsMutable();
                 tripReplacementPeriod_.set(index, builderForValue.build());
@@ -944,9 +856,7 @@ public final class NyctFeedHeader extends
          */
         public Builder addTripReplacementPeriod(final TripReplacementPeriod value) {
             if (tripReplacementPeriodBuilder_ == null) {
-                if (value == null) {
-                    throw new NullPointerException();
-                }
+                Objects.requireNonNull(value);
                 ensureTripReplacementPeriodIsMutable();
                 tripReplacementPeriod_.add(value);
                 onChanged();
@@ -970,12 +880,10 @@ public final class NyctFeedHeader extends
          * <p>
          * <code>repeated .TripReplacementPeriod trip_replacement_period = 2;</code>
          */
-        public Builder addTripReplacementPeriod(
-                final int index, final TripReplacementPeriod value) {
+        public Builder addTripReplacementPeriod(final int index,
+                final TripReplacementPeriod value) {
             if (tripReplacementPeriodBuilder_ == null) {
-                if (value == null) {
-                    throw new NullPointerException();
-                }
+                Objects.requireNonNull(value);
                 ensureTripReplacementPeriodIsMutable();
                 tripReplacementPeriod_.add(index, value);
                 onChanged();
@@ -1025,8 +933,8 @@ public final class NyctFeedHeader extends
          * <p>
          * <code>repeated .TripReplacementPeriod trip_replacement_period = 2;</code>
          */
-        public Builder addTripReplacementPeriod(
-                final int index, final TripReplacementPeriod.Builder builderForValue) {
+        public Builder addTripReplacementPeriod(final int index,
+                final TripReplacementPeriod.Builder builderForValue) {
             if (tripReplacementPeriodBuilder_ == null) {
                 ensureTripReplacementPeriodIsMutable();
                 tripReplacementPeriod_.add(index, builderForValue.build());
@@ -1052,11 +960,10 @@ public final class NyctFeedHeader extends
          * <code>repeated .TripReplacementPeriod trip_replacement_period = 2;</code>
          */
         public Builder addAllTripReplacementPeriod(
-                final java.lang.Iterable<? extends TripReplacementPeriod> values) {
+                final Iterable<? extends TripReplacementPeriod> values) {
             if (tripReplacementPeriodBuilder_ == null) {
                 ensureTripReplacementPeriodIsMutable();
-                com.google.protobuf.AbstractMessageLite.Builder.addAll(
-                        values, tripReplacementPeriod_);
+                AbstractMessageLite.Builder.addAll(values, tripReplacementPeriod_);
                 onChanged();
             } else {
                 tripReplacementPeriodBuilder_.addAllMessages(values);
@@ -1080,7 +987,7 @@ public final class NyctFeedHeader extends
          */
         public Builder clearTripReplacementPeriod() {
             if (tripReplacementPeriodBuilder_ == null) {
-                tripReplacementPeriod_ = java.util.Collections.emptyList();
+                tripReplacementPeriod_ = Collections.emptyList();
                 bitField0_ = (bitField0_ & ~0x00000002);
                 onChanged();
             } else {
@@ -1128,8 +1035,7 @@ public final class NyctFeedHeader extends
          * <p>
          * <code>repeated .TripReplacementPeriod trip_replacement_period = 2;</code>
          */
-        public TripReplacementPeriod.Builder getTripReplacementPeriodBuilder(
-                final int index) {
+        public TripReplacementPeriod.Builder getTripReplacementPeriodBuilder(final int index) {
             return getTripReplacementPeriodFieldBuilder().getBuilder(index);
         }
         
@@ -1148,8 +1054,7 @@ public final class NyctFeedHeader extends
          * <code>repeated .TripReplacementPeriod trip_replacement_period = 2;</code>
          */
         @Override
-        public TripReplacementPeriodOrBuilder getTripReplacementPeriodOrBuilder(
-                final int index) {
+        public TripReplacementPeriodOrBuilder getTripReplacementPeriodOrBuilder(final int index) {
             if (tripReplacementPeriodBuilder_ == null) {
                 return tripReplacementPeriod_.get(index);
             } else {
@@ -1172,12 +1077,12 @@ public final class NyctFeedHeader extends
          * <code>repeated .TripReplacementPeriod trip_replacement_period = 2;</code>
          */
         @Override
-        public java.util.List<? extends TripReplacementPeriodOrBuilder>
+        public List<? extends TripReplacementPeriodOrBuilder> 
         getTripReplacementPeriodOrBuilderList() {
             if (tripReplacementPeriodBuilder_ != null) {
                 return tripReplacementPeriodBuilder_.getMessageOrBuilderList();
             } else {
-                return java.util.Collections.unmodifiableList(tripReplacementPeriod_);
+                return Collections.unmodifiableList(tripReplacementPeriod_);
             }
         }
         
@@ -1196,8 +1101,8 @@ public final class NyctFeedHeader extends
          * <code>repeated .TripReplacementPeriod trip_replacement_period = 2;</code>
          */
         public TripReplacementPeriod.Builder addTripReplacementPeriodBuilder() {
-            return getTripReplacementPeriodFieldBuilder().addBuilder(
-                    TripReplacementPeriod.getDefaultInstance());
+            return getTripReplacementPeriodFieldBuilder()
+                    .addBuilder(TripReplacementPeriod.getDefaultInstance());
         }
         
         /**
@@ -1214,10 +1119,9 @@ public final class NyctFeedHeader extends
          * <p>
          * <code>repeated .TripReplacementPeriod trip_replacement_period = 2;</code>
          */
-        public TripReplacementPeriod.Builder addTripReplacementPeriodBuilder(
-                final int index) {
-            return getTripReplacementPeriodFieldBuilder().addBuilder(
-                    index, TripReplacementPeriod.getDefaultInstance());
+        public TripReplacementPeriod.Builder addTripReplacementPeriodBuilder(final int index) {
+            return getTripReplacementPeriodFieldBuilder()
+                    .addBuilder(index, TripReplacementPeriod.getDefaultInstance());
         }
         
         /**
@@ -1234,20 +1138,15 @@ public final class NyctFeedHeader extends
          * <p>
          * <code>repeated .TripReplacementPeriod trip_replacement_period = 2;</code>
          */
-        public java.util.List<TripReplacementPeriod.Builder>
-        getTripReplacementPeriodBuilderList() {
+        public List<TripReplacementPeriod.Builder> getTripReplacementPeriodBuilderList() {
             return getTripReplacementPeriodFieldBuilder().getBuilderList();
         }
         
-        private com.google.protobuf.RepeatedFieldBuilderV3<
-                TripReplacementPeriod, TripReplacementPeriod.Builder,
-                TripReplacementPeriodOrBuilder>
-        getTripReplacementPeriodFieldBuilder() {
+        private RepeatedFieldBuilderV3<TripReplacementPeriod, TripReplacementPeriod.Builder, 
+                TripReplacementPeriodOrBuilder> getTripReplacementPeriodFieldBuilder() {
             if (tripReplacementPeriodBuilder_ == null) {
-                tripReplacementPeriodBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
-                        tripReplacementPeriod_,
-                        ((bitField0_ & 0x00000002) == 0x00000002),
-                        getParentForChildren(),
+                tripReplacementPeriodBuilder_ = new RepeatedFieldBuilderV3<>(tripReplacementPeriod_,
+                        ((bitField0_ & 0x00000002) == 0x00000002), getParentForChildren(),
                         isClean());
                 tripReplacementPeriod_ = null;
             }
@@ -1255,14 +1154,12 @@ public final class NyctFeedHeader extends
         }
         
         @Override
-        public final Builder setUnknownFields(
-                final com.google.protobuf.UnknownFieldSet unknownFields) {
+        public final Builder setUnknownFields(final UnknownFieldSet unknownFields) {
             return super.setUnknownFields(unknownFields);
         }
         
         @Override
-        public final Builder mergeUnknownFields(
-                final com.google.protobuf.UnknownFieldSet unknownFields) {
+        public final Builder mergeUnknownFields(final UnknownFieldSet unknownFields) {
             return super.mergeUnknownFields(unknownFields);
         }
         
@@ -1281,24 +1178,22 @@ public final class NyctFeedHeader extends
         return DEFAULT_INSTANCE;
     }
     
-    @java.lang.Deprecated public static final com.google.protobuf.Parser<NyctFeedHeader>
-            PARSER = new com.google.protobuf.AbstractParser<>() {
+    @Deprecated public static final Parser<NyctFeedHeader> PARSER = new AbstractParser<>() {
         
         @Override
-        public NyctFeedHeader parsePartialFrom(
-                final com.google.protobuf.CodedInputStream input,
-                final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws com.google.protobuf.InvalidProtocolBufferException {
+        public NyctFeedHeader parsePartialFrom(final CodedInputStream input,
+                final ExtensionRegistryLite extensionRegistry)
+                throws InvalidProtocolBufferException {
             return new NyctFeedHeader(input, extensionRegistry);
         }
     };
     
-    public static com.google.protobuf.Parser<NyctFeedHeader> parser() {
+    public static Parser<NyctFeedHeader> parser() {
         return PARSER;
     }
     
-    @java.lang.Override
-    public com.google.protobuf.Parser<NyctFeedHeader> getParserForType() {
+    @Override
+    public Parser<NyctFeedHeader> getParserForType() {
         return PARSER;
     }
     
@@ -1308,4 +1203,3 @@ public final class NyctFeedHeader extends
     }
     
 }
-

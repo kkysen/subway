@@ -3,9 +3,9 @@
 
 package sen.khyber.web.subway.client.proto;
 
-public interface TimeRangeOrBuilder extends
-        // @@protoc_insertion_point(interface_extends:transit_realtime.TimeRange)
-        com.google.protobuf.MessageOrBuilder {
+import com.google.protobuf.MessageOrBuilder;
+
+public interface TimeRangeOrBuilder extends MessageOrBuilder {
     
     /**
      * <pre>
@@ -50,4 +50,5 @@ public interface TimeRangeOrBuilder extends
      * <code>optional uint64 end = 2;</code>
      */
     long getEnd();
+    
 }

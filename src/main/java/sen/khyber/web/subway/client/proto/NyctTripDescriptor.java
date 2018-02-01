@@ -3,6 +3,34 @@
 
 package sen.khyber.web.subway.client.proto;
 
+import sen.khyber.proto.ProtoUtils;
+
+import lombok.AccessLevel;
+import lombok.Setter;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.ByteBuffer;
+
+import com.google.protobuf.AbstractParser;
+import com.google.protobuf.ByteString;
+import com.google.protobuf.CodedInputStream;
+import com.google.protobuf.CodedOutputStream;
+import com.google.protobuf.Descriptors.Descriptor;
+import com.google.protobuf.Descriptors.EnumDescriptor;
+import com.google.protobuf.Descriptors.EnumValueDescriptor;
+import com.google.protobuf.Descriptors.FieldDescriptor;
+import com.google.protobuf.Descriptors.OneofDescriptor;
+import com.google.protobuf.ExtensionRegistryLite;
+import com.google.protobuf.GeneratedMessageV3;
+import com.google.protobuf.Internal;
+import com.google.protobuf.Internal.EnumLiteMap;
+import com.google.protobuf.InvalidProtocolBufferException;
+import com.google.protobuf.Message;
+import com.google.protobuf.Parser;
+import com.google.protobuf.ProtocolMessageEnum;
+import com.google.protobuf.UnknownFieldSet;
+
 /**
  * <pre>
  * NYCT Subway extensions for the trip descriptor
@@ -10,15 +38,13 @@ package sen.khyber.web.subway.client.proto;
  * <p>
  * Protobuf type {@code NyctTripDescriptor}
  */
-public final class NyctTripDescriptor extends
-        com.google.protobuf.GeneratedMessageV3 implements
-        // @@protoc_insertion_point(message_implements:NyctTripDescriptor)
-        NyctTripDescriptorOrBuilder {
+public final class NyctTripDescriptor extends GeneratedMessageV3
+        implements NyctTripDescriptorOrBuilder {
     
     private static final long serialVersionUID = 0L;
     
     // Use NyctTripDescriptor.newBuilder() to construct.
-    private NyctTripDescriptor(final com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    private NyctTripDescriptor(final GeneratedMessageV3.Builder<?> builder) {
         super(builder);
     }
     
@@ -28,20 +54,16 @@ public final class NyctTripDescriptor extends
         direction_ = 1;
     }
     
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
+    @Override
+    public final UnknownFieldSet getUnknownFields() {
         return unknownFields;
     }
     
-    private NyctTripDescriptor(
-            final com.google.protobuf.CodedInputStream input,
-            final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
+    private NyctTripDescriptor(final CodedInputStream input,
+            final ExtensionRegistryLite extensionRegistry) throws InvalidProtocolBufferException {
         this();
         final int mutable_bitField0_ = 0;
-        final com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-                com.google.protobuf.UnknownFieldSet.newBuilder();
+        final UnknownFieldSet.Builder unknownFields = UnknownFieldSet.newBuilder();
         try {
             boolean done = false;
             while (!done) {
@@ -51,14 +73,13 @@ public final class NyctTripDescriptor extends
                         done = true;
                         break;
                     default: {
-                        if (!parseUnknownField(
-                                input, unknownFields, extensionRegistry, tag)) {
+                        if (!parseUnknownField(input, unknownFields, extensionRegistry, tag)) {
                             done = true;
                         }
                         break;
                     }
                     case 10: {
-                        final com.google.protobuf.ByteString bs = input.readBytes();
+                        final ByteString bs = input.readBytes();
                         bitField0_ |= 0x00000001;
                         trainId_ = bs;
                         break;
@@ -70,8 +91,7 @@ public final class NyctTripDescriptor extends
                     }
                     case 24: {
                         final int rawValue = input.readEnum();
-                        final NyctTripDescriptor.Direction value =
-                                NyctTripDescriptor.Direction.valueOf(rawValue);
+                        final Direction value = Direction.valueOf(rawValue);
                         if (value == null) {
                             unknownFields.mergeVarintField(3, rawValue);
                         } else {
@@ -82,28 +102,24 @@ public final class NyctTripDescriptor extends
                     }
                 }
             }
-        } catch (final com.google.protobuf.InvalidProtocolBufferException e) {
+        } catch (final InvalidProtocolBufferException e) {
             throw e.setUnfinishedMessage(this);
-        } catch (final java.io.IOException e) {
-            throw new com.google.protobuf.InvalidProtocolBufferException(
-                    e).setUnfinishedMessage(this);
+        } catch (final IOException e) {
+            throw new InvalidProtocolBufferException(e).setUnfinishedMessage(this);
         } finally {
             this.unknownFields = unknownFields.build();
             makeExtensionsImmutable();
         }
     }
     
-    public static final com.google.protobuf.Descriptors.Descriptor
-    getDescriptor() {
+    public static final Descriptor getDescriptor() {
         return NyctSubway.internal_static_NyctTripDescriptor_descriptor;
     }
     
     @Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-    internalGetFieldAccessorTable() {
+    protected FieldAccessorTable internalGetFieldAccessorTable() {
         return NyctSubway.internal_static_NyctTripDescriptor_fieldAccessorTable
-                .ensureFieldAccessorsInitialized(
-                        NyctTripDescriptor.class, NyctTripDescriptor.Builder.class);
+                .ensureFieldAccessorsInitialized(NyctTripDescriptor.class, Builder.class);
     }
     
     /**
@@ -113,8 +129,7 @@ public final class NyctTripDescriptor extends
      * <p>
      * Protobuf enum {@code NyctTripDescriptor.Direction}
      */
-    public enum Direction
-            implements com.google.protobuf.ProtocolMessageEnum {
+    public enum Direction implements ProtocolMessageEnum {
         /**
          * <code>NORTH = 1;</code>
          */
@@ -158,7 +173,7 @@ public final class NyctTripDescriptor extends
         /**
          * @deprecated Use {@link #forNumber(int)} instead.
          */
-        @java.lang.Deprecated
+        @Deprecated
         public static Direction valueOf(final int value) {
             return forNumber(value);
         }
@@ -178,52 +193,44 @@ public final class NyctTripDescriptor extends
             }
         }
         
-        public static com.google.protobuf.Internal.EnumLiteMap<Direction>
-        internalGetValueMap() {
+        public static EnumLiteMap<Direction> internalGetValueMap() {
             return internalValueMap;
         }
         
-        private static final com.google.protobuf.Internal.EnumLiteMap<
-                Direction> internalValueMap =
-                new com.google.protobuf.Internal.EnumLiteMap<>() {
-                    
-                    @Override
-                    public Direction findValueByNumber(final int number) {
-                        return Direction.forNumber(number);
-                    }
-                };
+        private static final EnumLiteMap<Direction> internalValueMap = new EnumLiteMap<>() {
+            
+            @Override
+            public Direction findValueByNumber(final int number) {
+                return forNumber(number);
+            }
+        };
         
         @Override
-        public final com.google.protobuf.Descriptors.EnumValueDescriptor
-        getValueDescriptor() {
+        public final EnumValueDescriptor getValueDescriptor() {
             return getDescriptor().getValues().get(ordinal());
         }
         
         @Override
-        public final com.google.protobuf.Descriptors.EnumDescriptor
-        getDescriptorForType() {
+        public final EnumDescriptor getDescriptorForType() {
             return getDescriptor();
         }
         
-        public static final com.google.protobuf.Descriptors.EnumDescriptor
-        getDescriptor() {
+        public static final EnumDescriptor getDescriptor() {
             return NyctTripDescriptor.getDescriptor().getEnumTypes().get(0);
         }
         
         private static final Direction[] VALUES = values();
         
-        public static Direction valueOf(
-                final com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+        public static Direction valueOf(final EnumValueDescriptor desc) {
             if (desc.getType() != getDescriptor()) {
-                throw new java.lang.IllegalArgumentException(
-                        "EnumValueDescriptor is not for this type.");
+                throw new IllegalArgumentException("EnumValueDescriptor is not for this type.");
             }
             return VALUES[desc.getIndex()];
         }
         
         private final int value;
         
-        private Direction(final int value) {
+        Direction(final int value) {
             this.value = value;
         }
         
@@ -232,7 +239,7 @@ public final class NyctTripDescriptor extends
     
     private int bitField0_;
     public static final int TRAIN_ID_FIELD_NUMBER = 1;
-    private volatile java.lang.Object trainId_;
+    private volatile @Setter(AccessLevel.PRIVATE) Object trainId_;
     
     /**
      * <pre>
@@ -286,19 +293,8 @@ public final class NyctTripDescriptor extends
      * <code>optional string train_id = 1;</code>
      */
     @Override
-    public java.lang.String getTrainId() {
-        final java.lang.Object ref = trainId_;
-        if (ref instanceof java.lang.String) {
-            return (java.lang.String) ref;
-        } else {
-            final com.google.protobuf.ByteString bs =
-                    (com.google.protobuf.ByteString) ref;
-            final java.lang.String s = bs.toStringUtf8();
-            if (bs.isValidUtf8()) {
-                trainId_ = s;
-            }
-            return s;
-        }
+    public String getTrainId() {
+        return ProtoUtils.asString(trainId_, this::setTrainId_);
     }
     
     /**
@@ -325,18 +321,8 @@ public final class NyctTripDescriptor extends
      * <code>optional string train_id = 1;</code>
      */
     @Override
-    public com.google.protobuf.ByteString
-    getTrainIdBytes() {
-        final java.lang.Object ref = trainId_;
-        if (ref instanceof java.lang.String) {
-            final com.google.protobuf.ByteString b =
-                    com.google.protobuf.ByteString.copyFromUtf8(
-                            (java.lang.String) ref);
-            trainId_ = b;
-            return b;
-        } else {
-            return (com.google.protobuf.ByteString) ref;
-        }
+    public ByteString getTrainIdBytes() {
+        return ProtoUtils.asBytes(trainId_, this::setTrainId_);
     }
     
     public static final int IS_ASSIGNED_FIELD_NUMBER = 2;
@@ -417,10 +403,9 @@ public final class NyctTripDescriptor extends
      * <code>optional .NyctTripDescriptor.Direction direction = 3;</code>
      */
     @Override
-    public NyctTripDescriptor.Direction getDirection() {
-        final NyctTripDescriptor.Direction result =
-                NyctTripDescriptor.Direction.valueOf(direction_);
-        return result == null ? NyctTripDescriptor.Direction.NORTH : result;
+    public Direction getDirection() {
+        final Direction result = Direction.valueOf(direction_);
+        return result == null ? Direction.NORTH : result;
     }
     
     private byte memoizedIsInitialized = -1;
@@ -436,10 +421,9 @@ public final class NyctTripDescriptor extends
     }
     
     @Override
-    public void writeTo(final com.google.protobuf.CodedOutputStream output)
-            throws java.io.IOException {
+    public void writeTo(final CodedOutputStream output) throws IOException {
         if (((bitField0_ & 0x00000001) == 0x00000001)) {
-            com.google.protobuf.GeneratedMessageV3.writeString(output, 1, trainId_);
+            GeneratedMessageV3.writeString(output, 1, trainId_);
         }
         if (((bitField0_ & 0x00000002) == 0x00000002)) {
             output.writeBool(2, isAssigned_);
@@ -457,23 +441,21 @@ public final class NyctTripDescriptor extends
         
         size = 0;
         if (((bitField0_ & 0x00000001) == 0x00000001)) {
-            size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, trainId_);
+            size += GeneratedMessageV3.computeStringSize(1, trainId_);
         }
         if (((bitField0_ & 0x00000002) == 0x00000002)) {
-            size += com.google.protobuf.CodedOutputStream
-                    .computeBoolSize(2, isAssigned_);
+            size += CodedOutputStream.computeBoolSize(2, isAssigned_);
         }
         if (((bitField0_ & 0x00000004) == 0x00000004)) {
-            size += com.google.protobuf.CodedOutputStream
-                    .computeEnumSize(3, direction_);
+            size += CodedOutputStream.computeEnumSize(3, direction_);
         }
         size += unknownFields.getSerializedSize();
         memoizedSize = size;
         return size;
     }
     
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
+    @Override
+    public boolean equals(final Object obj) {
         if (obj == this) {
             return true;
         }
@@ -485,13 +467,11 @@ public final class NyctTripDescriptor extends
         boolean result = true;
         result = result && (hasTrainId() == other.hasTrainId());
         if (hasTrainId()) {
-            result = result && getTrainId()
-                    .equals(other.getTrainId());
+            result = result && getTrainId().equals(other.getTrainId());
         }
         result = result && (hasIsAssigned() == other.hasIsAssigned());
         if (hasIsAssigned()) {
-            result = result && (getIsAssigned()
-                    == other.getIsAssigned());
+            result = result && (getIsAssigned() == other.getIsAssigned());
         }
         result = result && (hasDirection() == other.hasDirection());
         if (hasDirection()) {
@@ -501,7 +481,7 @@ public final class NyctTripDescriptor extends
         return result;
     }
     
-    @java.lang.Override
+    @Override
     public int hashCode() {
         if (memoizedHashCode != 0) {
             return memoizedHashCode;
@@ -514,8 +494,7 @@ public final class NyctTripDescriptor extends
         }
         if (hasIsAssigned()) {
             hash = (37 * hash) + IS_ASSIGNED_FIELD_NUMBER;
-            hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-                    getIsAssigned());
+            hash = (53 * hash) + Internal.hashBoolean(getIsAssigned());
         }
         if (hasDirection()) {
             hash = (37 * hash) + DIRECTION_FIELD_NUMBER;
@@ -526,85 +505,62 @@ public final class NyctTripDescriptor extends
         return hash;
     }
     
-    public static NyctTripDescriptor parseFrom(
-            final java.nio.ByteBuffer data)
-            throws com.google.protobuf.InvalidProtocolBufferException {
+    public static NyctTripDescriptor parseFrom(final ByteBuffer data)
+            throws InvalidProtocolBufferException {
         return PARSER.parseFrom(data);
     }
     
-    public static NyctTripDescriptor parseFrom(
-            final java.nio.ByteBuffer data,
-            final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
+    public static NyctTripDescriptor parseFrom(final ByteBuffer data,
+            final ExtensionRegistryLite extensionRegistry) throws InvalidProtocolBufferException {
         return PARSER.parseFrom(data, extensionRegistry);
     }
     
-    public static NyctTripDescriptor parseFrom(
-            final com.google.protobuf.ByteString data)
-            throws com.google.protobuf.InvalidProtocolBufferException {
+    public static NyctTripDescriptor parseFrom(final ByteString data)
+            throws InvalidProtocolBufferException {
         return PARSER.parseFrom(data);
     }
     
-    public static NyctTripDescriptor parseFrom(
-            final com.google.protobuf.ByteString data,
-            final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
+    public static NyctTripDescriptor parseFrom(final ByteString data,
+            final ExtensionRegistryLite extensionRegistry) throws InvalidProtocolBufferException {
         return PARSER.parseFrom(data, extensionRegistry);
     }
     
     public static NyctTripDescriptor parseFrom(final byte[] data)
-            throws com.google.protobuf.InvalidProtocolBufferException {
+            throws InvalidProtocolBufferException {
         return PARSER.parseFrom(data);
     }
     
-    public static NyctTripDescriptor parseFrom(
-            final byte[] data,
-            final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
+    public static NyctTripDescriptor parseFrom(final byte[] data,
+            final ExtensionRegistryLite extensionRegistry) throws InvalidProtocolBufferException {
         return PARSER.parseFrom(data, extensionRegistry);
     }
     
-    public static NyctTripDescriptor parseFrom(final java.io.InputStream input)
-            throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-                .parseWithIOException(PARSER, input);
+    public static NyctTripDescriptor parseFrom(final InputStream input) throws IOException {
+        return GeneratedMessageV3.parseWithIOException(PARSER, input);
     }
     
-    public static NyctTripDescriptor parseFrom(
-            final java.io.InputStream input,
-            final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-                .parseWithIOException(PARSER, input, extensionRegistry);
+    public static NyctTripDescriptor parseFrom(final InputStream input,
+            final ExtensionRegistryLite extensionRegistry) throws IOException {
+        return GeneratedMessageV3.parseWithIOException(PARSER, input, extensionRegistry);
     }
     
-    public static NyctTripDescriptor parseDelimitedFrom(final java.io.InputStream input)
-            throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-                .parseDelimitedWithIOException(PARSER, input);
+    public static NyctTripDescriptor parseDelimitedFrom(final InputStream input)
+            throws IOException {
+        return GeneratedMessageV3.parseDelimitedWithIOException(PARSER, input);
     }
     
-    public static NyctTripDescriptor parseDelimitedFrom(
-            final java.io.InputStream input,
-            final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-                .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    public static NyctTripDescriptor parseDelimitedFrom(final InputStream input,
+            final ExtensionRegistryLite extensionRegistry) throws IOException {
+        return GeneratedMessageV3.parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
     
-    public static NyctTripDescriptor parseFrom(
-            final com.google.protobuf.CodedInputStream input)
-            throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-                .parseWithIOException(PARSER, input);
+    public static NyctTripDescriptor parseFrom(final CodedInputStream input) throws IOException {
+        return GeneratedMessageV3.parseWithIOException(PARSER, input);
     }
     
-    public static NyctTripDescriptor parseFrom(
-            final com.google.protobuf.CodedInputStream input,
-            final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-                .parseWithIOException(PARSER, input, extensionRegistry);
+    public static NyctTripDescriptor parseFrom(final CodedInputStream input,
+            final ExtensionRegistryLite extensionRegistry) throws IOException {
+        return GeneratedMessageV3.parseWithIOException(PARSER, input, extensionRegistry);
     }
     
     @Override
@@ -620,13 +576,11 @@ public final class NyctTripDescriptor extends
     
     @Override
     public Builder toBuilder() {
-        return this == DEFAULT_INSTANCE
-                ? new Builder() : new Builder().mergeFrom(this);
+        return this == DEFAULT_INSTANCE ? new Builder() : new Builder().mergeFrom(this);
     }
     
-    @java.lang.Override
-    protected Builder newBuilderForType(
-            final com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+    @Override
+    protected Builder newBuilderForType(final BuilderParent parent) {
         final Builder builder = new Builder(parent);
         return builder;
     }
@@ -638,22 +592,18 @@ public final class NyctTripDescriptor extends
      * <p>
      * Protobuf type {@code NyctTripDescriptor}
      */
-    public static final class Builder extends
-            com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+    public static final class Builder extends GeneratedMessageV3.Builder<Builder> implements
             // @@protoc_insertion_point(builder_implements:NyctTripDescriptor)
             NyctTripDescriptorOrBuilder {
         
-        public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
+        public static final Descriptor getDescriptor() {
             return NyctSubway.internal_static_NyctTripDescriptor_descriptor;
         }
         
         @Override
-        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
+        protected FieldAccessorTable internalGetFieldAccessorTable() {
             return NyctSubway.internal_static_NyctTripDescriptor_fieldAccessorTable
-                    .ensureFieldAccessorsInitialized(
-                            NyctTripDescriptor.class, NyctTripDescriptor.Builder.class);
+                    .ensureFieldAccessorsInitialized(NyctTripDescriptor.class, Builder.class);
         }
         
         // Construct using sen.khyber.subway.client.proto.NyctTripDescriptor.newBuilder()
@@ -661,15 +611,13 @@ public final class NyctTripDescriptor extends
             maybeForceBuilderInitialization();
         }
         
-        private Builder(
-                final com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        private Builder(final BuilderParent parent) {
             super(parent);
             maybeForceBuilderInitialization();
         }
         
         private void maybeForceBuilderInitialization() {
-            if (com.google.protobuf.GeneratedMessageV3
-                    .alwaysUseFieldBuilders) {
+            if (GeneratedMessageV3.alwaysUseFieldBuilders) {
             }
         }
         
@@ -686,14 +634,13 @@ public final class NyctTripDescriptor extends
         }
         
         @Override
-        public com.google.protobuf.Descriptors.Descriptor
-        getDescriptorForType() {
+        public Descriptor getDescriptorForType() {
             return NyctSubway.internal_static_NyctTripDescriptor_descriptor;
         }
         
         @Override
         public NyctTripDescriptor getDefaultInstanceForType() {
-            return NyctTripDescriptor.getDefaultInstance();
+            return getDefaultInstance();
         }
         
         @Override
@@ -729,44 +676,37 @@ public final class NyctTripDescriptor extends
         
         @Override
         public Builder clone() {
-            return (Builder) super.clone();
+            return super.clone();
         }
         
         @Override
-        public Builder setField(
-                final com.google.protobuf.Descriptors.FieldDescriptor field,
-                final java.lang.Object value) {
-            return (Builder) super.setField(field, value);
+        public Builder setField(final FieldDescriptor field, final Object value) {
+            return super.setField(field, value);
         }
         
         @Override
-        public Builder clearField(
-                final com.google.protobuf.Descriptors.FieldDescriptor field) {
-            return (Builder) super.clearField(field);
+        public Builder clearField(final FieldDescriptor field) {
+            return super.clearField(field);
         }
         
         @Override
-        public Builder clearOneof(
-                final com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-            return (Builder) super.clearOneof(oneof);
+        public Builder clearOneof(final OneofDescriptor oneof) {
+            return super.clearOneof(oneof);
         }
         
         @Override
-        public Builder setRepeatedField(
-                final com.google.protobuf.Descriptors.FieldDescriptor field,
-                final int index, final java.lang.Object value) {
-            return (Builder) super.setRepeatedField(field, index, value);
+        public Builder setRepeatedField(final FieldDescriptor field, final int index,
+                final Object value) {
+            return super.setRepeatedField(field, index, value);
         }
         
         @Override
-        public Builder addRepeatedField(
-                final com.google.protobuf.Descriptors.FieldDescriptor field,
-                final java.lang.Object value) {
-            return (Builder) super.addRepeatedField(field, value);
+        public Builder addRepeatedField(final FieldDescriptor field, final Object value) {
+            return super.addRepeatedField(field, value);
         }
         
         @Override
-        public Builder mergeFrom(final com.google.protobuf.Message other) {
+        public Builder mergeFrom(final Message other) {
             if (other instanceof NyctTripDescriptor) {
                 return mergeFrom((NyctTripDescriptor) other);
             } else {
@@ -776,7 +716,7 @@ public final class NyctTripDescriptor extends
         }
         
         public Builder mergeFrom(final NyctTripDescriptor other) {
-            if (other == NyctTripDescriptor.getDefaultInstance()) {return this;}
+            if (other == getDefaultInstance()) {return this;}
             if (other.hasTrainId()) {
                 bitField0_ |= 0x00000001;
                 trainId_ = other.trainId_;
@@ -799,14 +739,12 @@ public final class NyctTripDescriptor extends
         }
         
         @Override
-        public Builder mergeFrom(
-                final com.google.protobuf.CodedInputStream input,
-                final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws java.io.IOException {
+        public Builder mergeFrom(final CodedInputStream input,
+                final ExtensionRegistryLite extensionRegistry) throws IOException {
             NyctTripDescriptor parsedMessage = null;
             try {
                 parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-            } catch (final com.google.protobuf.InvalidProtocolBufferException e) {
+            } catch (final InvalidProtocolBufferException e) {
                 parsedMessage = (NyctTripDescriptor) e.getUnfinishedMessage();
                 throw e.unwrapIOException();
             } finally {
@@ -819,7 +757,7 @@ public final class NyctTripDescriptor extends
         
         private int bitField0_;
         
-        private java.lang.Object trainId_ = "";
+        private @Setter(AccessLevel.PRIVATE) Object trainId_ = "";
         
         /**
          * <pre>
@@ -873,19 +811,8 @@ public final class NyctTripDescriptor extends
          * <code>optional string train_id = 1;</code>
          */
         @Override
-        public java.lang.String getTrainId() {
-            final java.lang.Object ref = trainId_;
-            if (!(ref instanceof java.lang.String)) {
-                final com.google.protobuf.ByteString bs =
-                        (com.google.protobuf.ByteString) ref;
-                final java.lang.String s = bs.toStringUtf8();
-                if (bs.isValidUtf8()) {
-                    trainId_ = s;
-                }
-                return s;
-            } else {
-                return (java.lang.String) ref;
-            }
+        public String getTrainId() {
+            return ProtoUtils.asString(trainId_, this::setTrainId_);
         }
         
         /**
@@ -912,18 +839,8 @@ public final class NyctTripDescriptor extends
          * <code>optional string train_id = 1;</code>
          */
         @Override
-        public com.google.protobuf.ByteString
-        getTrainIdBytes() {
-            final java.lang.Object ref = trainId_;
-            if (ref instanceof String) {
-                final com.google.protobuf.ByteString b =
-                        com.google.protobuf.ByteString.copyFromUtf8(
-                                (java.lang.String) ref);
-                trainId_ = b;
-                return b;
-            } else {
-                return (com.google.protobuf.ByteString) ref;
-            }
+        public ByteString getTrainIdBytes() {
+            return ProtoUtils.asBytes(trainId_, this::setTrainId_);
         }
         
         /**
@@ -949,11 +866,8 @@ public final class NyctTripDescriptor extends
          * <p>
          * <code>optional string train_id = 1;</code>
          */
-        public Builder setTrainId(
-                final java.lang.String value) {
-            if (value == null) {
-                throw new NullPointerException();
-            }
+        public Builder setTrainId(final String value) {
+            Objects.requireNonNull(value);
             bitField0_ |= 0x00000001;
             trainId_ = value;
             onChanged();
@@ -1013,11 +927,8 @@ public final class NyctTripDescriptor extends
          * <p>
          * <code>optional string train_id = 1;</code>
          */
-        public Builder setTrainIdBytes(
-                final com.google.protobuf.ByteString value) {
-            if (value == null) {
-                throw new NullPointerException();
-            }
+        public Builder setTrainIdBytes(final ByteString value) {
+            Objects.requireNonNull(value);
             bitField0_ |= 0x00000001;
             trainId_ = value;
             onChanged();
@@ -1148,10 +1059,9 @@ public final class NyctTripDescriptor extends
          * <code>optional .NyctTripDescriptor.Direction direction = 3;</code>
          */
         @Override
-        public NyctTripDescriptor.Direction getDirection() {
-            final NyctTripDescriptor.Direction result =
-                    NyctTripDescriptor.Direction.valueOf(direction_);
-            return result == null ? NyctTripDescriptor.Direction.NORTH : result;
+        public Direction getDirection() {
+            final Direction result = Direction.valueOf(direction_);
+            return result == null ? Direction.NORTH : result;
         }
         
         /**
@@ -1165,10 +1075,8 @@ public final class NyctTripDescriptor extends
          * <p>
          * <code>optional .NyctTripDescriptor.Direction direction = 3;</code>
          */
-        public Builder setDirection(final NyctTripDescriptor.Direction value) {
-            if (value == null) {
-                throw new NullPointerException();
-            }
+        public Builder setDirection(final Direction value) {
+            Objects.requireNonNull(value);
             bitField0_ |= 0x00000004;
             direction_ = value.getNumber();
             onChanged();
@@ -1194,14 +1102,12 @@ public final class NyctTripDescriptor extends
         }
         
         @Override
-        public final Builder setUnknownFields(
-                final com.google.protobuf.UnknownFieldSet unknownFields) {
+        public final Builder setUnknownFields(final UnknownFieldSet unknownFields) {
             return super.setUnknownFields(unknownFields);
         }
         
         @Override
-        public final Builder mergeUnknownFields(
-                final com.google.protobuf.UnknownFieldSet unknownFields) {
+        public final Builder mergeUnknownFields(final UnknownFieldSet unknownFields) {
             return super.mergeUnknownFields(unknownFields);
         }
         
@@ -1220,24 +1126,22 @@ public final class NyctTripDescriptor extends
         return DEFAULT_INSTANCE;
     }
     
-    @java.lang.Deprecated public static final com.google.protobuf.Parser<NyctTripDescriptor>
-            PARSER = new com.google.protobuf.AbstractParser<>() {
+    @Deprecated public static final Parser<NyctTripDescriptor> PARSER = new AbstractParser<>() {
         
         @Override
-        public NyctTripDescriptor parsePartialFrom(
-                final com.google.protobuf.CodedInputStream input,
-                final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws com.google.protobuf.InvalidProtocolBufferException {
+        public NyctTripDescriptor parsePartialFrom(final CodedInputStream input,
+                final ExtensionRegistryLite extensionRegistry)
+                throws InvalidProtocolBufferException {
             return new NyctTripDescriptor(input, extensionRegistry);
         }
     };
     
-    public static com.google.protobuf.Parser<NyctTripDescriptor> parser() {
+    public static Parser<NyctTripDescriptor> parser() {
         return PARSER;
     }
     
-    @java.lang.Override
-    public com.google.protobuf.Parser<NyctTripDescriptor> getParserForType() {
+    @Override
+    public Parser<NyctTripDescriptor> getParserForType() {
         return PARSER;
     }
     
@@ -1247,4 +1151,3 @@ public final class NyctTripDescriptor extends
     }
     
 }
-

@@ -3,6 +3,34 @@
 
 package sen.khyber.web.subway.client.proto;
 
+import sen.khyber.proto.ProtoUtils;
+
+import lombok.AccessLevel;
+import lombok.Setter;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.ByteBuffer;
+import java.util.List;
+import java.util.Objects;
+
+import com.google.protobuf.AbstractParser;
+import com.google.protobuf.ByteString;
+import com.google.protobuf.CodedInputStream;
+import com.google.protobuf.CodedOutputStream;
+import com.google.protobuf.Descriptors.Descriptor;
+import com.google.protobuf.Descriptors.FieldDescriptor;
+import com.google.protobuf.Descriptors.OneofDescriptor;
+import com.google.protobuf.ExtensionRegistryLite;
+import com.google.protobuf.GeneratedMessage.GeneratedExtension;
+import com.google.protobuf.GeneratedMessageV3;
+import com.google.protobuf.GeneratedMessageV3.ExtendableMessage;
+import com.google.protobuf.InvalidProtocolBufferException;
+import com.google.protobuf.Message;
+import com.google.protobuf.Parser;
+import com.google.protobuf.SingleFieldBuilderV3;
+import com.google.protobuf.UnknownFieldSet;
+
 /**
  * <pre>
  * A selector for an entity in a GTFS feed.
@@ -10,18 +38,13 @@ package sen.khyber.web.subway.client.proto;
  * <p>
  * Protobuf type {@code transit_realtime.EntitySelector}
  */
-public final class EntitySelector extends
-        com.google.protobuf.GeneratedMessageV3.ExtendableMessage<
-                EntitySelector> implements
-        // @@protoc_insertion_point(message_implements:transit_realtime.EntitySelector)
-        EntitySelectorOrBuilder {
+public final class EntitySelector extends ExtendableMessage<EntitySelector>
+        implements EntitySelectorOrBuilder {
     
     private static final long serialVersionUID = 0L;
     
     // Use EntitySelector.newBuilder() to construct.
-    private EntitySelector(
-            final com.google.protobuf.GeneratedMessageV3.ExtendableBuilder<EntitySelector, ?>
-                    builder) {
+    private EntitySelector(final ExtendableBuilder<EntitySelector, ?> builder) {
         super(builder);
     }
     
@@ -32,20 +55,16 @@ public final class EntitySelector extends
         stopId_ = "";
     }
     
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
+    @Override
+    public final UnknownFieldSet getUnknownFields() {
         return unknownFields;
     }
     
-    private EntitySelector(
-            final com.google.protobuf.CodedInputStream input,
-            final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
+    private EntitySelector(final CodedInputStream input,
+            final ExtensionRegistryLite extensionRegistry) throws InvalidProtocolBufferException {
         this();
         final int mutable_bitField0_ = 0;
-        final com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-                com.google.protobuf.UnknownFieldSet.newBuilder();
+        final UnknownFieldSet.Builder unknownFields = UnknownFieldSet.newBuilder();
         try {
             boolean done = false;
             while (!done) {
@@ -55,20 +74,19 @@ public final class EntitySelector extends
                         done = true;
                         break;
                     default: {
-                        if (!parseUnknownField(
-                                input, unknownFields, extensionRegistry, tag)) {
+                        if (!parseUnknownField(input, unknownFields, extensionRegistry, tag)) {
                             done = true;
                         }
                         break;
                     }
                     case 10: {
-                        final com.google.protobuf.ByteString bs = input.readBytes();
+                        final ByteString bs = input.readBytes();
                         bitField0_ |= 0x00000001;
                         agencyId_ = bs;
                         break;
                     }
                     case 18: {
-                        final com.google.protobuf.ByteString bs = input.readBytes();
+                        final ByteString bs = input.readBytes();
                         bitField0_ |= 0x00000002;
                         routeId_ = bs;
                         break;
@@ -92,40 +110,36 @@ public final class EntitySelector extends
                         break;
                     }
                     case 42: {
-                        final com.google.protobuf.ByteString bs = input.readBytes();
+                        final ByteString bs = input.readBytes();
                         bitField0_ |= 0x00000010;
                         stopId_ = bs;
                         break;
                     }
                 }
             }
-        } catch (final com.google.protobuf.InvalidProtocolBufferException e) {
+        } catch (final InvalidProtocolBufferException e) {
             throw e.setUnfinishedMessage(this);
-        } catch (final java.io.IOException e) {
-            throw new com.google.protobuf.InvalidProtocolBufferException(
-                    e).setUnfinishedMessage(this);
+        } catch (final IOException e) {
+            throw new InvalidProtocolBufferException(e).setUnfinishedMessage(this);
         } finally {
             this.unknownFields = unknownFields.build();
             makeExtensionsImmutable();
         }
     }
     
-    public static final com.google.protobuf.Descriptors.Descriptor
-    getDescriptor() {
+    public static final Descriptor getDescriptor() {
         return GtfsRealtime.internal_static_transit_realtime_EntitySelector_descriptor;
     }
     
     @Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-    internalGetFieldAccessorTable() {
+    protected FieldAccessorTable internalGetFieldAccessorTable() {
         return GtfsRealtime.internal_static_transit_realtime_EntitySelector_fieldAccessorTable
-                .ensureFieldAccessorsInitialized(
-                        EntitySelector.class, EntitySelector.Builder.class);
+                .ensureFieldAccessorsInitialized(EntitySelector.class, Builder.class);
     }
     
     private int bitField0_;
     public static final int AGENCY_ID_FIELD_NUMBER = 1;
-    private volatile java.lang.Object agencyId_;
+    private volatile @Setter(AccessLevel.PRIVATE) Object agencyId_;
     
     /**
      * <pre>
@@ -153,19 +167,8 @@ public final class EntitySelector extends
      * <code>optional string agency_id = 1;</code>
      */
     @Override
-    public java.lang.String getAgencyId() {
-        final java.lang.Object ref = agencyId_;
-        if (ref instanceof java.lang.String) {
-            return (java.lang.String) ref;
-        } else {
-            final com.google.protobuf.ByteString bs =
-                    (com.google.protobuf.ByteString) ref;
-            final java.lang.String s = bs.toStringUtf8();
-            if (bs.isValidUtf8()) {
-                agencyId_ = s;
-            }
-            return s;
-        }
+    public String getAgencyId() {
+        return ProtoUtils.asString(agencyId_, this::setAgencyId_);
     }
     
     /**
@@ -179,22 +182,12 @@ public final class EntitySelector extends
      * <code>optional string agency_id = 1;</code>
      */
     @Override
-    public com.google.protobuf.ByteString
-    getAgencyIdBytes() {
-        final java.lang.Object ref = agencyId_;
-        if (ref instanceof java.lang.String) {
-            final com.google.protobuf.ByteString b =
-                    com.google.protobuf.ByteString.copyFromUtf8(
-                            (java.lang.String) ref);
-            agencyId_ = b;
-            return b;
-        } else {
-            return (com.google.protobuf.ByteString) ref;
-        }
+    public ByteString getAgencyIdBytes() {
+        return ProtoUtils.asBytes(agencyId_, this::setAgencyId_);
     }
     
     public static final int ROUTE_ID_FIELD_NUMBER = 2;
-    private volatile java.lang.Object routeId_;
+    private volatile @Setter(AccessLevel.PRIVATE) Object routeId_;
     
     /**
      * <code>optional string route_id = 2;</code>
@@ -208,37 +201,16 @@ public final class EntitySelector extends
      * <code>optional string route_id = 2;</code>
      */
     @Override
-    public java.lang.String getRouteId() {
-        final java.lang.Object ref = routeId_;
-        if (ref instanceof java.lang.String) {
-            return (java.lang.String) ref;
-        } else {
-            final com.google.protobuf.ByteString bs =
-                    (com.google.protobuf.ByteString) ref;
-            final java.lang.String s = bs.toStringUtf8();
-            if (bs.isValidUtf8()) {
-                routeId_ = s;
-            }
-            return s;
-        }
+    public String getRouteId() {
+        return ProtoUtils.asString(routeId_, this::setRouteId_);
     }
     
     /**
      * <code>optional string route_id = 2;</code>
      */
     @Override
-    public com.google.protobuf.ByteString
-    getRouteIdBytes() {
-        final java.lang.Object ref = routeId_;
-        if (ref instanceof java.lang.String) {
-            final com.google.protobuf.ByteString b =
-                    com.google.protobuf.ByteString.copyFromUtf8(
-                            (java.lang.String) ref);
-            routeId_ = b;
-            return b;
-        } else {
-            return (com.google.protobuf.ByteString) ref;
-        }
+    public ByteString getRouteIdBytes() {
+        return ProtoUtils.asBytes(routeId_, this::setRouteId_);
     }
     
     public static final int ROUTE_TYPE_FIELD_NUMBER = 3;
@@ -296,7 +268,7 @@ public final class EntitySelector extends
     }
     
     public static final int STOP_ID_FIELD_NUMBER = 5;
-    private volatile java.lang.Object stopId_;
+    private volatile @Setter(AccessLevel.PRIVATE) Object stopId_;
     
     /**
      * <code>optional string stop_id = 5;</code>
@@ -310,37 +282,16 @@ public final class EntitySelector extends
      * <code>optional string stop_id = 5;</code>
      */
     @Override
-    public java.lang.String getStopId() {
-        final java.lang.Object ref = stopId_;
-        if (ref instanceof java.lang.String) {
-            return (java.lang.String) ref;
-        } else {
-            final com.google.protobuf.ByteString bs =
-                    (com.google.protobuf.ByteString) ref;
-            final java.lang.String s = bs.toStringUtf8();
-            if (bs.isValidUtf8()) {
-                stopId_ = s;
-            }
-            return s;
-        }
+    public String getStopId() {
+        return ProtoUtils.asString(stopId_, this::setStopId_);
     }
     
     /**
      * <code>optional string stop_id = 5;</code>
      */
     @Override
-    public com.google.protobuf.ByteString
-    getStopIdBytes() {
-        final java.lang.Object ref = stopId_;
-        if (ref instanceof java.lang.String) {
-            final com.google.protobuf.ByteString b =
-                    com.google.protobuf.ByteString.copyFromUtf8(
-                            (java.lang.String) ref);
-            stopId_ = b;
-            return b;
-        } else {
-            return (com.google.protobuf.ByteString) ref;
-        }
+    public ByteString getStopIdBytes() {
+        return ProtoUtils.asBytes(stopId_, this::setStopId_);
     }
     
     private byte memoizedIsInitialized = -1;
@@ -366,16 +317,14 @@ public final class EntitySelector extends
     }
     
     @Override
-    public void writeTo(final com.google.protobuf.CodedOutputStream output)
-            throws java.io.IOException {
-        final com.google.protobuf.GeneratedMessageV3
-                .ExtendableMessage<EntitySelector>.ExtensionWriter
-                extensionWriter = newExtensionWriter();
+    public void writeTo(final CodedOutputStream output) throws IOException {
+        final ExtendableMessage<EntitySelector>.ExtensionWriter extensionWriter =
+                newExtensionWriter();
         if (((bitField0_ & 0x00000001) == 0x00000001)) {
-            com.google.protobuf.GeneratedMessageV3.writeString(output, 1, agencyId_);
+            GeneratedMessageV3.writeString(output, 1, agencyId_);
         }
         if (((bitField0_ & 0x00000002) == 0x00000002)) {
-            com.google.protobuf.GeneratedMessageV3.writeString(output, 2, routeId_);
+            GeneratedMessageV3.writeString(output, 2, routeId_);
         }
         if (((bitField0_ & 0x00000004) == 0x00000004)) {
             output.writeInt32(3, routeType_);
@@ -384,7 +333,7 @@ public final class EntitySelector extends
             output.writeMessage(4, getTrip());
         }
         if (((bitField0_ & 0x00000010) == 0x00000010)) {
-            com.google.protobuf.GeneratedMessageV3.writeString(output, 5, stopId_);
+            GeneratedMessageV3.writeString(output, 5, stopId_);
         }
         extensionWriter.writeUntil(2000, output);
         unknownFields.writeTo(output);
@@ -397,21 +346,19 @@ public final class EntitySelector extends
         
         size = 0;
         if (((bitField0_ & 0x00000001) == 0x00000001)) {
-            size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, agencyId_);
+            size += GeneratedMessageV3.computeStringSize(1, agencyId_);
         }
         if (((bitField0_ & 0x00000002) == 0x00000002)) {
-            size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, routeId_);
+            size += GeneratedMessageV3.computeStringSize(2, routeId_);
         }
         if (((bitField0_ & 0x00000004) == 0x00000004)) {
-            size += com.google.protobuf.CodedOutputStream
-                    .computeInt32Size(3, routeType_);
+            size += CodedOutputStream.computeInt32Size(3, routeType_);
         }
         if (((bitField0_ & 0x00000008) == 0x00000008)) {
-            size += com.google.protobuf.CodedOutputStream
-                    .computeMessageSize(4, getTrip());
+            size += CodedOutputStream.computeMessageSize(4, getTrip());
         }
         if (((bitField0_ & 0x00000010) == 0x00000010)) {
-            size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, stopId_);
+            size += GeneratedMessageV3.computeStringSize(5, stopId_);
         }
         size += extensionsSerializedSize();
         size += unknownFields.getSerializedSize();
@@ -419,8 +366,8 @@ public final class EntitySelector extends
         return size;
     }
     
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
+    @Override
+    public boolean equals(final Object obj) {
         if (obj == this) {
             return true;
         }
@@ -432,36 +379,30 @@ public final class EntitySelector extends
         boolean result = true;
         result = result && (hasAgencyId() == other.hasAgencyId());
         if (hasAgencyId()) {
-            result = result && getAgencyId()
-                    .equals(other.getAgencyId());
+            result = result && getAgencyId().equals(other.getAgencyId());
         }
         result = result && (hasRouteId() == other.hasRouteId());
         if (hasRouteId()) {
-            result = result && getRouteId()
-                    .equals(other.getRouteId());
+            result = result && getRouteId().equals(other.getRouteId());
         }
         result = result && (hasRouteType() == other.hasRouteType());
         if (hasRouteType()) {
-            result = result && (getRouteType()
-                    == other.getRouteType());
+            result = result && (getRouteType() == other.getRouteType());
         }
         result = result && (hasTrip() == other.hasTrip());
         if (hasTrip()) {
-            result = result && getTrip()
-                    .equals(other.getTrip());
+            result = result && getTrip().equals(other.getTrip());
         }
         result = result && (hasStopId() == other.hasStopId());
         if (hasStopId()) {
-            result = result && getStopId()
-                    .equals(other.getStopId());
+            result = result && getStopId().equals(other.getStopId());
         }
         result = result && unknownFields.equals(other.unknownFields);
-        result = result &&
-                getExtensionFields().equals(other.getExtensionFields());
+        result = result && getExtensionFields().equals(other.getExtensionFields());
         return result;
     }
     
-    @java.lang.Override
+    @Override
     public int hashCode() {
         if (memoizedHashCode != 0) {
             return memoizedHashCode;
@@ -494,85 +435,61 @@ public final class EntitySelector extends
         return hash;
     }
     
-    public static EntitySelector parseFrom(
-            final java.nio.ByteBuffer data)
-            throws com.google.protobuf.InvalidProtocolBufferException {
+    public static EntitySelector parseFrom(final ByteBuffer data)
+            throws InvalidProtocolBufferException {
         return PARSER.parseFrom(data);
     }
     
-    public static EntitySelector parseFrom(
-            final java.nio.ByteBuffer data,
-            final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
+    public static EntitySelector parseFrom(final ByteBuffer data,
+            final ExtensionRegistryLite extensionRegistry) throws InvalidProtocolBufferException {
         return PARSER.parseFrom(data, extensionRegistry);
     }
     
-    public static EntitySelector parseFrom(
-            final com.google.protobuf.ByteString data)
-            throws com.google.protobuf.InvalidProtocolBufferException {
+    public static EntitySelector parseFrom(final ByteString data)
+            throws InvalidProtocolBufferException {
         return PARSER.parseFrom(data);
     }
     
-    public static EntitySelector parseFrom(
-            final com.google.protobuf.ByteString data,
-            final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
+    public static EntitySelector parseFrom(final ByteString data,
+            final ExtensionRegistryLite extensionRegistry) throws InvalidProtocolBufferException {
         return PARSER.parseFrom(data, extensionRegistry);
     }
     
     public static EntitySelector parseFrom(final byte[] data)
-            throws com.google.protobuf.InvalidProtocolBufferException {
+            throws InvalidProtocolBufferException {
         return PARSER.parseFrom(data);
     }
     
-    public static EntitySelector parseFrom(
-            final byte[] data,
-            final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
+    public static EntitySelector parseFrom(final byte[] data,
+            final ExtensionRegistryLite extensionRegistry) throws InvalidProtocolBufferException {
         return PARSER.parseFrom(data, extensionRegistry);
     }
     
-    public static EntitySelector parseFrom(final java.io.InputStream input)
-            throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-                .parseWithIOException(PARSER, input);
+    public static EntitySelector parseFrom(final InputStream input) throws IOException {
+        return GeneratedMessageV3.parseWithIOException(PARSER, input);
     }
     
-    public static EntitySelector parseFrom(
-            final java.io.InputStream input,
-            final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-                .parseWithIOException(PARSER, input, extensionRegistry);
+    public static EntitySelector parseFrom(final InputStream input,
+            final ExtensionRegistryLite extensionRegistry) throws IOException {
+        return GeneratedMessageV3.parseWithIOException(PARSER, input, extensionRegistry);
     }
     
-    public static EntitySelector parseDelimitedFrom(final java.io.InputStream input)
-            throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-                .parseDelimitedWithIOException(PARSER, input);
+    public static EntitySelector parseDelimitedFrom(final InputStream input) throws IOException {
+        return GeneratedMessageV3.parseDelimitedWithIOException(PARSER, input);
     }
     
-    public static EntitySelector parseDelimitedFrom(
-            final java.io.InputStream input,
-            final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-                .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    public static EntitySelector parseDelimitedFrom(final InputStream input,
+            final ExtensionRegistryLite extensionRegistry) throws IOException {
+        return GeneratedMessageV3.parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
     
-    public static EntitySelector parseFrom(
-            final com.google.protobuf.CodedInputStream input)
-            throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-                .parseWithIOException(PARSER, input);
+    public static EntitySelector parseFrom(final CodedInputStream input) throws IOException {
+        return GeneratedMessageV3.parseWithIOException(PARSER, input);
     }
     
-    public static EntitySelector parseFrom(
-            final com.google.protobuf.CodedInputStream input,
-            final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-                .parseWithIOException(PARSER, input, extensionRegistry);
+    public static EntitySelector parseFrom(final CodedInputStream input,
+            final ExtensionRegistryLite extensionRegistry) throws IOException {
+        return GeneratedMessageV3.parseWithIOException(PARSER, input, extensionRegistry);
     }
     
     @Override
@@ -588,13 +505,11 @@ public final class EntitySelector extends
     
     @Override
     public Builder toBuilder() {
-        return this == DEFAULT_INSTANCE
-                ? new Builder() : new Builder().mergeFrom(this);
+        return this == DEFAULT_INSTANCE ? new Builder() : new Builder().mergeFrom(this);
     }
     
-    @java.lang.Override
-    protected Builder newBuilderForType(
-            final com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+    @Override
+    protected Builder newBuilderForType(final BuilderParent parent) {
         final Builder builder = new Builder(parent);
         return builder;
     }
@@ -606,23 +521,18 @@ public final class EntitySelector extends
      * <p>
      * Protobuf type {@code transit_realtime.EntitySelector}
      */
-    public static final class Builder extends
-            com.google.protobuf.GeneratedMessageV3.ExtendableBuilder<
-                    EntitySelector, Builder> implements
+    public static final class Builder extends ExtendableBuilder<EntitySelector, Builder> implements
             // @@protoc_insertion_point(builder_implements:transit_realtime.EntitySelector)
             EntitySelectorOrBuilder {
         
-        public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
+        public static final Descriptor getDescriptor() {
             return GtfsRealtime.internal_static_transit_realtime_EntitySelector_descriptor;
         }
         
         @Override
-        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
+        protected FieldAccessorTable internalGetFieldAccessorTable() {
             return GtfsRealtime.internal_static_transit_realtime_EntitySelector_fieldAccessorTable
-                    .ensureFieldAccessorsInitialized(
-                            EntitySelector.class, EntitySelector.Builder.class);
+                    .ensureFieldAccessorsInitialized(EntitySelector.class, Builder.class);
         }
         
         // Construct using sen.khyber.subway.client.proto.EntitySelector.newBuilder()
@@ -630,15 +540,13 @@ public final class EntitySelector extends
             maybeForceBuilderInitialization();
         }
         
-        private Builder(
-                final com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        private Builder(final BuilderParent parent) {
             super(parent);
             maybeForceBuilderInitialization();
         }
         
         private void maybeForceBuilderInitialization() {
-            if (com.google.protobuf.GeneratedMessageV3
-                    .alwaysUseFieldBuilders) {
+            if (GeneratedMessageV3.alwaysUseFieldBuilders) {
                 getTripFieldBuilder();
             }
         }
@@ -664,14 +572,13 @@ public final class EntitySelector extends
         }
         
         @Override
-        public com.google.protobuf.Descriptors.Descriptor
-        getDescriptorForType() {
+        public Descriptor getDescriptorForType() {
             return GtfsRealtime.internal_static_transit_realtime_EntitySelector_descriptor;
         }
         
         @Override
         public EntitySelector getDefaultInstanceForType() {
-            return EntitySelector.getDefaultInstance();
+            return getDefaultInstance();
         }
         
         @Override
@@ -719,75 +626,62 @@ public final class EntitySelector extends
         
         @Override
         public Builder clone() {
-            return (Builder) super.clone();
+            return super.clone();
         }
         
         @Override
-        public Builder setField(
-                final com.google.protobuf.Descriptors.FieldDescriptor field,
-                final java.lang.Object value) {
-            return (Builder) super.setField(field, value);
+        public Builder setField(final FieldDescriptor field, final Object value) {
+            return super.setField(field, value);
         }
         
         @Override
-        public Builder clearField(
-                final com.google.protobuf.Descriptors.FieldDescriptor field) {
-            return (Builder) super.clearField(field);
+        public Builder clearField(final FieldDescriptor field) {
+            return super.clearField(field);
         }
         
         @Override
-        public Builder clearOneof(
-                final com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-            return (Builder) super.clearOneof(oneof);
+        public Builder clearOneof(final OneofDescriptor oneof) {
+            return super.clearOneof(oneof);
         }
         
         @Override
-        public Builder setRepeatedField(
-                final com.google.protobuf.Descriptors.FieldDescriptor field,
-                final int index, final java.lang.Object value) {
-            return (Builder) super.setRepeatedField(field, index, value);
+        public Builder setRepeatedField(final FieldDescriptor field, final int index,
+                final Object value) {
+            return super.setRepeatedField(field, index, value);
         }
         
         @Override
-        public Builder addRepeatedField(
-                final com.google.protobuf.Descriptors.FieldDescriptor field,
-                final java.lang.Object value) {
-            return (Builder) super.addRepeatedField(field, value);
+        public Builder addRepeatedField(final FieldDescriptor field, final Object value) {
+            return super.addRepeatedField(field, value);
         }
         
         @Override
-        public <Type> Builder setExtension(
-                final com.google.protobuf.GeneratedMessage.GeneratedExtension<
-                        EntitySelector, Type> extension,
+        public <Type> Builder setExtension(final GeneratedExtension<EntitySelector, Type> extension,
                 final Type value) {
-            return (Builder) super.setExtension(extension, value);
+            return super.setExtension(extension, value);
         }
         
         @Override
         public <Type> Builder setExtension(
-                final com.google.protobuf.GeneratedMessage.GeneratedExtension<
-                        EntitySelector, java.util.List<Type>> extension,
-                final int index, final Type value) {
-            return (Builder) super.setExtension(extension, index, value);
+                final GeneratedExtension<EntitySelector, List<Type>> extension, final int index,
+                final Type value) {
+            return super.setExtension(extension, index, value);
         }
         
         @Override
         public <Type> Builder addExtension(
-                final com.google.protobuf.GeneratedMessage.GeneratedExtension<
-                        EntitySelector, java.util.List<Type>> extension,
-                final Type value) {
-            return (Builder) super.addExtension(extension, value);
+                final GeneratedExtension<EntitySelector, List<Type>> extension, final Type value) {
+            return super.addExtension(extension, value);
         }
         
         @Override
         public <Type> Builder clearExtension(
-                final com.google.protobuf.GeneratedMessage.GeneratedExtension<
-                        EntitySelector, ?> extension) {
-            return (Builder) super.clearExtension(extension);
+                final GeneratedExtension<EntitySelector, ?> extension) {
+            return super.clearExtension(extension);
         }
         
         @Override
-        public Builder mergeFrom(final com.google.protobuf.Message other) {
+        public Builder mergeFrom(final Message other) {
             if (other instanceof EntitySelector) {
                 return mergeFrom((EntitySelector) other);
             } else {
@@ -797,7 +691,7 @@ public final class EntitySelector extends
         }
         
         public Builder mergeFrom(final EntitySelector other) {
-            if (other == EntitySelector.getDefaultInstance()) {return this;}
+            if (other == getDefaultInstance()) {return this;}
             if (other.hasAgencyId()) {
                 bitField0_ |= 0x00000001;
                 agencyId_ = other.agencyId_;
@@ -832,21 +726,16 @@ public final class EntitySelector extends
                     return false;
                 }
             }
-            if (!extensionsAreInitialized()) {
-                return false;
-            }
-            return true;
+            return extensionsAreInitialized();
         }
         
         @Override
-        public Builder mergeFrom(
-                final com.google.protobuf.CodedInputStream input,
-                final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws java.io.IOException {
+        public Builder mergeFrom(final CodedInputStream input,
+                final ExtensionRegistryLite extensionRegistry) throws IOException {
             EntitySelector parsedMessage = null;
             try {
                 parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-            } catch (final com.google.protobuf.InvalidProtocolBufferException e) {
+            } catch (final InvalidProtocolBufferException e) {
                 parsedMessage = (EntitySelector) e.getUnfinishedMessage();
                 throw e.unwrapIOException();
             } finally {
@@ -859,7 +748,7 @@ public final class EntitySelector extends
         
         private int bitField0_;
         
-        private java.lang.Object agencyId_ = "";
+        private @Setter(AccessLevel.PRIVATE) Object agencyId_ = "";
         
         /**
          * <pre>
@@ -887,19 +776,8 @@ public final class EntitySelector extends
          * <code>optional string agency_id = 1;</code>
          */
         @Override
-        public java.lang.String getAgencyId() {
-            final java.lang.Object ref = agencyId_;
-            if (!(ref instanceof java.lang.String)) {
-                final com.google.protobuf.ByteString bs =
-                        (com.google.protobuf.ByteString) ref;
-                final java.lang.String s = bs.toStringUtf8();
-                if (bs.isValidUtf8()) {
-                    agencyId_ = s;
-                }
-                return s;
-            } else {
-                return (java.lang.String) ref;
-            }
+        public String getAgencyId() {
+            return ProtoUtils.asString(agencyId_, this::setAgencyId_);
         }
         
         /**
@@ -913,18 +791,8 @@ public final class EntitySelector extends
          * <code>optional string agency_id = 1;</code>
          */
         @Override
-        public com.google.protobuf.ByteString
-        getAgencyIdBytes() {
-            final java.lang.Object ref = agencyId_;
-            if (ref instanceof String) {
-                final com.google.protobuf.ByteString b =
-                        com.google.protobuf.ByteString.copyFromUtf8(
-                                (java.lang.String) ref);
-                agencyId_ = b;
-                return b;
-            } else {
-                return (com.google.protobuf.ByteString) ref;
-            }
+        public ByteString getAgencyIdBytes() {
+            return ProtoUtils.asBytes(agencyId_, this::setAgencyId_);
         }
         
         /**
@@ -937,11 +805,8 @@ public final class EntitySelector extends
          * <p>
          * <code>optional string agency_id = 1;</code>
          */
-        public Builder setAgencyId(
-                final java.lang.String value) {
-            if (value == null) {
-                throw new NullPointerException();
-            }
+        public Builder setAgencyId(final String value) {
+            Objects.requireNonNull(value);
             bitField0_ |= 0x00000001;
             agencyId_ = value;
             onChanged();
@@ -975,18 +840,15 @@ public final class EntitySelector extends
          * <p>
          * <code>optional string agency_id = 1;</code>
          */
-        public Builder setAgencyIdBytes(
-                final com.google.protobuf.ByteString value) {
-            if (value == null) {
-                throw new NullPointerException();
-            }
+        public Builder setAgencyIdBytes(final ByteString value) {
+            Objects.requireNonNull(value);
             bitField0_ |= 0x00000001;
             agencyId_ = value;
             onChanged();
             return this;
         }
         
-        private java.lang.Object routeId_ = "";
+        private @Setter(AccessLevel.PRIVATE) Object routeId_ = "";
         
         /**
          * <code>optional string route_id = 2;</code>
@@ -1000,47 +862,23 @@ public final class EntitySelector extends
          * <code>optional string route_id = 2;</code>
          */
         @Override
-        public java.lang.String getRouteId() {
-            final java.lang.Object ref = routeId_;
-            if (!(ref instanceof java.lang.String)) {
-                final com.google.protobuf.ByteString bs =
-                        (com.google.protobuf.ByteString) ref;
-                final java.lang.String s = bs.toStringUtf8();
-                if (bs.isValidUtf8()) {
-                    routeId_ = s;
-                }
-                return s;
-            } else {
-                return (java.lang.String) ref;
-            }
+        public String getRouteId() {
+            return ProtoUtils.asString(routeId_, this::setRouteId_);
         }
         
         /**
          * <code>optional string route_id = 2;</code>
          */
         @Override
-        public com.google.protobuf.ByteString
-        getRouteIdBytes() {
-            final java.lang.Object ref = routeId_;
-            if (ref instanceof String) {
-                final com.google.protobuf.ByteString b =
-                        com.google.protobuf.ByteString.copyFromUtf8(
-                                (java.lang.String) ref);
-                routeId_ = b;
-                return b;
-            } else {
-                return (com.google.protobuf.ByteString) ref;
-            }
+        public ByteString getRouteIdBytes() {
+            return ProtoUtils.asBytes(routeId_, this::setRouteId_);
         }
         
         /**
          * <code>optional string route_id = 2;</code>
          */
-        public Builder setRouteId(
-                final java.lang.String value) {
-            if (value == null) {
-                throw new NullPointerException();
-            }
+        public Builder setRouteId(final String value) {
+            Objects.requireNonNull(value);
             bitField0_ |= 0x00000002;
             routeId_ = value;
             onChanged();
@@ -1060,11 +898,8 @@ public final class EntitySelector extends
         /**
          * <code>optional string route_id = 2;</code>
          */
-        public Builder setRouteIdBytes(
-                final com.google.protobuf.ByteString value) {
-            if (value == null) {
-                throw new NullPointerException();
-            }
+        public Builder setRouteIdBytes(final ByteString value) {
+            Objects.requireNonNull(value);
             bitField0_ |= 0x00000002;
             routeId_ = value;
             onChanged();
@@ -1126,8 +961,9 @@ public final class EntitySelector extends
         }
         
         private TripDescriptor trip_ = null;
-        private com.google.protobuf.SingleFieldBuilderV3<
-                TripDescriptor, TripDescriptor.Builder, TripDescriptorOrBuilder> tripBuilder_;
+        private SingleFieldBuilderV3<TripDescriptor, TripDescriptor.Builder, 
+                TripDescriptorOrBuilder>
+                tripBuilder_;
         
         /**
          * <code>optional .transit_realtime.TripDescriptor trip = 4;</code>
@@ -1154,9 +990,7 @@ public final class EntitySelector extends
          */
         public Builder setTrip(final TripDescriptor value) {
             if (tripBuilder_ == null) {
-                if (value == null) {
-                    throw new NullPointerException();
-                }
+                Objects.requireNonNull(value);
                 trip_ = value;
                 onChanged();
             } else {
@@ -1169,8 +1003,7 @@ public final class EntitySelector extends
         /**
          * <code>optional .transit_realtime.TripDescriptor trip = 4;</code>
          */
-        public Builder setTrip(
-                final TripDescriptor.Builder builderForValue) {
+        public Builder setTrip(final TripDescriptor.Builder builderForValue) {
             if (tripBuilder_ == null) {
                 trip_ = builderForValue.build();
                 onChanged();
@@ -1186,11 +1019,9 @@ public final class EntitySelector extends
          */
         public Builder mergeTrip(final TripDescriptor value) {
             if (tripBuilder_ == null) {
-                if (((bitField0_ & 0x00000008) == 0x00000008) &&
-                        trip_ != null &&
-                        trip_ != TripDescriptor.getDefaultInstance()) {
-                    trip_ =
-                            TripDescriptor.newBuilder(trip_).mergeFrom(value).buildPartial();
+                if (((bitField0_ & 0x00000008) == 0x00000008) && trip_ != null
+                        && trip_ != TripDescriptor.getDefaultInstance()) {
+                    trip_ = TripDescriptor.newBuilder(trip_).mergeFrom(value).buildPartial();
                 } else {
                     trip_ = value;
                 }
@@ -1233,28 +1064,24 @@ public final class EntitySelector extends
             if (tripBuilder_ != null) {
                 return tripBuilder_.getMessageOrBuilder();
             } else {
-                return trip_ == null ?
-                        TripDescriptor.getDefaultInstance() : trip_;
+                return trip_ == null ? TripDescriptor.getDefaultInstance() : trip_;
             }
         }
         
         /**
          * <code>optional .transit_realtime.TripDescriptor trip = 4;</code>
          */
-        private com.google.protobuf.SingleFieldBuilderV3<
-                TripDescriptor, TripDescriptor.Builder, TripDescriptorOrBuilder>
-        getTripFieldBuilder() {
+        private SingleFieldBuilderV3<TripDescriptor, TripDescriptor.Builder, 
+                TripDescriptorOrBuilder> getTripFieldBuilder() {
             if (tripBuilder_ == null) {
-                tripBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
-                        getTrip(),
-                        getParentForChildren(),
-                        isClean());
+                tripBuilder_ =
+                        new SingleFieldBuilderV3<>(getTrip(), getParentForChildren(), isClean());
                 trip_ = null;
             }
             return tripBuilder_;
         }
         
-        private java.lang.Object stopId_ = "";
+        private @Setter(AccessLevel.PRIVATE) Object stopId_ = "";
         
         /**
          * <code>optional string stop_id = 5;</code>
@@ -1268,47 +1095,23 @@ public final class EntitySelector extends
          * <code>optional string stop_id = 5;</code>
          */
         @Override
-        public java.lang.String getStopId() {
-            final java.lang.Object ref = stopId_;
-            if (!(ref instanceof java.lang.String)) {
-                final com.google.protobuf.ByteString bs =
-                        (com.google.protobuf.ByteString) ref;
-                final java.lang.String s = bs.toStringUtf8();
-                if (bs.isValidUtf8()) {
-                    stopId_ = s;
-                }
-                return s;
-            } else {
-                return (java.lang.String) ref;
-            }
+        public String getStopId() {
+            return ProtoUtils.asString(stopId_, this::setStopId_);
         }
         
         /**
          * <code>optional string stop_id = 5;</code>
          */
         @Override
-        public com.google.protobuf.ByteString
-        getStopIdBytes() {
-            final java.lang.Object ref = stopId_;
-            if (ref instanceof String) {
-                final com.google.protobuf.ByteString b =
-                        com.google.protobuf.ByteString.copyFromUtf8(
-                                (java.lang.String) ref);
-                stopId_ = b;
-                return b;
-            } else {
-                return (com.google.protobuf.ByteString) ref;
-            }
+        public ByteString getStopIdBytes() {
+            return ProtoUtils.asBytes(stopId_, this::setStopId_);
         }
         
         /**
          * <code>optional string stop_id = 5;</code>
          */
-        public Builder setStopId(
-                final java.lang.String value) {
-            if (value == null) {
-                throw new NullPointerException();
-            }
+        public Builder setStopId(final String value) {
+            Objects.requireNonNull(value);
             bitField0_ |= 0x00000010;
             stopId_ = value;
             onChanged();
@@ -1328,11 +1131,8 @@ public final class EntitySelector extends
         /**
          * <code>optional string stop_id = 5;</code>
          */
-        public Builder setStopIdBytes(
-                final com.google.protobuf.ByteString value) {
-            if (value == null) {
-                throw new NullPointerException();
-            }
+        public Builder setStopIdBytes(final ByteString value) {
+            Objects.requireNonNull(value);
             bitField0_ |= 0x00000010;
             stopId_ = value;
             onChanged();
@@ -1340,19 +1140,15 @@ public final class EntitySelector extends
         }
         
         @Override
-        public final Builder setUnknownFields(
-                final com.google.protobuf.UnknownFieldSet unknownFields) {
+        public final Builder setUnknownFields(final UnknownFieldSet unknownFields) {
             return super.setUnknownFields(unknownFields);
         }
         
         @Override
-        public final Builder mergeUnknownFields(
-                final com.google.protobuf.UnknownFieldSet unknownFields) {
+        public final Builder mergeUnknownFields(final UnknownFieldSet unknownFields) {
             return super.mergeUnknownFields(unknownFields);
         }
         
-        
-        // @@protoc_insertion_point(builder_scope:transit_realtime.EntitySelector)
     }
     
     // @@protoc_insertion_point(class_scope:transit_realtime.EntitySelector)
@@ -1366,24 +1162,22 @@ public final class EntitySelector extends
         return DEFAULT_INSTANCE;
     }
     
-    @java.lang.Deprecated public static final com.google.protobuf.Parser<EntitySelector>
-            PARSER = new com.google.protobuf.AbstractParser<>() {
+    @Deprecated public static final Parser<EntitySelector> PARSER = new AbstractParser<>() {
         
         @Override
-        public EntitySelector parsePartialFrom(
-                final com.google.protobuf.CodedInputStream input,
-                final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws com.google.protobuf.InvalidProtocolBufferException {
+        public EntitySelector parsePartialFrom(final CodedInputStream input,
+                final ExtensionRegistryLite extensionRegistry)
+                throws InvalidProtocolBufferException {
             return new EntitySelector(input, extensionRegistry);
         }
     };
     
-    public static com.google.protobuf.Parser<EntitySelector> parser() {
+    public static Parser<EntitySelector> parser() {
         return PARSER;
     }
     
-    @java.lang.Override
-    public com.google.protobuf.Parser<EntitySelector> getParserForType() {
+    @Override
+    public Parser<EntitySelector> getParserForType() {
         return PARSER;
     }
     
@@ -1393,4 +1187,3 @@ public final class EntitySelector extends
     }
     
 }
-

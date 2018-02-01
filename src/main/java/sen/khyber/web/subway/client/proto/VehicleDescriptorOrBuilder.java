@@ -3,10 +3,10 @@
 
 package sen.khyber.web.subway.client.proto;
 
-public interface VehicleDescriptorOrBuilder extends
-        // @@protoc_insertion_point(interface_extends:transit_realtime.VehicleDescriptor)
-        com.google.protobuf.GeneratedMessageV3.
-                ExtendableMessageOrBuilder<VehicleDescriptor> {
+import com.google.protobuf.ByteString;
+import com.google.protobuf.GeneratedMessageV3.ExtendableMessageOrBuilder;
+
+public interface VehicleDescriptorOrBuilder extends ExtendableMessageOrBuilder<VehicleDescriptor> {
     
     /**
      * <pre>
@@ -28,7 +28,7 @@ public interface VehicleDescriptorOrBuilder extends
      * <p>
      * <code>optional string id = 1;</code>
      */
-    java.lang.String getId();
+    String getId();
     
     /**
      * <pre>
@@ -39,8 +39,7 @@ public interface VehicleDescriptorOrBuilder extends
      * <p>
      * <code>optional string id = 1;</code>
      */
-    com.google.protobuf.ByteString
-    getIdBytes();
+    ByteString getIdBytes();
     
     /**
      * <pre>
@@ -60,7 +59,7 @@ public interface VehicleDescriptorOrBuilder extends
      * <p>
      * <code>optional string label = 2;</code>
      */
-    java.lang.String getLabel();
+    String getLabel();
     
     /**
      * <pre>
@@ -70,8 +69,7 @@ public interface VehicleDescriptorOrBuilder extends
      * <p>
      * <code>optional string label = 2;</code>
      */
-    com.google.protobuf.ByteString
-    getLabelBytes();
+    ByteString getLabelBytes();
     
     /**
      * <pre>
@@ -89,7 +87,7 @@ public interface VehicleDescriptorOrBuilder extends
      * <p>
      * <code>optional string license_plate = 3;</code>
      */
-    java.lang.String getLicensePlate();
+    String getLicensePlate();
     
     /**
      * <pre>
@@ -98,6 +96,6 @@ public interface VehicleDescriptorOrBuilder extends
      * <p>
      * <code>optional string license_plate = 3;</code>
      */
-    com.google.protobuf.ByteString
-    getLicensePlateBytes();
+    ByteString getLicensePlateBytes();
+    
 }

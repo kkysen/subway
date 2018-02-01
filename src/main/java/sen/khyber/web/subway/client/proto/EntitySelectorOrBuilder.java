@@ -3,10 +3,10 @@
 
 package sen.khyber.web.subway.client.proto;
 
-public interface EntitySelectorOrBuilder extends
-        // @@protoc_insertion_point(interface_extends:transit_realtime.EntitySelector)
-        com.google.protobuf.GeneratedMessageV3.
-                ExtendableMessageOrBuilder<EntitySelector> {
+import com.google.protobuf.ByteString;
+import com.google.protobuf.GeneratedMessageV3.ExtendableMessageOrBuilder;
+
+public interface EntitySelectorOrBuilder extends ExtendableMessageOrBuilder<EntitySelector> {
     
     /**
      * <pre>
@@ -30,7 +30,7 @@ public interface EntitySelectorOrBuilder extends
      * <p>
      * <code>optional string agency_id = 1;</code>
      */
-    java.lang.String getAgencyId();
+    String getAgencyId();
     
     /**
      * <pre>
@@ -42,8 +42,7 @@ public interface EntitySelectorOrBuilder extends
      * <p>
      * <code>optional string agency_id = 1;</code>
      */
-    com.google.protobuf.ByteString
-    getAgencyIdBytes();
+    ByteString getAgencyIdBytes();
     
     /**
      * <code>optional string route_id = 2;</code>
@@ -53,13 +52,12 @@ public interface EntitySelectorOrBuilder extends
     /**
      * <code>optional string route_id = 2;</code>
      */
-    java.lang.String getRouteId();
+    String getRouteId();
     
     /**
      * <code>optional string route_id = 2;</code>
      */
-    com.google.protobuf.ByteString
-    getRouteIdBytes();
+    ByteString getRouteIdBytes();
     
     /**
      * <pre>
@@ -102,11 +100,11 @@ public interface EntitySelectorOrBuilder extends
     /**
      * <code>optional string stop_id = 5;</code>
      */
-    java.lang.String getStopId();
+    String getStopId();
     
     /**
      * <code>optional string stop_id = 5;</code>
      */
-    com.google.protobuf.ByteString
-    getStopIdBytes();
+    ByteString getStopIdBytes();
+    
 }

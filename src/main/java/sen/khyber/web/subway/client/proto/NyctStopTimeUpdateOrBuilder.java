@@ -3,9 +3,10 @@
 
 package sen.khyber.web.subway.client.proto;
 
-public interface NyctStopTimeUpdateOrBuilder extends
-        // @@protoc_insertion_point(interface_extends:NyctStopTimeUpdate)
-        com.google.protobuf.MessageOrBuilder {
+import com.google.protobuf.ByteString;
+import com.google.protobuf.MessageOrBuilder;
+
+public interface NyctStopTimeUpdateOrBuilder extends MessageOrBuilder {
     
     /**
      * <pre>
@@ -47,7 +48,7 @@ public interface NyctStopTimeUpdateOrBuilder extends
      * <p>
      * <code>optional string scheduled_track = 1;</code>
      */
-    java.lang.String getScheduledTrack();
+    String getScheduledTrack();
     
     /**
      * <pre>
@@ -68,8 +69,7 @@ public interface NyctStopTimeUpdateOrBuilder extends
      * <p>
      * <code>optional string scheduled_track = 1;</code>
      */
-    com.google.protobuf.ByteString
-    getScheduledTrackBytes();
+    ByteString getScheduledTrackBytes();
     
     /**
      * <pre>
@@ -107,7 +107,7 @@ public interface NyctStopTimeUpdateOrBuilder extends
      * <p>
      * <code>optional string actual_track = 2;</code>
      */
-    java.lang.String getActualTrack();
+    String getActualTrack();
     
     /**
      * <pre>
@@ -126,6 +126,6 @@ public interface NyctStopTimeUpdateOrBuilder extends
      * <p>
      * <code>optional string actual_track = 2;</code>
      */
-    com.google.protobuf.ByteString
-    getActualTrackBytes();
+    ByteString getActualTrackBytes();
+    
 }

@@ -3,9 +3,12 @@
 
 package sen.khyber.web.subway.client.proto;
 
-public interface NyctTripDescriptorOrBuilder extends
-        // @@protoc_insertion_point(interface_extends:NyctTripDescriptor)
-        com.google.protobuf.MessageOrBuilder {
+import sen.khyber.web.subway.client.proto.NyctTripDescriptor.Direction;
+
+import com.google.protobuf.ByteString;
+import com.google.protobuf.MessageOrBuilder;
+
+public interface NyctTripDescriptorOrBuilder extends MessageOrBuilder {
     
     /**
      * <pre>
@@ -55,7 +58,7 @@ public interface NyctTripDescriptorOrBuilder extends
      * <p>
      * <code>optional string train_id = 1;</code>
      */
-    java.lang.String getTrainId();
+    String getTrainId();
     
     /**
      * <pre>
@@ -80,8 +83,7 @@ public interface NyctTripDescriptorOrBuilder extends
      * <p>
      * <code>optional string train_id = 1;</code>
      */
-    com.google.protobuf.ByteString
-    getTrainIdBytes();
+    ByteString getTrainIdBytes();
     
     /**
      * <pre>
@@ -145,5 +147,6 @@ public interface NyctTripDescriptorOrBuilder extends
      * <p>
      * <code>optional .NyctTripDescriptor.Direction direction = 3;</code>
      */
-    NyctTripDescriptor.Direction getDirection();
+    Direction getDirection();
+    
 }

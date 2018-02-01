@@ -3,6 +3,32 @@
 
 package sen.khyber.web.subway.client.proto;
 
+import sen.khyber.proto.ProtoUtils;
+
+import lombok.AccessLevel;
+import lombok.Setter;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.ByteBuffer;
+import java.util.Objects;
+
+import com.google.protobuf.AbstractParser;
+import com.google.protobuf.ByteString;
+import com.google.protobuf.CodedInputStream;
+import com.google.protobuf.CodedOutputStream;
+import com.google.protobuf.Descriptors.Descriptor;
+import com.google.protobuf.Descriptors.FieldDescriptor;
+import com.google.protobuf.Descriptors.OneofDescriptor;
+import com.google.protobuf.ExtensionRegistryLite;
+import com.google.protobuf.GeneratedMessageV3;
+import com.google.protobuf.Internal;
+import com.google.protobuf.InvalidProtocolBufferException;
+import com.google.protobuf.Message;
+import com.google.protobuf.Parser;
+import com.google.protobuf.SingleFieldBuilderV3;
+import com.google.protobuf.UnknownFieldSet;
+
 /**
  * <pre>
  * A definition (or update) of an entity in the transit feed.
@@ -10,15 +36,12 @@ package sen.khyber.web.subway.client.proto;
  * <p>
  * Protobuf type {@code transit_realtime.FeedEntity}
  */
-public final class FeedEntity extends
-        com.google.protobuf.GeneratedMessageV3 implements
-        // @@protoc_insertion_point(message_implements:transit_realtime.FeedEntity)
-        FeedEntityOrBuilder {
+public final class FeedEntity extends GeneratedMessageV3 implements FeedEntityOrBuilder {
     
     private static final long serialVersionUID = 0L;
     
     // Use FeedEntity.newBuilder() to construct.
-    private FeedEntity(final com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    private FeedEntity(final GeneratedMessageV3.Builder<?> builder) {
         super(builder);
     }
     
@@ -27,20 +50,16 @@ public final class FeedEntity extends
         isDeleted_ = false;
     }
     
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
+    @Override
+    public final UnknownFieldSet getUnknownFields() {
         return unknownFields;
     }
     
-    private FeedEntity(
-            final com.google.protobuf.CodedInputStream input,
-            final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
+    private FeedEntity(final CodedInputStream input, final ExtensionRegistryLite extensionRegistry)
+            throws InvalidProtocolBufferException {
         this();
         final int mutable_bitField0_ = 0;
-        final com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-                com.google.protobuf.UnknownFieldSet.newBuilder();
+        final UnknownFieldSet.Builder unknownFields = UnknownFieldSet.newBuilder();
         try {
             boolean done = false;
             while (!done) {
@@ -50,14 +69,13 @@ public final class FeedEntity extends
                         done = true;
                         break;
                     default: {
-                        if (!parseUnknownField(
-                                input, unknownFields, extensionRegistry, tag)) {
+                        if (!parseUnknownField(input, unknownFields, extensionRegistry, tag)) {
                             done = true;
                         }
                         break;
                     }
                     case 10: {
-                        final com.google.protobuf.ByteString bs = input.readBytes();
+                        final ByteString bs = input.readBytes();
                         bitField0_ |= 0x00000001;
                         id_ = bs;
                         break;
@@ -108,33 +126,29 @@ public final class FeedEntity extends
                     }
                 }
             }
-        } catch (final com.google.protobuf.InvalidProtocolBufferException e) {
+        } catch (final InvalidProtocolBufferException e) {
             throw e.setUnfinishedMessage(this);
-        } catch (final java.io.IOException e) {
-            throw new com.google.protobuf.InvalidProtocolBufferException(
-                    e).setUnfinishedMessage(this);
+        } catch (final IOException e) {
+            throw new InvalidProtocolBufferException(e).setUnfinishedMessage(this);
         } finally {
             this.unknownFields = unknownFields.build();
             makeExtensionsImmutable();
         }
     }
     
-    public static final com.google.protobuf.Descriptors.Descriptor
-    getDescriptor() {
+    public static final Descriptor getDescriptor() {
         return GtfsRealtime.internal_static_transit_realtime_FeedEntity_descriptor;
     }
     
     @Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-    internalGetFieldAccessorTable() {
+    protected FieldAccessorTable internalGetFieldAccessorTable() {
         return GtfsRealtime.internal_static_transit_realtime_FeedEntity_fieldAccessorTable
-                .ensureFieldAccessorsInitialized(
-                        FeedEntity.class, FeedEntity.Builder.class);
+                .ensureFieldAccessorsInitialized(FeedEntity.class, Builder.class);
     }
     
     private int bitField0_;
     public static final int ID_FIELD_NUMBER = 1;
-    private volatile java.lang.Object id_;
+    private volatile @Setter(AccessLevel.PRIVATE) Object id_;
     
     /**
      * <pre>
@@ -170,19 +184,8 @@ public final class FeedEntity extends
      * <code>required string id = 1;</code>
      */
     @Override
-    public java.lang.String getId() {
-        final java.lang.Object ref = id_;
-        if (ref instanceof java.lang.String) {
-            return (java.lang.String) ref;
-        } else {
-            final com.google.protobuf.ByteString bs =
-                    (com.google.protobuf.ByteString) ref;
-            final java.lang.String s = bs.toStringUtf8();
-            if (bs.isValidUtf8()) {
-                id_ = s;
-            }
-            return s;
-        }
+    public String getId() {
+        return ProtoUtils.asString(id_, this::setId_);
     }
     
     /**
@@ -200,18 +203,8 @@ public final class FeedEntity extends
      * <code>required string id = 1;</code>
      */
     @Override
-    public com.google.protobuf.ByteString
-    getIdBytes() {
-        final java.lang.Object ref = id_;
-        if (ref instanceof java.lang.String) {
-            final com.google.protobuf.ByteString b =
-                    com.google.protobuf.ByteString.copyFromUtf8(
-                            (java.lang.String) ref);
-            id_ = b;
-            return b;
-        } else {
-            return (com.google.protobuf.ByteString) ref;
-        }
+    public ByteString getIdBytes() {
+        return ProtoUtils.asBytes(id_, this::setId_);
     }
     
     public static final int IS_DELETED_FIELD_NUMBER = 2;
@@ -374,10 +367,9 @@ public final class FeedEntity extends
     }
     
     @Override
-    public void writeTo(final com.google.protobuf.CodedOutputStream output)
-            throws java.io.IOException {
+    public void writeTo(final CodedOutputStream output) throws IOException {
         if (((bitField0_ & 0x00000001) == 0x00000001)) {
-            com.google.protobuf.GeneratedMessageV3.writeString(output, 1, id_);
+            GeneratedMessageV3.writeString(output, 1, id_);
         }
         if (((bitField0_ & 0x00000002) == 0x00000002)) {
             output.writeBool(2, isDeleted_);
@@ -401,31 +393,27 @@ public final class FeedEntity extends
         
         size = 0;
         if (((bitField0_ & 0x00000001) == 0x00000001)) {
-            size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, id_);
+            size += GeneratedMessageV3.computeStringSize(1, id_);
         }
         if (((bitField0_ & 0x00000002) == 0x00000002)) {
-            size += com.google.protobuf.CodedOutputStream
-                    .computeBoolSize(2, isDeleted_);
+            size += CodedOutputStream.computeBoolSize(2, isDeleted_);
         }
         if (((bitField0_ & 0x00000004) == 0x00000004)) {
-            size += com.google.protobuf.CodedOutputStream
-                    .computeMessageSize(3, getTripUpdate());
+            size += CodedOutputStream.computeMessageSize(3, getTripUpdate());
         }
         if (((bitField0_ & 0x00000008) == 0x00000008)) {
-            size += com.google.protobuf.CodedOutputStream
-                    .computeMessageSize(4, getVehicle());
+            size += CodedOutputStream.computeMessageSize(4, getVehicle());
         }
         if (((bitField0_ & 0x00000010) == 0x00000010)) {
-            size += com.google.protobuf.CodedOutputStream
-                    .computeMessageSize(5, getAlert());
+            size += CodedOutputStream.computeMessageSize(5, getAlert());
         }
         size += unknownFields.getSerializedSize();
         memoizedSize = size;
         return size;
     }
     
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
+    @Override
+    public boolean equals(final Object obj) {
         if (obj == this) {
             return true;
         }
@@ -437,34 +425,29 @@ public final class FeedEntity extends
         boolean result = true;
         result = result && (hasId() == other.hasId());
         if (hasId()) {
-            result = result && getId()
-                    .equals(other.getId());
+            result = result && getId().equals(other.getId());
         }
         result = result && (hasIsDeleted() == other.hasIsDeleted());
         if (hasIsDeleted()) {
-            result = result && (getIsDeleted()
-                    == other.getIsDeleted());
+            result = result && (getIsDeleted() == other.getIsDeleted());
         }
         result = result && (hasTripUpdate() == other.hasTripUpdate());
         if (hasTripUpdate()) {
-            result = result && getTripUpdate()
-                    .equals(other.getTripUpdate());
+            result = result && getTripUpdate().equals(other.getTripUpdate());
         }
         result = result && (hasVehicle() == other.hasVehicle());
         if (hasVehicle()) {
-            result = result && getVehicle()
-                    .equals(other.getVehicle());
+            result = result && getVehicle().equals(other.getVehicle());
         }
         result = result && (hasAlert() == other.hasAlert());
         if (hasAlert()) {
-            result = result && getAlert()
-                    .equals(other.getAlert());
+            result = result && getAlert().equals(other.getAlert());
         }
         result = result && unknownFields.equals(other.unknownFields);
         return result;
     }
     
-    @java.lang.Override
+    @Override
     public int hashCode() {
         if (memoizedHashCode != 0) {
             return memoizedHashCode;
@@ -477,8 +460,7 @@ public final class FeedEntity extends
         }
         if (hasIsDeleted()) {
             hash = (37 * hash) + IS_DELETED_FIELD_NUMBER;
-            hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-                    getIsDeleted());
+            hash = (53 * hash) + Internal.hashBoolean(getIsDeleted());
         }
         if (hasTripUpdate()) {
             hash = (37 * hash) + TRIP_UPDATE_FIELD_NUMBER;
@@ -497,85 +479,60 @@ public final class FeedEntity extends
         return hash;
     }
     
-    public static FeedEntity parseFrom(
-            final java.nio.ByteBuffer data)
-            throws com.google.protobuf.InvalidProtocolBufferException {
+    public static FeedEntity parseFrom(final ByteBuffer data)
+            throws InvalidProtocolBufferException {
         return PARSER.parseFrom(data);
     }
     
-    public static FeedEntity parseFrom(
-            final java.nio.ByteBuffer data,
-            final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
+    public static FeedEntity parseFrom(final ByteBuffer data,
+            final ExtensionRegistryLite extensionRegistry) throws InvalidProtocolBufferException {
         return PARSER.parseFrom(data, extensionRegistry);
     }
     
-    public static FeedEntity parseFrom(
-            final com.google.protobuf.ByteString data)
-            throws com.google.protobuf.InvalidProtocolBufferException {
+    public static FeedEntity parseFrom(final ByteString data)
+            throws InvalidProtocolBufferException {
         return PARSER.parseFrom(data);
     }
     
-    public static FeedEntity parseFrom(
-            final com.google.protobuf.ByteString data,
-            final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
+    public static FeedEntity parseFrom(final ByteString data,
+            final ExtensionRegistryLite extensionRegistry) throws InvalidProtocolBufferException {
         return PARSER.parseFrom(data, extensionRegistry);
     }
     
-    public static FeedEntity parseFrom(final byte[] data)
-            throws com.google.protobuf.InvalidProtocolBufferException {
+    public static FeedEntity parseFrom(final byte[] data) throws InvalidProtocolBufferException {
         return PARSER.parseFrom(data);
     }
     
-    public static FeedEntity parseFrom(
-            final byte[] data,
-            final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
+    public static FeedEntity parseFrom(final byte[] data,
+            final ExtensionRegistryLite extensionRegistry) throws InvalidProtocolBufferException {
         return PARSER.parseFrom(data, extensionRegistry);
     }
     
-    public static FeedEntity parseFrom(final java.io.InputStream input)
-            throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-                .parseWithIOException(PARSER, input);
+    public static FeedEntity parseFrom(final InputStream input) throws IOException {
+        return GeneratedMessageV3.parseWithIOException(PARSER, input);
     }
     
-    public static FeedEntity parseFrom(
-            final java.io.InputStream input,
-            final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-                .parseWithIOException(PARSER, input, extensionRegistry);
+    public static FeedEntity parseFrom(final InputStream input,
+            final ExtensionRegistryLite extensionRegistry) throws IOException {
+        return GeneratedMessageV3.parseWithIOException(PARSER, input, extensionRegistry);
     }
     
-    public static FeedEntity parseDelimitedFrom(final java.io.InputStream input)
-            throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-                .parseDelimitedWithIOException(PARSER, input);
+    public static FeedEntity parseDelimitedFrom(final InputStream input) throws IOException {
+        return GeneratedMessageV3.parseDelimitedWithIOException(PARSER, input);
     }
     
-    public static FeedEntity parseDelimitedFrom(
-            final java.io.InputStream input,
-            final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-                .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    public static FeedEntity parseDelimitedFrom(final InputStream input,
+            final ExtensionRegistryLite extensionRegistry) throws IOException {
+        return GeneratedMessageV3.parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
     
-    public static FeedEntity parseFrom(
-            final com.google.protobuf.CodedInputStream input)
-            throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-                .parseWithIOException(PARSER, input);
+    public static FeedEntity parseFrom(final CodedInputStream input) throws IOException {
+        return GeneratedMessageV3.parseWithIOException(PARSER, input);
     }
     
-    public static FeedEntity parseFrom(
-            final com.google.protobuf.CodedInputStream input,
-            final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-                .parseWithIOException(PARSER, input, extensionRegistry);
+    public static FeedEntity parseFrom(final CodedInputStream input,
+            final ExtensionRegistryLite extensionRegistry) throws IOException {
+        return GeneratedMessageV3.parseWithIOException(PARSER, input, extensionRegistry);
     }
     
     @Override
@@ -591,13 +548,11 @@ public final class FeedEntity extends
     
     @Override
     public Builder toBuilder() {
-        return this == DEFAULT_INSTANCE
-                ? new Builder() : new Builder().mergeFrom(this);
+        return this == DEFAULT_INSTANCE ? new Builder() : new Builder().mergeFrom(this);
     }
     
-    @java.lang.Override
-    protected Builder newBuilderForType(
-            final com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+    @Override
+    protected Builder newBuilderForType(final BuilderParent parent) {
         final Builder builder = new Builder(parent);
         return builder;
     }
@@ -609,22 +564,18 @@ public final class FeedEntity extends
      * <p>
      * Protobuf type {@code transit_realtime.FeedEntity}
      */
-    public static final class Builder extends
-            com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+    public static final class Builder extends GeneratedMessageV3.Builder<Builder> implements
             // @@protoc_insertion_point(builder_implements:transit_realtime.FeedEntity)
             FeedEntityOrBuilder {
         
-        public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
+        public static final Descriptor getDescriptor() {
             return GtfsRealtime.internal_static_transit_realtime_FeedEntity_descriptor;
         }
         
         @Override
-        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
+        protected FieldAccessorTable internalGetFieldAccessorTable() {
             return GtfsRealtime.internal_static_transit_realtime_FeedEntity_fieldAccessorTable
-                    .ensureFieldAccessorsInitialized(
-                            FeedEntity.class, FeedEntity.Builder.class);
+                    .ensureFieldAccessorsInitialized(FeedEntity.class, Builder.class);
         }
         
         // Construct using sen.khyber.subway.client.proto.FeedEntity.newBuilder()
@@ -632,15 +583,13 @@ public final class FeedEntity extends
             maybeForceBuilderInitialization();
         }
         
-        private Builder(
-                final com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        private Builder(final BuilderParent parent) {
             super(parent);
             maybeForceBuilderInitialization();
         }
         
         private void maybeForceBuilderInitialization() {
-            if (com.google.protobuf.GeneratedMessageV3
-                    .alwaysUseFieldBuilders) {
+            if (GeneratedMessageV3.alwaysUseFieldBuilders) {
                 getTripUpdateFieldBuilder();
                 getVehicleFieldBuilder();
                 getAlertFieldBuilder();
@@ -676,14 +625,13 @@ public final class FeedEntity extends
         }
         
         @Override
-        public com.google.protobuf.Descriptors.Descriptor
-        getDescriptorForType() {
+        public Descriptor getDescriptorForType() {
             return GtfsRealtime.internal_static_transit_realtime_FeedEntity_descriptor;
         }
         
         @Override
         public FeedEntity getDefaultInstanceForType() {
-            return FeedEntity.getDefaultInstance();
+            return getDefaultInstance();
         }
         
         @Override
@@ -739,44 +687,37 @@ public final class FeedEntity extends
         
         @Override
         public Builder clone() {
-            return (Builder) super.clone();
+            return super.clone();
         }
         
         @Override
-        public Builder setField(
-                final com.google.protobuf.Descriptors.FieldDescriptor field,
-                final java.lang.Object value) {
-            return (Builder) super.setField(field, value);
+        public Builder setField(final FieldDescriptor field, final Object value) {
+            return super.setField(field, value);
         }
         
         @Override
-        public Builder clearField(
-                final com.google.protobuf.Descriptors.FieldDescriptor field) {
-            return (Builder) super.clearField(field);
+        public Builder clearField(final FieldDescriptor field) {
+            return super.clearField(field);
         }
         
         @Override
-        public Builder clearOneof(
-                final com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-            return (Builder) super.clearOneof(oneof);
+        public Builder clearOneof(final OneofDescriptor oneof) {
+            return super.clearOneof(oneof);
         }
         
         @Override
-        public Builder setRepeatedField(
-                final com.google.protobuf.Descriptors.FieldDescriptor field,
-                final int index, final java.lang.Object value) {
-            return (Builder) super.setRepeatedField(field, index, value);
+        public Builder setRepeatedField(final FieldDescriptor field, final int index,
+                final Object value) {
+            return super.setRepeatedField(field, index, value);
         }
         
         @Override
-        public Builder addRepeatedField(
-                final com.google.protobuf.Descriptors.FieldDescriptor field,
-                final java.lang.Object value) {
-            return (Builder) super.addRepeatedField(field, value);
+        public Builder addRepeatedField(final FieldDescriptor field, final Object value) {
+            return super.addRepeatedField(field, value);
         }
         
         @Override
-        public Builder mergeFrom(final com.google.protobuf.Message other) {
+        public Builder mergeFrom(final Message other) {
             if (other instanceof FeedEntity) {
                 return mergeFrom((FeedEntity) other);
             } else {
@@ -786,7 +727,7 @@ public final class FeedEntity extends
         }
         
         public Builder mergeFrom(final FeedEntity other) {
-            if (other == FeedEntity.getDefaultInstance()) {return this;}
+            if (other == getDefaultInstance()) {return this;}
             if (other.hasId()) {
                 bitField0_ |= 0x00000001;
                 id_ = other.id_;
@@ -825,22 +766,18 @@ public final class FeedEntity extends
                 }
             }
             if (hasAlert()) {
-                if (!getAlert().isInitialized()) {
-                    return false;
-                }
+                return getAlert().isInitialized();
             }
             return true;
         }
         
         @Override
-        public Builder mergeFrom(
-                final com.google.protobuf.CodedInputStream input,
-                final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws java.io.IOException {
+        public Builder mergeFrom(final CodedInputStream input,
+                final ExtensionRegistryLite extensionRegistry) throws IOException {
             FeedEntity parsedMessage = null;
             try {
                 parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-            } catch (final com.google.protobuf.InvalidProtocolBufferException e) {
+            } catch (final InvalidProtocolBufferException e) {
                 parsedMessage = (FeedEntity) e.getUnfinishedMessage();
                 throw e.unwrapIOException();
             } finally {
@@ -853,7 +790,7 @@ public final class FeedEntity extends
         
         private int bitField0_;
         
-        private java.lang.Object id_ = "";
+        private @Setter(AccessLevel.PRIVATE) Object id_ = "";
         
         /**
          * <pre>
@@ -889,19 +826,8 @@ public final class FeedEntity extends
          * <code>required string id = 1;</code>
          */
         @Override
-        public java.lang.String getId() {
-            final java.lang.Object ref = id_;
-            if (!(ref instanceof java.lang.String)) {
-                final com.google.protobuf.ByteString bs =
-                        (com.google.protobuf.ByteString) ref;
-                final java.lang.String s = bs.toStringUtf8();
-                if (bs.isValidUtf8()) {
-                    id_ = s;
-                }
-                return s;
-            } else {
-                return (java.lang.String) ref;
-            }
+        public String getId() {
+            return ProtoUtils.asString(id_, this::setId_);
         }
         
         /**
@@ -919,18 +845,8 @@ public final class FeedEntity extends
          * <code>required string id = 1;</code>
          */
         @Override
-        public com.google.protobuf.ByteString
-        getIdBytes() {
-            final java.lang.Object ref = id_;
-            if (ref instanceof String) {
-                final com.google.protobuf.ByteString b =
-                        com.google.protobuf.ByteString.copyFromUtf8(
-                                (java.lang.String) ref);
-                id_ = b;
-                return b;
-            } else {
-                return (com.google.protobuf.ByteString) ref;
-            }
+        public ByteString getIdBytes() {
+            return ProtoUtils.asBytes(id_, this::setId_);
         }
         
         /**
@@ -947,11 +863,8 @@ public final class FeedEntity extends
          * <p>
          * <code>required string id = 1;</code>
          */
-        public Builder setId(
-                final java.lang.String value) {
-            if (value == null) {
-                throw new NullPointerException();
-            }
+        public Builder setId(final String value) {
+            Objects.requireNonNull(value);
             bitField0_ |= 0x00000001;
             id_ = value;
             onChanged();
@@ -993,11 +906,8 @@ public final class FeedEntity extends
          * <p>
          * <code>required string id = 1;</code>
          */
-        public Builder setIdBytes(
-                final com.google.protobuf.ByteString value) {
-            if (value == null) {
-                throw new NullPointerException();
-            }
+        public Builder setIdBytes(final ByteString value) {
+            Objects.requireNonNull(value);
             bitField0_ |= 0x00000001;
             id_ = value;
             onChanged();
@@ -1063,8 +973,8 @@ public final class FeedEntity extends
         }
         
         private TripUpdate tripUpdate_ = null;
-        private com.google.protobuf.SingleFieldBuilderV3<
-                TripUpdate, TripUpdate.Builder, TripUpdateOrBuilder> tripUpdateBuilder_;
+        private SingleFieldBuilderV3<TripUpdate, TripUpdate.Builder, TripUpdateOrBuilder>
+                tripUpdateBuilder_;
         
         /**
          * <pre>
@@ -1106,9 +1016,7 @@ public final class FeedEntity extends
          */
         public Builder setTripUpdate(final TripUpdate value) {
             if (tripUpdateBuilder_ == null) {
-                if (value == null) {
-                    throw new NullPointerException();
-                }
+                Objects.requireNonNull(value);
                 tripUpdate_ = value;
                 onChanged();
             } else {
@@ -1126,8 +1034,7 @@ public final class FeedEntity extends
          * <p>
          * <code>optional .transit_realtime.TripUpdate trip_update = 3;</code>
          */
-        public Builder setTripUpdate(
-                final TripUpdate.Builder builderForValue) {
+        public Builder setTripUpdate(final TripUpdate.Builder builderForValue) {
             if (tripUpdateBuilder_ == null) {
                 tripUpdate_ = builderForValue.build();
                 onChanged();
@@ -1148,9 +1055,8 @@ public final class FeedEntity extends
          */
         public Builder mergeTripUpdate(final TripUpdate value) {
             if (tripUpdateBuilder_ == null) {
-                if (((bitField0_ & 0x00000004) == 0x00000004) &&
-                        tripUpdate_ != null &&
-                        tripUpdate_ != TripUpdate.getDefaultInstance()) {
+                if (((bitField0_ & 0x00000004) == 0x00000004) && tripUpdate_ != null
+                        && tripUpdate_ != TripUpdate.getDefaultInstance()) {
                     tripUpdate_ =
                             TripUpdate.newBuilder(tripUpdate_).mergeFrom(value).buildPartial();
                 } else {
@@ -1210,8 +1116,7 @@ public final class FeedEntity extends
             if (tripUpdateBuilder_ != null) {
                 return tripUpdateBuilder_.getMessageOrBuilder();
             } else {
-                return tripUpdate_ == null ?
-                        TripUpdate.getDefaultInstance() : tripUpdate_;
+                return tripUpdate_ == null ? TripUpdate.getDefaultInstance() : tripUpdate_;
             }
         }
         
@@ -1223,22 +1128,21 @@ public final class FeedEntity extends
          * <p>
          * <code>optional .transit_realtime.TripUpdate trip_update = 3;</code>
          */
-        private com.google.protobuf.SingleFieldBuilderV3<
-                TripUpdate, TripUpdate.Builder, TripUpdateOrBuilder>
+        private SingleFieldBuilderV3<TripUpdate, TripUpdate.Builder, TripUpdateOrBuilder> 
         getTripUpdateFieldBuilder() {
             if (tripUpdateBuilder_ == null) {
-                tripUpdateBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
-                        getTripUpdate(),
-                        getParentForChildren(),
-                        isClean());
+                tripUpdateBuilder_ =
+                        new SingleFieldBuilderV3<>(getTripUpdate(), getParentForChildren(),
+                                isClean());
                 tripUpdate_ = null;
             }
             return tripUpdateBuilder_;
         }
         
         private VehiclePosition vehicle_ = null;
-        private com.google.protobuf.SingleFieldBuilderV3<
-                VehiclePosition, VehiclePosition.Builder, VehiclePositionOrBuilder> vehicleBuilder_;
+        private SingleFieldBuilderV3<VehiclePosition, VehiclePosition.Builder, 
+                VehiclePositionOrBuilder>
+                vehicleBuilder_;
         
         /**
          * <code>optional .transit_realtime.VehiclePosition vehicle = 4;</code>
@@ -1265,9 +1169,7 @@ public final class FeedEntity extends
          */
         public Builder setVehicle(final VehiclePosition value) {
             if (vehicleBuilder_ == null) {
-                if (value == null) {
-                    throw new NullPointerException();
-                }
+                Objects.requireNonNull(value);
                 vehicle_ = value;
                 onChanged();
             } else {
@@ -1280,8 +1182,7 @@ public final class FeedEntity extends
         /**
          * <code>optional .transit_realtime.VehiclePosition vehicle = 4;</code>
          */
-        public Builder setVehicle(
-                final VehiclePosition.Builder builderForValue) {
+        public Builder setVehicle(final VehiclePosition.Builder builderForValue) {
             if (vehicleBuilder_ == null) {
                 vehicle_ = builderForValue.build();
                 onChanged();
@@ -1297,11 +1198,9 @@ public final class FeedEntity extends
          */
         public Builder mergeVehicle(final VehiclePosition value) {
             if (vehicleBuilder_ == null) {
-                if (((bitField0_ & 0x00000008) == 0x00000008) &&
-                        vehicle_ != null &&
-                        vehicle_ != VehiclePosition.getDefaultInstance()) {
-                    vehicle_ =
-                            VehiclePosition.newBuilder(vehicle_).mergeFrom(value).buildPartial();
+                if (((bitField0_ & 0x00000008) == 0x00000008) && vehicle_ != null
+                        && vehicle_ != VehiclePosition.getDefaultInstance()) {
+                    vehicle_ = VehiclePosition.newBuilder(vehicle_).mergeFrom(value).buildPartial();
                 } else {
                     vehicle_ = value;
                 }
@@ -1344,30 +1243,25 @@ public final class FeedEntity extends
             if (vehicleBuilder_ != null) {
                 return vehicleBuilder_.getMessageOrBuilder();
             } else {
-                return vehicle_ == null ?
-                        VehiclePosition.getDefaultInstance() : vehicle_;
+                return vehicle_ == null ? VehiclePosition.getDefaultInstance() : vehicle_;
             }
         }
         
         /**
          * <code>optional .transit_realtime.VehiclePosition vehicle = 4;</code>
          */
-        private com.google.protobuf.SingleFieldBuilderV3<
-                VehiclePosition, VehiclePosition.Builder, VehiclePositionOrBuilder>
-        getVehicleFieldBuilder() {
+        private SingleFieldBuilderV3<VehiclePosition, VehiclePosition.Builder, 
+                VehiclePositionOrBuilder> getVehicleFieldBuilder() {
             if (vehicleBuilder_ == null) {
-                vehicleBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
-                        getVehicle(),
-                        getParentForChildren(),
-                        isClean());
+                vehicleBuilder_ =
+                        new SingleFieldBuilderV3<>(getVehicle(), getParentForChildren(), isClean());
                 vehicle_ = null;
             }
             return vehicleBuilder_;
         }
         
         private Alert alert_ = null;
-        private com.google.protobuf.SingleFieldBuilderV3<
-                Alert, Alert.Builder, AlertOrBuilder> alertBuilder_;
+        private SingleFieldBuilderV3<Alert, Alert.Builder, AlertOrBuilder> alertBuilder_;
         
         /**
          * <code>optional .transit_realtime.Alert alert = 5;</code>
@@ -1394,9 +1288,7 @@ public final class FeedEntity extends
          */
         public Builder setAlert(final Alert value) {
             if (alertBuilder_ == null) {
-                if (value == null) {
-                    throw new NullPointerException();
-                }
+                Objects.requireNonNull(value);
                 alert_ = value;
                 onChanged();
             } else {
@@ -1409,8 +1301,7 @@ public final class FeedEntity extends
         /**
          * <code>optional .transit_realtime.Alert alert = 5;</code>
          */
-        public Builder setAlert(
-                final Alert.Builder builderForValue) {
+        public Builder setAlert(final Alert.Builder builderForValue) {
             if (alertBuilder_ == null) {
                 alert_ = builderForValue.build();
                 onChanged();
@@ -1426,11 +1317,9 @@ public final class FeedEntity extends
          */
         public Builder mergeAlert(final Alert value) {
             if (alertBuilder_ == null) {
-                if (((bitField0_ & 0x00000010) == 0x00000010) &&
-                        alert_ != null &&
-                        alert_ != Alert.getDefaultInstance()) {
-                    alert_ =
-                            Alert.newBuilder(alert_).mergeFrom(value).buildPartial();
+                if (((bitField0_ & 0x00000010) == 0x00000010) && alert_ != null && alert_ != Alert
+                        .getDefaultInstance()) {
+                    alert_ = Alert.newBuilder(alert_).mergeFrom(value).buildPartial();
                 } else {
                     alert_ = value;
                 }
@@ -1473,36 +1362,29 @@ public final class FeedEntity extends
             if (alertBuilder_ != null) {
                 return alertBuilder_.getMessageOrBuilder();
             } else {
-                return alert_ == null ?
-                        Alert.getDefaultInstance() : alert_;
+                return alert_ == null ? Alert.getDefaultInstance() : alert_;
             }
         }
         
         /**
          * <code>optional .transit_realtime.Alert alert = 5;</code>
          */
-        private com.google.protobuf.SingleFieldBuilderV3<
-                Alert, Alert.Builder, AlertOrBuilder>
-        getAlertFieldBuilder() {
+        private SingleFieldBuilderV3<Alert, Alert.Builder, AlertOrBuilder> getAlertFieldBuilder() {
             if (alertBuilder_ == null) {
-                alertBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
-                        getAlert(),
-                        getParentForChildren(),
-                        isClean());
+                alertBuilder_ =
+                        new SingleFieldBuilderV3<>(getAlert(), getParentForChildren(), isClean());
                 alert_ = null;
             }
             return alertBuilder_;
         }
         
         @Override
-        public final Builder setUnknownFields(
-                final com.google.protobuf.UnknownFieldSet unknownFields) {
+        public final Builder setUnknownFields(final UnknownFieldSet unknownFields) {
             return super.setUnknownFields(unknownFields);
         }
         
         @Override
-        public final Builder mergeUnknownFields(
-                final com.google.protobuf.UnknownFieldSet unknownFields) {
+        public final Builder mergeUnknownFields(final UnknownFieldSet unknownFields) {
             return super.mergeUnknownFields(unknownFields);
         }
         
@@ -1521,24 +1403,22 @@ public final class FeedEntity extends
         return DEFAULT_INSTANCE;
     }
     
-    @java.lang.Deprecated public static final com.google.protobuf.Parser<FeedEntity>
-            PARSER = new com.google.protobuf.AbstractParser<>() {
+    @Deprecated public static final Parser<FeedEntity> PARSER = new AbstractParser<>() {
         
         @Override
-        public FeedEntity parsePartialFrom(
-                final com.google.protobuf.CodedInputStream input,
-                final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws com.google.protobuf.InvalidProtocolBufferException {
+        public FeedEntity parsePartialFrom(final CodedInputStream input,
+                final ExtensionRegistryLite extensionRegistry)
+                throws InvalidProtocolBufferException {
             return new FeedEntity(input, extensionRegistry);
         }
     };
     
-    public static com.google.protobuf.Parser<FeedEntity> parser() {
+    public static Parser<FeedEntity> parser() {
         return PARSER;
     }
     
-    @java.lang.Override
-    public com.google.protobuf.Parser<FeedEntity> getParserForType() {
+    @Override
+    public Parser<FeedEntity> getParserForType() {
         return PARSER;
     }
     
@@ -1548,4 +1428,3 @@ public final class FeedEntity extends
     }
     
 }
-

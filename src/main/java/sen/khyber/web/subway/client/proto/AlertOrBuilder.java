@@ -3,10 +3,14 @@
 
 package sen.khyber.web.subway.client.proto;
 
-public interface AlertOrBuilder extends
-        // @@protoc_insertion_point(interface_extends:transit_realtime.Alert)
-        com.google.protobuf.GeneratedMessageV3.
-                ExtendableMessageOrBuilder<Alert> {
+import sen.khyber.web.subway.client.proto.Alert.Cause;
+import sen.khyber.web.subway.client.proto.Alert.Effect;
+
+import java.util.List;
+
+import com.google.protobuf.GeneratedMessageV3.ExtendableMessageOrBuilder;
+
+public interface AlertOrBuilder extends ExtendableMessageOrBuilder<Alert> {
     
     /**
      * <pre>
@@ -17,8 +21,7 @@ public interface AlertOrBuilder extends
      * <p>
      * <code>repeated .transit_realtime.TimeRange active_period = 1;</code>
      */
-    java.util.List<TimeRange>
-    getActivePeriodList();
+    List<TimeRange> getActivePeriodList();
     
     /**
      * <pre>
@@ -51,8 +54,7 @@ public interface AlertOrBuilder extends
      * <p>
      * <code>repeated .transit_realtime.TimeRange active_period = 1;</code>
      */
-    java.util.List<? extends TimeRangeOrBuilder>
-    getActivePeriodOrBuilderList();
+    List<? extends TimeRangeOrBuilder> getActivePeriodOrBuilderList();
     
     /**
      * <pre>
@@ -63,8 +65,7 @@ public interface AlertOrBuilder extends
      * <p>
      * <code>repeated .transit_realtime.TimeRange active_period = 1;</code>
      */
-    TimeRangeOrBuilder getActivePeriodOrBuilder(
-            int index);
+    TimeRangeOrBuilder getActivePeriodOrBuilder(int index);
     
     /**
      * <pre>
@@ -73,8 +74,7 @@ public interface AlertOrBuilder extends
      * <p>
      * <code>repeated .transit_realtime.EntitySelector informed_entity = 5;</code>
      */
-    java.util.List<EntitySelector>
-    getInformedEntityList();
+    List<EntitySelector> getInformedEntityList();
     
     /**
      * <pre>
@@ -101,8 +101,7 @@ public interface AlertOrBuilder extends
      * <p>
      * <code>repeated .transit_realtime.EntitySelector informed_entity = 5;</code>
      */
-    java.util.List<? extends EntitySelectorOrBuilder>
-    getInformedEntityOrBuilderList();
+    List<? extends EntitySelectorOrBuilder> getInformedEntityOrBuilderList();
     
     /**
      * <pre>
@@ -111,8 +110,7 @@ public interface AlertOrBuilder extends
      * <p>
      * <code>repeated .transit_realtime.EntitySelector informed_entity = 5;</code>
      */
-    EntitySelectorOrBuilder getInformedEntityOrBuilder(
-            int index);
+    EntitySelectorOrBuilder getInformedEntityOrBuilder(int index);
     
     /**
      * <code>optional .transit_realtime.Alert.Cause cause = 6 [default = UNKNOWN_CAUSE];</code>
@@ -122,7 +120,7 @@ public interface AlertOrBuilder extends
     /**
      * <code>optional .transit_realtime.Alert.Cause cause = 6 [default = UNKNOWN_CAUSE];</code>
      */
-    Alert.Cause getCause();
+    Cause getCause();
     
     /**
      * <code>optional .transit_realtime.Alert.Effect effect = 7 [default = UNKNOWN_EFFECT];</code>
@@ -132,7 +130,7 @@ public interface AlertOrBuilder extends
     /**
      * <code>optional .transit_realtime.Alert.Effect effect = 7 [default = UNKNOWN_EFFECT];</code>
      */
-    Alert.Effect getEffect();
+    Effect getEffect();
     
     /**
      * <pre>
@@ -217,4 +215,5 @@ public interface AlertOrBuilder extends
      * <code>optional .transit_realtime.TranslatedString description_text = 11;</code>
      */
     TranslatedStringOrBuilder getDescriptionTextOrBuilder();
+    
 }

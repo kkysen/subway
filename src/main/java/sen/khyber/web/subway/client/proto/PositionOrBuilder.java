@@ -3,10 +3,9 @@
 
 package sen.khyber.web.subway.client.proto;
 
-public interface PositionOrBuilder extends
-        // @@protoc_insertion_point(interface_extends:transit_realtime.Position)
-        com.google.protobuf.GeneratedMessageV3.
-                ExtendableMessageOrBuilder<Position> {
+import com.google.protobuf.GeneratedMessageV3.ExtendableMessageOrBuilder;
+
+public interface PositionOrBuilder extends ExtendableMessageOrBuilder<Position> {
     
     /**
      * <pre>
@@ -105,4 +104,5 @@ public interface PositionOrBuilder extends
      * <code>optional float speed = 5;</code>
      */
     float getSpeed();
+    
 }

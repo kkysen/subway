@@ -3,9 +3,10 @@
 
 package sen.khyber.web.subway.client.proto;
 
-public interface FeedEntityOrBuilder extends
-        // @@protoc_insertion_point(interface_extends:transit_realtime.FeedEntity)
-        com.google.protobuf.MessageOrBuilder {
+import com.google.protobuf.ByteString;
+import com.google.protobuf.MessageOrBuilder;
+
+public interface FeedEntityOrBuilder extends MessageOrBuilder {
     
     /**
      * <pre>
@@ -37,7 +38,7 @@ public interface FeedEntityOrBuilder extends
      * <p>
      * <code>required string id = 1;</code>
      */
-    java.lang.String getId();
+    String getId();
     
     /**
      * <pre>
@@ -53,8 +54,7 @@ public interface FeedEntityOrBuilder extends
      * <p>
      * <code>required string id = 1;</code>
      */
-    com.google.protobuf.ByteString
-    getIdBytes();
+    ByteString getIdBytes();
     
     /**
      * <pre>
@@ -135,4 +135,5 @@ public interface FeedEntityOrBuilder extends
      * <code>optional .transit_realtime.Alert alert = 5;</code>
      */
     AlertOrBuilder getAlertOrBuilder();
+    
 }

@@ -3,9 +3,10 @@
 
 package sen.khyber.web.subway.client.proto;
 
-public interface TripReplacementPeriodOrBuilder extends
-        // @@protoc_insertion_point(interface_extends:TripReplacementPeriod)
-        com.google.protobuf.MessageOrBuilder {
+import com.google.protobuf.ByteString;
+import com.google.protobuf.MessageOrBuilder;
+
+public interface TripReplacementPeriodOrBuilder extends MessageOrBuilder {
     
     /**
      * <pre>
@@ -23,7 +24,7 @@ public interface TripReplacementPeriodOrBuilder extends
      * <p>
      * <code>optional string route_id = 1;</code>
      */
-    java.lang.String getRouteId();
+    String getRouteId();
     
     /**
      * <pre>
@@ -32,8 +33,7 @@ public interface TripReplacementPeriodOrBuilder extends
      * <p>
      * <code>optional string route_id = 1;</code>
      */
-    com.google.protobuf.ByteString
-    getRouteIdBytes();
+    ByteString getRouteIdBytes();
     
     /**
      * <pre>
@@ -64,4 +64,5 @@ public interface TripReplacementPeriodOrBuilder extends
      * <code>optional .transit_realtime.TimeRange replacement_period = 2;</code>
      */
     TimeRangeOrBuilder getReplacementPeriodOrBuilder();
+    
 }

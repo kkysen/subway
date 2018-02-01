@@ -3,6 +3,30 @@
 
 package sen.khyber.web.subway.client.proto;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.ByteBuffer;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+import com.google.protobuf.AbstractMessageLite;
+import com.google.protobuf.AbstractParser;
+import com.google.protobuf.ByteString;
+import com.google.protobuf.CodedInputStream;
+import com.google.protobuf.CodedOutputStream;
+import com.google.protobuf.Descriptors.Descriptor;
+import com.google.protobuf.Descriptors.FieldDescriptor;
+import com.google.protobuf.Descriptors.OneofDescriptor;
+import com.google.protobuf.ExtensionRegistryLite;
+import com.google.protobuf.GeneratedMessageV3;
+import com.google.protobuf.InvalidProtocolBufferException;
+import com.google.protobuf.Message;
+import com.google.protobuf.Parser;
+import com.google.protobuf.RepeatedFieldBuilderV3;
+import com.google.protobuf.SingleFieldBuilderV3;
+import com.google.protobuf.UnknownFieldSet;
+
 /**
  * <pre>
  * The contents of a feed message.
@@ -19,36 +43,29 @@ package sen.khyber.web.subway.client.proto;
  * <p>
  * Protobuf type {@code transit_realtime.FeedMessage}
  */
-public final class FeedMessage extends
-        com.google.protobuf.GeneratedMessageV3 implements
-        // @@protoc_insertion_point(message_implements:transit_realtime.FeedMessage)
-        FeedMessageOrBuilder {
+public final class FeedMessage extends GeneratedMessageV3 implements FeedMessageOrBuilder {
     
     private static final long serialVersionUID = 0L;
     
     // Use FeedMessage.newBuilder() to construct.
-    private FeedMessage(final com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    private FeedMessage(final GeneratedMessageV3.Builder<?> builder) {
         super(builder);
     }
     
     private FeedMessage() {
-        entity_ = java.util.Collections.emptyList();
+        entity_ = Collections.emptyList();
     }
     
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
+    @Override
+    public final UnknownFieldSet getUnknownFields() {
         return unknownFields;
     }
     
-    private FeedMessage(
-            final com.google.protobuf.CodedInputStream input,
-            final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
+    private FeedMessage(final CodedInputStream input, final ExtensionRegistryLite extensionRegistry)
+            throws InvalidProtocolBufferException {
         this();
         int mutable_bitField0_ = 0;
-        final com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-                com.google.protobuf.UnknownFieldSet.newBuilder();
+        final UnknownFieldSet.Builder unknownFields = UnknownFieldSet.newBuilder();
         try {
             boolean done = false;
             while (!done) {
@@ -58,8 +75,7 @@ public final class FeedMessage extends
                         done = true;
                         break;
                     default: {
-                        if (!parseUnknownField(
-                                input, unknownFields, extensionRegistry, tag)) {
+                        if (!parseUnknownField(input, unknownFields, extensionRegistry, tag)) {
                             done = true;
                         }
                         break;
@@ -79,40 +95,35 @@ public final class FeedMessage extends
                     }
                     case 18: {
                         if (!((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
-                            entity_ = new java.util.ArrayList<>();
+                            entity_ = new ArrayList<>();
                             mutable_bitField0_ |= 0x00000002;
                         }
-                        entity_.add(
-                                input.readMessage(FeedEntity.PARSER, extensionRegistry));
+                        entity_.add(input.readMessage(FeedEntity.PARSER, extensionRegistry));
                         break;
                     }
                 }
             }
-        } catch (final com.google.protobuf.InvalidProtocolBufferException e) {
+        } catch (final InvalidProtocolBufferException e) {
             throw e.setUnfinishedMessage(this);
-        } catch (final java.io.IOException e) {
-            throw new com.google.protobuf.InvalidProtocolBufferException(
-                    e).setUnfinishedMessage(this);
+        } catch (final IOException e) {
+            throw new InvalidProtocolBufferException(e).setUnfinishedMessage(this);
         } finally {
             if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
-                entity_ = java.util.Collections.unmodifiableList(entity_);
+                entity_ = Collections.unmodifiableList(entity_);
             }
             this.unknownFields = unknownFields.build();
             makeExtensionsImmutable();
         }
     }
     
-    public static final com.google.protobuf.Descriptors.Descriptor
-    getDescriptor() {
+    public static final Descriptor getDescriptor() {
         return GtfsRealtime.internal_static_transit_realtime_FeedMessage_descriptor;
     }
     
     @Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-    internalGetFieldAccessorTable() {
+    protected FieldAccessorTable internalGetFieldAccessorTable() {
         return GtfsRealtime.internal_static_transit_realtime_FeedMessage_fieldAccessorTable
-                .ensureFieldAccessorsInitialized(
-                        FeedMessage.class, FeedMessage.Builder.class);
+                .ensureFieldAccessorsInitialized(FeedMessage.class, Builder.class);
     }
     
     private int bitField0_;
@@ -156,7 +167,7 @@ public final class FeedMessage extends
     }
     
     public static final int ENTITY_FIELD_NUMBER = 2;
-    private java.util.List<FeedEntity> entity_;
+    private List<FeedEntity> entity_;
     
     /**
      * <pre>
@@ -166,7 +177,7 @@ public final class FeedMessage extends
      * <code>repeated .transit_realtime.FeedEntity entity = 2;</code>
      */
     @Override
-    public java.util.List<FeedEntity> getEntityList() {
+    public List<FeedEntity> getEntityList() {
         return entity_;
     }
     
@@ -178,8 +189,7 @@ public final class FeedMessage extends
      * <code>repeated .transit_realtime.FeedEntity entity = 2;</code>
      */
     @Override
-    public java.util.List<? extends FeedEntityOrBuilder>
-    getEntityOrBuilderList() {
+    public List<? extends FeedEntityOrBuilder> getEntityOrBuilderList() {
         return entity_;
     }
     
@@ -215,8 +225,7 @@ public final class FeedMessage extends
      * <code>repeated .transit_realtime.FeedEntity entity = 2;</code>
      */
     @Override
-    public FeedEntityOrBuilder getEntityOrBuilder(
-            final int index) {
+    public FeedEntityOrBuilder getEntityOrBuilder(final int index) {
         return entity_.get(index);
     }
     
@@ -247,8 +256,7 @@ public final class FeedMessage extends
     }
     
     @Override
-    public void writeTo(final com.google.protobuf.CodedOutputStream output)
-            throws java.io.IOException {
+    public void writeTo(final CodedOutputStream output) throws IOException {
         if (((bitField0_ & 0x00000001) == 0x00000001)) {
             output.writeMessage(1, getHeader());
         }
@@ -265,20 +273,18 @@ public final class FeedMessage extends
         
         size = 0;
         if (((bitField0_ & 0x00000001) == 0x00000001)) {
-            size += com.google.protobuf.CodedOutputStream
-                    .computeMessageSize(1, getHeader());
+            size += CodedOutputStream.computeMessageSize(1, getHeader());
         }
         for (int i = 0; i < entity_.size(); i++) {
-            size += com.google.protobuf.CodedOutputStream
-                    .computeMessageSize(2, entity_.get(i));
+            size += CodedOutputStream.computeMessageSize(2, entity_.get(i));
         }
         size += unknownFields.getSerializedSize();
         memoizedSize = size;
         return size;
     }
     
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
+    @Override
+    public boolean equals(final Object obj) {
         if (obj == this) {
             return true;
         }
@@ -290,16 +296,14 @@ public final class FeedMessage extends
         boolean result = true;
         result = result && (hasHeader() == other.hasHeader());
         if (hasHeader()) {
-            result = result && getHeader()
-                    .equals(other.getHeader());
+            result = result && getHeader().equals(other.getHeader());
         }
-        result = result && getEntityList()
-                .equals(other.getEntityList());
+        result = result && getEntityList().equals(other.getEntityList());
         result = result && unknownFields.equals(other.unknownFields);
         return result;
     }
     
-    @java.lang.Override
+    @Override
     public int hashCode() {
         if (memoizedHashCode != 0) {
             return memoizedHashCode;
@@ -319,85 +323,60 @@ public final class FeedMessage extends
         return hash;
     }
     
-    public static FeedMessage parseFrom(
-            final java.nio.ByteBuffer data)
-            throws com.google.protobuf.InvalidProtocolBufferException {
+    public static FeedMessage parseFrom(final ByteBuffer data)
+            throws InvalidProtocolBufferException {
         return PARSER.parseFrom(data);
     }
     
-    public static FeedMessage parseFrom(
-            final java.nio.ByteBuffer data,
-            final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
+    public static FeedMessage parseFrom(final ByteBuffer data,
+            final ExtensionRegistryLite extensionRegistry) throws InvalidProtocolBufferException {
         return PARSER.parseFrom(data, extensionRegistry);
     }
     
-    public static FeedMessage parseFrom(
-            final com.google.protobuf.ByteString data)
-            throws com.google.protobuf.InvalidProtocolBufferException {
+    public static FeedMessage parseFrom(final ByteString data)
+            throws InvalidProtocolBufferException {
         return PARSER.parseFrom(data);
     }
     
-    public static FeedMessage parseFrom(
-            final com.google.protobuf.ByteString data,
-            final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
+    public static FeedMessage parseFrom(final ByteString data,
+            final ExtensionRegistryLite extensionRegistry) throws InvalidProtocolBufferException {
         return PARSER.parseFrom(data, extensionRegistry);
     }
     
-    public static FeedMessage parseFrom(final byte[] data)
-            throws com.google.protobuf.InvalidProtocolBufferException {
+    public static FeedMessage parseFrom(final byte[] data) throws InvalidProtocolBufferException {
         return PARSER.parseFrom(data);
     }
     
-    public static FeedMessage parseFrom(
-            final byte[] data,
-            final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
+    public static FeedMessage parseFrom(final byte[] data,
+            final ExtensionRegistryLite extensionRegistry) throws InvalidProtocolBufferException {
         return PARSER.parseFrom(data, extensionRegistry);
     }
     
-    public static FeedMessage parseFrom(final java.io.InputStream input)
-            throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-                .parseWithIOException(PARSER, input);
+    public static FeedMessage parseFrom(final InputStream input) throws IOException {
+        return GeneratedMessageV3.parseWithIOException(PARSER, input);
     }
     
-    public static FeedMessage parseFrom(
-            final java.io.InputStream input,
-            final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-                .parseWithIOException(PARSER, input, extensionRegistry);
+    public static FeedMessage parseFrom(final InputStream input,
+            final ExtensionRegistryLite extensionRegistry) throws IOException {
+        return GeneratedMessageV3.parseWithIOException(PARSER, input, extensionRegistry);
     }
     
-    public static FeedMessage parseDelimitedFrom(final java.io.InputStream input)
-            throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-                .parseDelimitedWithIOException(PARSER, input);
+    public static FeedMessage parseDelimitedFrom(final InputStream input) throws IOException {
+        return GeneratedMessageV3.parseDelimitedWithIOException(PARSER, input);
     }
     
-    public static FeedMessage parseDelimitedFrom(
-            final java.io.InputStream input,
-            final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-                .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    public static FeedMessage parseDelimitedFrom(final InputStream input,
+            final ExtensionRegistryLite extensionRegistry) throws IOException {
+        return GeneratedMessageV3.parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
     
-    public static FeedMessage parseFrom(
-            final com.google.protobuf.CodedInputStream input)
-            throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-                .parseWithIOException(PARSER, input);
+    public static FeedMessage parseFrom(final CodedInputStream input) throws IOException {
+        return GeneratedMessageV3.parseWithIOException(PARSER, input);
     }
     
-    public static FeedMessage parseFrom(
-            final com.google.protobuf.CodedInputStream input,
-            final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-                .parseWithIOException(PARSER, input, extensionRegistry);
+    public static FeedMessage parseFrom(final CodedInputStream input,
+            final ExtensionRegistryLite extensionRegistry) throws IOException {
+        return GeneratedMessageV3.parseWithIOException(PARSER, input, extensionRegistry);
     }
     
     @Override
@@ -413,13 +392,11 @@ public final class FeedMessage extends
     
     @Override
     public Builder toBuilder() {
-        return this == DEFAULT_INSTANCE
-                ? new Builder() : new Builder().mergeFrom(this);
+        return this == DEFAULT_INSTANCE ? new Builder() : new Builder().mergeFrom(this);
     }
     
-    @java.lang.Override
-    protected Builder newBuilderForType(
-            final com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+    @Override
+    protected Builder newBuilderForType(final BuilderParent parent) {
         final Builder builder = new Builder(parent);
         return builder;
     }
@@ -440,22 +417,18 @@ public final class FeedMessage extends
      * <p>
      * Protobuf type {@code transit_realtime.FeedMessage}
      */
-    public static final class Builder extends
-            com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+    public static final class Builder extends GeneratedMessageV3.Builder<Builder> implements
             // @@protoc_insertion_point(builder_implements:transit_realtime.FeedMessage)
             FeedMessageOrBuilder {
         
-        public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
+        public static final Descriptor getDescriptor() {
             return GtfsRealtime.internal_static_transit_realtime_FeedMessage_descriptor;
         }
         
         @Override
-        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
+        protected FieldAccessorTable internalGetFieldAccessorTable() {
             return GtfsRealtime.internal_static_transit_realtime_FeedMessage_fieldAccessorTable
-                    .ensureFieldAccessorsInitialized(
-                            FeedMessage.class, FeedMessage.Builder.class);
+                    .ensureFieldAccessorsInitialized(FeedMessage.class, Builder.class);
         }
         
         // Construct using sen.khyber.subway.client.proto.FeedMessage.newBuilder()
@@ -463,15 +436,13 @@ public final class FeedMessage extends
             maybeForceBuilderInitialization();
         }
         
-        private Builder(
-                final com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        private Builder(final BuilderParent parent) {
             super(parent);
             maybeForceBuilderInitialization();
         }
         
         private void maybeForceBuilderInitialization() {
-            if (com.google.protobuf.GeneratedMessageV3
-                    .alwaysUseFieldBuilders) {
+            if (GeneratedMessageV3.alwaysUseFieldBuilders) {
                 getHeaderFieldBuilder();
                 getEntityFieldBuilder();
             }
@@ -487,7 +458,7 @@ public final class FeedMessage extends
             }
             bitField0_ = (bitField0_ & ~0x00000001);
             if (entityBuilder_ == null) {
-                entity_ = java.util.Collections.emptyList();
+                entity_ = Collections.emptyList();
                 bitField0_ = (bitField0_ & ~0x00000002);
             } else {
                 entityBuilder_.clear();
@@ -496,14 +467,13 @@ public final class FeedMessage extends
         }
         
         @Override
-        public com.google.protobuf.Descriptors.Descriptor
-        getDescriptorForType() {
+        public Descriptor getDescriptorForType() {
             return GtfsRealtime.internal_static_transit_realtime_FeedMessage_descriptor;
         }
         
         @Override
         public FeedMessage getDefaultInstanceForType() {
-            return FeedMessage.getDefaultInstance();
+            return getDefaultInstance();
         }
         
         @Override
@@ -530,7 +500,7 @@ public final class FeedMessage extends
             }
             if (entityBuilder_ == null) {
                 if (((bitField0_ & 0x00000002) == 0x00000002)) {
-                    entity_ = java.util.Collections.unmodifiableList(entity_);
+                    entity_ = Collections.unmodifiableList(entity_);
                     bitField0_ = (bitField0_ & ~0x00000002);
                 }
                 result.entity_ = entity_;
@@ -544,44 +514,37 @@ public final class FeedMessage extends
         
         @Override
         public Builder clone() {
-            return (Builder) super.clone();
+            return super.clone();
         }
         
         @Override
-        public Builder setField(
-                final com.google.protobuf.Descriptors.FieldDescriptor field,
-                final java.lang.Object value) {
-            return (Builder) super.setField(field, value);
+        public Builder setField(final FieldDescriptor field, final Object value) {
+            return super.setField(field, value);
         }
         
         @Override
-        public Builder clearField(
-                final com.google.protobuf.Descriptors.FieldDescriptor field) {
-            return (Builder) super.clearField(field);
+        public Builder clearField(final FieldDescriptor field) {
+            return super.clearField(field);
         }
         
         @Override
-        public Builder clearOneof(
-                final com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-            return (Builder) super.clearOneof(oneof);
+        public Builder clearOneof(final OneofDescriptor oneof) {
+            return super.clearOneof(oneof);
         }
         
         @Override
-        public Builder setRepeatedField(
-                final com.google.protobuf.Descriptors.FieldDescriptor field,
-                final int index, final java.lang.Object value) {
-            return (Builder) super.setRepeatedField(field, index, value);
+        public Builder setRepeatedField(final FieldDescriptor field, final int index,
+                final Object value) {
+            return super.setRepeatedField(field, index, value);
         }
         
         @Override
-        public Builder addRepeatedField(
-                final com.google.protobuf.Descriptors.FieldDescriptor field,
-                final java.lang.Object value) {
-            return (Builder) super.addRepeatedField(field, value);
+        public Builder addRepeatedField(final FieldDescriptor field, final Object value) {
+            return super.addRepeatedField(field, value);
         }
         
         @Override
-        public Builder mergeFrom(final com.google.protobuf.Message other) {
+        public Builder mergeFrom(final Message other) {
             if (other instanceof FeedMessage) {
                 return mergeFrom((FeedMessage) other);
             } else {
@@ -591,7 +554,7 @@ public final class FeedMessage extends
         }
         
         public Builder mergeFrom(final FeedMessage other) {
-            if (other == FeedMessage.getDefaultInstance()) {return this;}
+            if (other == getDefaultInstance()) {return this;}
             if (other.hasHeader()) {
                 mergeHeader(other.getHeader());
             }
@@ -614,8 +577,8 @@ public final class FeedMessage extends
                         entity_ = other.entity_;
                         bitField0_ = (bitField0_ & ~0x00000002);
                         entityBuilder_ =
-                                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
-                                        getEntityFieldBuilder() : null;
+                                GeneratedMessageV3.alwaysUseFieldBuilders ? getEntityFieldBuilder()
+                                        : null;
                     } else {
                         entityBuilder_.addAllMessages(other.entity_);
                     }
@@ -643,14 +606,12 @@ public final class FeedMessage extends
         }
         
         @Override
-        public Builder mergeFrom(
-                final com.google.protobuf.CodedInputStream input,
-                final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws java.io.IOException {
+        public Builder mergeFrom(final CodedInputStream input,
+                final ExtensionRegistryLite extensionRegistry) throws IOException {
             FeedMessage parsedMessage = null;
             try {
                 parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-            } catch (final com.google.protobuf.InvalidProtocolBufferException e) {
+            } catch (final InvalidProtocolBufferException e) {
                 parsedMessage = (FeedMessage) e.getUnfinishedMessage();
                 throw e.unwrapIOException();
             } finally {
@@ -664,8 +625,8 @@ public final class FeedMessage extends
         private int bitField0_;
         
         private FeedHeader header_ = null;
-        private com.google.protobuf.SingleFieldBuilderV3<
-                FeedHeader, FeedHeader.Builder, FeedHeaderOrBuilder> headerBuilder_;
+        private SingleFieldBuilderV3<FeedHeader, FeedHeader.Builder, FeedHeaderOrBuilder>
+                headerBuilder_;
         
         /**
          * <pre>
@@ -704,9 +665,7 @@ public final class FeedMessage extends
          */
         public Builder setHeader(final FeedHeader value) {
             if (headerBuilder_ == null) {
-                if (value == null) {
-                    throw new NullPointerException();
-                }
+                Objects.requireNonNull(value);
                 header_ = value;
                 onChanged();
             } else {
@@ -723,8 +682,7 @@ public final class FeedMessage extends
          * <p>
          * <code>required .transit_realtime.FeedHeader header = 1;</code>
          */
-        public Builder setHeader(
-                final FeedHeader.Builder builderForValue) {
+        public Builder setHeader(final FeedHeader.Builder builderForValue) {
             if (headerBuilder_ == null) {
                 header_ = builderForValue.build();
                 onChanged();
@@ -744,11 +702,9 @@ public final class FeedMessage extends
          */
         public Builder mergeHeader(final FeedHeader value) {
             if (headerBuilder_ == null) {
-                if (((bitField0_ & 0x00000001) == 0x00000001) &&
-                        header_ != null &&
-                        header_ != FeedHeader.getDefaultInstance()) {
-                    header_ =
-                            FeedHeader.newBuilder(header_).mergeFrom(value).buildPartial();
+                if (((bitField0_ & 0x00000001) == 0x00000001) && header_ != null
+                        && header_ != FeedHeader.getDefaultInstance()) {
+                    header_ = FeedHeader.newBuilder(header_).mergeFrom(value).buildPartial();
                 } else {
                     header_ = value;
                 }
@@ -803,8 +759,7 @@ public final class FeedMessage extends
             if (headerBuilder_ != null) {
                 return headerBuilder_.getMessageOrBuilder();
             } else {
-                return header_ == null ?
-                        FeedHeader.getDefaultInstance() : header_;
+                return header_ == null ? FeedHeader.getDefaultInstance() : header_;
             }
         }
         
@@ -815,31 +770,27 @@ public final class FeedMessage extends
          * <p>
          * <code>required .transit_realtime.FeedHeader header = 1;</code>
          */
-        private com.google.protobuf.SingleFieldBuilderV3<
-                FeedHeader, FeedHeader.Builder, FeedHeaderOrBuilder>
+        private SingleFieldBuilderV3<FeedHeader, FeedHeader.Builder, FeedHeaderOrBuilder> 
         getHeaderFieldBuilder() {
             if (headerBuilder_ == null) {
-                headerBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
-                        getHeader(),
-                        getParentForChildren(),
-                        isClean());
+                headerBuilder_ =
+                        new SingleFieldBuilderV3<>(getHeader(), getParentForChildren(), isClean());
                 header_ = null;
             }
             return headerBuilder_;
         }
         
-        private java.util.List<FeedEntity> entity_ =
-                java.util.Collections.emptyList();
+        private List<FeedEntity> entity_ = Collections.emptyList();
         
         private void ensureEntityIsMutable() {
             if (!((bitField0_ & 0x00000002) == 0x00000002)) {
-                entity_ = new java.util.ArrayList<>(entity_);
+                entity_ = new ArrayList<>(entity_);
                 bitField0_ |= 0x00000002;
             }
         }
         
-        private com.google.protobuf.RepeatedFieldBuilderV3<
-                FeedEntity, FeedEntity.Builder, FeedEntityOrBuilder> entityBuilder_;
+        private RepeatedFieldBuilderV3<FeedEntity, FeedEntity.Builder, FeedEntityOrBuilder>
+                entityBuilder_;
         
         /**
          * <pre>
@@ -849,9 +800,9 @@ public final class FeedMessage extends
          * <code>repeated .transit_realtime.FeedEntity entity = 2;</code>
          */
         @Override
-        public java.util.List<FeedEntity> getEntityList() {
+        public List<FeedEntity> getEntityList() {
             if (entityBuilder_ == null) {
-                return java.util.Collections.unmodifiableList(entity_);
+                return Collections.unmodifiableList(entity_);
             } else {
                 return entityBuilder_.getMessageList();
             }
@@ -896,12 +847,9 @@ public final class FeedMessage extends
          * <p>
          * <code>repeated .transit_realtime.FeedEntity entity = 2;</code>
          */
-        public Builder setEntity(
-                final int index, final FeedEntity value) {
+        public Builder setEntity(final int index, final FeedEntity value) {
             if (entityBuilder_ == null) {
-                if (value == null) {
-                    throw new NullPointerException();
-                }
+                Objects.requireNonNull(value);
                 ensureEntityIsMutable();
                 entity_.set(index, value);
                 onChanged();
@@ -918,8 +866,7 @@ public final class FeedMessage extends
          * <p>
          * <code>repeated .transit_realtime.FeedEntity entity = 2;</code>
          */
-        public Builder setEntity(
-                final int index, final FeedEntity.Builder builderForValue) {
+        public Builder setEntity(final int index, final FeedEntity.Builder builderForValue) {
             if (entityBuilder_ == null) {
                 ensureEntityIsMutable();
                 entity_.set(index, builderForValue.build());
@@ -939,9 +886,7 @@ public final class FeedMessage extends
          */
         public Builder addEntity(final FeedEntity value) {
             if (entityBuilder_ == null) {
-                if (value == null) {
-                    throw new NullPointerException();
-                }
+                Objects.requireNonNull(value);
                 ensureEntityIsMutable();
                 entity_.add(value);
                 onChanged();
@@ -958,12 +903,9 @@ public final class FeedMessage extends
          * <p>
          * <code>repeated .transit_realtime.FeedEntity entity = 2;</code>
          */
-        public Builder addEntity(
-                final int index, final FeedEntity value) {
+        public Builder addEntity(final int index, final FeedEntity value) {
             if (entityBuilder_ == null) {
-                if (value == null) {
-                    throw new NullPointerException();
-                }
+                Objects.requireNonNull(value);
                 ensureEntityIsMutable();
                 entity_.add(index, value);
                 onChanged();
@@ -980,8 +922,7 @@ public final class FeedMessage extends
          * <p>
          * <code>repeated .transit_realtime.FeedEntity entity = 2;</code>
          */
-        public Builder addEntity(
-                final FeedEntity.Builder builderForValue) {
+        public Builder addEntity(final FeedEntity.Builder builderForValue) {
             if (entityBuilder_ == null) {
                 ensureEntityIsMutable();
                 entity_.add(builderForValue.build());
@@ -999,8 +940,7 @@ public final class FeedMessage extends
          * <p>
          * <code>repeated .transit_realtime.FeedEntity entity = 2;</code>
          */
-        public Builder addEntity(
-                final int index, final FeedEntity.Builder builderForValue) {
+        public Builder addEntity(final int index, final FeedEntity.Builder builderForValue) {
             if (entityBuilder_ == null) {
                 ensureEntityIsMutable();
                 entity_.add(index, builderForValue.build());
@@ -1018,12 +958,10 @@ public final class FeedMessage extends
          * <p>
          * <code>repeated .transit_realtime.FeedEntity entity = 2;</code>
          */
-        public Builder addAllEntity(
-                final java.lang.Iterable<? extends FeedEntity> values) {
+        public Builder addAllEntity(final Iterable<? extends FeedEntity> values) {
             if (entityBuilder_ == null) {
                 ensureEntityIsMutable();
-                com.google.protobuf.AbstractMessageLite.Builder.addAll(
-                        values, entity_);
+                AbstractMessageLite.Builder.addAll(values, entity_);
                 onChanged();
             } else {
                 entityBuilder_.addAllMessages(values);
@@ -1040,7 +978,7 @@ public final class FeedMessage extends
          */
         public Builder clearEntity() {
             if (entityBuilder_ == null) {
-                entity_ = java.util.Collections.emptyList();
+                entity_ = Collections.emptyList();
                 bitField0_ = (bitField0_ & ~0x00000002);
                 onChanged();
             } else {
@@ -1074,8 +1012,7 @@ public final class FeedMessage extends
          * <p>
          * <code>repeated .transit_realtime.FeedEntity entity = 2;</code>
          */
-        public FeedEntity.Builder getEntityBuilder(
-                final int index) {
+        public FeedEntity.Builder getEntityBuilder(final int index) {
             return getEntityFieldBuilder().getBuilder(index);
         }
         
@@ -1087,8 +1024,7 @@ public final class FeedMessage extends
          * <code>repeated .transit_realtime.FeedEntity entity = 2;</code>
          */
         @Override
-        public FeedEntityOrBuilder getEntityOrBuilder(
-                final int index) {
+        public FeedEntityOrBuilder getEntityOrBuilder(final int index) {
             if (entityBuilder_ == null) {
                 return entity_.get(index);
             } else {
@@ -1104,12 +1040,11 @@ public final class FeedMessage extends
          * <code>repeated .transit_realtime.FeedEntity entity = 2;</code>
          */
         @Override
-        public java.util.List<? extends FeedEntityOrBuilder>
-        getEntityOrBuilderList() {
+        public List<? extends FeedEntityOrBuilder> getEntityOrBuilderList() {
             if (entityBuilder_ != null) {
                 return entityBuilder_.getMessageOrBuilderList();
             } else {
-                return java.util.Collections.unmodifiableList(entity_);
+                return Collections.unmodifiableList(entity_);
             }
         }
         
@@ -1121,8 +1056,7 @@ public final class FeedMessage extends
          * <code>repeated .transit_realtime.FeedEntity entity = 2;</code>
          */
         public FeedEntity.Builder addEntityBuilder() {
-            return getEntityFieldBuilder().addBuilder(
-                    FeedEntity.getDefaultInstance());
+            return getEntityFieldBuilder().addBuilder(FeedEntity.getDefaultInstance());
         }
         
         /**
@@ -1132,10 +1066,8 @@ public final class FeedMessage extends
          * <p>
          * <code>repeated .transit_realtime.FeedEntity entity = 2;</code>
          */
-        public FeedEntity.Builder addEntityBuilder(
-                final int index) {
-            return getEntityFieldBuilder().addBuilder(
-                    index, FeedEntity.getDefaultInstance());
+        public FeedEntity.Builder addEntityBuilder(final int index) {
+            return getEntityFieldBuilder().addBuilder(index, FeedEntity.getDefaultInstance());
         }
         
         /**
@@ -1145,19 +1077,15 @@ public final class FeedMessage extends
          * <p>
          * <code>repeated .transit_realtime.FeedEntity entity = 2;</code>
          */
-        public java.util.List<FeedEntity.Builder>
-        getEntityBuilderList() {
+        public List<FeedEntity.Builder> getEntityBuilderList() {
             return getEntityFieldBuilder().getBuilderList();
         }
         
-        private com.google.protobuf.RepeatedFieldBuilderV3<
-                FeedEntity, FeedEntity.Builder, FeedEntityOrBuilder>
+        private RepeatedFieldBuilderV3<FeedEntity, FeedEntity.Builder, FeedEntityOrBuilder> 
         getEntityFieldBuilder() {
             if (entityBuilder_ == null) {
-                entityBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
-                        entity_,
-                        ((bitField0_ & 0x00000002) == 0x00000002),
-                        getParentForChildren(),
+                entityBuilder_ = new RepeatedFieldBuilderV3<>(entity_,
+                        ((bitField0_ & 0x00000002) == 0x00000002), getParentForChildren(),
                         isClean());
                 entity_ = null;
             }
@@ -1165,14 +1093,12 @@ public final class FeedMessage extends
         }
         
         @Override
-        public final Builder setUnknownFields(
-                final com.google.protobuf.UnknownFieldSet unknownFields) {
+        public final Builder setUnknownFields(final UnknownFieldSet unknownFields) {
             return super.setUnknownFields(unknownFields);
         }
         
         @Override
-        public final Builder mergeUnknownFields(
-                final com.google.protobuf.UnknownFieldSet unknownFields) {
+        public final Builder mergeUnknownFields(final UnknownFieldSet unknownFields) {
             return super.mergeUnknownFields(unknownFields);
         }
         
@@ -1191,24 +1117,22 @@ public final class FeedMessage extends
         return DEFAULT_INSTANCE;
     }
     
-    @java.lang.Deprecated public static final com.google.protobuf.Parser<FeedMessage>
-            PARSER = new com.google.protobuf.AbstractParser<>() {
+    @Deprecated public static final Parser<FeedMessage> PARSER = new AbstractParser<>() {
         
         @Override
-        public FeedMessage parsePartialFrom(
-                final com.google.protobuf.CodedInputStream input,
-                final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws com.google.protobuf.InvalidProtocolBufferException {
+        public FeedMessage parsePartialFrom(final CodedInputStream input,
+                final ExtensionRegistryLite extensionRegistry)
+                throws InvalidProtocolBufferException {
             return new FeedMessage(input, extensionRegistry);
         }
     };
     
-    public static com.google.protobuf.Parser<FeedMessage> parser() {
+    public static Parser<FeedMessage> parser() {
         return PARSER;
     }
     
-    @java.lang.Override
-    public com.google.protobuf.Parser<FeedMessage> getParserForType() {
+    @Override
+    public Parser<FeedMessage> getParserForType() {
         return PARSER;
     }
     
@@ -1218,4 +1142,3 @@ public final class FeedMessage extends
     }
     
 }
-

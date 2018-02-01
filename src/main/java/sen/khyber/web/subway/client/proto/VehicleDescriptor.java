@@ -3,6 +3,32 @@
 
 package sen.khyber.web.subway.client.proto;
 
+import sen.khyber.proto.ProtoUtils;
+
+import lombok.AccessLevel;
+import lombok.Setter;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.ByteBuffer;
+import java.util.List;
+
+import com.google.protobuf.AbstractParser;
+import com.google.protobuf.ByteString;
+import com.google.protobuf.CodedInputStream;
+import com.google.protobuf.CodedOutputStream;
+import com.google.protobuf.Descriptors.Descriptor;
+import com.google.protobuf.Descriptors.FieldDescriptor;
+import com.google.protobuf.Descriptors.OneofDescriptor;
+import com.google.protobuf.ExtensionRegistryLite;
+import com.google.protobuf.GeneratedMessage.GeneratedExtension;
+import com.google.protobuf.GeneratedMessageV3;
+import com.google.protobuf.GeneratedMessageV3.ExtendableMessage;
+import com.google.protobuf.InvalidProtocolBufferException;
+import com.google.protobuf.Message;
+import com.google.protobuf.Parser;
+import com.google.protobuf.UnknownFieldSet;
+
 /**
  * <pre>
  * Identification information for the vehicle performing the trip.
@@ -10,18 +36,13 @@ package sen.khyber.web.subway.client.proto;
  * <p>
  * Protobuf type {@code transit_realtime.VehicleDescriptor}
  */
-public final class VehicleDescriptor extends
-        com.google.protobuf.GeneratedMessageV3.ExtendableMessage<
-                VehicleDescriptor> implements
-        // @@protoc_insertion_point(message_implements:transit_realtime.VehicleDescriptor)
-        VehicleDescriptorOrBuilder {
+public final class VehicleDescriptor extends ExtendableMessage<VehicleDescriptor>
+        implements VehicleDescriptorOrBuilder {
     
     private static final long serialVersionUID = 0L;
     
     // Use VehicleDescriptor.newBuilder() to construct.
-    private VehicleDescriptor(
-            final com.google.protobuf.GeneratedMessageV3.ExtendableBuilder<VehicleDescriptor, ?>
-                    builder) {
+    private VehicleDescriptor(final ExtendableBuilder<VehicleDescriptor, ?> builder) {
         super(builder);
     }
     
@@ -31,20 +52,16 @@ public final class VehicleDescriptor extends
         licensePlate_ = "";
     }
     
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
+    @Override
+    public final UnknownFieldSet getUnknownFields() {
         return unknownFields;
     }
     
-    private VehicleDescriptor(
-            final com.google.protobuf.CodedInputStream input,
-            final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
+    private VehicleDescriptor(final CodedInputStream input,
+            final ExtensionRegistryLite extensionRegistry) throws InvalidProtocolBufferException {
         this();
         final int mutable_bitField0_ = 0;
-        final com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-                com.google.protobuf.UnknownFieldSet.newBuilder();
+        final UnknownFieldSet.Builder unknownFields = UnknownFieldSet.newBuilder();
         try {
             boolean done = false;
             while (!done) {
@@ -54,59 +71,54 @@ public final class VehicleDescriptor extends
                         done = true;
                         break;
                     default: {
-                        if (!parseUnknownField(
-                                input, unknownFields, extensionRegistry, tag)) {
+                        if (!parseUnknownField(input, unknownFields, extensionRegistry, tag)) {
                             done = true;
                         }
                         break;
                     }
                     case 10: {
-                        final com.google.protobuf.ByteString bs = input.readBytes();
+                        final ByteString bs = input.readBytes();
                         bitField0_ |= 0x00000001;
                         id_ = bs;
                         break;
                     }
                     case 18: {
-                        final com.google.protobuf.ByteString bs = input.readBytes();
+                        final ByteString bs = input.readBytes();
                         bitField0_ |= 0x00000002;
                         label_ = bs;
                         break;
                     }
                     case 26: {
-                        final com.google.protobuf.ByteString bs = input.readBytes();
+                        final ByteString bs = input.readBytes();
                         bitField0_ |= 0x00000004;
                         licensePlate_ = bs;
                         break;
                     }
                 }
             }
-        } catch (final com.google.protobuf.InvalidProtocolBufferException e) {
+        } catch (final InvalidProtocolBufferException e) {
             throw e.setUnfinishedMessage(this);
-        } catch (final java.io.IOException e) {
-            throw new com.google.protobuf.InvalidProtocolBufferException(
-                    e).setUnfinishedMessage(this);
+        } catch (final IOException e) {
+            throw new InvalidProtocolBufferException(e).setUnfinishedMessage(this);
         } finally {
             this.unknownFields = unknownFields.build();
             makeExtensionsImmutable();
         }
     }
     
-    public static final com.google.protobuf.Descriptors.Descriptor
-    getDescriptor() {
+    public static final Descriptor getDescriptor() {
         return GtfsRealtime.internal_static_transit_realtime_VehicleDescriptor_descriptor;
     }
     
     @Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-    internalGetFieldAccessorTable() {
+    protected FieldAccessorTable internalGetFieldAccessorTable() {
         return GtfsRealtime.internal_static_transit_realtime_VehicleDescriptor_fieldAccessorTable
-                .ensureFieldAccessorsInitialized(
-                        VehicleDescriptor.class, VehicleDescriptor.Builder.class);
+                .ensureFieldAccessorsInitialized(VehicleDescriptor.class, Builder.class);
     }
     
     private int bitField0_;
     public static final int ID_FIELD_NUMBER = 1;
-    private volatile java.lang.Object id_;
+    private volatile @Setter(AccessLevel.PRIVATE) Object id_;
     
     /**
      * <pre>
@@ -132,19 +144,8 @@ public final class VehicleDescriptor extends
      * <code>optional string id = 1;</code>
      */
     @Override
-    public java.lang.String getId() {
-        final java.lang.Object ref = id_;
-        if (ref instanceof java.lang.String) {
-            return (java.lang.String) ref;
-        } else {
-            final com.google.protobuf.ByteString bs =
-                    (com.google.protobuf.ByteString) ref;
-            final java.lang.String s = bs.toStringUtf8();
-            if (bs.isValidUtf8()) {
-                id_ = s;
-            }
-            return s;
-        }
+    public String getId() {
+        return ProtoUtils.asString(id_, this::setId_);
     }
     
     /**
@@ -157,22 +158,12 @@ public final class VehicleDescriptor extends
      * <code>optional string id = 1;</code>
      */
     @Override
-    public com.google.protobuf.ByteString
-    getIdBytes() {
-        final java.lang.Object ref = id_;
-        if (ref instanceof java.lang.String) {
-            final com.google.protobuf.ByteString b =
-                    com.google.protobuf.ByteString.copyFromUtf8(
-                            (java.lang.String) ref);
-            id_ = b;
-            return b;
-        } else {
-            return (com.google.protobuf.ByteString) ref;
-        }
+    public ByteString getIdBytes() {
+        return ProtoUtils.asBytes(id_, this::setId_);
     }
     
     public static final int LABEL_FIELD_NUMBER = 2;
-    private volatile java.lang.Object label_;
+    private volatile @Setter(AccessLevel.PRIVATE) Object label_;
     
     /**
      * <pre>
@@ -196,19 +187,8 @@ public final class VehicleDescriptor extends
      * <code>optional string label = 2;</code>
      */
     @Override
-    public java.lang.String getLabel() {
-        final java.lang.Object ref = label_;
-        if (ref instanceof java.lang.String) {
-            return (java.lang.String) ref;
-        } else {
-            final com.google.protobuf.ByteString bs =
-                    (com.google.protobuf.ByteString) ref;
-            final java.lang.String s = bs.toStringUtf8();
-            if (bs.isValidUtf8()) {
-                label_ = s;
-            }
-            return s;
-        }
+    public String getLabel() {
+        return ProtoUtils.asString(label_, this::setLabel_);
     }
     
     /**
@@ -220,22 +200,12 @@ public final class VehicleDescriptor extends
      * <code>optional string label = 2;</code>
      */
     @Override
-    public com.google.protobuf.ByteString
-    getLabelBytes() {
-        final java.lang.Object ref = label_;
-        if (ref instanceof java.lang.String) {
-            final com.google.protobuf.ByteString b =
-                    com.google.protobuf.ByteString.copyFromUtf8(
-                            (java.lang.String) ref);
-            label_ = b;
-            return b;
-        } else {
-            return (com.google.protobuf.ByteString) ref;
-        }
+    public ByteString getLabelBytes() {
+        return ProtoUtils.asBytes(label_, this::setLabel_);
     }
     
     public static final int LICENSE_PLATE_FIELD_NUMBER = 3;
-    private volatile java.lang.Object licensePlate_;
+    private volatile @Setter(AccessLevel.PRIVATE) Object licensePlate_;
     
     /**
      * <pre>
@@ -257,19 +227,8 @@ public final class VehicleDescriptor extends
      * <code>optional string license_plate = 3;</code>
      */
     @Override
-    public java.lang.String getLicensePlate() {
-        final java.lang.Object ref = licensePlate_;
-        if (ref instanceof java.lang.String) {
-            return (java.lang.String) ref;
-        } else {
-            final com.google.protobuf.ByteString bs =
-                    (com.google.protobuf.ByteString) ref;
-            final java.lang.String s = bs.toStringUtf8();
-            if (bs.isValidUtf8()) {
-                licensePlate_ = s;
-            }
-            return s;
-        }
+    public String getLicensePlate() {
+        return ProtoUtils.asString(licensePlate_, this::setLicensePlate_);
     }
     
     /**
@@ -280,18 +239,8 @@ public final class VehicleDescriptor extends
      * <code>optional string license_plate = 3;</code>
      */
     @Override
-    public com.google.protobuf.ByteString
-    getLicensePlateBytes() {
-        final java.lang.Object ref = licensePlate_;
-        if (ref instanceof java.lang.String) {
-            final com.google.protobuf.ByteString b =
-                    com.google.protobuf.ByteString.copyFromUtf8(
-                            (java.lang.String) ref);
-            licensePlate_ = b;
-            return b;
-        } else {
-            return (com.google.protobuf.ByteString) ref;
-        }
+    public ByteString getLicensePlateBytes() {
+        return ProtoUtils.asBytes(licensePlate_, this::setLicensePlate_);
     }
     
     private byte memoizedIsInitialized = -1;
@@ -311,19 +260,17 @@ public final class VehicleDescriptor extends
     }
     
     @Override
-    public void writeTo(final com.google.protobuf.CodedOutputStream output)
-            throws java.io.IOException {
-        final com.google.protobuf.GeneratedMessageV3
-                .ExtendableMessage<VehicleDescriptor>.ExtensionWriter
-                extensionWriter = newExtensionWriter();
+    public void writeTo(final CodedOutputStream output) throws IOException {
+        final ExtendableMessage<VehicleDescriptor>.ExtensionWriter extensionWriter =
+                newExtensionWriter();
         if (((bitField0_ & 0x00000001) == 0x00000001)) {
-            com.google.protobuf.GeneratedMessageV3.writeString(output, 1, id_);
+            GeneratedMessageV3.writeString(output, 1, id_);
         }
         if (((bitField0_ & 0x00000002) == 0x00000002)) {
-            com.google.protobuf.GeneratedMessageV3.writeString(output, 2, label_);
+            GeneratedMessageV3.writeString(output, 2, label_);
         }
         if (((bitField0_ & 0x00000004) == 0x00000004)) {
-            com.google.protobuf.GeneratedMessageV3.writeString(output, 3, licensePlate_);
+            GeneratedMessageV3.writeString(output, 3, licensePlate_);
         }
         extensionWriter.writeUntil(2000, output);
         unknownFields.writeTo(output);
@@ -336,13 +283,13 @@ public final class VehicleDescriptor extends
         
         size = 0;
         if (((bitField0_ & 0x00000001) == 0x00000001)) {
-            size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, id_);
+            size += GeneratedMessageV3.computeStringSize(1, id_);
         }
         if (((bitField0_ & 0x00000002) == 0x00000002)) {
-            size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, label_);
+            size += GeneratedMessageV3.computeStringSize(2, label_);
         }
         if (((bitField0_ & 0x00000004) == 0x00000004)) {
-            size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, licensePlate_);
+            size += GeneratedMessageV3.computeStringSize(3, licensePlate_);
         }
         size += extensionsSerializedSize();
         size += unknownFields.getSerializedSize();
@@ -350,8 +297,8 @@ public final class VehicleDescriptor extends
         return size;
     }
     
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
+    @Override
+    public boolean equals(final Object obj) {
         if (obj == this) {
             return true;
         }
@@ -363,26 +310,22 @@ public final class VehicleDescriptor extends
         boolean result = true;
         result = result && (hasId() == other.hasId());
         if (hasId()) {
-            result = result && getId()
-                    .equals(other.getId());
+            result = result && getId().equals(other.getId());
         }
         result = result && (hasLabel() == other.hasLabel());
         if (hasLabel()) {
-            result = result && getLabel()
-                    .equals(other.getLabel());
+            result = result && getLabel().equals(other.getLabel());
         }
         result = result && (hasLicensePlate() == other.hasLicensePlate());
         if (hasLicensePlate()) {
-            result = result && getLicensePlate()
-                    .equals(other.getLicensePlate());
+            result = result && getLicensePlate().equals(other.getLicensePlate());
         }
         result = result && unknownFields.equals(other.unknownFields);
-        result = result &&
-                getExtensionFields().equals(other.getExtensionFields());
+        result = result && getExtensionFields().equals(other.getExtensionFields());
         return result;
     }
     
-    @java.lang.Override
+    @Override
     public int hashCode() {
         if (memoizedHashCode != 0) {
             return memoizedHashCode;
@@ -407,85 +350,61 @@ public final class VehicleDescriptor extends
         return hash;
     }
     
-    public static VehicleDescriptor parseFrom(
-            final java.nio.ByteBuffer data)
-            throws com.google.protobuf.InvalidProtocolBufferException {
+    public static VehicleDescriptor parseFrom(final ByteBuffer data)
+            throws InvalidProtocolBufferException {
         return PARSER.parseFrom(data);
     }
     
-    public static VehicleDescriptor parseFrom(
-            final java.nio.ByteBuffer data,
-            final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
+    public static VehicleDescriptor parseFrom(final ByteBuffer data,
+            final ExtensionRegistryLite extensionRegistry) throws InvalidProtocolBufferException {
         return PARSER.parseFrom(data, extensionRegistry);
     }
     
-    public static VehicleDescriptor parseFrom(
-            final com.google.protobuf.ByteString data)
-            throws com.google.protobuf.InvalidProtocolBufferException {
+    public static VehicleDescriptor parseFrom(final ByteString data)
+            throws InvalidProtocolBufferException {
         return PARSER.parseFrom(data);
     }
     
-    public static VehicleDescriptor parseFrom(
-            final com.google.protobuf.ByteString data,
-            final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
+    public static VehicleDescriptor parseFrom(final ByteString data,
+            final ExtensionRegistryLite extensionRegistry) throws InvalidProtocolBufferException {
         return PARSER.parseFrom(data, extensionRegistry);
     }
     
     public static VehicleDescriptor parseFrom(final byte[] data)
-            throws com.google.protobuf.InvalidProtocolBufferException {
+            throws InvalidProtocolBufferException {
         return PARSER.parseFrom(data);
     }
     
-    public static VehicleDescriptor parseFrom(
-            final byte[] data,
-            final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
+    public static VehicleDescriptor parseFrom(final byte[] data,
+            final ExtensionRegistryLite extensionRegistry) throws InvalidProtocolBufferException {
         return PARSER.parseFrom(data, extensionRegistry);
     }
     
-    public static VehicleDescriptor parseFrom(final java.io.InputStream input)
-            throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-                .parseWithIOException(PARSER, input);
+    public static VehicleDescriptor parseFrom(final InputStream input) throws IOException {
+        return GeneratedMessageV3.parseWithIOException(PARSER, input);
     }
     
-    public static VehicleDescriptor parseFrom(
-            final java.io.InputStream input,
-            final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-                .parseWithIOException(PARSER, input, extensionRegistry);
+    public static VehicleDescriptor parseFrom(final InputStream input,
+            final ExtensionRegistryLite extensionRegistry) throws IOException {
+        return GeneratedMessageV3.parseWithIOException(PARSER, input, extensionRegistry);
     }
     
-    public static VehicleDescriptor parseDelimitedFrom(final java.io.InputStream input)
-            throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-                .parseDelimitedWithIOException(PARSER, input);
+    public static VehicleDescriptor parseDelimitedFrom(final InputStream input) throws IOException {
+        return GeneratedMessageV3.parseDelimitedWithIOException(PARSER, input);
     }
     
-    public static VehicleDescriptor parseDelimitedFrom(
-            final java.io.InputStream input,
-            final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-                .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    public static VehicleDescriptor parseDelimitedFrom(final InputStream input,
+            final ExtensionRegistryLite extensionRegistry) throws IOException {
+        return GeneratedMessageV3.parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
     
-    public static VehicleDescriptor parseFrom(
-            final com.google.protobuf.CodedInputStream input)
-            throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-                .parseWithIOException(PARSER, input);
+    public static VehicleDescriptor parseFrom(final CodedInputStream input) throws IOException {
+        return GeneratedMessageV3.parseWithIOException(PARSER, input);
     }
     
-    public static VehicleDescriptor parseFrom(
-            final com.google.protobuf.CodedInputStream input,
-            final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-                .parseWithIOException(PARSER, input, extensionRegistry);
+    public static VehicleDescriptor parseFrom(final CodedInputStream input,
+            final ExtensionRegistryLite extensionRegistry) throws IOException {
+        return GeneratedMessageV3.parseWithIOException(PARSER, input, extensionRegistry);
     }
     
     @Override
@@ -501,13 +420,11 @@ public final class VehicleDescriptor extends
     
     @Override
     public Builder toBuilder() {
-        return this == DEFAULT_INSTANCE
-                ? new Builder() : new Builder().mergeFrom(this);
+        return this == DEFAULT_INSTANCE ? new Builder() : new Builder().mergeFrom(this);
     }
     
-    @java.lang.Override
-    protected Builder newBuilderForType(
-            final com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+    @Override
+    protected Builder newBuilderForType(final BuilderParent parent) {
         final Builder builder = new Builder(parent);
         return builder;
     }
@@ -519,24 +436,20 @@ public final class VehicleDescriptor extends
      * <p>
      * Protobuf type {@code transit_realtime.VehicleDescriptor}
      */
-    public static final class Builder extends
-            com.google.protobuf.GeneratedMessageV3.ExtendableBuilder<
-                    VehicleDescriptor, Builder> implements
+    public static final class Builder extends ExtendableBuilder<VehicleDescriptor, Builder>
+            implements
             // @@protoc_insertion_point(builder_implements:transit_realtime.VehicleDescriptor)
             VehicleDescriptorOrBuilder {
         
-        public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
+        public static final Descriptor getDescriptor() {
             return GtfsRealtime.internal_static_transit_realtime_VehicleDescriptor_descriptor;
         }
         
         @Override
-        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
+        protected FieldAccessorTable internalGetFieldAccessorTable() {
             return GtfsRealtime
                     .internal_static_transit_realtime_VehicleDescriptor_fieldAccessorTable
-                    .ensureFieldAccessorsInitialized(
-                            VehicleDescriptor.class, VehicleDescriptor.Builder.class);
+                    .ensureFieldAccessorsInitialized(VehicleDescriptor.class, Builder.class);
         }
         
         // Construct using sen.khyber.subway.client.proto.VehicleDescriptor.newBuilder()
@@ -544,15 +457,13 @@ public final class VehicleDescriptor extends
             maybeForceBuilderInitialization();
         }
         
-        private Builder(
-                final com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        private Builder(final BuilderParent parent) {
             super(parent);
             maybeForceBuilderInitialization();
         }
         
         private void maybeForceBuilderInitialization() {
-            if (com.google.protobuf.GeneratedMessageV3
-                    .alwaysUseFieldBuilders) {
+            if (GeneratedMessageV3.alwaysUseFieldBuilders) {
             }
         }
         
@@ -569,14 +480,13 @@ public final class VehicleDescriptor extends
         }
         
         @Override
-        public com.google.protobuf.Descriptors.Descriptor
-        getDescriptorForType() {
+        public Descriptor getDescriptorForType() {
             return GtfsRealtime.internal_static_transit_realtime_VehicleDescriptor_descriptor;
         }
         
         @Override
         public VehicleDescriptor getDefaultInstanceForType() {
-            return VehicleDescriptor.getDefaultInstance();
+            return getDefaultInstance();
         }
         
         @Override
@@ -612,75 +522,63 @@ public final class VehicleDescriptor extends
         
         @Override
         public Builder clone() {
-            return (Builder) super.clone();
+            return super.clone();
         }
         
         @Override
-        public Builder setField(
-                final com.google.protobuf.Descriptors.FieldDescriptor field,
-                final java.lang.Object value) {
-            return (Builder) super.setField(field, value);
+        public Builder setField(final FieldDescriptor field, final Object value) {
+            return super.setField(field, value);
         }
         
         @Override
-        public Builder clearField(
-                final com.google.protobuf.Descriptors.FieldDescriptor field) {
-            return (Builder) super.clearField(field);
+        public Builder clearField(final FieldDescriptor field) {
+            return super.clearField(field);
         }
         
         @Override
-        public Builder clearOneof(
-                final com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-            return (Builder) super.clearOneof(oneof);
+        public Builder clearOneof(final OneofDescriptor oneof) {
+            return super.clearOneof(oneof);
         }
         
         @Override
-        public Builder setRepeatedField(
-                final com.google.protobuf.Descriptors.FieldDescriptor field,
-                final int index, final java.lang.Object value) {
-            return (Builder) super.setRepeatedField(field, index, value);
+        public Builder setRepeatedField(final FieldDescriptor field, final int index,
+                final Object value) {
+            return super.setRepeatedField(field, index, value);
         }
         
         @Override
-        public Builder addRepeatedField(
-                final com.google.protobuf.Descriptors.FieldDescriptor field,
-                final java.lang.Object value) {
-            return (Builder) super.addRepeatedField(field, value);
+        public Builder addRepeatedField(final FieldDescriptor field, final Object value) {
+            return super.addRepeatedField(field, value);
         }
         
         @Override
         public <Type> Builder setExtension(
-                final com.google.protobuf.GeneratedMessage.GeneratedExtension<
-                        VehicleDescriptor, Type> extension,
+                final GeneratedExtension<VehicleDescriptor, Type> extension, final Type value) {
+            return super.setExtension(extension, value);
+        }
+        
+        @Override
+        public <Type> Builder setExtension(
+                final GeneratedExtension<VehicleDescriptor, List<Type>> extension, final int index,
                 final Type value) {
-            return (Builder) super.setExtension(extension, value);
-        }
-        
-        @Override
-        public <Type> Builder setExtension(
-                final com.google.protobuf.GeneratedMessage.GeneratedExtension<
-                        VehicleDescriptor, java.util.List<Type>> extension,
-                final int index, final Type value) {
-            return (Builder) super.setExtension(extension, index, value);
+            return super.setExtension(extension, index, value);
         }
         
         @Override
         public <Type> Builder addExtension(
-                final com.google.protobuf.GeneratedMessage.GeneratedExtension<
-                        VehicleDescriptor, java.util.List<Type>> extension,
+                final GeneratedExtension<VehicleDescriptor, List<Type>> extension,
                 final Type value) {
-            return (Builder) super.addExtension(extension, value);
+            return super.addExtension(extension, value);
         }
         
         @Override
         public <Type> Builder clearExtension(
-                final com.google.protobuf.GeneratedMessage.GeneratedExtension<
-                        VehicleDescriptor, ?> extension) {
-            return (Builder) super.clearExtension(extension);
+                final GeneratedExtension<VehicleDescriptor, ?> extension) {
+            return super.clearExtension(extension);
         }
         
         @Override
-        public Builder mergeFrom(final com.google.protobuf.Message other) {
+        public Builder mergeFrom(final Message other) {
             if (other instanceof VehicleDescriptor) {
                 return mergeFrom((VehicleDescriptor) other);
             } else {
@@ -690,7 +588,7 @@ public final class VehicleDescriptor extends
         }
         
         public Builder mergeFrom(final VehicleDescriptor other) {
-            if (other == VehicleDescriptor.getDefaultInstance()) {return this;}
+            if (other == getDefaultInstance()) {return this;}
             if (other.hasId()) {
                 bitField0_ |= 0x00000001;
                 id_ = other.id_;
@@ -714,21 +612,16 @@ public final class VehicleDescriptor extends
         
         @Override
         public final boolean isInitialized() {
-            if (!extensionsAreInitialized()) {
-                return false;
-            }
-            return true;
+            return extensionsAreInitialized();
         }
         
         @Override
-        public Builder mergeFrom(
-                final com.google.protobuf.CodedInputStream input,
-                final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws java.io.IOException {
+        public Builder mergeFrom(final CodedInputStream input,
+                final ExtensionRegistryLite extensionRegistry) throws IOException {
             VehicleDescriptor parsedMessage = null;
             try {
                 parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-            } catch (final com.google.protobuf.InvalidProtocolBufferException e) {
+            } catch (final InvalidProtocolBufferException e) {
                 parsedMessage = (VehicleDescriptor) e.getUnfinishedMessage();
                 throw e.unwrapIOException();
             } finally {
@@ -741,7 +634,7 @@ public final class VehicleDescriptor extends
         
         private int bitField0_;
         
-        private java.lang.Object id_ = "";
+        private @Setter(AccessLevel.PRIVATE) Object id_ = "";
         
         /**
          * <pre>
@@ -767,19 +660,8 @@ public final class VehicleDescriptor extends
          * <code>optional string id = 1;</code>
          */
         @Override
-        public java.lang.String getId() {
-            final java.lang.Object ref = id_;
-            if (!(ref instanceof java.lang.String)) {
-                final com.google.protobuf.ByteString bs =
-                        (com.google.protobuf.ByteString) ref;
-                final java.lang.String s = bs.toStringUtf8();
-                if (bs.isValidUtf8()) {
-                    id_ = s;
-                }
-                return s;
-            } else {
-                return (java.lang.String) ref;
-            }
+        public String getId() {
+            return ProtoUtils.asString(id_, this::setId_);
         }
         
         /**
@@ -792,18 +674,8 @@ public final class VehicleDescriptor extends
          * <code>optional string id = 1;</code>
          */
         @Override
-        public com.google.protobuf.ByteString
-        getIdBytes() {
-            final java.lang.Object ref = id_;
-            if (ref instanceof String) {
-                final com.google.protobuf.ByteString b =
-                        com.google.protobuf.ByteString.copyFromUtf8(
-                                (java.lang.String) ref);
-                id_ = b;
-                return b;
-            } else {
-                return (com.google.protobuf.ByteString) ref;
-            }
+        public ByteString getIdBytes() {
+            return ProtoUtils.asBytes(id_, this::setId_);
         }
         
         /**
@@ -815,11 +687,8 @@ public final class VehicleDescriptor extends
          * <p>
          * <code>optional string id = 1;</code>
          */
-        public Builder setId(
-                final java.lang.String value) {
-            if (value == null) {
-                throw new NullPointerException();
-            }
+        public Builder setId(final String value) {
+            Objects.requireNonNull(value);
             bitField0_ |= 0x00000001;
             id_ = value;
             onChanged();
@@ -851,18 +720,15 @@ public final class VehicleDescriptor extends
          * <p>
          * <code>optional string id = 1;</code>
          */
-        public Builder setIdBytes(
-                final com.google.protobuf.ByteString value) {
-            if (value == null) {
-                throw new NullPointerException();
-            }
+        public Builder setIdBytes(final ByteString value) {
+            Objects.requireNonNull(value);
             bitField0_ |= 0x00000001;
             id_ = value;
             onChanged();
             return this;
         }
         
-        private java.lang.Object label_ = "";
+        private @Setter(AccessLevel.PRIVATE) Object label_ = "";
         
         /**
          * <pre>
@@ -886,19 +752,8 @@ public final class VehicleDescriptor extends
          * <code>optional string label = 2;</code>
          */
         @Override
-        public java.lang.String getLabel() {
-            final java.lang.Object ref = label_;
-            if (!(ref instanceof java.lang.String)) {
-                final com.google.protobuf.ByteString bs =
-                        (com.google.protobuf.ByteString) ref;
-                final java.lang.String s = bs.toStringUtf8();
-                if (bs.isValidUtf8()) {
-                    label_ = s;
-                }
-                return s;
-            } else {
-                return (java.lang.String) ref;
-            }
+        public String getLabel() {
+            return ProtoUtils.asString(label_, this::setLabel_);
         }
         
         /**
@@ -910,18 +765,8 @@ public final class VehicleDescriptor extends
          * <code>optional string label = 2;</code>
          */
         @Override
-        public com.google.protobuf.ByteString
-        getLabelBytes() {
-            final java.lang.Object ref = label_;
-            if (ref instanceof String) {
-                final com.google.protobuf.ByteString b =
-                        com.google.protobuf.ByteString.copyFromUtf8(
-                                (java.lang.String) ref);
-                label_ = b;
-                return b;
-            } else {
-                return (com.google.protobuf.ByteString) ref;
-            }
+        public ByteString getLabelBytes() {
+            return ProtoUtils.asBytes(label_, this::setLabel_);
         }
         
         /**
@@ -932,11 +777,8 @@ public final class VehicleDescriptor extends
          * <p>
          * <code>optional string label = 2;</code>
          */
-        public Builder setLabel(
-                final java.lang.String value) {
-            if (value == null) {
-                throw new NullPointerException();
-            }
+        public Builder setLabel(final String value) {
+            Objects.requireNonNull(value);
             bitField0_ |= 0x00000002;
             label_ = value;
             onChanged();
@@ -966,18 +808,15 @@ public final class VehicleDescriptor extends
          * <p>
          * <code>optional string label = 2;</code>
          */
-        public Builder setLabelBytes(
-                final com.google.protobuf.ByteString value) {
-            if (value == null) {
-                throw new NullPointerException();
-            }
+        public Builder setLabelBytes(final ByteString value) {
+            Objects.requireNonNull(value);
             bitField0_ |= 0x00000002;
             label_ = value;
             onChanged();
             return this;
         }
         
-        private java.lang.Object licensePlate_ = "";
+        private @Setter(AccessLevel.PRIVATE) Object licensePlate_ = "";
         
         /**
          * <pre>
@@ -999,19 +838,8 @@ public final class VehicleDescriptor extends
          * <code>optional string license_plate = 3;</code>
          */
         @Override
-        public java.lang.String getLicensePlate() {
-            final java.lang.Object ref = licensePlate_;
-            if (!(ref instanceof java.lang.String)) {
-                final com.google.protobuf.ByteString bs =
-                        (com.google.protobuf.ByteString) ref;
-                final java.lang.String s = bs.toStringUtf8();
-                if (bs.isValidUtf8()) {
-                    licensePlate_ = s;
-                }
-                return s;
-            } else {
-                return (java.lang.String) ref;
-            }
+        public String getLicensePlate() {
+            return ProtoUtils.asString(licensePlate_, this::setLicensePlate_);
         }
         
         /**
@@ -1022,18 +850,8 @@ public final class VehicleDescriptor extends
          * <code>optional string license_plate = 3;</code>
          */
         @Override
-        public com.google.protobuf.ByteString
-        getLicensePlateBytes() {
-            final java.lang.Object ref = licensePlate_;
-            if (ref instanceof String) {
-                final com.google.protobuf.ByteString b =
-                        com.google.protobuf.ByteString.copyFromUtf8(
-                                (java.lang.String) ref);
-                licensePlate_ = b;
-                return b;
-            } else {
-                return (com.google.protobuf.ByteString) ref;
-            }
+        public ByteString getLicensePlateBytes() {
+            return ProtoUtils.asBytes(licensePlate_, this::setLicensePlate_);
         }
         
         /**
@@ -1043,11 +861,8 @@ public final class VehicleDescriptor extends
          * <p>
          * <code>optional string license_plate = 3;</code>
          */
-        public Builder setLicensePlate(
-                final java.lang.String value) {
-            if (value == null) {
-                throw new NullPointerException();
-            }
+        public Builder setLicensePlate(final String value) {
+            Objects.requireNonNull(value);
             bitField0_ |= 0x00000004;
             licensePlate_ = value;
             onChanged();
@@ -1075,11 +890,8 @@ public final class VehicleDescriptor extends
          * <p>
          * <code>optional string license_plate = 3;</code>
          */
-        public Builder setLicensePlateBytes(
-                final com.google.protobuf.ByteString value) {
-            if (value == null) {
-                throw new NullPointerException();
-            }
+        public Builder setLicensePlateBytes(final ByteString value) {
+            Objects.requireNonNull(value);
             bitField0_ |= 0x00000004;
             licensePlate_ = value;
             onChanged();
@@ -1087,14 +899,12 @@ public final class VehicleDescriptor extends
         }
         
         @Override
-        public final Builder setUnknownFields(
-                final com.google.protobuf.UnknownFieldSet unknownFields) {
+        public final Builder setUnknownFields(final UnknownFieldSet unknownFields) {
             return super.setUnknownFields(unknownFields);
         }
         
         @Override
-        public final Builder mergeUnknownFields(
-                final com.google.protobuf.UnknownFieldSet unknownFields) {
+        public final Builder mergeUnknownFields(final UnknownFieldSet unknownFields) {
             return super.mergeUnknownFields(unknownFields);
         }
         
@@ -1113,24 +923,22 @@ public final class VehicleDescriptor extends
         return DEFAULT_INSTANCE;
     }
     
-    @java.lang.Deprecated public static final com.google.protobuf.Parser<VehicleDescriptor>
-            PARSER = new com.google.protobuf.AbstractParser<>() {
+    @Deprecated public static final Parser<VehicleDescriptor> PARSER = new AbstractParser<>() {
         
         @Override
-        public VehicleDescriptor parsePartialFrom(
-                final com.google.protobuf.CodedInputStream input,
-                final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws com.google.protobuf.InvalidProtocolBufferException {
+        public VehicleDescriptor parsePartialFrom(final CodedInputStream input,
+                final ExtensionRegistryLite extensionRegistry)
+                throws InvalidProtocolBufferException {
             return new VehicleDescriptor(input, extensionRegistry);
         }
     };
     
-    public static com.google.protobuf.Parser<VehicleDescriptor> parser() {
+    public static Parser<VehicleDescriptor> parser() {
         return PARSER;
     }
     
-    @java.lang.Override
-    public com.google.protobuf.Parser<VehicleDescriptor> getParserForType() {
+    @Override
+    public Parser<VehicleDescriptor> getParserForType() {
         return PARSER;
     }
     
@@ -1140,4 +948,3 @@ public final class VehicleDescriptor extends
     }
     
 }
-

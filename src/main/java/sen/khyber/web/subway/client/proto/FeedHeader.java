@@ -3,6 +3,38 @@
 
 package sen.khyber.web.subway.client.proto;
 
+import sen.khyber.proto.ProtoUtils;
+
+import lombok.AccessLevel;
+import lombok.Setter;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.ByteBuffer;
+import java.util.List;
+import java.util.Objects;
+
+import com.google.protobuf.AbstractParser;
+import com.google.protobuf.ByteString;
+import com.google.protobuf.CodedInputStream;
+import com.google.protobuf.CodedOutputStream;
+import com.google.protobuf.Descriptors.Descriptor;
+import com.google.protobuf.Descriptors.EnumDescriptor;
+import com.google.protobuf.Descriptors.EnumValueDescriptor;
+import com.google.protobuf.Descriptors.FieldDescriptor;
+import com.google.protobuf.Descriptors.OneofDescriptor;
+import com.google.protobuf.ExtensionRegistryLite;
+import com.google.protobuf.GeneratedMessage.GeneratedExtension;
+import com.google.protobuf.GeneratedMessageV3;
+import com.google.protobuf.GeneratedMessageV3.ExtendableMessage;
+import com.google.protobuf.Internal;
+import com.google.protobuf.Internal.EnumLiteMap;
+import com.google.protobuf.InvalidProtocolBufferException;
+import com.google.protobuf.Message;
+import com.google.protobuf.Parser;
+import com.google.protobuf.ProtocolMessageEnum;
+import com.google.protobuf.UnknownFieldSet;
+
 /**
  * <pre>
  * Metadata about a feed, included in feed messages.
@@ -10,17 +42,12 @@ package sen.khyber.web.subway.client.proto;
  * <p>
  * Protobuf type {@code transit_realtime.FeedHeader}
  */
-public final class FeedHeader extends
-        com.google.protobuf.GeneratedMessageV3.ExtendableMessage<
-                FeedHeader> implements
-        // @@protoc_insertion_point(message_implements:transit_realtime.FeedHeader)
-        FeedHeaderOrBuilder {
+public final class FeedHeader extends ExtendableMessage<FeedHeader> implements FeedHeaderOrBuilder {
     
     private static final long serialVersionUID = 0L;
     
     // Use FeedHeader.newBuilder() to construct.
-    private FeedHeader(
-            final com.google.protobuf.GeneratedMessageV3.ExtendableBuilder<FeedHeader, ?> builder) {
+    private FeedHeader(final ExtendableBuilder<FeedHeader, ?> builder) {
         super(builder);
     }
     
@@ -30,20 +57,16 @@ public final class FeedHeader extends
         timestamp_ = 0L;
     }
     
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
+    @Override
+    public final UnknownFieldSet getUnknownFields() {
         return unknownFields;
     }
     
-    private FeedHeader(
-            final com.google.protobuf.CodedInputStream input,
-            final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
+    private FeedHeader(final CodedInputStream input, final ExtensionRegistryLite extensionRegistry)
+            throws InvalidProtocolBufferException {
         this();
         final int mutable_bitField0_ = 0;
-        final com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-                com.google.protobuf.UnknownFieldSet.newBuilder();
+        final UnknownFieldSet.Builder unknownFields = UnknownFieldSet.newBuilder();
         try {
             boolean done = false;
             while (!done) {
@@ -53,22 +76,20 @@ public final class FeedHeader extends
                         done = true;
                         break;
                     default: {
-                        if (!parseUnknownField(
-                                input, unknownFields, extensionRegistry, tag)) {
+                        if (!parseUnknownField(input, unknownFields, extensionRegistry, tag)) {
                             done = true;
                         }
                         break;
                     }
                     case 10: {
-                        final com.google.protobuf.ByteString bs = input.readBytes();
+                        final ByteString bs = input.readBytes();
                         bitField0_ |= 0x00000001;
                         gtfsRealtimeVersion_ = bs;
                         break;
                     }
                     case 16: {
                         final int rawValue = input.readEnum();
-                        final FeedHeader.Incrementality value =
-                                FeedHeader.Incrementality.valueOf(rawValue);
+                        final Incrementality value = Incrementality.valueOf(rawValue);
                         if (value == null) {
                             unknownFields.mergeVarintField(2, rawValue);
                         } else {
@@ -84,28 +105,24 @@ public final class FeedHeader extends
                     }
                 }
             }
-        } catch (final com.google.protobuf.InvalidProtocolBufferException e) {
+        } catch (final InvalidProtocolBufferException e) {
             throw e.setUnfinishedMessage(this);
-        } catch (final java.io.IOException e) {
-            throw new com.google.protobuf.InvalidProtocolBufferException(
-                    e).setUnfinishedMessage(this);
+        } catch (final IOException e) {
+            throw new InvalidProtocolBufferException(e).setUnfinishedMessage(this);
         } finally {
             this.unknownFields = unknownFields.build();
             makeExtensionsImmutable();
         }
     }
     
-    public static final com.google.protobuf.Descriptors.Descriptor
-    getDescriptor() {
+    public static final Descriptor getDescriptor() {
         return GtfsRealtime.internal_static_transit_realtime_FeedHeader_descriptor;
     }
     
     @Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-    internalGetFieldAccessorTable() {
+    protected FieldAccessorTable internalGetFieldAccessorTable() {
         return GtfsRealtime.internal_static_transit_realtime_FeedHeader_fieldAccessorTable
-                .ensureFieldAccessorsInitialized(
-                        FeedHeader.class, FeedHeader.Builder.class);
+                .ensureFieldAccessorsInitialized(FeedHeader.class, Builder.class);
     }
     
     /**
@@ -119,8 +136,7 @@ public final class FeedHeader extends
      * <p>
      * Protobuf enum {@code transit_realtime.FeedHeader.Incrementality}
      */
-    public enum Incrementality
-            implements com.google.protobuf.ProtocolMessageEnum {
+    public enum Incrementality implements ProtocolMessageEnum {
         /**
          * <code>FULL_DATASET = 0;</code>
          */
@@ -148,7 +164,7 @@ public final class FeedHeader extends
         /**
          * @deprecated Use {@link #forNumber(int)} instead.
          */
-        @java.lang.Deprecated
+        @Deprecated
         public static Incrementality valueOf(final int value) {
             return forNumber(value);
         }
@@ -164,52 +180,44 @@ public final class FeedHeader extends
             }
         }
         
-        public static com.google.protobuf.Internal.EnumLiteMap<Incrementality>
-        internalGetValueMap() {
+        public static EnumLiteMap<Incrementality> internalGetValueMap() {
             return internalValueMap;
         }
         
-        private static final com.google.protobuf.Internal.EnumLiteMap<
-                Incrementality> internalValueMap =
-                new com.google.protobuf.Internal.EnumLiteMap<>() {
-                    
-                    @Override
-                    public Incrementality findValueByNumber(final int number) {
-                        return Incrementality.forNumber(number);
-                    }
-                };
+        private static final EnumLiteMap<Incrementality> internalValueMap = new EnumLiteMap<>() {
+            
+            @Override
+            public Incrementality findValueByNumber(final int number) {
+                return forNumber(number);
+            }
+        };
         
         @Override
-        public final com.google.protobuf.Descriptors.EnumValueDescriptor
-        getValueDescriptor() {
+        public final EnumValueDescriptor getValueDescriptor() {
             return getDescriptor().getValues().get(ordinal());
         }
         
         @Override
-        public final com.google.protobuf.Descriptors.EnumDescriptor
-        getDescriptorForType() {
+        public final EnumDescriptor getDescriptorForType() {
             return getDescriptor();
         }
         
-        public static final com.google.protobuf.Descriptors.EnumDescriptor
-        getDescriptor() {
+        public static final EnumDescriptor getDescriptor() {
             return FeedHeader.getDescriptor().getEnumTypes().get(0);
         }
         
         private static final Incrementality[] VALUES = values();
         
-        public static Incrementality valueOf(
-                final com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+        public static Incrementality valueOf(final EnumValueDescriptor desc) {
             if (desc.getType() != getDescriptor()) {
-                throw new java.lang.IllegalArgumentException(
-                        "EnumValueDescriptor is not for this type.");
+                throw new IllegalArgumentException("EnumValueDescriptor is not for this type.");
             }
             return VALUES[desc.getIndex()];
         }
         
         private final int value;
         
-        private Incrementality(final int value) {
+        Incrementality(final int value) {
             this.value = value;
         }
         
@@ -218,7 +226,7 @@ public final class FeedHeader extends
     
     private int bitField0_;
     public static final int GTFS_REALTIME_VERSION_FIELD_NUMBER = 1;
-    private volatile java.lang.Object gtfsRealtimeVersion_;
+    private volatile @Setter(AccessLevel.PRIVATE) Object gtfsRealtimeVersion_;
     
     /**
      * <pre>
@@ -242,19 +250,8 @@ public final class FeedHeader extends
      * <code>required string gtfs_realtime_version = 1;</code>
      */
     @Override
-    public java.lang.String getGtfsRealtimeVersion() {
-        final java.lang.Object ref = gtfsRealtimeVersion_;
-        if (ref instanceof java.lang.String) {
-            return (java.lang.String) ref;
-        } else {
-            final com.google.protobuf.ByteString bs =
-                    (com.google.protobuf.ByteString) ref;
-            final java.lang.String s = bs.toStringUtf8();
-            if (bs.isValidUtf8()) {
-                gtfsRealtimeVersion_ = s;
-            }
-            return s;
-        }
+    public String getGtfsRealtimeVersion() {
+        return ProtoUtils.asString(gtfsRealtimeVersion_, this::setGtfsRealtimeVersion_);
     }
     
     /**
@@ -266,18 +263,8 @@ public final class FeedHeader extends
      * <code>required string gtfs_realtime_version = 1;</code>
      */
     @Override
-    public com.google.protobuf.ByteString
-    getGtfsRealtimeVersionBytes() {
-        final java.lang.Object ref = gtfsRealtimeVersion_;
-        if (ref instanceof java.lang.String) {
-            final com.google.protobuf.ByteString b =
-                    com.google.protobuf.ByteString.copyFromUtf8(
-                            (java.lang.String) ref);
-            gtfsRealtimeVersion_ = b;
-            return b;
-        } else {
-            return (com.google.protobuf.ByteString) ref;
-        }
+    public ByteString getGtfsRealtimeVersionBytes() {
+        return ProtoUtils.asBytes(gtfsRealtimeVersion_, this::setGtfsRealtimeVersion_);
     }
     
     public static final int INCREMENTALITY_FIELD_NUMBER = 2;
@@ -297,9 +284,9 @@ public final class FeedHeader extends
      * FULL_DATASET];</code>
      */
     @Override
-    public FeedHeader.Incrementality getIncrementality() {
-        final FeedHeader.Incrementality result = FeedHeader.Incrementality.valueOf(incrementality_);
-        return result == null ? FeedHeader.Incrementality.FULL_DATASET : result;
+    public Incrementality getIncrementality() {
+        final Incrementality result = Incrementality.valueOf(incrementality_);
+        return result == null ? Incrementality.FULL_DATASET : result;
     }
     
     public static final int TIMESTAMP_FIELD_NUMBER = 3;
@@ -354,13 +341,10 @@ public final class FeedHeader extends
     }
     
     @Override
-    public void writeTo(final com.google.protobuf.CodedOutputStream output)
-            throws java.io.IOException {
-        final com.google.protobuf.GeneratedMessageV3
-                .ExtendableMessage<FeedHeader>.ExtensionWriter
-                extensionWriter = newExtensionWriter();
+    public void writeTo(final CodedOutputStream output) throws IOException {
+        final ExtendableMessage<FeedHeader>.ExtensionWriter extensionWriter = newExtensionWriter();
         if (((bitField0_ & 0x00000001) == 0x00000001)) {
-            com.google.protobuf.GeneratedMessageV3.writeString(output, 1, gtfsRealtimeVersion_);
+            GeneratedMessageV3.writeString(output, 1, gtfsRealtimeVersion_);
         }
         if (((bitField0_ & 0x00000002) == 0x00000002)) {
             output.writeEnum(2, incrementality_);
@@ -379,16 +363,13 @@ public final class FeedHeader extends
         
         size = 0;
         if (((bitField0_ & 0x00000001) == 0x00000001)) {
-            size += com.google.protobuf.GeneratedMessageV3
-                    .computeStringSize(1, gtfsRealtimeVersion_);
+            size += GeneratedMessageV3.computeStringSize(1, gtfsRealtimeVersion_);
         }
         if (((bitField0_ & 0x00000002) == 0x00000002)) {
-            size += com.google.protobuf.CodedOutputStream
-                    .computeEnumSize(2, incrementality_);
+            size += CodedOutputStream.computeEnumSize(2, incrementality_);
         }
         if (((bitField0_ & 0x00000004) == 0x00000004)) {
-            size += com.google.protobuf.CodedOutputStream
-                    .computeUInt64Size(3, timestamp_);
+            size += CodedOutputStream.computeUInt64Size(3, timestamp_);
         }
         size += extensionsSerializedSize();
         size += unknownFields.getSerializedSize();
@@ -396,8 +377,8 @@ public final class FeedHeader extends
         return size;
     }
     
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
+    @Override
+    public boolean equals(final Object obj) {
         if (obj == this) {
             return true;
         }
@@ -409,8 +390,7 @@ public final class FeedHeader extends
         boolean result = true;
         result = result && (hasGtfsRealtimeVersion() == other.hasGtfsRealtimeVersion());
         if (hasGtfsRealtimeVersion()) {
-            result = result && getGtfsRealtimeVersion()
-                    .equals(other.getGtfsRealtimeVersion());
+            result = result && getGtfsRealtimeVersion().equals(other.getGtfsRealtimeVersion());
         }
         result = result && (hasIncrementality() == other.hasIncrementality());
         if (hasIncrementality()) {
@@ -418,16 +398,14 @@ public final class FeedHeader extends
         }
         result = result && (hasTimestamp() == other.hasTimestamp());
         if (hasTimestamp()) {
-            result = result && (getTimestamp()
-                    == other.getTimestamp());
+            result = result && (getTimestamp() == other.getTimestamp());
         }
         result = result && unknownFields.equals(other.unknownFields);
-        result = result &&
-                getExtensionFields().equals(other.getExtensionFields());
+        result = result && getExtensionFields().equals(other.getExtensionFields());
         return result;
     }
     
-    @java.lang.Override
+    @Override
     public int hashCode() {
         if (memoizedHashCode != 0) {
             return memoizedHashCode;
@@ -444,8 +422,7 @@ public final class FeedHeader extends
         }
         if (hasTimestamp()) {
             hash = (37 * hash) + TIMESTAMP_FIELD_NUMBER;
-            hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-                    getTimestamp());
+            hash = (53 * hash) + Internal.hashLong(getTimestamp());
         }
         hash = hashFields(hash, getExtensionFields());
         hash = (29 * hash) + unknownFields.hashCode();
@@ -453,85 +430,60 @@ public final class FeedHeader extends
         return hash;
     }
     
-    public static FeedHeader parseFrom(
-            final java.nio.ByteBuffer data)
-            throws com.google.protobuf.InvalidProtocolBufferException {
+    public static FeedHeader parseFrom(final ByteBuffer data)
+            throws InvalidProtocolBufferException {
         return PARSER.parseFrom(data);
     }
     
-    public static FeedHeader parseFrom(
-            final java.nio.ByteBuffer data,
-            final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
+    public static FeedHeader parseFrom(final ByteBuffer data,
+            final ExtensionRegistryLite extensionRegistry) throws InvalidProtocolBufferException {
         return PARSER.parseFrom(data, extensionRegistry);
     }
     
-    public static FeedHeader parseFrom(
-            final com.google.protobuf.ByteString data)
-            throws com.google.protobuf.InvalidProtocolBufferException {
+    public static FeedHeader parseFrom(final ByteString data)
+            throws InvalidProtocolBufferException {
         return PARSER.parseFrom(data);
     }
     
-    public static FeedHeader parseFrom(
-            final com.google.protobuf.ByteString data,
-            final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
+    public static FeedHeader parseFrom(final ByteString data,
+            final ExtensionRegistryLite extensionRegistry) throws InvalidProtocolBufferException {
         return PARSER.parseFrom(data, extensionRegistry);
     }
     
-    public static FeedHeader parseFrom(final byte[] data)
-            throws com.google.protobuf.InvalidProtocolBufferException {
+    public static FeedHeader parseFrom(final byte[] data) throws InvalidProtocolBufferException {
         return PARSER.parseFrom(data);
     }
     
-    public static FeedHeader parseFrom(
-            final byte[] data,
-            final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
+    public static FeedHeader parseFrom(final byte[] data,
+            final ExtensionRegistryLite extensionRegistry) throws InvalidProtocolBufferException {
         return PARSER.parseFrom(data, extensionRegistry);
     }
     
-    public static FeedHeader parseFrom(final java.io.InputStream input)
-            throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-                .parseWithIOException(PARSER, input);
+    public static FeedHeader parseFrom(final InputStream input) throws IOException {
+        return GeneratedMessageV3.parseWithIOException(PARSER, input);
     }
     
-    public static FeedHeader parseFrom(
-            final java.io.InputStream input,
-            final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-                .parseWithIOException(PARSER, input, extensionRegistry);
+    public static FeedHeader parseFrom(final InputStream input,
+            final ExtensionRegistryLite extensionRegistry) throws IOException {
+        return GeneratedMessageV3.parseWithIOException(PARSER, input, extensionRegistry);
     }
     
-    public static FeedHeader parseDelimitedFrom(final java.io.InputStream input)
-            throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-                .parseDelimitedWithIOException(PARSER, input);
+    public static FeedHeader parseDelimitedFrom(final InputStream input) throws IOException {
+        return GeneratedMessageV3.parseDelimitedWithIOException(PARSER, input);
     }
     
-    public static FeedHeader parseDelimitedFrom(
-            final java.io.InputStream input,
-            final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-                .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    public static FeedHeader parseDelimitedFrom(final InputStream input,
+            final ExtensionRegistryLite extensionRegistry) throws IOException {
+        return GeneratedMessageV3.parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
     
-    public static FeedHeader parseFrom(
-            final com.google.protobuf.CodedInputStream input)
-            throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-                .parseWithIOException(PARSER, input);
+    public static FeedHeader parseFrom(final CodedInputStream input) throws IOException {
+        return GeneratedMessageV3.parseWithIOException(PARSER, input);
     }
     
-    public static FeedHeader parseFrom(
-            final com.google.protobuf.CodedInputStream input,
-            final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-                .parseWithIOException(PARSER, input, extensionRegistry);
+    public static FeedHeader parseFrom(final CodedInputStream input,
+            final ExtensionRegistryLite extensionRegistry) throws IOException {
+        return GeneratedMessageV3.parseWithIOException(PARSER, input, extensionRegistry);
     }
     
     @Override
@@ -547,13 +499,11 @@ public final class FeedHeader extends
     
     @Override
     public Builder toBuilder() {
-        return this == DEFAULT_INSTANCE
-                ? new Builder() : new Builder().mergeFrom(this);
+        return this == DEFAULT_INSTANCE ? new Builder() : new Builder().mergeFrom(this);
     }
     
-    @java.lang.Override
-    protected Builder newBuilderForType(
-            final com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+    @Override
+    protected Builder newBuilderForType(final BuilderParent parent) {
         final Builder builder = new Builder(parent);
         return builder;
     }
@@ -565,23 +515,18 @@ public final class FeedHeader extends
      * <p>
      * Protobuf type {@code transit_realtime.FeedHeader}
      */
-    public static final class Builder extends
-            com.google.protobuf.GeneratedMessageV3.ExtendableBuilder<
-                    FeedHeader, Builder> implements
+    public static final class Builder extends ExtendableBuilder<FeedHeader, Builder> implements
             // @@protoc_insertion_point(builder_implements:transit_realtime.FeedHeader)
             FeedHeaderOrBuilder {
         
-        public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
+        public static final Descriptor getDescriptor() {
             return GtfsRealtime.internal_static_transit_realtime_FeedHeader_descriptor;
         }
         
         @Override
-        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
+        protected FieldAccessorTable internalGetFieldAccessorTable() {
             return GtfsRealtime.internal_static_transit_realtime_FeedHeader_fieldAccessorTable
-                    .ensureFieldAccessorsInitialized(
-                            FeedHeader.class, FeedHeader.Builder.class);
+                    .ensureFieldAccessorsInitialized(FeedHeader.class, Builder.class);
         }
         
         // Construct using sen.khyber.subway.client.proto.FeedHeader.newBuilder()
@@ -589,15 +534,13 @@ public final class FeedHeader extends
             maybeForceBuilderInitialization();
         }
         
-        private Builder(
-                final com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        private Builder(final BuilderParent parent) {
             super(parent);
             maybeForceBuilderInitialization();
         }
         
         private void maybeForceBuilderInitialization() {
-            if (com.google.protobuf.GeneratedMessageV3
-                    .alwaysUseFieldBuilders) {
+            if (GeneratedMessageV3.alwaysUseFieldBuilders) {
             }
         }
         
@@ -614,14 +557,13 @@ public final class FeedHeader extends
         }
         
         @Override
-        public com.google.protobuf.Descriptors.Descriptor
-        getDescriptorForType() {
+        public Descriptor getDescriptorForType() {
             return GtfsRealtime.internal_static_transit_realtime_FeedHeader_descriptor;
         }
         
         @Override
         public FeedHeader getDefaultInstanceForType() {
-            return FeedHeader.getDefaultInstance();
+            return getDefaultInstance();
         }
         
         @Override
@@ -657,75 +599,61 @@ public final class FeedHeader extends
         
         @Override
         public Builder clone() {
-            return (Builder) super.clone();
+            return super.clone();
         }
         
         @Override
-        public Builder setField(
-                final com.google.protobuf.Descriptors.FieldDescriptor field,
-                final java.lang.Object value) {
-            return (Builder) super.setField(field, value);
+        public Builder setField(final FieldDescriptor field, final Object value) {
+            return super.setField(field, value);
         }
         
         @Override
-        public Builder clearField(
-                final com.google.protobuf.Descriptors.FieldDescriptor field) {
-            return (Builder) super.clearField(field);
+        public Builder clearField(final FieldDescriptor field) {
+            return super.clearField(field);
         }
         
         @Override
-        public Builder clearOneof(
-                final com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-            return (Builder) super.clearOneof(oneof);
+        public Builder clearOneof(final OneofDescriptor oneof) {
+            return super.clearOneof(oneof);
         }
         
         @Override
-        public Builder setRepeatedField(
-                final com.google.protobuf.Descriptors.FieldDescriptor field,
-                final int index, final java.lang.Object value) {
-            return (Builder) super.setRepeatedField(field, index, value);
+        public Builder setRepeatedField(final FieldDescriptor field, final int index,
+                final Object value) {
+            return super.setRepeatedField(field, index, value);
         }
         
         @Override
-        public Builder addRepeatedField(
-                final com.google.protobuf.Descriptors.FieldDescriptor field,
-                final java.lang.Object value) {
-            return (Builder) super.addRepeatedField(field, value);
+        public Builder addRepeatedField(final FieldDescriptor field, final Object value) {
+            return super.addRepeatedField(field, value);
         }
         
         @Override
-        public <Type> Builder setExtension(
-                final com.google.protobuf.GeneratedMessage.GeneratedExtension<
-                        FeedHeader, Type> extension,
+        public <Type> Builder setExtension(final GeneratedExtension<FeedHeader, Type> extension,
                 final Type value) {
-            return (Builder) super.setExtension(extension, value);
+            return super.setExtension(extension, value);
         }
         
         @Override
         public <Type> Builder setExtension(
-                final com.google.protobuf.GeneratedMessage.GeneratedExtension<
-                        FeedHeader, java.util.List<Type>> extension,
-                final int index, final Type value) {
-            return (Builder) super.setExtension(extension, index, value);
+                final GeneratedExtension<FeedHeader, List<Type>> extension, final int index,
+                final Type value) {
+            return super.setExtension(extension, index, value);
         }
         
         @Override
         public <Type> Builder addExtension(
-                final com.google.protobuf.GeneratedMessage.GeneratedExtension<
-                        FeedHeader, java.util.List<Type>> extension,
-                final Type value) {
-            return (Builder) super.addExtension(extension, value);
+                final GeneratedExtension<FeedHeader, List<Type>> extension, final Type value) {
+            return super.addExtension(extension, value);
         }
         
         @Override
-        public <Type> Builder clearExtension(
-                final com.google.protobuf.GeneratedMessage.GeneratedExtension<
-                        FeedHeader, ?> extension) {
-            return (Builder) super.clearExtension(extension);
+        public <Type> Builder clearExtension(final GeneratedExtension<FeedHeader, ?> extension) {
+            return super.clearExtension(extension);
         }
         
         @Override
-        public Builder mergeFrom(final com.google.protobuf.Message other) {
+        public Builder mergeFrom(final Message other) {
             if (other instanceof FeedHeader) {
                 return mergeFrom((FeedHeader) other);
             } else {
@@ -735,7 +663,7 @@ public final class FeedHeader extends
         }
         
         public Builder mergeFrom(final FeedHeader other) {
-            if (other == FeedHeader.getDefaultInstance()) {return this;}
+            if (other == getDefaultInstance()) {return this;}
             if (other.hasGtfsRealtimeVersion()) {
                 bitField0_ |= 0x00000001;
                 gtfsRealtimeVersion_ = other.gtfsRealtimeVersion_;
@@ -758,21 +686,16 @@ public final class FeedHeader extends
             if (!hasGtfsRealtimeVersion()) {
                 return false;
             }
-            if (!extensionsAreInitialized()) {
-                return false;
-            }
-            return true;
+            return extensionsAreInitialized();
         }
         
         @Override
-        public Builder mergeFrom(
-                final com.google.protobuf.CodedInputStream input,
-                final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws java.io.IOException {
+        public Builder mergeFrom(final CodedInputStream input,
+                final ExtensionRegistryLite extensionRegistry) throws IOException {
             FeedHeader parsedMessage = null;
             try {
                 parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-            } catch (final com.google.protobuf.InvalidProtocolBufferException e) {
+            } catch (final InvalidProtocolBufferException e) {
                 parsedMessage = (FeedHeader) e.getUnfinishedMessage();
                 throw e.unwrapIOException();
             } finally {
@@ -785,7 +708,7 @@ public final class FeedHeader extends
         
         private int bitField0_;
         
-        private java.lang.Object gtfsRealtimeVersion_ = "";
+        private @Setter(AccessLevel.PRIVATE) Object gtfsRealtimeVersion_ = "";
         
         /**
          * <pre>
@@ -809,19 +732,8 @@ public final class FeedHeader extends
          * <code>required string gtfs_realtime_version = 1;</code>
          */
         @Override
-        public java.lang.String getGtfsRealtimeVersion() {
-            final java.lang.Object ref = gtfsRealtimeVersion_;
-            if (!(ref instanceof java.lang.String)) {
-                final com.google.protobuf.ByteString bs =
-                        (com.google.protobuf.ByteString) ref;
-                final java.lang.String s = bs.toStringUtf8();
-                if (bs.isValidUtf8()) {
-                    gtfsRealtimeVersion_ = s;
-                }
-                return s;
-            } else {
-                return (java.lang.String) ref;
-            }
+        public String getGtfsRealtimeVersion() {
+            return ProtoUtils.asString(gtfsRealtimeVersion_, this::setGtfsRealtimeVersion_);
         }
         
         /**
@@ -833,18 +745,8 @@ public final class FeedHeader extends
          * <code>required string gtfs_realtime_version = 1;</code>
          */
         @Override
-        public com.google.protobuf.ByteString
-        getGtfsRealtimeVersionBytes() {
-            final java.lang.Object ref = gtfsRealtimeVersion_;
-            if (ref instanceof String) {
-                final com.google.protobuf.ByteString b =
-                        com.google.protobuf.ByteString.copyFromUtf8(
-                                (java.lang.String) ref);
-                gtfsRealtimeVersion_ = b;
-                return b;
-            } else {
-                return (com.google.protobuf.ByteString) ref;
-            }
+        public ByteString getGtfsRealtimeVersionBytes() {
+            return ProtoUtils.asBytes(gtfsRealtimeVersion_, this::setGtfsRealtimeVersion_);
         }
         
         /**
@@ -855,11 +757,8 @@ public final class FeedHeader extends
          * <p>
          * <code>required string gtfs_realtime_version = 1;</code>
          */
-        public Builder setGtfsRealtimeVersion(
-                final java.lang.String value) {
-            if (value == null) {
-                throw new NullPointerException();
-            }
+        public Builder setGtfsRealtimeVersion(final String value) {
+            Objects.requireNonNull(value);
             bitField0_ |= 0x00000001;
             gtfsRealtimeVersion_ = value;
             onChanged();
@@ -889,11 +788,8 @@ public final class FeedHeader extends
          * <p>
          * <code>required string gtfs_realtime_version = 1;</code>
          */
-        public Builder setGtfsRealtimeVersionBytes(
-                final com.google.protobuf.ByteString value) {
-            if (value == null) {
-                throw new NullPointerException();
-            }
+        public Builder setGtfsRealtimeVersionBytes(final ByteString value) {
+            Objects.requireNonNull(value);
             bitField0_ |= 0x00000001;
             gtfsRealtimeVersion_ = value;
             onChanged();
@@ -916,20 +812,17 @@ public final class FeedHeader extends
          * FULL_DATASET];</code>
          */
         @Override
-        public FeedHeader.Incrementality getIncrementality() {
-            final FeedHeader.Incrementality result =
-                    FeedHeader.Incrementality.valueOf(incrementality_);
-            return result == null ? FeedHeader.Incrementality.FULL_DATASET : result;
+        public Incrementality getIncrementality() {
+            final Incrementality result = Incrementality.valueOf(incrementality_);
+            return result == null ? Incrementality.FULL_DATASET : result;
         }
         
         /**
          * <code>optional .transit_realtime.FeedHeader.Incrementality incrementality = 2 [default
          * = FULL_DATASET];</code>
          */
-        public Builder setIncrementality(final FeedHeader.Incrementality value) {
-            if (value == null) {
-                throw new NullPointerException();
-            }
+        public Builder setIncrementality(final Incrementality value) {
+            Objects.requireNonNull(value);
             bitField0_ |= 0x00000002;
             incrementality_ = value.getNumber();
             onChanged();
@@ -1010,14 +903,12 @@ public final class FeedHeader extends
         }
         
         @Override
-        public final Builder setUnknownFields(
-                final com.google.protobuf.UnknownFieldSet unknownFields) {
+        public final Builder setUnknownFields(final UnknownFieldSet unknownFields) {
             return super.setUnknownFields(unknownFields);
         }
         
         @Override
-        public final Builder mergeUnknownFields(
-                final com.google.protobuf.UnknownFieldSet unknownFields) {
+        public final Builder mergeUnknownFields(final UnknownFieldSet unknownFields) {
             return super.mergeUnknownFields(unknownFields);
         }
         
@@ -1036,24 +927,22 @@ public final class FeedHeader extends
         return DEFAULT_INSTANCE;
     }
     
-    @java.lang.Deprecated public static final com.google.protobuf.Parser<FeedHeader>
-            PARSER = new com.google.protobuf.AbstractParser<>() {
+    @Deprecated public static final Parser<FeedHeader> PARSER = new AbstractParser<>() {
         
         @Override
-        public FeedHeader parsePartialFrom(
-                final com.google.protobuf.CodedInputStream input,
-                final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws com.google.protobuf.InvalidProtocolBufferException {
+        public FeedHeader parsePartialFrom(final CodedInputStream input,
+                final ExtensionRegistryLite extensionRegistry)
+                throws InvalidProtocolBufferException {
             return new FeedHeader(input, extensionRegistry);
         }
     };
     
-    public static com.google.protobuf.Parser<FeedHeader> parser() {
+    public static Parser<FeedHeader> parser() {
         return PARSER;
     }
     
-    @java.lang.Override
-    public com.google.protobuf.Parser<FeedHeader> getParserForType() {
+    @Override
+    public Parser<FeedHeader> getParserForType() {
         return PARSER;
     }
     
@@ -1063,4 +952,3 @@ public final class FeedHeader extends
     }
     
 }
-

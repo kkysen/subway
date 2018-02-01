@@ -3,155 +3,122 @@
 
 package sen.khyber.web.subway.client.proto;
 
+import sen.khyber.web.subway.client.proto.TripUpdate.StopTimeUpdate;
+
+import com.google.protobuf.Descriptors.Descriptor;
+import com.google.protobuf.Descriptors.FileDescriptor;
+import com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner;
+import com.google.protobuf.ExtensionRegistry;
+import com.google.protobuf.ExtensionRegistryLite;
+import com.google.protobuf.GeneratedMessage;
+import com.google.protobuf.GeneratedMessage.GeneratedExtension;
+import com.google.protobuf.GeneratedMessageV3.FieldAccessorTable;
+
 public final class NyctSubway {
     
     private NyctSubway() {}
     
-    public static void registerAllExtensions(
-            final com.google.protobuf.ExtensionRegistryLite registry) {
+    public static void registerAllExtensions(final ExtensionRegistryLite registry) {
         registry.add(NyctSubway.nyctFeedHeader);
         registry.add(NyctSubway.nyctTripDescriptor);
         registry.add(NyctSubway.nyctStopTimeUpdate);
     }
     
-    public static void registerAllExtensions(
-            final com.google.protobuf.ExtensionRegistry registry) {
-        registerAllExtensions(
-                (com.google.protobuf.ExtensionRegistryLite) registry);
+    public static void registerAllExtensions(final ExtensionRegistry registry) {
+        registerAllExtensions((ExtensionRegistryLite) registry);
     }
     
     public static final int NYCT_FEED_HEADER_FIELD_NUMBER = 1001;
     /**
      * <code>extend .transit_realtime.FeedHeader { ... }</code>
      */
-    public static final
-    com.google.protobuf.GeneratedMessage.GeneratedExtension<
-            FeedHeader,
-            NyctFeedHeader> nyctFeedHeader = com.google.protobuf.GeneratedMessage
-            .newFileScopedGeneratedExtension(
-                    NyctFeedHeader.class,
+    public static final GeneratedExtension<FeedHeader, NyctFeedHeader> nyctFeedHeader =
+            GeneratedMessage.newFileScopedGeneratedExtension(NyctFeedHeader.class,
                     NyctFeedHeader.getDefaultInstance());
     public static final int NYCT_TRIP_DESCRIPTOR_FIELD_NUMBER = 1001;
     /**
      * <code>extend .transit_realtime.TripDescriptor { ... }</code>
      */
-    public static final
-    com.google.protobuf.GeneratedMessage.GeneratedExtension<
-            TripDescriptor,
-            NyctTripDescriptor> nyctTripDescriptor = com.google.protobuf.GeneratedMessage
-            .newFileScopedGeneratedExtension(
-                    NyctTripDescriptor.class,
+    public static final GeneratedExtension<TripDescriptor, NyctTripDescriptor> nyctTripDescriptor =
+            GeneratedMessage.newFileScopedGeneratedExtension(NyctTripDescriptor.class,
                     NyctTripDescriptor.getDefaultInstance());
     public static final int NYCT_STOP_TIME_UPDATE_FIELD_NUMBER = 1001;
     /**
      * <code>extend .transit_realtime.TripUpdate.StopTimeUpdate { ... }</code>
      */
-    public static final
-    com.google.protobuf.GeneratedMessage.GeneratedExtension<
-            TripUpdate.StopTimeUpdate,
-            NyctStopTimeUpdate> nyctStopTimeUpdate = com.google.protobuf.GeneratedMessage
-            .newFileScopedGeneratedExtension(
-                    NyctStopTimeUpdate.class,
+    public static final GeneratedExtension<StopTimeUpdate, NyctStopTimeUpdate> nyctStopTimeUpdate =
+            GeneratedMessage.newFileScopedGeneratedExtension(NyctStopTimeUpdate.class,
                     NyctStopTimeUpdate.getDefaultInstance());
-    static final com.google.protobuf.Descriptors.Descriptor
-            internal_static_TripReplacementPeriod_descriptor;
-    static final
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-            internal_static_TripReplacementPeriod_fieldAccessorTable;
-    static final com.google.protobuf.Descriptors.Descriptor
-            internal_static_NyctFeedHeader_descriptor;
-    static final
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-            internal_static_NyctFeedHeader_fieldAccessorTable;
-    static final com.google.protobuf.Descriptors.Descriptor
-            internal_static_NyctTripDescriptor_descriptor;
-    static final
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-            internal_static_NyctTripDescriptor_fieldAccessorTable;
-    static final com.google.protobuf.Descriptors.Descriptor
-            internal_static_NyctStopTimeUpdate_descriptor;
-    static final
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-            internal_static_NyctStopTimeUpdate_fieldAccessorTable;
+    static final Descriptor internal_static_TripReplacementPeriod_descriptor;
+    static final FieldAccessorTable internal_static_TripReplacementPeriod_fieldAccessorTable;
+    static final Descriptor internal_static_NyctFeedHeader_descriptor;
+    static final FieldAccessorTable internal_static_NyctFeedHeader_fieldAccessorTable;
+    static final Descriptor internal_static_NyctTripDescriptor_descriptor;
+    static final FieldAccessorTable internal_static_NyctTripDescriptor_fieldAccessorTable;
+    static final Descriptor internal_static_NyctStopTimeUpdate_descriptor;
+    static final FieldAccessorTable internal_static_NyctStopTimeUpdate_fieldAccessorTable;
     
-    public static com.google.protobuf.Descriptors.FileDescriptor
-    getDescriptor() {
+    public static FileDescriptor getDescriptor() {
         return descriptor;
     }
     
-    private static com.google.protobuf.Descriptors.FileDescriptor
-            descriptor;
+    private static FileDescriptor descriptor;
     
     static {
-        final java.lang.String[] descriptorData = {
-                "\n\021nyct-subway.proto\032\023gtfs-realtime.proto" +
-                        "\"b\n\025TripReplacementPeriod\022\020\n\010route_id\030\001 " +
-                        "\001(\t\0227\n\022replacement_period\030\002 \001(\0132\033.transi" +
-                        "t_realtime.TimeRange\"f\n\016NyctFeedHeader\022\033" +
-                        "\n\023nyct_subway_version\030\001 \002(\t\0227\n\027trip_repl" +
-                        "acement_period\030\002 \003(\0132\026.TripReplacementPe" +
-                        "riod\"\244\001\n\022NyctTripDescriptor\022\020\n\010train_id\030" +
-                        "\001 \001(\t\022\023\n\013is_assigned\030\002 \001"
+        final String[] descriptorData = {
+                "\n\021nyct-subway.proto\032\023gtfs-realtime.proto"
+                        + "\"b\n\025TripReplacementPeriod\022\020\n\010route_id\030\001 "
+                        + "\001(\t\0227\n\022replacement_period\030\002 \001(\0132\033.transi"
+                        + "t_realtime.TimeRange\"f\n\016NyctFeedHeader\022\033"
+                        + "\n\023nyct_subway_version\030\001 \002(\t\0227\n\027trip_repl"
+                        + "acement_period\030\002 \003(\0132\026.TripReplacementPe"
+                        + "riod\"\244\001\n\022NyctTripDescriptor\022\020\n\010train_id\030"
+                        + "\001 \001(\t\022\023\n\013is_assigned\030\002 \001"
                         + "(\010\0220\n\tdirection\030"
-                        +
-                        "\003 \001(\0162\035.NyctTripDescriptor.Direction\"5\n\t" +
-                        "Direction\022\t\n\005NORTH\020\001\022\010\n\004EAST\020\002\022\t\n"
+                        + "\003 \001(\0162\035.NyctTripDescriptor.Direction\"5\n\t"
+                        + "Direction\022\t\n\005NORTH\020\001\022\010\n\004EAST\020\002\022\t\n"
                         + "\005SOUTH\020",
-                "\003\022\010\n\004WEST\020\004\"C\n\022NyctStopTimeUpdate\022\027\n\017sch" +
-                        "eduled_track\030\001 \001(\t\022\024\n\014actual_track\030\002 \001(\t" +
-                        ":H\n\020nyct_feed_header\022\034.transit_realtime." +
-                        "FeedHeader\030\351\007 \001(\0132\017.NyctFeedHeader:T\n\024ny" +
-                        "ct_trip_descriptor\022 .transit_realtime.Tr" +
-                        "ipDescriptor\030\351\007 \001(\0132\023.NyctTripDescriptor" +
-                        ":`\n\025nyct_stop_time_update\022+.transit_real" +
-                        "time.TripUpdate.StopTimeUpdate\030\351\007 \001(\0132\023." +
-                        "NyctStopTimeUpdateB\"\n\036sen.khyber.subway." +
-                        "client.protoP\001"
+                "\003\022\010\n\004WEST\020\004\"C\n\022NyctStopTimeUpdate\022\027\n\017sch"
+                        + "eduled_track\030\001 \001(\t\022\024\n\014actual_track\030\002 \001(\t"
+                        + ":H\n\020nyct_feed_header\022\034.transit_realtime."
+                        + "FeedHeader\030\351\007 \001(\0132\017.NyctFeedHeader:T\n\024ny"
+                        + "ct_trip_descriptor\022 .transit_realtime.Tr"
+                        + "ipDescriptor\030\351\007 \001(\0132\023.NyctTripDescriptor"
+                        + ":`\n\025nyct_stop_time_update\022+.transit_real"
+                        + "time.TripUpdate.StopTimeUpdate\030\351\007 \001(\0132\023."
+                        + "NyctStopTimeUpdateB\"\n\036sen.khyber.subway." + "client.protoP\001"
         };
-        final com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
-                new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
-                    
-                    @Override
-                    public com.google.protobuf.ExtensionRegistry assignDescriptors(
-                            final com.google.protobuf.Descriptors.FileDescriptor root) {
-                        descriptor = root;
-                        return null;
-                    }
-                };
-        com.google.protobuf.Descriptors.FileDescriptor
-                .internalBuildGeneratedFileFrom(descriptorData,
-                        new com.google.protobuf.Descriptors.FileDescriptor[] {
-                                GtfsRealtime.getDescriptor(),
-                        }, assigner);
-        internal_static_TripReplacementPeriod_descriptor =
-                getDescriptor().getMessageTypes().get(0);
-        internal_static_TripReplacementPeriod_fieldAccessorTable = new
-                com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-                internal_static_TripReplacementPeriod_descriptor,
-                new java.lang.String[] {"RouteId", "ReplacementPeriod",});
-        internal_static_NyctFeedHeader_descriptor =
-                getDescriptor().getMessageTypes().get(1);
-        internal_static_NyctFeedHeader_fieldAccessorTable = new
-                com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-                internal_static_NyctFeedHeader_descriptor,
-                new java.lang.String[] {"NyctSubwayVersion", "TripReplacementPeriod",});
-        internal_static_NyctTripDescriptor_descriptor =
-                getDescriptor().getMessageTypes().get(2);
-        internal_static_NyctTripDescriptor_fieldAccessorTable = new
-                com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-                internal_static_NyctTripDescriptor_descriptor,
-                new java.lang.String[] {"TrainId", "IsAssigned", "Direction",});
-        internal_static_NyctStopTimeUpdate_descriptor =
-                getDescriptor().getMessageTypes().get(3);
-        internal_static_NyctStopTimeUpdate_fieldAccessorTable = new
-                com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-                internal_static_NyctStopTimeUpdate_descriptor,
-                new java.lang.String[] {"ScheduledTrack", "ActualTrack",});
+        final InternalDescriptorAssigner assigner = new InternalDescriptorAssigner() {
+            
+            @Override
+            public ExtensionRegistry assignDescriptors(final FileDescriptor root) {
+                descriptor = root;
+                return null;
+            }
+        };
+        FileDescriptor.internalBuildGeneratedFileFrom(descriptorData, new FileDescriptor[] {
+                GtfsRealtime.getDescriptor(),
+        }, assigner);
+        internal_static_TripReplacementPeriod_descriptor = getDescriptor().getMessageTypes().get(0);
+        internal_static_TripReplacementPeriod_fieldAccessorTable =
+                new FieldAccessorTable(internal_static_TripReplacementPeriod_descriptor,
+                        new String[] {"RouteId", "ReplacementPeriod",});
+        internal_static_NyctFeedHeader_descriptor = getDescriptor().getMessageTypes().get(1);
+        internal_static_NyctFeedHeader_fieldAccessorTable =
+                new FieldAccessorTable(internal_static_NyctFeedHeader_descriptor,
+                        new String[] {"NyctSubwayVersion", "TripReplacementPeriod",});
+        internal_static_NyctTripDescriptor_descriptor = getDescriptor().getMessageTypes().get(2);
+        internal_static_NyctTripDescriptor_fieldAccessorTable =
+                new FieldAccessorTable(internal_static_NyctTripDescriptor_descriptor,
+                        new String[] {"TrainId", "IsAssigned", "Direction",});
+        internal_static_NyctStopTimeUpdate_descriptor = getDescriptor().getMessageTypes().get(3);
+        internal_static_NyctStopTimeUpdate_fieldAccessorTable =
+                new FieldAccessorTable(internal_static_NyctStopTimeUpdate_descriptor,
+                        new String[] {"ScheduledTrack", "ActualTrack",});
         nyctFeedHeader.internalInit(descriptor.getExtensions().get(0));
         nyctTripDescriptor.internalInit(descriptor.getExtensions().get(1));
         nyctStopTimeUpdate.internalInit(descriptor.getExtensions().get(2));
         GtfsRealtime.getDescriptor();
     }
     
-    // @@protoc_insertion_point(outer_class_scope)
 }

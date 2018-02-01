@@ -3,9 +3,12 @@
 
 package sen.khyber.web.subway.client.proto;
 
-public interface NyctFeedHeaderOrBuilder extends
-        // @@protoc_insertion_point(interface_extends:NyctFeedHeader)
-        com.google.protobuf.MessageOrBuilder {
+import java.util.List;
+
+import com.google.protobuf.ByteString;
+import com.google.protobuf.MessageOrBuilder;
+
+public interface NyctFeedHeaderOrBuilder extends MessageOrBuilder {
     
     /**
      * <pre>
@@ -25,7 +28,7 @@ public interface NyctFeedHeaderOrBuilder extends
      * <p>
      * <code>required string nyct_subway_version = 1;</code>
      */
-    java.lang.String getNyctSubwayVersion();
+    String getNyctSubwayVersion();
     
     /**
      * <pre>
@@ -35,8 +38,7 @@ public interface NyctFeedHeaderOrBuilder extends
      * <p>
      * <code>required string nyct_subway_version = 1;</code>
      */
-    com.google.protobuf.ByteString
-    getNyctSubwayVersionBytes();
+    ByteString getNyctSubwayVersionBytes();
     
     /**
      * <pre>
@@ -52,8 +54,7 @@ public interface NyctFeedHeaderOrBuilder extends
      * <p>
      * <code>repeated .TripReplacementPeriod trip_replacement_period = 2;</code>
      */
-    java.util.List<TripReplacementPeriod>
-    getTripReplacementPeriodList();
+    List<TripReplacementPeriod> getTripReplacementPeriodList();
     
     /**
      * <pre>
@@ -101,8 +102,7 @@ public interface NyctFeedHeaderOrBuilder extends
      * <p>
      * <code>repeated .TripReplacementPeriod trip_replacement_period = 2;</code>
      */
-    java.util.List<? extends TripReplacementPeriodOrBuilder>
-    getTripReplacementPeriodOrBuilderList();
+    List<? extends TripReplacementPeriodOrBuilder> getTripReplacementPeriodOrBuilderList();
     
     /**
      * <pre>
@@ -118,6 +118,6 @@ public interface NyctFeedHeaderOrBuilder extends
      * <p>
      * <code>repeated .TripReplacementPeriod trip_replacement_period = 2;</code>
      */
-    TripReplacementPeriodOrBuilder getTripReplacementPeriodOrBuilder(
-            int index);
+    TripReplacementPeriodOrBuilder getTripReplacementPeriodOrBuilder(int index);
+    
 }

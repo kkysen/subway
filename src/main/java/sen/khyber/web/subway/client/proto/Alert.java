@@ -3,6 +3,13 @@
 
 package sen.khyber.web.subway.client.proto;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.ByteBuffer;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 import com.google.protobuf.AbstractParser;
 import com.google.protobuf.ByteString;
 import com.google.protobuf.CodedInputStream;
@@ -25,13 +32,6 @@ import com.google.protobuf.RepeatedFieldBuilderV3;
 import com.google.protobuf.SingleFieldBuilderV3;
 import com.google.protobuf.UnknownFieldSet;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.ByteBuffer;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
 /**
  * <pre>
  * An alert, indicating some sort of incident in the public transit network.
@@ -39,9 +39,7 @@ import java.util.List;
  * <p>
  * Protobuf type {@code transit_realtime.Alert}
  */
-public final class Alert extends
-        ExtendableMessage<
-                Alert> implements
+public final class Alert extends ExtendableMessage<Alert> implements
         // @@protoc_insertion_point(message_implements:transit_realtime.Alert)
         AlertOrBuilder {
     
@@ -64,14 +62,11 @@ public final class Alert extends
         return unknownFields;
     }
     
-    private Alert(
-            final CodedInputStream input,
-            final ExtensionRegistryLite extensionRegistry)
+    private Alert(final CodedInputStream input, final ExtensionRegistryLite extensionRegistry)
             throws InvalidProtocolBufferException {
         this();
         int mutable_bitField0_ = 0;
-        final UnknownFieldSet.Builder unknownFields =
-                UnknownFieldSet.newBuilder();
+        final UnknownFieldSet.Builder unknownFields = UnknownFieldSet.newBuilder();
         try {
             boolean done = false;
             while (!done) {
@@ -81,8 +76,7 @@ public final class Alert extends
                         done = true;
                         break;
                     default: {
-                        if (!parseUnknownField(
-                                input, unknownFields, extensionRegistry, tag)) {
+                        if (!parseUnknownField(input, unknownFields, extensionRegistry, tag)) {
                             done = true;
                         }
                         break;
@@ -92,8 +86,7 @@ public final class Alert extends
                             activePeriod_ = new ArrayList<>();
                             mutable_bitField0_ |= 0x00000001;
                         }
-                        activePeriod_.add(
-                                input.readMessage(TimeRange.PARSER, extensionRegistry));
+                        activePeriod_.add(input.readMessage(TimeRange.PARSER, extensionRegistry));
                         break;
                     }
                     case 42: {
@@ -101,8 +94,8 @@ public final class Alert extends
                             informedEntity_ = new ArrayList<>();
                             mutable_bitField0_ |= 0x00000002;
                         }
-                        informedEntity_.add(
-                                input.readMessage(EntitySelector.PARSER, extensionRegistry));
+                        informedEntity_
+                                .add(input.readMessage(EntitySelector.PARSER, extensionRegistry));
                         break;
                     }
                     case 48: {
@@ -172,8 +165,7 @@ public final class Alert extends
         } catch (final InvalidProtocolBufferException e) {
             throw e.setUnfinishedMessage(this);
         } catch (final IOException e) {
-            throw new InvalidProtocolBufferException(
-                    e).setUnfinishedMessage(this);
+            throw new InvalidProtocolBufferException(e).setUnfinishedMessage(this);
         } finally {
             if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
                 activePeriod_ = Collections.unmodifiableList(activePeriod_);
@@ -186,17 +178,14 @@ public final class Alert extends
         }
     }
     
-    public static final Descriptor
-    getDescriptor() {
+    public static final Descriptor getDescriptor() {
         return GtfsRealtime.internal_static_transit_realtime_Alert_descriptor;
     }
     
     @Override
-    protected FieldAccessorTable
-    internalGetFieldAccessorTable() {
+    protected FieldAccessorTable internalGetFieldAccessorTable() {
         return GtfsRealtime.internal_static_transit_realtime_Alert_fieldAccessorTable
-                .ensureFieldAccessorsInitialized(
-                        Alert.class, Builder.class);
+                .ensureFieldAccessorsInitialized(Alert.class, Builder.class);
     }
     
     /**
@@ -206,8 +195,7 @@ public final class Alert extends
      * <p>
      * Protobuf enum {@code transit_realtime.Alert.Cause}
      */
-    public enum Cause
-            implements ProtocolMessageEnum {
+    public enum Cause implements ProtocolMessageEnum {
         /**
          * <code>UNKNOWN_CAUSE = 1;</code>
          */
@@ -375,52 +363,44 @@ public final class Alert extends
             }
         }
         
-        public static EnumLiteMap<Cause>
-        internalGetValueMap() {
+        public static EnumLiteMap<Cause> internalGetValueMap() {
             return internalValueMap;
         }
         
-        private static final EnumLiteMap<
-                Cause> internalValueMap =
-                new EnumLiteMap<>() {
-                    
-                    @Override
-                    public Cause findValueByNumber(final int number) {
-                        return Cause.forNumber(number);
-                    }
-                };
+        private static final EnumLiteMap<Cause> internalValueMap = new EnumLiteMap<>() {
+            
+            @Override
+            public Cause findValueByNumber(final int number) {
+                return forNumber(number);
+            }
+        };
         
         @Override
-        public final EnumValueDescriptor
-        getValueDescriptor() {
+        public final EnumValueDescriptor getValueDescriptor() {
             return getDescriptor().getValues().get(ordinal());
         }
         
         @Override
-        public final EnumDescriptor
-        getDescriptorForType() {
+        public final EnumDescriptor getDescriptorForType() {
             return getDescriptor();
         }
         
-        public static final EnumDescriptor
-        getDescriptor() {
+        public static final EnumDescriptor getDescriptor() {
             return Alert.getDescriptor().getEnumTypes().get(0);
         }
         
         private static final Cause[] VALUES = values();
         
-        public static Cause valueOf(
-                final EnumValueDescriptor desc) {
+        public static Cause valueOf(final EnumValueDescriptor desc) {
             if (desc.getType() != getDescriptor()) {
-                throw new IllegalArgumentException(
-                        "EnumValueDescriptor is not for this type.");
+                throw new IllegalArgumentException("EnumValueDescriptor is not for this type.");
             }
             return VALUES[desc.getIndex()];
         }
         
         private final int value;
         
-        private Cause(final int value) {
+        Cause(final int value) {
             this.value = value;
         }
         
@@ -434,8 +414,7 @@ public final class Alert extends
      * <p>
      * Protobuf enum {@code transit_realtime.Alert.Effect}
      */
-    public enum Effect
-            implements ProtocolMessageEnum {
+    public enum Effect implements ProtocolMessageEnum {
         /**
          * <code>NO_SERVICE = 1;</code>
          */
@@ -561,52 +540,44 @@ public final class Alert extends
             }
         }
         
-        public static EnumLiteMap<Effect>
-        internalGetValueMap() {
+        public static EnumLiteMap<Effect> internalGetValueMap() {
             return internalValueMap;
         }
         
-        private static final EnumLiteMap<
-                Effect> internalValueMap =
-                new EnumLiteMap<>() {
-                    
-                    @Override
-                    public Effect findValueByNumber(final int number) {
-                        return Effect.forNumber(number);
-                    }
-                };
+        private static final EnumLiteMap<Effect> internalValueMap = new EnumLiteMap<>() {
+            
+            @Override
+            public Effect findValueByNumber(final int number) {
+                return forNumber(number);
+            }
+        };
         
         @Override
-        public final EnumValueDescriptor
-        getValueDescriptor() {
+        public final EnumValueDescriptor getValueDescriptor() {
             return getDescriptor().getValues().get(ordinal());
         }
         
         @Override
-        public final EnumDescriptor
-        getDescriptorForType() {
+        public final EnumDescriptor getDescriptorForType() {
             return getDescriptor();
         }
         
-        public static final EnumDescriptor
-        getDescriptor() {
+        public static final EnumDescriptor getDescriptor() {
             return Alert.getDescriptor().getEnumTypes().get(1);
         }
         
         private static final Effect[] VALUES = values();
         
-        public static Effect valueOf(
-                final EnumValueDescriptor desc) {
+        public static Effect valueOf(final EnumValueDescriptor desc) {
             if (desc.getType() != getDescriptor()) {
-                throw new IllegalArgumentException(
-                        "EnumValueDescriptor is not for this type.");
+                throw new IllegalArgumentException("EnumValueDescriptor is not for this type.");
             }
             return VALUES[desc.getIndex()];
         }
         
         private final int value;
         
-        private Effect(final int value) {
+        Effect(final int value) {
             this.value = value;
         }
         
@@ -641,8 +612,7 @@ public final class Alert extends
      * <code>repeated .transit_realtime.TimeRange active_period = 1;</code>
      */
     @Override
-    public List<? extends TimeRangeOrBuilder>
-    getActivePeriodOrBuilderList() {
+    public List<? extends TimeRangeOrBuilder> getActivePeriodOrBuilderList() {
         return activePeriod_;
     }
     
@@ -684,8 +654,7 @@ public final class Alert extends
      * <code>repeated .transit_realtime.TimeRange active_period = 1;</code>
      */
     @Override
-    public TimeRangeOrBuilder getActivePeriodOrBuilder(
-            final int index) {
+    public TimeRangeOrBuilder getActivePeriodOrBuilder(final int index) {
         return activePeriod_.get(index);
     }
     
@@ -712,8 +681,7 @@ public final class Alert extends
      * <code>repeated .transit_realtime.EntitySelector informed_entity = 5;</code>
      */
     @Override
-    public List<? extends EntitySelectorOrBuilder>
-    getInformedEntityOrBuilderList() {
+    public List<? extends EntitySelectorOrBuilder> getInformedEntityOrBuilderList() {
         return informedEntity_;
     }
     
@@ -749,8 +717,7 @@ public final class Alert extends
      * <code>repeated .transit_realtime.EntitySelector informed_entity = 5;</code>
      */
     @Override
-    public EntitySelectorOrBuilder getInformedEntityOrBuilder(
-            final int index) {
+    public EntitySelectorOrBuilder getInformedEntityOrBuilder(final int index) {
         return informedEntity_.get(index);
     }
     
@@ -955,10 +922,8 @@ public final class Alert extends
     }
     
     @Override
-    public void writeTo(final CodedOutputStream output)
-            throws IOException {
-        final ExtendableMessage<Alert>.ExtensionWriter
-                extensionWriter = newExtensionWriter();
+    public void writeTo(final CodedOutputStream output) throws IOException {
+        final ExtendableMessage<Alert>.ExtensionWriter extensionWriter = newExtensionWriter();
         for (int i = 0; i < activePeriod_.size(); i++) {
             output.writeMessage(1, activePeriod_.get(i));
         }
@@ -991,32 +956,25 @@ public final class Alert extends
         
         size = 0;
         for (int i = 0; i < activePeriod_.size(); i++) {
-            size += CodedOutputStream
-                    .computeMessageSize(1, activePeriod_.get(i));
+            size += CodedOutputStream.computeMessageSize(1, activePeriod_.get(i));
         }
         for (int i = 0; i < informedEntity_.size(); i++) {
-            size += CodedOutputStream
-                    .computeMessageSize(5, informedEntity_.get(i));
+            size += CodedOutputStream.computeMessageSize(5, informedEntity_.get(i));
         }
         if (((bitField0_ & 0x00000001) == 0x00000001)) {
-            size += CodedOutputStream
-                    .computeEnumSize(6, cause_);
+            size += CodedOutputStream.computeEnumSize(6, cause_);
         }
         if (((bitField0_ & 0x00000002) == 0x00000002)) {
-            size += CodedOutputStream
-                    .computeEnumSize(7, effect_);
+            size += CodedOutputStream.computeEnumSize(7, effect_);
         }
         if (((bitField0_ & 0x00000004) == 0x00000004)) {
-            size += CodedOutputStream
-                    .computeMessageSize(8, getUrl());
+            size += CodedOutputStream.computeMessageSize(8, getUrl());
         }
         if (((bitField0_ & 0x00000008) == 0x00000008)) {
-            size += CodedOutputStream
-                    .computeMessageSize(10, getHeaderText());
+            size += CodedOutputStream.computeMessageSize(10, getHeaderText());
         }
         if (((bitField0_ & 0x00000010) == 0x00000010)) {
-            size += CodedOutputStream
-                    .computeMessageSize(11, getDescriptionText());
+            size += CodedOutputStream.computeMessageSize(11, getDescriptionText());
         }
         size += extensionsSerializedSize();
         size += unknownFields.getSerializedSize();
@@ -1035,10 +993,8 @@ public final class Alert extends
         final Alert other = (Alert) obj;
         
         boolean result = true;
-        result = result && getActivePeriodList()
-                .equals(other.getActivePeriodList());
-        result = result && getInformedEntityList()
-                .equals(other.getInformedEntityList());
+        result = result && getActivePeriodList().equals(other.getActivePeriodList());
+        result = result && getInformedEntityList().equals(other.getInformedEntityList());
         result = result && (hasCause() == other.hasCause());
         if (hasCause()) {
             result = result && cause_ == other.cause_;
@@ -1049,22 +1005,18 @@ public final class Alert extends
         }
         result = result && (hasUrl() == other.hasUrl());
         if (hasUrl()) {
-            result = result && getUrl()
-                    .equals(other.getUrl());
+            result = result && getUrl().equals(other.getUrl());
         }
         result = result && (hasHeaderText() == other.hasHeaderText());
         if (hasHeaderText()) {
-            result = result && getHeaderText()
-                    .equals(other.getHeaderText());
+            result = result && getHeaderText().equals(other.getHeaderText());
         }
         result = result && (hasDescriptionText() == other.hasDescriptionText());
         if (hasDescriptionText()) {
-            result = result && getDescriptionText()
-                    .equals(other.getDescriptionText());
+            result = result && getDescriptionText().equals(other.getDescriptionText());
         }
         result = result && unknownFields.equals(other.unknownFields);
-        result = result &&
-                getExtensionFields().equals(other.getExtensionFields());
+        result = result && getExtensionFields().equals(other.getExtensionFields());
         return result;
     }
     
@@ -1109,85 +1061,58 @@ public final class Alert extends
         return hash;
     }
     
-    public static Alert parseFrom(
-            final ByteBuffer data)
-            throws InvalidProtocolBufferException {
+    public static Alert parseFrom(final ByteBuffer data) throws InvalidProtocolBufferException {
         return PARSER.parseFrom(data);
     }
     
-    public static Alert parseFrom(
-            final ByteBuffer data,
-            final ExtensionRegistryLite extensionRegistry)
+    public static Alert parseFrom(final ByteBuffer data,
+            final ExtensionRegistryLite extensionRegistry) throws InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+    }
+    
+    public static Alert parseFrom(final ByteString data) throws InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+    }
+    
+    public static Alert parseFrom(final ByteString data,
+            final ExtensionRegistryLite extensionRegistry) throws InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+    }
+    
+    public static Alert parseFrom(final byte[] data) throws InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+    }
+    
+    public static Alert parseFrom(final byte[] data, final ExtensionRegistryLite extensionRegistry)
             throws InvalidProtocolBufferException {
         return PARSER.parseFrom(data, extensionRegistry);
     }
     
-    public static Alert parseFrom(
-            final ByteString data)
-            throws InvalidProtocolBufferException {
-        return PARSER.parseFrom(data);
+    public static Alert parseFrom(final InputStream input) throws IOException {
+        return GeneratedMessageV3.parseWithIOException(PARSER, input);
     }
     
-    public static Alert parseFrom(
-            final ByteString data,
-            final ExtensionRegistryLite extensionRegistry)
-            throws InvalidProtocolBufferException {
-        return PARSER.parseFrom(data, extensionRegistry);
+    public static Alert parseFrom(final InputStream input,
+            final ExtensionRegistryLite extensionRegistry) throws IOException {
+        return GeneratedMessageV3.parseWithIOException(PARSER, input, extensionRegistry);
     }
     
-    public static Alert parseFrom(final byte[] data)
-            throws InvalidProtocolBufferException {
-        return PARSER.parseFrom(data);
+    public static Alert parseDelimitedFrom(final InputStream input) throws IOException {
+        return GeneratedMessageV3.parseDelimitedWithIOException(PARSER, input);
     }
     
-    public static Alert parseFrom(
-            final byte[] data,
-            final ExtensionRegistryLite extensionRegistry)
-            throws InvalidProtocolBufferException {
-        return PARSER.parseFrom(data, extensionRegistry);
+    public static Alert parseDelimitedFrom(final InputStream input,
+            final ExtensionRegistryLite extensionRegistry) throws IOException {
+        return GeneratedMessageV3.parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
     
-    public static Alert parseFrom(final InputStream input)
-            throws IOException {
-        return GeneratedMessageV3
-                .parseWithIOException(PARSER, input);
+    public static Alert parseFrom(final CodedInputStream input) throws IOException {
+        return GeneratedMessageV3.parseWithIOException(PARSER, input);
     }
     
-    public static Alert parseFrom(
-            final InputStream input,
-            final ExtensionRegistryLite extensionRegistry)
-            throws IOException {
-        return GeneratedMessageV3
-                .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    
-    public static Alert parseDelimitedFrom(final InputStream input)
-            throws IOException {
-        return GeneratedMessageV3
-                .parseDelimitedWithIOException(PARSER, input);
-    }
-    
-    public static Alert parseDelimitedFrom(
-            final InputStream input,
-            final ExtensionRegistryLite extensionRegistry)
-            throws IOException {
-        return GeneratedMessageV3
-                .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    
-    public static Alert parseFrom(
-            final CodedInputStream input)
-            throws IOException {
-        return GeneratedMessageV3
-                .parseWithIOException(PARSER, input);
-    }
-    
-    public static Alert parseFrom(
-            final CodedInputStream input,
-            final ExtensionRegistryLite extensionRegistry)
-            throws IOException {
-        return GeneratedMessageV3
-                .parseWithIOException(PARSER, input, extensionRegistry);
+    public static Alert parseFrom(final CodedInputStream input,
+            final ExtensionRegistryLite extensionRegistry) throws IOException {
+        return GeneratedMessageV3.parseWithIOException(PARSER, input, extensionRegistry);
     }
     
     @Override
@@ -1203,13 +1128,11 @@ public final class Alert extends
     
     @Override
     public Builder toBuilder() {
-        return this == DEFAULT_INSTANCE
-                ? new Builder() : new Builder().mergeFrom(this);
+        return this == DEFAULT_INSTANCE ? new Builder() : new Builder().mergeFrom(this);
     }
     
     @Override
-    protected Builder newBuilderForType(
-            final BuilderParent parent) {
+    protected Builder newBuilderForType(final BuilderParent parent) {
         final Builder builder = new Builder(parent);
         return builder;
     }
@@ -1221,23 +1144,18 @@ public final class Alert extends
      * <p>
      * Protobuf type {@code transit_realtime.Alert}
      */
-    public static final class Builder extends
-            ExtendableBuilder<
-                    Alert, Builder> implements
+    public static final class Builder extends ExtendableBuilder<Alert, Builder> implements
             // @@protoc_insertion_point(builder_implements:transit_realtime.Alert)
             AlertOrBuilder {
         
-        public static final Descriptor
-        getDescriptor() {
+        public static final Descriptor getDescriptor() {
             return GtfsRealtime.internal_static_transit_realtime_Alert_descriptor;
         }
         
         @Override
-        protected FieldAccessorTable
-        internalGetFieldAccessorTable() {
+        protected FieldAccessorTable internalGetFieldAccessorTable() {
             return GtfsRealtime.internal_static_transit_realtime_Alert_fieldAccessorTable
-                    .ensureFieldAccessorsInitialized(
-                            Alert.class, Builder.class);
+                    .ensureFieldAccessorsInitialized(Alert.class, Builder.class);
         }
         
         // Construct using sen.khyber.subway.client.proto.Alert.newBuilder()
@@ -1245,15 +1163,13 @@ public final class Alert extends
             maybeForceBuilderInitialization();
         }
         
-        private Builder(
-                final BuilderParent parent) {
+        private Builder(final BuilderParent parent) {
             super(parent);
             maybeForceBuilderInitialization();
         }
         
         private void maybeForceBuilderInitialization() {
-            if (GeneratedMessageV3
-                    .alwaysUseFieldBuilders) {
+            if (GeneratedMessageV3.alwaysUseFieldBuilders) {
                 getActivePeriodFieldBuilder();
                 getInformedEntityFieldBuilder();
                 getUrlFieldBuilder();
@@ -1303,14 +1219,13 @@ public final class Alert extends
         }
         
         @Override
-        public Descriptor
-        getDescriptorForType() {
+        public Descriptor getDescriptorForType() {
             return GtfsRealtime.internal_static_transit_realtime_Alert_descriptor;
         }
         
         @Override
         public Alert getDefaultInstanceForType() {
-            return Alert.getDefaultInstance();
+            return getDefaultInstance();
         }
         
         @Override
@@ -1384,71 +1299,56 @@ public final class Alert extends
         
         @Override
         public Builder clone() {
-            return (Builder) super.clone();
+            return super.clone();
         }
         
         @Override
-        public Builder setField(
-                final FieldDescriptor field,
+        public Builder setField(final FieldDescriptor field, final Object value) {
+            return super.setField(field, value);
+        }
+        
+        @Override
+        public Builder clearField(final FieldDescriptor field) {
+            return super.clearField(field);
+        }
+        
+        @Override
+        public Builder clearOneof(final OneofDescriptor oneof) {
+            return super.clearOneof(oneof);
+        }
+        
+        @Override
+        public Builder setRepeatedField(final FieldDescriptor field, final int index,
                 final Object value) {
-            return (Builder) super.setField(field, value);
+            return super.setRepeatedField(field, index, value);
         }
         
         @Override
-        public Builder clearField(
-                final FieldDescriptor field) {
-            return (Builder) super.clearField(field);
+        public Builder addRepeatedField(final FieldDescriptor field, final Object value) {
+            return super.addRepeatedField(field, value);
         }
         
         @Override
-        public Builder clearOneof(
-                final OneofDescriptor oneof) {
-            return (Builder) super.clearOneof(oneof);
-        }
-        
-        @Override
-        public Builder setRepeatedField(
-                final FieldDescriptor field,
-                final int index, final Object value) {
-            return (Builder) super.setRepeatedField(field, index, value);
-        }
-        
-        @Override
-        public Builder addRepeatedField(
-                final FieldDescriptor field,
-                final Object value) {
-            return (Builder) super.addRepeatedField(field, value);
-        }
-        
-        @Override
-        public <Type> Builder setExtension(
-                final GeneratedExtension<
-                        Alert, Type> extension,
+        public <Type> Builder setExtension(final GeneratedExtension<Alert, Type> extension,
                 final Type value) {
-            return (Builder) super.setExtension(extension, value);
+            return super.setExtension(extension, value);
         }
         
         @Override
-        public <Type> Builder setExtension(
-                final GeneratedExtension<
-                        Alert, List<Type>> extension,
+        public <Type> Builder setExtension(final GeneratedExtension<Alert, List<Type>> extension,
                 final int index, final Type value) {
-            return (Builder) super.setExtension(extension, index, value);
+            return super.setExtension(extension, index, value);
         }
         
         @Override
-        public <Type> Builder addExtension(
-                final GeneratedExtension<
-                        Alert, List<Type>> extension,
+        public <Type> Builder addExtension(final GeneratedExtension<Alert, List<Type>> extension,
                 final Type value) {
-            return (Builder) super.addExtension(extension, value);
+            return super.addExtension(extension, value);
         }
         
         @Override
-        public <Type> Builder clearExtension(
-                final GeneratedExtension<
-                        Alert, ?> extension) {
-            return (Builder) super.clearExtension(extension);
+        public <Type> Builder clearExtension(final GeneratedExtension<Alert, ?> extension) {
+            return super.clearExtension(extension);
         }
         
         @Override
@@ -1462,7 +1362,7 @@ public final class Alert extends
         }
         
         public Builder mergeFrom(final Alert other) {
-            if (other == Alert.getDefaultInstance()) {return this;}
+            if (other == getDefaultInstance()) {return this;}
             if (activePeriodBuilder_ == null) {
                 if (!other.activePeriod_.isEmpty()) {
                     if (activePeriod_.isEmpty()) {
@@ -1481,9 +1381,8 @@ public final class Alert extends
                         activePeriodBuilder_ = null;
                         activePeriod_ = other.activePeriod_;
                         bitField0_ = (bitField0_ & ~0x00000001);
-                        activePeriodBuilder_ =
-                                GeneratedMessageV3.alwaysUseFieldBuilders ?
-                                        getActivePeriodFieldBuilder() : null;
+                        activePeriodBuilder_ = GeneratedMessageV3.alwaysUseFieldBuilders
+                                ? getActivePeriodFieldBuilder() : null;
                     } else {
                         activePeriodBuilder_.addAllMessages(other.activePeriod_);
                     }
@@ -1507,9 +1406,8 @@ public final class Alert extends
                         informedEntityBuilder_ = null;
                         informedEntity_ = other.informedEntity_;
                         bitField0_ = (bitField0_ & ~0x00000002);
-                        informedEntityBuilder_ =
-                                GeneratedMessageV3.alwaysUseFieldBuilders ?
-                                        getInformedEntityFieldBuilder() : null;
+                        informedEntityBuilder_ = GeneratedMessageV3.alwaysUseFieldBuilders
+                                ? getInformedEntityFieldBuilder() : null;
                     } else {
                         informedEntityBuilder_.addAllMessages(other.informedEntity_);
                     }
@@ -1558,17 +1456,12 @@ public final class Alert extends
                     return false;
                 }
             }
-            if (!extensionsAreInitialized()) {
-                return false;
-            }
-            return true;
+            return extensionsAreInitialized();
         }
         
         @Override
-        public Builder mergeFrom(
-                final CodedInputStream input,
-                final ExtensionRegistryLite extensionRegistry)
-                throws IOException {
+        public Builder mergeFrom(final CodedInputStream input,
+                final ExtensionRegistryLite extensionRegistry) throws IOException {
             Alert parsedMessage = null;
             try {
                 parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
@@ -1585,8 +1478,7 @@ public final class Alert extends
         
         private int bitField0_;
         
-        private List<TimeRange> activePeriod_ =
-                Collections.emptyList();
+        private List<TimeRange> activePeriod_ = Collections.emptyList();
         
         private void ensureActivePeriodIsMutable() {
             if (!((bitField0_ & 0x00000001) == 0x00000001)) {
@@ -1595,8 +1487,8 @@ public final class Alert extends
             }
         }
         
-        private RepeatedFieldBuilderV3<
-                TimeRange, TimeRange.Builder, TimeRangeOrBuilder> activePeriodBuilder_;
+        private RepeatedFieldBuilderV3<TimeRange, TimeRange.Builder, TimeRangeOrBuilder>
+                activePeriodBuilder_;
         
         /**
          * <pre>
@@ -1661,12 +1553,9 @@ public final class Alert extends
          * <p>
          * <code>repeated .transit_realtime.TimeRange active_period = 1;</code>
          */
-        public Builder setActivePeriod(
-                final int index, final TimeRange value) {
+        public Builder setActivePeriod(final int index, final TimeRange value) {
             if (activePeriodBuilder_ == null) {
-                if (value == null) {
-                    throw new NullPointerException();
-                }
+                Objects.requireNonNull(value);
                 ensureActivePeriodIsMutable();
                 activePeriod_.set(index, value);
                 onChanged();
@@ -1685,8 +1574,7 @@ public final class Alert extends
          * <p>
          * <code>repeated .transit_realtime.TimeRange active_period = 1;</code>
          */
-        public Builder setActivePeriod(
-                final int index, final TimeRange.Builder builderForValue) {
+        public Builder setActivePeriod(final int index, final TimeRange.Builder builderForValue) {
             if (activePeriodBuilder_ == null) {
                 ensureActivePeriodIsMutable();
                 activePeriod_.set(index, builderForValue.build());
@@ -1708,9 +1596,7 @@ public final class Alert extends
          */
         public Builder addActivePeriod(final TimeRange value) {
             if (activePeriodBuilder_ == null) {
-                if (value == null) {
-                    throw new NullPointerException();
-                }
+                Objects.requireNonNull(value);
                 ensureActivePeriodIsMutable();
                 activePeriod_.add(value);
                 onChanged();
@@ -1729,12 +1615,9 @@ public final class Alert extends
          * <p>
          * <code>repeated .transit_realtime.TimeRange active_period = 1;</code>
          */
-        public Builder addActivePeriod(
-                final int index, final TimeRange value) {
+        public Builder addActivePeriod(final int index, final TimeRange value) {
             if (activePeriodBuilder_ == null) {
-                if (value == null) {
-                    throw new NullPointerException();
-                }
+                Objects.requireNonNull(value);
                 ensureActivePeriodIsMutable();
                 activePeriod_.add(index, value);
                 onChanged();
@@ -1753,8 +1636,7 @@ public final class Alert extends
          * <p>
          * <code>repeated .transit_realtime.TimeRange active_period = 1;</code>
          */
-        public Builder addActivePeriod(
-                final TimeRange.Builder builderForValue) {
+        public Builder addActivePeriod(final TimeRange.Builder builderForValue) {
             if (activePeriodBuilder_ == null) {
                 ensureActivePeriodIsMutable();
                 activePeriod_.add(builderForValue.build());
@@ -1774,8 +1656,7 @@ public final class Alert extends
          * <p>
          * <code>repeated .transit_realtime.TimeRange active_period = 1;</code>
          */
-        public Builder addActivePeriod(
-                final int index, final TimeRange.Builder builderForValue) {
+        public Builder addActivePeriod(final int index, final TimeRange.Builder builderForValue) {
             if (activePeriodBuilder_ == null) {
                 ensureActivePeriodIsMutable();
                 activePeriod_.add(index, builderForValue.build());
@@ -1795,12 +1676,10 @@ public final class Alert extends
          * <p>
          * <code>repeated .transit_realtime.TimeRange active_period = 1;</code>
          */
-        public Builder addAllActivePeriod(
-                final Iterable<? extends TimeRange> values) {
+        public Builder addAllActivePeriod(final Iterable<? extends TimeRange> values) {
             if (activePeriodBuilder_ == null) {
                 ensureActivePeriodIsMutable();
-                addAll(
-                        values, activePeriod_);
+                addAll(values, activePeriod_);
                 onChanged();
             } else {
                 activePeriodBuilder_.addAllMessages(values);
@@ -1857,8 +1736,7 @@ public final class Alert extends
          * <p>
          * <code>repeated .transit_realtime.TimeRange active_period = 1;</code>
          */
-        public TimeRange.Builder getActivePeriodBuilder(
-                final int index) {
+        public TimeRange.Builder getActivePeriodBuilder(final int index) {
             return getActivePeriodFieldBuilder().getBuilder(index);
         }
         
@@ -1872,8 +1750,7 @@ public final class Alert extends
          * <code>repeated .transit_realtime.TimeRange active_period = 1;</code>
          */
         @Override
-        public TimeRangeOrBuilder getActivePeriodOrBuilder(
-                final int index) {
+        public TimeRangeOrBuilder getActivePeriodOrBuilder(final int index) {
             if (activePeriodBuilder_ == null) {
                 return activePeriod_.get(index);
             } else {
@@ -1891,8 +1768,7 @@ public final class Alert extends
          * <code>repeated .transit_realtime.TimeRange active_period = 1;</code>
          */
         @Override
-        public List<? extends TimeRangeOrBuilder>
-        getActivePeriodOrBuilderList() {
+        public List<? extends TimeRangeOrBuilder> getActivePeriodOrBuilderList() {
             if (activePeriodBuilder_ != null) {
                 return activePeriodBuilder_.getMessageOrBuilderList();
             } else {
@@ -1910,8 +1786,7 @@ public final class Alert extends
          * <code>repeated .transit_realtime.TimeRange active_period = 1;</code>
          */
         public TimeRange.Builder addActivePeriodBuilder() {
-            return getActivePeriodFieldBuilder().addBuilder(
-                    TimeRange.getDefaultInstance());
+            return getActivePeriodFieldBuilder().addBuilder(TimeRange.getDefaultInstance());
         }
         
         /**
@@ -1923,10 +1798,8 @@ public final class Alert extends
          * <p>
          * <code>repeated .transit_realtime.TimeRange active_period = 1;</code>
          */
-        public TimeRange.Builder addActivePeriodBuilder(
-                final int index) {
-            return getActivePeriodFieldBuilder().addBuilder(
-                    index, TimeRange.getDefaultInstance());
+        public TimeRange.Builder addActivePeriodBuilder(final int index) {
+            return getActivePeriodFieldBuilder().addBuilder(index, TimeRange.getDefaultInstance());
         }
         
         /**
@@ -1938,27 +1811,22 @@ public final class Alert extends
          * <p>
          * <code>repeated .transit_realtime.TimeRange active_period = 1;</code>
          */
-        public List<TimeRange.Builder>
-        getActivePeriodBuilderList() {
+        public List<TimeRange.Builder> getActivePeriodBuilderList() {
             return getActivePeriodFieldBuilder().getBuilderList();
         }
         
-        private RepeatedFieldBuilderV3<
-                TimeRange, TimeRange.Builder, TimeRangeOrBuilder>
+        private RepeatedFieldBuilderV3<TimeRange, TimeRange.Builder, TimeRangeOrBuilder> 
         getActivePeriodFieldBuilder() {
             if (activePeriodBuilder_ == null) {
-                activePeriodBuilder_ = new RepeatedFieldBuilderV3<>(
-                        activePeriod_,
-                        ((bitField0_ & 0x00000001) == 0x00000001),
-                        getParentForChildren(),
+                activePeriodBuilder_ = new RepeatedFieldBuilderV3<>(activePeriod_,
+                        ((bitField0_ & 0x00000001) == 0x00000001), getParentForChildren(),
                         isClean());
                 activePeriod_ = null;
             }
             return activePeriodBuilder_;
         }
         
-        private List<EntitySelector> informedEntity_ =
-                Collections.emptyList();
+        private List<EntitySelector> informedEntity_ = Collections.emptyList();
         
         private void ensureInformedEntityIsMutable() {
             if (!((bitField0_ & 0x00000002) == 0x00000002)) {
@@ -1967,8 +1835,8 @@ public final class Alert extends
             }
         }
         
-        private RepeatedFieldBuilderV3<
-                EntitySelector, EntitySelector.Builder, EntitySelectorOrBuilder>
+        private RepeatedFieldBuilderV3<EntitySelector, EntitySelector.Builder, 
+                EntitySelectorOrBuilder>
                 informedEntityBuilder_;
         
         /**
@@ -2026,12 +1894,9 @@ public final class Alert extends
          * <p>
          * <code>repeated .transit_realtime.EntitySelector informed_entity = 5;</code>
          */
-        public Builder setInformedEntity(
-                final int index, final EntitySelector value) {
+        public Builder setInformedEntity(final int index, final EntitySelector value) {
             if (informedEntityBuilder_ == null) {
-                if (value == null) {
-                    throw new NullPointerException();
-                }
+                Objects.requireNonNull(value);
                 ensureInformedEntityIsMutable();
                 informedEntity_.set(index, value);
                 onChanged();
@@ -2048,8 +1913,8 @@ public final class Alert extends
          * <p>
          * <code>repeated .transit_realtime.EntitySelector informed_entity = 5;</code>
          */
-        public Builder setInformedEntity(
-                final int index, final EntitySelector.Builder builderForValue) {
+        public Builder setInformedEntity(final int index,
+                final EntitySelector.Builder builderForValue) {
             if (informedEntityBuilder_ == null) {
                 ensureInformedEntityIsMutable();
                 informedEntity_.set(index, builderForValue.build());
@@ -2069,9 +1934,7 @@ public final class Alert extends
          */
         public Builder addInformedEntity(final EntitySelector value) {
             if (informedEntityBuilder_ == null) {
-                if (value == null) {
-                    throw new NullPointerException();
-                }
+                Objects.requireNonNull(value);
                 ensureInformedEntityIsMutable();
                 informedEntity_.add(value);
                 onChanged();
@@ -2088,12 +1951,9 @@ public final class Alert extends
          * <p>
          * <code>repeated .transit_realtime.EntitySelector informed_entity = 5;</code>
          */
-        public Builder addInformedEntity(
-                final int index, final EntitySelector value) {
+        public Builder addInformedEntity(final int index, final EntitySelector value) {
             if (informedEntityBuilder_ == null) {
-                if (value == null) {
-                    throw new NullPointerException();
-                }
+                Objects.requireNonNull(value);
                 ensureInformedEntityIsMutable();
                 informedEntity_.add(index, value);
                 onChanged();
@@ -2110,8 +1970,7 @@ public final class Alert extends
          * <p>
          * <code>repeated .transit_realtime.EntitySelector informed_entity = 5;</code>
          */
-        public Builder addInformedEntity(
-                final EntitySelector.Builder builderForValue) {
+        public Builder addInformedEntity(final EntitySelector.Builder builderForValue) {
             if (informedEntityBuilder_ == null) {
                 ensureInformedEntityIsMutable();
                 informedEntity_.add(builderForValue.build());
@@ -2129,8 +1988,8 @@ public final class Alert extends
          * <p>
          * <code>repeated .transit_realtime.EntitySelector informed_entity = 5;</code>
          */
-        public Builder addInformedEntity(
-                final int index, final EntitySelector.Builder builderForValue) {
+        public Builder addInformedEntity(final int index,
+                final EntitySelector.Builder builderForValue) {
             if (informedEntityBuilder_ == null) {
                 ensureInformedEntityIsMutable();
                 informedEntity_.add(index, builderForValue.build());
@@ -2148,12 +2007,10 @@ public final class Alert extends
          * <p>
          * <code>repeated .transit_realtime.EntitySelector informed_entity = 5;</code>
          */
-        public Builder addAllInformedEntity(
-                final Iterable<? extends EntitySelector> values) {
+        public Builder addAllInformedEntity(final Iterable<? extends EntitySelector> values) {
             if (informedEntityBuilder_ == null) {
                 ensureInformedEntityIsMutable();
-                addAll(
-                        values, informedEntity_);
+                addAll(values, informedEntity_);
                 onChanged();
             } else {
                 informedEntityBuilder_.addAllMessages(values);
@@ -2204,8 +2061,7 @@ public final class Alert extends
          * <p>
          * <code>repeated .transit_realtime.EntitySelector informed_entity = 5;</code>
          */
-        public EntitySelector.Builder getInformedEntityBuilder(
-                final int index) {
+        public EntitySelector.Builder getInformedEntityBuilder(final int index) {
             return getInformedEntityFieldBuilder().getBuilder(index);
         }
         
@@ -2217,8 +2073,7 @@ public final class Alert extends
          * <code>repeated .transit_realtime.EntitySelector informed_entity = 5;</code>
          */
         @Override
-        public EntitySelectorOrBuilder getInformedEntityOrBuilder(
-                final int index) {
+        public EntitySelectorOrBuilder getInformedEntityOrBuilder(final int index) {
             if (informedEntityBuilder_ == null) {
                 return informedEntity_.get(index);
             } else {
@@ -2234,8 +2089,7 @@ public final class Alert extends
          * <code>repeated .transit_realtime.EntitySelector informed_entity = 5;</code>
          */
         @Override
-        public List<? extends EntitySelectorOrBuilder>
-        getInformedEntityOrBuilderList() {
+        public List<? extends EntitySelectorOrBuilder> getInformedEntityOrBuilderList() {
             if (informedEntityBuilder_ != null) {
                 return informedEntityBuilder_.getMessageOrBuilderList();
             } else {
@@ -2251,8 +2105,7 @@ public final class Alert extends
          * <code>repeated .transit_realtime.EntitySelector informed_entity = 5;</code>
          */
         public EntitySelector.Builder addInformedEntityBuilder() {
-            return getInformedEntityFieldBuilder().addBuilder(
-                    EntitySelector.getDefaultInstance());
+            return getInformedEntityFieldBuilder().addBuilder(EntitySelector.getDefaultInstance());
         }
         
         /**
@@ -2262,10 +2115,9 @@ public final class Alert extends
          * <p>
          * <code>repeated .transit_realtime.EntitySelector informed_entity = 5;</code>
          */
-        public EntitySelector.Builder addInformedEntityBuilder(
-                final int index) {
-            return getInformedEntityFieldBuilder().addBuilder(
-                    index, EntitySelector.getDefaultInstance());
+        public EntitySelector.Builder addInformedEntityBuilder(final int index) {
+            return getInformedEntityFieldBuilder()
+                    .addBuilder(index, EntitySelector.getDefaultInstance());
         }
         
         /**
@@ -2275,19 +2127,15 @@ public final class Alert extends
          * <p>
          * <code>repeated .transit_realtime.EntitySelector informed_entity = 5;</code>
          */
-        public List<EntitySelector.Builder>
-        getInformedEntityBuilderList() {
+        public List<EntitySelector.Builder> getInformedEntityBuilderList() {
             return getInformedEntityFieldBuilder().getBuilderList();
         }
         
-        private RepeatedFieldBuilderV3<
-                EntitySelector, EntitySelector.Builder, EntitySelectorOrBuilder>
-        getInformedEntityFieldBuilder() {
+        private RepeatedFieldBuilderV3<EntitySelector, EntitySelector.Builder, 
+                EntitySelectorOrBuilder> getInformedEntityFieldBuilder() {
             if (informedEntityBuilder_ == null) {
-                informedEntityBuilder_ = new RepeatedFieldBuilderV3<>(
-                        informedEntity_,
-                        ((bitField0_ & 0x00000002) == 0x00000002),
-                        getParentForChildren(),
+                informedEntityBuilder_ = new RepeatedFieldBuilderV3<>(informedEntity_,
+                        ((bitField0_ & 0x00000002) == 0x00000002), getParentForChildren(),
                         isClean());
                 informedEntity_ = null;
             }
@@ -2317,9 +2165,7 @@ public final class Alert extends
          * <code>optional .transit_realtime.Alert.Cause cause = 6 [default = UNKNOWN_CAUSE];</code>
          */
         public Builder setCause(final Cause value) {
-            if (value == null) {
-                throw new NullPointerException();
-            }
+            Objects.requireNonNull(value);
             bitField0_ |= 0x00000004;
             cause_ = value.getNumber();
             onChanged();
@@ -2362,9 +2208,7 @@ public final class Alert extends
          * </code>
          */
         public Builder setEffect(final Effect value) {
-            if (value == null) {
-                throw new NullPointerException();
-            }
+            Objects.requireNonNull(value);
             bitField0_ |= 0x00000008;
             effect_ = value.getNumber();
             onChanged();
@@ -2383,8 +2227,9 @@ public final class Alert extends
         }
         
         private TranslatedString url_ = null;
-        private SingleFieldBuilderV3<
-                TranslatedString, TranslatedString.Builder, TranslatedStringOrBuilder> urlBuilder_;
+        private SingleFieldBuilderV3<TranslatedString, TranslatedString.Builder, 
+                TranslatedStringOrBuilder>
+                urlBuilder_;
         
         /**
          * <pre>
@@ -2423,9 +2268,7 @@ public final class Alert extends
          */
         public Builder setUrl(final TranslatedString value) {
             if (urlBuilder_ == null) {
-                if (value == null) {
-                    throw new NullPointerException();
-                }
+                Objects.requireNonNull(value);
                 url_ = value;
                 onChanged();
             } else {
@@ -2442,8 +2285,7 @@ public final class Alert extends
          * <p>
          * <code>optional .transit_realtime.TranslatedString url = 8;</code>
          */
-        public Builder setUrl(
-                final TranslatedString.Builder builderForValue) {
+        public Builder setUrl(final TranslatedString.Builder builderForValue) {
             if (urlBuilder_ == null) {
                 url_ = builderForValue.build();
                 onChanged();
@@ -2463,11 +2305,9 @@ public final class Alert extends
          */
         public Builder mergeUrl(final TranslatedString value) {
             if (urlBuilder_ == null) {
-                if (((bitField0_ & 0x00000010) == 0x00000010) &&
-                        url_ != null &&
-                        url_ != TranslatedString.getDefaultInstance()) {
-                    url_ =
-                            TranslatedString.newBuilder(url_).mergeFrom(value).buildPartial();
+                if (((bitField0_ & 0x00000010) == 0x00000010) && url_ != null
+                        && url_ != TranslatedString.getDefaultInstance()) {
+                    url_ = TranslatedString.newBuilder(url_).mergeFrom(value).buildPartial();
                 } else {
                     url_ = value;
                 }
@@ -2522,8 +2362,7 @@ public final class Alert extends
             if (urlBuilder_ != null) {
                 return urlBuilder_.getMessageOrBuilder();
             } else {
-                return url_ == null ?
-                        TranslatedString.getDefaultInstance() : url_;
+                return url_ == null ? TranslatedString.getDefaultInstance() : url_;
             }
         }
         
@@ -2534,22 +2373,19 @@ public final class Alert extends
          * <p>
          * <code>optional .transit_realtime.TranslatedString url = 8;</code>
          */
-        private SingleFieldBuilderV3<
-                TranslatedString, TranslatedString.Builder, TranslatedStringOrBuilder>
-        getUrlFieldBuilder() {
+        private SingleFieldBuilderV3<TranslatedString, TranslatedString.Builder, 
+                TranslatedStringOrBuilder> getUrlFieldBuilder() {
             if (urlBuilder_ == null) {
-                urlBuilder_ = new SingleFieldBuilderV3<>(
-                        getUrl(),
-                        getParentForChildren(),
-                        isClean());
+                urlBuilder_ =
+                        new SingleFieldBuilderV3<>(getUrl(), getParentForChildren(), isClean());
                 url_ = null;
             }
             return urlBuilder_;
         }
         
         private TranslatedString headerText_ = null;
-        private SingleFieldBuilderV3<
-                TranslatedString, TranslatedString.Builder, TranslatedStringOrBuilder>
+        private SingleFieldBuilderV3<TranslatedString, TranslatedString.Builder, 
+                TranslatedStringOrBuilder>
                 headerTextBuilder_;
         
         /**
@@ -2589,9 +2425,7 @@ public final class Alert extends
          */
         public Builder setHeaderText(final TranslatedString value) {
             if (headerTextBuilder_ == null) {
-                if (value == null) {
-                    throw new NullPointerException();
-                }
+                Objects.requireNonNull(value);
                 headerText_ = value;
                 onChanged();
             } else {
@@ -2608,8 +2442,7 @@ public final class Alert extends
          * <p>
          * <code>optional .transit_realtime.TranslatedString header_text = 10;</code>
          */
-        public Builder setHeaderText(
-                final TranslatedString.Builder builderForValue) {
+        public Builder setHeaderText(final TranslatedString.Builder builderForValue) {
             if (headerTextBuilder_ == null) {
                 headerText_ = builderForValue.build();
                 onChanged();
@@ -2629,12 +2462,10 @@ public final class Alert extends
          */
         public Builder mergeHeaderText(final TranslatedString value) {
             if (headerTextBuilder_ == null) {
-                if (((bitField0_ & 0x00000020) == 0x00000020) &&
-                        headerText_ != null &&
-                        headerText_ != TranslatedString.getDefaultInstance()) {
-                    headerText_ =
-                            TranslatedString.newBuilder(headerText_).mergeFrom(value)
-                                    .buildPartial();
+                if (((bitField0_ & 0x00000020) == 0x00000020) && headerText_ != null
+                        && headerText_ != TranslatedString.getDefaultInstance()) {
+                    headerText_ = TranslatedString.newBuilder(headerText_).mergeFrom(value)
+                            .buildPartial();
                 } else {
                     headerText_ = value;
                 }
@@ -2689,8 +2520,7 @@ public final class Alert extends
             if (headerTextBuilder_ != null) {
                 return headerTextBuilder_.getMessageOrBuilder();
             } else {
-                return headerText_ == null ?
-                        TranslatedString.getDefaultInstance() : headerText_;
+                return headerText_ == null ? TranslatedString.getDefaultInstance() : headerText_;
             }
         }
         
@@ -2701,22 +2531,20 @@ public final class Alert extends
          * <p>
          * <code>optional .transit_realtime.TranslatedString header_text = 10;</code>
          */
-        private SingleFieldBuilderV3<
-                TranslatedString, TranslatedString.Builder, TranslatedStringOrBuilder>
-        getHeaderTextFieldBuilder() {
+        private SingleFieldBuilderV3<TranslatedString, TranslatedString.Builder, 
+                TranslatedStringOrBuilder> getHeaderTextFieldBuilder() {
             if (headerTextBuilder_ == null) {
-                headerTextBuilder_ = new SingleFieldBuilderV3<>(
-                        getHeaderText(),
-                        getParentForChildren(),
-                        isClean());
+                headerTextBuilder_ =
+                        new SingleFieldBuilderV3<>(getHeaderText(), getParentForChildren(),
+                                isClean());
                 headerText_ = null;
             }
             return headerTextBuilder_;
         }
         
         private TranslatedString descriptionText_ = null;
-        private SingleFieldBuilderV3<
-                TranslatedString, TranslatedString.Builder, TranslatedStringOrBuilder>
+        private SingleFieldBuilderV3<TranslatedString, TranslatedString.Builder, 
+                TranslatedStringOrBuilder>
                 descriptionTextBuilder_;
         
         /**
@@ -2760,9 +2588,7 @@ public final class Alert extends
          */
         public Builder setDescriptionText(final TranslatedString value) {
             if (descriptionTextBuilder_ == null) {
-                if (value == null) {
-                    throw new NullPointerException();
-                }
+                Objects.requireNonNull(value);
                 descriptionText_ = value;
                 onChanged();
             } else {
@@ -2780,8 +2606,7 @@ public final class Alert extends
          * <p>
          * <code>optional .transit_realtime.TranslatedString description_text = 11;</code>
          */
-        public Builder setDescriptionText(
-                final TranslatedString.Builder builderForValue) {
+        public Builder setDescriptionText(final TranslatedString.Builder builderForValue) {
             if (descriptionTextBuilder_ == null) {
                 descriptionText_ = builderForValue.build();
                 onChanged();
@@ -2802,9 +2627,8 @@ public final class Alert extends
          */
         public Builder mergeDescriptionText(final TranslatedString value) {
             if (descriptionTextBuilder_ == null) {
-                if (((bitField0_ & 0x00000040) == 0x00000040) &&
-                        descriptionText_ != null &&
-                        descriptionText_ != TranslatedString.getDefaultInstance()) {
+                if (((bitField0_ & 0x00000040) == 0x00000040) && descriptionText_ != null
+                        && descriptionText_ != TranslatedString.getDefaultInstance()) {
                     descriptionText_ =
                             TranslatedString.newBuilder(descriptionText_).mergeFrom(value)
                                     .buildPartial();
@@ -2865,8 +2689,8 @@ public final class Alert extends
             if (descriptionTextBuilder_ != null) {
                 return descriptionTextBuilder_.getMessageOrBuilder();
             } else {
-                return descriptionText_ == null ?
-                        TranslatedString.getDefaultInstance() : descriptionText_;
+                return descriptionText_ == null ? TranslatedString.getDefaultInstance()
+                        : descriptionText_;
             }
         }
         
@@ -2878,28 +2702,24 @@ public final class Alert extends
          * <p>
          * <code>optional .transit_realtime.TranslatedString description_text = 11;</code>
          */
-        private SingleFieldBuilderV3<
-                TranslatedString, TranslatedString.Builder, TranslatedStringOrBuilder>
-        getDescriptionTextFieldBuilder() {
+        private SingleFieldBuilderV3<TranslatedString, TranslatedString.Builder, 
+                TranslatedStringOrBuilder> getDescriptionTextFieldBuilder() {
             if (descriptionTextBuilder_ == null) {
-                descriptionTextBuilder_ = new SingleFieldBuilderV3<>(
-                        getDescriptionText(),
-                        getParentForChildren(),
-                        isClean());
+                descriptionTextBuilder_ =
+                        new SingleFieldBuilderV3<>(getDescriptionText(), getParentForChildren(),
+                                isClean());
                 descriptionText_ = null;
             }
             return descriptionTextBuilder_;
         }
         
         @Override
-        public final Builder setUnknownFields(
-                final UnknownFieldSet unknownFields) {
+        public final Builder setUnknownFields(final UnknownFieldSet unknownFields) {
             return super.setUnknownFields(unknownFields);
         }
         
         @Override
-        public final Builder mergeUnknownFields(
-                final UnknownFieldSet unknownFields) {
+        public final Builder mergeUnknownFields(final UnknownFieldSet unknownFields) {
             return super.mergeUnknownFields(unknownFields);
         }
         
@@ -2918,12 +2738,10 @@ public final class Alert extends
         return DEFAULT_INSTANCE;
     }
     
-    @Deprecated public static final Parser<Alert>
-            PARSER = new AbstractParser<>() {
+    @Deprecated public static final Parser<Alert> PARSER = new AbstractParser<>() {
         
         @Override
-        public Alert parsePartialFrom(
-                final CodedInputStream input,
+        public Alert parsePartialFrom(final CodedInputStream input,
                 final ExtensionRegistryLite extensionRegistry)
                 throws InvalidProtocolBufferException {
             return new Alert(input, extensionRegistry);
@@ -2945,4 +2763,3 @@ public final class Alert extends
     }
     
 }
-

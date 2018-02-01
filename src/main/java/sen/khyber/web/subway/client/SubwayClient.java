@@ -6,6 +6,8 @@ import sen.khyber.web.subway.client.proto.FeedMessage;
 
 import java.io.IOException;
 
+import com.googlecode.protobuf.format.JsonFormat;
+
 /**
  * Created by Khyber Sen on 1/29/2018.
  *
@@ -21,6 +23,7 @@ public class SubwayClient {
         final FeedMessage feed = FeedMessage.parseFrom(bytes);
         final FeedEntity entity = feed.getEntity(0);
         System.out.println(entity);
+        new JsonFormat().printToString(feed);
     }
     
 }

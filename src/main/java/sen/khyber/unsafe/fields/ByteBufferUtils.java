@@ -1,5 +1,6 @@
 package sen.khyber.unsafe.fields;
 
+import sen.khyber.unsafe.UnsafeUtils;
 import sen.khyber.unsafe.reflectors.Reflectors;
 import sen.khyber.util.exceptions.ExceptionUtils;
 
@@ -8,6 +9,8 @@ import java.nio.Buffer;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.util.Objects;
+
+import sun.misc.Unsafe;
 
 
 /**
@@ -18,6 +21,8 @@ import java.util.Objects;
 public final class ByteBufferUtils {
     
     private ByteBufferUtils() {}
+    
+    private static final Unsafe unsafe = UnsafeUtils.getUnsafe();
     
     private static final ByteOrder NON_NATIVE_ORDER =
             ByteOrder.nativeOrder() == ByteOrder.BIG_ENDIAN
@@ -41,6 +46,10 @@ public final class ByteBufferUtils {
                 Reflectors.forClassName("jdk.internal.ref.Cleaner").methodHandle("clean");
         Objects.requireNonNull(directBufferCleanerMethod);
         Objects.requireNonNull(internalCleanerCleanMethod);
+    }
+    
+    private static void cleanDirectBuffer(final ByteBuffer buffer) {
+        unsafe.invokeCleaner(buffer);
     }
     
     private static void cleanDirectBuffer(final Buffer buffer) {
@@ -67,7 +76,11 @@ public final class ByteBufferUtils {
         if (!buffer.isDirect()) {
             return false;
         }
-        cleanDirectBuffer(buffer);
+        if (buffer instanceof ByteBuffer) {
+            cleanDirectBuffer((ByteBuffer) buffer);
+        } else {
+            cleanDirectBuffer(buffer);
+        }
         return true;
     }
     

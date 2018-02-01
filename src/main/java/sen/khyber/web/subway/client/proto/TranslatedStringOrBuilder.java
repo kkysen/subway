@@ -6,9 +6,11 @@ package sen.khyber.web.subway.client.proto;
 import sen.khyber.web.subway.client.proto.TranslatedString.Translation;
 import sen.khyber.web.subway.client.proto.TranslatedString.TranslationOrBuilder;
 
-public interface TranslatedStringOrBuilder extends
-        // @@protoc_insertion_point(interface_extends:transit_realtime.TranslatedString)
-        com.google.protobuf.MessageOrBuilder {
+import java.util.List;
+
+import com.google.protobuf.MessageOrBuilder;
+
+public interface TranslatedStringOrBuilder extends MessageOrBuilder {
     
     /**
      * <pre>
@@ -17,8 +19,7 @@ public interface TranslatedStringOrBuilder extends
      * <p>
      * <code>repeated .transit_realtime.TranslatedString.Translation translation = 1;</code>
      */
-    java.util.List<Translation>
-    getTranslationList();
+    List<Translation> getTranslationList();
     
     /**
      * <pre>
@@ -45,8 +46,7 @@ public interface TranslatedStringOrBuilder extends
      * <p>
      * <code>repeated .transit_realtime.TranslatedString.Translation translation = 1;</code>
      */
-    java.util.List<? extends TranslationOrBuilder>
-    getTranslationOrBuilderList();
+    List<? extends TranslationOrBuilder> getTranslationOrBuilderList();
     
     /**
      * <pre>
@@ -55,6 +55,6 @@ public interface TranslatedStringOrBuilder extends
      * <p>
      * <code>repeated .transit_realtime.TranslatedString.Translation translation = 1;</code>
      */
-    TranslationOrBuilder getTranslationOrBuilder(
-            int index);
+    TranslationOrBuilder getTranslationOrBuilder(int index);
+    
 }

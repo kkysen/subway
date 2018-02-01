@@ -3,10 +3,12 @@
 
 package sen.khyber.web.subway.client.proto;
 
-public interface FeedHeaderOrBuilder extends
-        // @@protoc_insertion_point(interface_extends:transit_realtime.FeedHeader)
-        com.google.protobuf.GeneratedMessageV3.
-                ExtendableMessageOrBuilder<FeedHeader> {
+import sen.khyber.web.subway.client.proto.FeedHeader.Incrementality;
+
+import com.google.protobuf.ByteString;
+import com.google.protobuf.GeneratedMessageV3.ExtendableMessageOrBuilder;
+
+public interface FeedHeaderOrBuilder extends ExtendableMessageOrBuilder<FeedHeader> {
     
     /**
      * <pre>
@@ -26,7 +28,7 @@ public interface FeedHeaderOrBuilder extends
      * <p>
      * <code>required string gtfs_realtime_version = 1;</code>
      */
-    java.lang.String getGtfsRealtimeVersion();
+    String getGtfsRealtimeVersion();
     
     /**
      * <pre>
@@ -36,8 +38,7 @@ public interface FeedHeaderOrBuilder extends
      * <p>
      * <code>required string gtfs_realtime_version = 1;</code>
      */
-    com.google.protobuf.ByteString
-    getGtfsRealtimeVersionBytes();
+    ByteString getGtfsRealtimeVersionBytes();
     
     /**
      * <code>optional .transit_realtime.FeedHeader.Incrementality incrementality = 2 [default =
@@ -49,7 +50,7 @@ public interface FeedHeaderOrBuilder extends
      * <code>optional .transit_realtime.FeedHeader.Incrementality incrementality = 2 [default =
      * FULL_DATASET];</code>
      */
-    FeedHeader.Incrementality getIncrementality();
+    Incrementality getIncrementality();
     
     /**
      * <pre>
@@ -72,4 +73,5 @@ public interface FeedHeaderOrBuilder extends
      * <code>optional uint64 timestamp = 3;</code>
      */
     long getTimestamp();
+    
 }

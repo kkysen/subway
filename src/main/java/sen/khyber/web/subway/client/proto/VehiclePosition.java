@@ -3,6 +3,39 @@
 
 package sen.khyber.web.subway.client.proto;
 
+import sen.khyber.proto.ProtoUtils;
+
+import lombok.AccessLevel;
+import lombok.Setter;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.ByteBuffer;
+import java.util.List;
+import java.util.Objects;
+
+import com.google.protobuf.AbstractParser;
+import com.google.protobuf.ByteString;
+import com.google.protobuf.CodedInputStream;
+import com.google.protobuf.CodedOutputStream;
+import com.google.protobuf.Descriptors.Descriptor;
+import com.google.protobuf.Descriptors.EnumDescriptor;
+import com.google.protobuf.Descriptors.EnumValueDescriptor;
+import com.google.protobuf.Descriptors.FieldDescriptor;
+import com.google.protobuf.Descriptors.OneofDescriptor;
+import com.google.protobuf.ExtensionRegistryLite;
+import com.google.protobuf.GeneratedMessage.GeneratedExtension;
+import com.google.protobuf.GeneratedMessageV3;
+import com.google.protobuf.GeneratedMessageV3.ExtendableMessage;
+import com.google.protobuf.Internal;
+import com.google.protobuf.Internal.EnumLiteMap;
+import com.google.protobuf.InvalidProtocolBufferException;
+import com.google.protobuf.Message;
+import com.google.protobuf.Parser;
+import com.google.protobuf.ProtocolMessageEnum;
+import com.google.protobuf.SingleFieldBuilderV3;
+import com.google.protobuf.UnknownFieldSet;
+
 /**
  * <pre>
  * Realtime positioning information for a given vehicle.
@@ -10,18 +43,13 @@ package sen.khyber.web.subway.client.proto;
  * <p>
  * Protobuf type {@code transit_realtime.VehiclePosition}
  */
-public final class VehiclePosition extends
-        com.google.protobuf.GeneratedMessageV3.ExtendableMessage<
-                VehiclePosition> implements
-        // @@protoc_insertion_point(message_implements:transit_realtime.VehiclePosition)
-        VehiclePositionOrBuilder {
+public final class VehiclePosition extends ExtendableMessage<VehiclePosition>
+        implements VehiclePositionOrBuilder {
     
     private static final long serialVersionUID = 0L;
     
     // Use VehiclePosition.newBuilder() to construct.
-    private VehiclePosition(
-            final com.google.protobuf.GeneratedMessageV3.ExtendableBuilder<VehiclePosition, ?>
-                    builder) {
+    private VehiclePosition(final ExtendableBuilder<VehiclePosition, ?> builder) {
         super(builder);
     }
     
@@ -33,20 +61,16 @@ public final class VehiclePosition extends
         congestionLevel_ = 0;
     }
     
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
+    @Override
+    public final UnknownFieldSet getUnknownFields() {
         return unknownFields;
     }
     
-    private VehiclePosition(
-            final com.google.protobuf.CodedInputStream input,
-            final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
+    private VehiclePosition(final CodedInputStream input,
+            final ExtensionRegistryLite extensionRegistry) throws InvalidProtocolBufferException {
         this();
         final int mutable_bitField0_ = 0;
-        final com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-                com.google.protobuf.UnknownFieldSet.newBuilder();
+        final UnknownFieldSet.Builder unknownFields = UnknownFieldSet.newBuilder();
         try {
             boolean done = false;
             while (!done) {
@@ -56,8 +80,7 @@ public final class VehiclePosition extends
                         done = true;
                         break;
                     default: {
-                        if (!parseUnknownField(
-                                input, unknownFields, extensionRegistry, tag)) {
+                        if (!parseUnknownField(input, unknownFields, extensionRegistry, tag)) {
                             done = true;
                         }
                         break;
@@ -95,8 +118,7 @@ public final class VehiclePosition extends
                     }
                     case 32: {
                         final int rawValue = input.readEnum();
-                        final VehiclePosition.VehicleStopStatus value =
-                                VehiclePosition.VehicleStopStatus.valueOf(rawValue);
+                        final VehicleStopStatus value = VehicleStopStatus.valueOf(rawValue);
                         if (value == null) {
                             unknownFields.mergeVarintField(4, rawValue);
                         } else {
@@ -112,8 +134,7 @@ public final class VehiclePosition extends
                     }
                     case 48: {
                         final int rawValue = input.readEnum();
-                        final VehiclePosition.CongestionLevel value =
-                                VehiclePosition.CongestionLevel.valueOf(rawValue);
+                        final CongestionLevel value = CongestionLevel.valueOf(rawValue);
                         if (value == null) {
                             unknownFields.mergeVarintField(6, rawValue);
                         } else {
@@ -123,7 +144,7 @@ public final class VehiclePosition extends
                         break;
                     }
                     case 58: {
-                        final com.google.protobuf.ByteString bs = input.readBytes();
+                        final ByteString bs = input.readBytes();
                         bitField0_ |= 0x00000010;
                         stopId_ = bs;
                         break;
@@ -143,35 +164,30 @@ public final class VehiclePosition extends
                     }
                 }
             }
-        } catch (final com.google.protobuf.InvalidProtocolBufferException e) {
+        } catch (final InvalidProtocolBufferException e) {
             throw e.setUnfinishedMessage(this);
-        } catch (final java.io.IOException e) {
-            throw new com.google.protobuf.InvalidProtocolBufferException(
-                    e).setUnfinishedMessage(this);
+        } catch (final IOException e) {
+            throw new InvalidProtocolBufferException(e).setUnfinishedMessage(this);
         } finally {
             this.unknownFields = unknownFields.build();
             makeExtensionsImmutable();
         }
     }
     
-    public static final com.google.protobuf.Descriptors.Descriptor
-    getDescriptor() {
+    public static final Descriptor getDescriptor() {
         return GtfsRealtime.internal_static_transit_realtime_VehiclePosition_descriptor;
     }
     
     @Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-    internalGetFieldAccessorTable() {
+    protected FieldAccessorTable internalGetFieldAccessorTable() {
         return GtfsRealtime.internal_static_transit_realtime_VehiclePosition_fieldAccessorTable
-                .ensureFieldAccessorsInitialized(
-                        VehiclePosition.class, VehiclePosition.Builder.class);
+                .ensureFieldAccessorsInitialized(VehiclePosition.class, Builder.class);
     }
     
     /**
      * Protobuf enum {@code transit_realtime.VehiclePosition.VehicleStopStatus}
      */
-    public enum VehicleStopStatus
-            implements com.google.protobuf.ProtocolMessageEnum {
+    public enum VehicleStopStatus implements ProtocolMessageEnum {
         /**
          * <pre>
          * The vehicle is just about to arrive at the stop (on a stop
@@ -233,7 +249,7 @@ public final class VehiclePosition extends
         /**
          * @deprecated Use {@link #forNumber(int)} instead.
          */
-        @java.lang.Deprecated
+        @Deprecated
         public static VehicleStopStatus valueOf(final int value) {
             return forNumber(value);
         }
@@ -251,52 +267,44 @@ public final class VehiclePosition extends
             }
         }
         
-        public static com.google.protobuf.Internal.EnumLiteMap<VehicleStopStatus>
-        internalGetValueMap() {
+        public static EnumLiteMap<VehicleStopStatus> internalGetValueMap() {
             return internalValueMap;
         }
         
-        private static final com.google.protobuf.Internal.EnumLiteMap<
-                VehicleStopStatus> internalValueMap =
-                new com.google.protobuf.Internal.EnumLiteMap<>() {
-                    
-                    @Override
-                    public VehicleStopStatus findValueByNumber(final int number) {
-                        return VehicleStopStatus.forNumber(number);
-                    }
-                };
+        private static final EnumLiteMap<VehicleStopStatus> internalValueMap = new EnumLiteMap<>() {
+            
+            @Override
+            public VehicleStopStatus findValueByNumber(final int number) {
+                return forNumber(number);
+            }
+        };
         
         @Override
-        public final com.google.protobuf.Descriptors.EnumValueDescriptor
-        getValueDescriptor() {
+        public final EnumValueDescriptor getValueDescriptor() {
             return getDescriptor().getValues().get(ordinal());
         }
         
         @Override
-        public final com.google.protobuf.Descriptors.EnumDescriptor
-        getDescriptorForType() {
+        public final EnumDescriptor getDescriptorForType() {
             return getDescriptor();
         }
         
-        public static final com.google.protobuf.Descriptors.EnumDescriptor
-        getDescriptor() {
+        public static final EnumDescriptor getDescriptor() {
             return VehiclePosition.getDescriptor().getEnumTypes().get(0);
         }
         
         private static final VehicleStopStatus[] VALUES = values();
         
-        public static VehicleStopStatus valueOf(
-                final com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+        public static VehicleStopStatus valueOf(final EnumValueDescriptor desc) {
             if (desc.getType() != getDescriptor()) {
-                throw new java.lang.IllegalArgumentException(
-                        "EnumValueDescriptor is not for this type.");
+                throw new IllegalArgumentException("EnumValueDescriptor is not for this type.");
             }
             return VALUES[desc.getIndex()];
         }
         
         private final int value;
         
-        private VehicleStopStatus(final int value) {
+        VehicleStopStatus(final int value) {
             this.value = value;
         }
         
@@ -310,8 +318,7 @@ public final class VehiclePosition extends
      * <p>
      * Protobuf enum {@code transit_realtime.VehiclePosition.CongestionLevel}
      */
-    public enum CongestionLevel
-            implements com.google.protobuf.ProtocolMessageEnum {
+    public enum CongestionLevel implements ProtocolMessageEnum {
         /**
          * <code>UNKNOWN_CONGESTION_LEVEL = 0;</code>
          */
@@ -371,7 +378,7 @@ public final class VehiclePosition extends
         /**
          * @deprecated Use {@link #forNumber(int)} instead.
          */
-        @java.lang.Deprecated
+        @Deprecated
         public static CongestionLevel valueOf(final int value) {
             return forNumber(value);
         }
@@ -393,52 +400,44 @@ public final class VehiclePosition extends
             }
         }
         
-        public static com.google.protobuf.Internal.EnumLiteMap<CongestionLevel>
-        internalGetValueMap() {
+        public static EnumLiteMap<CongestionLevel> internalGetValueMap() {
             return internalValueMap;
         }
         
-        private static final com.google.protobuf.Internal.EnumLiteMap<
-                CongestionLevel> internalValueMap =
-                new com.google.protobuf.Internal.EnumLiteMap<>() {
-                    
-                    @Override
-                    public CongestionLevel findValueByNumber(final int number) {
-                        return CongestionLevel.forNumber(number);
-                    }
-                };
+        private static final EnumLiteMap<CongestionLevel> internalValueMap = new EnumLiteMap<>() {
+            
+            @Override
+            public CongestionLevel findValueByNumber(final int number) {
+                return forNumber(number);
+            }
+        };
         
         @Override
-        public final com.google.protobuf.Descriptors.EnumValueDescriptor
-        getValueDescriptor() {
+        public final EnumValueDescriptor getValueDescriptor() {
             return getDescriptor().getValues().get(ordinal());
         }
         
         @Override
-        public final com.google.protobuf.Descriptors.EnumDescriptor
-        getDescriptorForType() {
+        public final EnumDescriptor getDescriptorForType() {
             return getDescriptor();
         }
         
-        public static final com.google.protobuf.Descriptors.EnumDescriptor
-        getDescriptor() {
+        public static final EnumDescriptor getDescriptor() {
             return VehiclePosition.getDescriptor().getEnumTypes().get(1);
         }
         
         private static final CongestionLevel[] VALUES = values();
         
-        public static CongestionLevel valueOf(
-                final com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+        public static CongestionLevel valueOf(final EnumValueDescriptor desc) {
             if (desc.getType() != getDescriptor()) {
-                throw new java.lang.IllegalArgumentException(
-                        "EnumValueDescriptor is not for this type.");
+                throw new IllegalArgumentException("EnumValueDescriptor is not for this type.");
             }
             return VALUES[desc.getIndex()];
         }
         
         private final int value;
         
-        private CongestionLevel(final int value) {
+        CongestionLevel(final int value) {
             this.value = value;
         }
         
@@ -603,7 +602,7 @@ public final class VehiclePosition extends
     }
     
     public static final int STOP_ID_FIELD_NUMBER = 7;
-    private volatile java.lang.Object stopId_;
+    private volatile @Setter(AccessLevel.PRIVATE) Object stopId_;
     
     /**
      * <pre>
@@ -627,19 +626,8 @@ public final class VehiclePosition extends
      * <code>optional string stop_id = 7;</code>
      */
     @Override
-    public java.lang.String getStopId() {
-        final java.lang.Object ref = stopId_;
-        if (ref instanceof java.lang.String) {
-            return (java.lang.String) ref;
-        } else {
-            final com.google.protobuf.ByteString bs =
-                    (com.google.protobuf.ByteString) ref;
-            final java.lang.String s = bs.toStringUtf8();
-            if (bs.isValidUtf8()) {
-                stopId_ = s;
-            }
-            return s;
-        }
+    public String getStopId() {
+        return ProtoUtils.asString(stopId_, this::setStopId_);
     }
     
     /**
@@ -651,18 +639,8 @@ public final class VehiclePosition extends
      * <code>optional string stop_id = 7;</code>
      */
     @Override
-    public com.google.protobuf.ByteString
-    getStopIdBytes() {
-        final java.lang.Object ref = stopId_;
-        if (ref instanceof java.lang.String) {
-            final com.google.protobuf.ByteString b =
-                    com.google.protobuf.ByteString.copyFromUtf8(
-                            (java.lang.String) ref);
-            stopId_ = b;
-            return b;
-        } else {
-            return (com.google.protobuf.ByteString) ref;
-        }
+    public ByteString getStopIdBytes() {
+        return ProtoUtils.asBytes(stopId_, this::setStopId_);
     }
     
     public static final int CURRENT_STATUS_FIELD_NUMBER = 4;
@@ -692,10 +670,9 @@ public final class VehiclePosition extends
      * [default = IN_TRANSIT_TO];</code>
      */
     @Override
-    public VehiclePosition.VehicleStopStatus getCurrentStatus() {
-        final VehiclePosition.VehicleStopStatus result =
-                VehiclePosition.VehicleStopStatus.valueOf(currentStatus_);
-        return result == null ? VehiclePosition.VehicleStopStatus.IN_TRANSIT_TO : result;
+    public VehicleStopStatus getCurrentStatus() {
+        final VehicleStopStatus result = VehicleStopStatus.valueOf(currentStatus_);
+        return result == null ? VehicleStopStatus.IN_TRANSIT_TO : result;
     }
     
     public static final int TIMESTAMP_FIELD_NUMBER = 5;
@@ -742,10 +719,9 @@ public final class VehiclePosition extends
      * <code>optional .transit_realtime.VehiclePosition.CongestionLevel congestion_level = 6;</code>
      */
     @Override
-    public VehiclePosition.CongestionLevel getCongestionLevel() {
-        final VehiclePosition.CongestionLevel result =
-                VehiclePosition.CongestionLevel.valueOf(congestionLevel_);
-        return result == null ? VehiclePosition.CongestionLevel.UNKNOWN_CONGESTION_LEVEL : result;
+    public CongestionLevel getCongestionLevel() {
+        final CongestionLevel result = CongestionLevel.valueOf(congestionLevel_);
+        return result == null ? CongestionLevel.UNKNOWN_CONGESTION_LEVEL : result;
     }
     
     private byte memoizedIsInitialized = -1;
@@ -783,11 +759,9 @@ public final class VehiclePosition extends
     }
     
     @Override
-    public void writeTo(final com.google.protobuf.CodedOutputStream output)
-            throws java.io.IOException {
-        final com.google.protobuf.GeneratedMessageV3
-                .ExtendableMessage<VehiclePosition>.ExtensionWriter
-                extensionWriter = newExtensionWriter();
+    public void writeTo(final CodedOutputStream output) throws IOException {
+        final ExtendableMessage<VehiclePosition>.ExtensionWriter extensionWriter =
+                newExtensionWriter();
         if (((bitField0_ & 0x00000001) == 0x00000001)) {
             output.writeMessage(1, getTrip());
         }
@@ -807,7 +781,7 @@ public final class VehiclePosition extends
             output.writeEnum(6, congestionLevel_);
         }
         if (((bitField0_ & 0x00000010) == 0x00000010)) {
-            com.google.protobuf.GeneratedMessageV3.writeString(output, 7, stopId_);
+            GeneratedMessageV3.writeString(output, 7, stopId_);
         }
         if (((bitField0_ & 0x00000002) == 0x00000002)) {
             output.writeMessage(8, getVehicle());
@@ -823,35 +797,28 @@ public final class VehiclePosition extends
         
         size = 0;
         if (((bitField0_ & 0x00000001) == 0x00000001)) {
-            size += com.google.protobuf.CodedOutputStream
-                    .computeMessageSize(1, getTrip());
+            size += CodedOutputStream.computeMessageSize(1, getTrip());
         }
         if (((bitField0_ & 0x00000004) == 0x00000004)) {
-            size += com.google.protobuf.CodedOutputStream
-                    .computeMessageSize(2, getPosition());
+            size += CodedOutputStream.computeMessageSize(2, getPosition());
         }
         if (((bitField0_ & 0x00000008) == 0x00000008)) {
-            size += com.google.protobuf.CodedOutputStream
-                    .computeUInt32Size(3, currentStopSequence_);
+            size += CodedOutputStream.computeUInt32Size(3, currentStopSequence_);
         }
         if (((bitField0_ & 0x00000020) == 0x00000020)) {
-            size += com.google.protobuf.CodedOutputStream
-                    .computeEnumSize(4, currentStatus_);
+            size += CodedOutputStream.computeEnumSize(4, currentStatus_);
         }
         if (((bitField0_ & 0x00000040) == 0x00000040)) {
-            size += com.google.protobuf.CodedOutputStream
-                    .computeUInt64Size(5, timestamp_);
+            size += CodedOutputStream.computeUInt64Size(5, timestamp_);
         }
         if (((bitField0_ & 0x00000080) == 0x00000080)) {
-            size += com.google.protobuf.CodedOutputStream
-                    .computeEnumSize(6, congestionLevel_);
+            size += CodedOutputStream.computeEnumSize(6, congestionLevel_);
         }
         if (((bitField0_ & 0x00000010) == 0x00000010)) {
-            size += com.google.protobuf.GeneratedMessageV3.computeStringSize(7, stopId_);
+            size += GeneratedMessageV3.computeStringSize(7, stopId_);
         }
         if (((bitField0_ & 0x00000002) == 0x00000002)) {
-            size += com.google.protobuf.CodedOutputStream
-                    .computeMessageSize(8, getVehicle());
+            size += CodedOutputStream.computeMessageSize(8, getVehicle());
         }
         size += extensionsSerializedSize();
         size += unknownFields.getSerializedSize();
@@ -859,8 +826,8 @@ public final class VehiclePosition extends
         return size;
     }
     
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
+    @Override
+    public boolean equals(final Object obj) {
         if (obj == this) {
             return true;
         }
@@ -872,28 +839,23 @@ public final class VehiclePosition extends
         boolean result = true;
         result = result && (hasTrip() == other.hasTrip());
         if (hasTrip()) {
-            result = result && getTrip()
-                    .equals(other.getTrip());
+            result = result && getTrip().equals(other.getTrip());
         }
         result = result && (hasVehicle() == other.hasVehicle());
         if (hasVehicle()) {
-            result = result && getVehicle()
-                    .equals(other.getVehicle());
+            result = result && getVehicle().equals(other.getVehicle());
         }
         result = result && (hasPosition() == other.hasPosition());
         if (hasPosition()) {
-            result = result && getPosition()
-                    .equals(other.getPosition());
+            result = result && getPosition().equals(other.getPosition());
         }
         result = result && (hasCurrentStopSequence() == other.hasCurrentStopSequence());
         if (hasCurrentStopSequence()) {
-            result = result && (getCurrentStopSequence()
-                    == other.getCurrentStopSequence());
+            result = result && (getCurrentStopSequence() == other.getCurrentStopSequence());
         }
         result = result && (hasStopId() == other.hasStopId());
         if (hasStopId()) {
-            result = result && getStopId()
-                    .equals(other.getStopId());
+            result = result && getStopId().equals(other.getStopId());
         }
         result = result && (hasCurrentStatus() == other.hasCurrentStatus());
         if (hasCurrentStatus()) {
@@ -901,20 +863,18 @@ public final class VehiclePosition extends
         }
         result = result && (hasTimestamp() == other.hasTimestamp());
         if (hasTimestamp()) {
-            result = result && (getTimestamp()
-                    == other.getTimestamp());
+            result = result && (getTimestamp() == other.getTimestamp());
         }
         result = result && (hasCongestionLevel() == other.hasCongestionLevel());
         if (hasCongestionLevel()) {
             result = result && congestionLevel_ == other.congestionLevel_;
         }
         result = result && unknownFields.equals(other.unknownFields);
-        result = result &&
-                getExtensionFields().equals(other.getExtensionFields());
+        result = result && getExtensionFields().equals(other.getExtensionFields());
         return result;
     }
     
-    @java.lang.Override
+    @Override
     public int hashCode() {
         if (memoizedHashCode != 0) {
             return memoizedHashCode;
@@ -947,8 +907,7 @@ public final class VehiclePosition extends
         }
         if (hasTimestamp()) {
             hash = (37 * hash) + TIMESTAMP_FIELD_NUMBER;
-            hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-                    getTimestamp());
+            hash = (53 * hash) + Internal.hashLong(getTimestamp());
         }
         if (hasCongestionLevel()) {
             hash = (37 * hash) + CONGESTION_LEVEL_FIELD_NUMBER;
@@ -960,85 +919,61 @@ public final class VehiclePosition extends
         return hash;
     }
     
-    public static VehiclePosition parseFrom(
-            final java.nio.ByteBuffer data)
-            throws com.google.protobuf.InvalidProtocolBufferException {
+    public static VehiclePosition parseFrom(final ByteBuffer data)
+            throws InvalidProtocolBufferException {
         return PARSER.parseFrom(data);
     }
     
-    public static VehiclePosition parseFrom(
-            final java.nio.ByteBuffer data,
-            final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
+    public static VehiclePosition parseFrom(final ByteBuffer data,
+            final ExtensionRegistryLite extensionRegistry) throws InvalidProtocolBufferException {
         return PARSER.parseFrom(data, extensionRegistry);
     }
     
-    public static VehiclePosition parseFrom(
-            final com.google.protobuf.ByteString data)
-            throws com.google.protobuf.InvalidProtocolBufferException {
+    public static VehiclePosition parseFrom(final ByteString data)
+            throws InvalidProtocolBufferException {
         return PARSER.parseFrom(data);
     }
     
-    public static VehiclePosition parseFrom(
-            final com.google.protobuf.ByteString data,
-            final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
+    public static VehiclePosition parseFrom(final ByteString data,
+            final ExtensionRegistryLite extensionRegistry) throws InvalidProtocolBufferException {
         return PARSER.parseFrom(data, extensionRegistry);
     }
     
     public static VehiclePosition parseFrom(final byte[] data)
-            throws com.google.protobuf.InvalidProtocolBufferException {
+            throws InvalidProtocolBufferException {
         return PARSER.parseFrom(data);
     }
     
-    public static VehiclePosition parseFrom(
-            final byte[] data,
-            final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
+    public static VehiclePosition parseFrom(final byte[] data,
+            final ExtensionRegistryLite extensionRegistry) throws InvalidProtocolBufferException {
         return PARSER.parseFrom(data, extensionRegistry);
     }
     
-    public static VehiclePosition parseFrom(final java.io.InputStream input)
-            throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-                .parseWithIOException(PARSER, input);
+    public static VehiclePosition parseFrom(final InputStream input) throws IOException {
+        return GeneratedMessageV3.parseWithIOException(PARSER, input);
     }
     
-    public static VehiclePosition parseFrom(
-            final java.io.InputStream input,
-            final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-                .parseWithIOException(PARSER, input, extensionRegistry);
+    public static VehiclePosition parseFrom(final InputStream input,
+            final ExtensionRegistryLite extensionRegistry) throws IOException {
+        return GeneratedMessageV3.parseWithIOException(PARSER, input, extensionRegistry);
     }
     
-    public static VehiclePosition parseDelimitedFrom(final java.io.InputStream input)
-            throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-                .parseDelimitedWithIOException(PARSER, input);
+    public static VehiclePosition parseDelimitedFrom(final InputStream input) throws IOException {
+        return GeneratedMessageV3.parseDelimitedWithIOException(PARSER, input);
     }
     
-    public static VehiclePosition parseDelimitedFrom(
-            final java.io.InputStream input,
-            final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-                .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    public static VehiclePosition parseDelimitedFrom(final InputStream input,
+            final ExtensionRegistryLite extensionRegistry) throws IOException {
+        return GeneratedMessageV3.parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
     
-    public static VehiclePosition parseFrom(
-            final com.google.protobuf.CodedInputStream input)
-            throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-                .parseWithIOException(PARSER, input);
+    public static VehiclePosition parseFrom(final CodedInputStream input) throws IOException {
+        return GeneratedMessageV3.parseWithIOException(PARSER, input);
     }
     
-    public static VehiclePosition parseFrom(
-            final com.google.protobuf.CodedInputStream input,
-            final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-                .parseWithIOException(PARSER, input, extensionRegistry);
+    public static VehiclePosition parseFrom(final CodedInputStream input,
+            final ExtensionRegistryLite extensionRegistry) throws IOException {
+        return GeneratedMessageV3.parseWithIOException(PARSER, input, extensionRegistry);
     }
     
     @Override
@@ -1054,13 +989,11 @@ public final class VehiclePosition extends
     
     @Override
     public Builder toBuilder() {
-        return this == DEFAULT_INSTANCE
-                ? new Builder() : new Builder().mergeFrom(this);
+        return this == DEFAULT_INSTANCE ? new Builder() : new Builder().mergeFrom(this);
     }
     
-    @java.lang.Override
-    protected Builder newBuilderForType(
-            final com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+    @Override
+    protected Builder newBuilderForType(final BuilderParent parent) {
         final Builder builder = new Builder(parent);
         return builder;
     }
@@ -1072,23 +1005,18 @@ public final class VehiclePosition extends
      * <p>
      * Protobuf type {@code transit_realtime.VehiclePosition}
      */
-    public static final class Builder extends
-            com.google.protobuf.GeneratedMessageV3.ExtendableBuilder<
-                    VehiclePosition, Builder> implements
+    public static final class Builder extends ExtendableBuilder<VehiclePosition, Builder> implements
             // @@protoc_insertion_point(builder_implements:transit_realtime.VehiclePosition)
             VehiclePositionOrBuilder {
         
-        public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
+        public static final Descriptor getDescriptor() {
             return GtfsRealtime.internal_static_transit_realtime_VehiclePosition_descriptor;
         }
         
         @Override
-        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
+        protected FieldAccessorTable internalGetFieldAccessorTable() {
             return GtfsRealtime.internal_static_transit_realtime_VehiclePosition_fieldAccessorTable
-                    .ensureFieldAccessorsInitialized(
-                            VehiclePosition.class, VehiclePosition.Builder.class);
+                    .ensureFieldAccessorsInitialized(VehiclePosition.class, Builder.class);
         }
         
         // Construct using sen.khyber.subway.client.proto.VehiclePosition.newBuilder()
@@ -1096,15 +1024,13 @@ public final class VehiclePosition extends
             maybeForceBuilderInitialization();
         }
         
-        private Builder(
-                final com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        private Builder(final BuilderParent parent) {
             super(parent);
             maybeForceBuilderInitialization();
         }
         
         private void maybeForceBuilderInitialization() {
-            if (com.google.protobuf.GeneratedMessageV3
-                    .alwaysUseFieldBuilders) {
+            if (GeneratedMessageV3.alwaysUseFieldBuilders) {
                 getTripFieldBuilder();
                 getVehicleFieldBuilder();
                 getPositionFieldBuilder();
@@ -1146,14 +1072,13 @@ public final class VehiclePosition extends
         }
         
         @Override
-        public com.google.protobuf.Descriptors.Descriptor
-        getDescriptorForType() {
+        public Descriptor getDescriptorForType() {
             return GtfsRealtime.internal_static_transit_realtime_VehiclePosition_descriptor;
         }
         
         @Override
         public VehiclePosition getDefaultInstanceForType() {
-            return VehiclePosition.getDefaultInstance();
+            return getDefaultInstance();
         }
         
         @Override
@@ -1221,75 +1146,62 @@ public final class VehiclePosition extends
         
         @Override
         public Builder clone() {
-            return (Builder) super.clone();
+            return super.clone();
         }
         
         @Override
-        public Builder setField(
-                final com.google.protobuf.Descriptors.FieldDescriptor field,
-                final java.lang.Object value) {
-            return (Builder) super.setField(field, value);
+        public Builder setField(final FieldDescriptor field, final Object value) {
+            return super.setField(field, value);
         }
         
         @Override
-        public Builder clearField(
-                final com.google.protobuf.Descriptors.FieldDescriptor field) {
-            return (Builder) super.clearField(field);
+        public Builder clearField(final FieldDescriptor field) {
+            return super.clearField(field);
         }
         
         @Override
-        public Builder clearOneof(
-                final com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-            return (Builder) super.clearOneof(oneof);
+        public Builder clearOneof(final OneofDescriptor oneof) {
+            return super.clearOneof(oneof);
         }
         
         @Override
-        public Builder setRepeatedField(
-                final com.google.protobuf.Descriptors.FieldDescriptor field,
-                final int index, final java.lang.Object value) {
-            return (Builder) super.setRepeatedField(field, index, value);
+        public Builder setRepeatedField(final FieldDescriptor field, final int index,
+                final Object value) {
+            return super.setRepeatedField(field, index, value);
         }
         
         @Override
-        public Builder addRepeatedField(
-                final com.google.protobuf.Descriptors.FieldDescriptor field,
-                final java.lang.Object value) {
-            return (Builder) super.addRepeatedField(field, value);
+        public Builder addRepeatedField(final FieldDescriptor field, final Object value) {
+            return super.addRepeatedField(field, value);
         }
         
         @Override
         public <Type> Builder setExtension(
-                final com.google.protobuf.GeneratedMessage.GeneratedExtension<
-                        VehiclePosition, Type> extension,
+                final GeneratedExtension<VehiclePosition, Type> extension, final Type value) {
+            return super.setExtension(extension, value);
+        }
+        
+        @Override
+        public <Type> Builder setExtension(
+                final GeneratedExtension<VehiclePosition, List<Type>> extension, final int index,
                 final Type value) {
-            return (Builder) super.setExtension(extension, value);
-        }
-        
-        @Override
-        public <Type> Builder setExtension(
-                final com.google.protobuf.GeneratedMessage.GeneratedExtension<
-                        VehiclePosition, java.util.List<Type>> extension,
-                final int index, final Type value) {
-            return (Builder) super.setExtension(extension, index, value);
+            return super.setExtension(extension, index, value);
         }
         
         @Override
         public <Type> Builder addExtension(
-                final com.google.protobuf.GeneratedMessage.GeneratedExtension<
-                        VehiclePosition, java.util.List<Type>> extension,
-                final Type value) {
-            return (Builder) super.addExtension(extension, value);
+                final GeneratedExtension<VehiclePosition, List<Type>> extension, final Type value) {
+            return super.addExtension(extension, value);
         }
         
         @Override
         public <Type> Builder clearExtension(
-                final com.google.protobuf.GeneratedMessage.GeneratedExtension<
-                        VehiclePosition, ?> extension) {
-            return (Builder) super.clearExtension(extension);
+                final GeneratedExtension<VehiclePosition, ?> extension) {
+            return super.clearExtension(extension);
         }
         
         @Override
-        public Builder mergeFrom(final com.google.protobuf.Message other) {
+        public Builder mergeFrom(final Message other) {
             if (other instanceof VehiclePosition) {
                 return mergeFrom((VehiclePosition) other);
             } else {
@@ -1299,7 +1211,7 @@ public final class VehiclePosition extends
         }
         
         public Builder mergeFrom(final VehiclePosition other) {
-            if (other == VehiclePosition.getDefaultInstance()) {return this;}
+            if (other == getDefaultInstance()) {return this;}
             if (other.hasTrip()) {
                 mergeTrip(other.getTrip());
             }
@@ -1349,21 +1261,16 @@ public final class VehiclePosition extends
                     return false;
                 }
             }
-            if (!extensionsAreInitialized()) {
-                return false;
-            }
-            return true;
+            return extensionsAreInitialized();
         }
         
         @Override
-        public Builder mergeFrom(
-                final com.google.protobuf.CodedInputStream input,
-                final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws java.io.IOException {
+        public Builder mergeFrom(final CodedInputStream input,
+                final ExtensionRegistryLite extensionRegistry) throws IOException {
             VehiclePosition parsedMessage = null;
             try {
                 parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-            } catch (final com.google.protobuf.InvalidProtocolBufferException e) {
+            } catch (final InvalidProtocolBufferException e) {
                 parsedMessage = (VehiclePosition) e.getUnfinishedMessage();
                 throw e.unwrapIOException();
             } finally {
@@ -1377,8 +1284,9 @@ public final class VehiclePosition extends
         private int bitField0_;
         
         private TripDescriptor trip_ = null;
-        private com.google.protobuf.SingleFieldBuilderV3<
-                TripDescriptor, TripDescriptor.Builder, TripDescriptorOrBuilder> tripBuilder_;
+        private SingleFieldBuilderV3<TripDescriptor, TripDescriptor.Builder, 
+                TripDescriptorOrBuilder>
+                tripBuilder_;
         
         /**
          * <pre>
@@ -1423,9 +1331,7 @@ public final class VehiclePosition extends
          */
         public Builder setTrip(final TripDescriptor value) {
             if (tripBuilder_ == null) {
-                if (value == null) {
-                    throw new NullPointerException();
-                }
+                Objects.requireNonNull(value);
                 trip_ = value;
                 onChanged();
             } else {
@@ -1444,8 +1350,7 @@ public final class VehiclePosition extends
          * <p>
          * <code>optional .transit_realtime.TripDescriptor trip = 1;</code>
          */
-        public Builder setTrip(
-                final TripDescriptor.Builder builderForValue) {
+        public Builder setTrip(final TripDescriptor.Builder builderForValue) {
             if (tripBuilder_ == null) {
                 trip_ = builderForValue.build();
                 onChanged();
@@ -1467,11 +1372,9 @@ public final class VehiclePosition extends
          */
         public Builder mergeTrip(final TripDescriptor value) {
             if (tripBuilder_ == null) {
-                if (((bitField0_ & 0x00000001) == 0x00000001) &&
-                        trip_ != null &&
-                        trip_ != TripDescriptor.getDefaultInstance()) {
-                    trip_ =
-                            TripDescriptor.newBuilder(trip_).mergeFrom(value).buildPartial();
+                if (((bitField0_ & 0x00000001) == 0x00000001) && trip_ != null
+                        && trip_ != TripDescriptor.getDefaultInstance()) {
+                    trip_ = TripDescriptor.newBuilder(trip_).mergeFrom(value).buildPartial();
                 } else {
                     trip_ = value;
                 }
@@ -1532,8 +1435,7 @@ public final class VehiclePosition extends
             if (tripBuilder_ != null) {
                 return tripBuilder_.getMessageOrBuilder();
             } else {
-                return trip_ == null ?
-                        TripDescriptor.getDefaultInstance() : trip_;
+                return trip_ == null ? TripDescriptor.getDefaultInstance() : trip_;
             }
         }
         
@@ -1546,22 +1448,19 @@ public final class VehiclePosition extends
          * <p>
          * <code>optional .transit_realtime.TripDescriptor trip = 1;</code>
          */
-        private com.google.protobuf.SingleFieldBuilderV3<
-                TripDescriptor, TripDescriptor.Builder, TripDescriptorOrBuilder>
-        getTripFieldBuilder() {
+        private SingleFieldBuilderV3<TripDescriptor, TripDescriptor.Builder, 
+                TripDescriptorOrBuilder> getTripFieldBuilder() {
             if (tripBuilder_ == null) {
-                tripBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
-                        getTrip(),
-                        getParentForChildren(),
-                        isClean());
+                tripBuilder_ =
+                        new SingleFieldBuilderV3<>(getTrip(), getParentForChildren(), isClean());
                 trip_ = null;
             }
             return tripBuilder_;
         }
         
         private VehicleDescriptor vehicle_ = null;
-        private com.google.protobuf.SingleFieldBuilderV3<
-                VehicleDescriptor, VehicleDescriptor.Builder, VehicleDescriptorOrBuilder>
+        private SingleFieldBuilderV3<VehicleDescriptor, VehicleDescriptor.Builder, 
+                VehicleDescriptorOrBuilder>
                 vehicleBuilder_;
         
         /**
@@ -1601,9 +1500,7 @@ public final class VehiclePosition extends
          */
         public Builder setVehicle(final VehicleDescriptor value) {
             if (vehicleBuilder_ == null) {
-                if (value == null) {
-                    throw new NullPointerException();
-                }
+                Objects.requireNonNull(value);
                 vehicle_ = value;
                 onChanged();
             } else {
@@ -1620,8 +1517,7 @@ public final class VehiclePosition extends
          * <p>
          * <code>optional .transit_realtime.VehicleDescriptor vehicle = 8;</code>
          */
-        public Builder setVehicle(
-                final VehicleDescriptor.Builder builderForValue) {
+        public Builder setVehicle(final VehicleDescriptor.Builder builderForValue) {
             if (vehicleBuilder_ == null) {
                 vehicle_ = builderForValue.build();
                 onChanged();
@@ -1641,9 +1537,8 @@ public final class VehiclePosition extends
          */
         public Builder mergeVehicle(final VehicleDescriptor value) {
             if (vehicleBuilder_ == null) {
-                if (((bitField0_ & 0x00000002) == 0x00000002) &&
-                        vehicle_ != null &&
-                        vehicle_ != VehicleDescriptor.getDefaultInstance()) {
+                if (((bitField0_ & 0x00000002) == 0x00000002) && vehicle_ != null
+                        && vehicle_ != VehicleDescriptor.getDefaultInstance()) {
                     vehicle_ =
                             VehicleDescriptor.newBuilder(vehicle_).mergeFrom(value).buildPartial();
                 } else {
@@ -1700,8 +1595,7 @@ public final class VehiclePosition extends
             if (vehicleBuilder_ != null) {
                 return vehicleBuilder_.getMessageOrBuilder();
             } else {
-                return vehicle_ == null ?
-                        VehicleDescriptor.getDefaultInstance() : vehicle_;
+                return vehicle_ == null ? VehicleDescriptor.getDefaultInstance() : vehicle_;
             }
         }
         
@@ -1712,22 +1606,19 @@ public final class VehiclePosition extends
          * <p>
          * <code>optional .transit_realtime.VehicleDescriptor vehicle = 8;</code>
          */
-        private com.google.protobuf.SingleFieldBuilderV3<
-                VehicleDescriptor, VehicleDescriptor.Builder, VehicleDescriptorOrBuilder>
-        getVehicleFieldBuilder() {
+        private SingleFieldBuilderV3<VehicleDescriptor, VehicleDescriptor.Builder, 
+                VehicleDescriptorOrBuilder> getVehicleFieldBuilder() {
             if (vehicleBuilder_ == null) {
-                vehicleBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
-                        getVehicle(),
-                        getParentForChildren(),
-                        isClean());
+                vehicleBuilder_ =
+                        new SingleFieldBuilderV3<>(getVehicle(), getParentForChildren(), isClean());
                 vehicle_ = null;
             }
             return vehicleBuilder_;
         }
         
         private Position position_ = null;
-        private com.google.protobuf.SingleFieldBuilderV3<
-                Position, Position.Builder, PositionOrBuilder> positionBuilder_;
+        private SingleFieldBuilderV3<Position, Position.Builder, PositionOrBuilder>
+                positionBuilder_;
         
         /**
          * <pre>
@@ -1766,9 +1657,7 @@ public final class VehiclePosition extends
          */
         public Builder setPosition(final Position value) {
             if (positionBuilder_ == null) {
-                if (value == null) {
-                    throw new NullPointerException();
-                }
+                Objects.requireNonNull(value);
                 position_ = value;
                 onChanged();
             } else {
@@ -1785,8 +1674,7 @@ public final class VehiclePosition extends
          * <p>
          * <code>optional .transit_realtime.Position position = 2;</code>
          */
-        public Builder setPosition(
-                final Position.Builder builderForValue) {
+        public Builder setPosition(final Position.Builder builderForValue) {
             if (positionBuilder_ == null) {
                 position_ = builderForValue.build();
                 onChanged();
@@ -1806,11 +1694,9 @@ public final class VehiclePosition extends
          */
         public Builder mergePosition(final Position value) {
             if (positionBuilder_ == null) {
-                if (((bitField0_ & 0x00000004) == 0x00000004) &&
-                        position_ != null &&
-                        position_ != Position.getDefaultInstance()) {
-                    position_ =
-                            Position.newBuilder(position_).mergeFrom(value).buildPartial();
+                if (((bitField0_ & 0x00000004) == 0x00000004) && position_ != null
+                        && position_ != Position.getDefaultInstance()) {
+                    position_ = Position.newBuilder(position_).mergeFrom(value).buildPartial();
                 } else {
                     position_ = value;
                 }
@@ -1865,8 +1751,7 @@ public final class VehiclePosition extends
             if (positionBuilder_ != null) {
                 return positionBuilder_.getMessageOrBuilder();
             } else {
-                return position_ == null ?
-                        Position.getDefaultInstance() : position_;
+                return position_ == null ? Position.getDefaultInstance() : position_;
             }
         }
         
@@ -1877,13 +1762,10 @@ public final class VehiclePosition extends
          * <p>
          * <code>optional .transit_realtime.Position position = 2;</code>
          */
-        private com.google.protobuf.SingleFieldBuilderV3<
-                Position, Position.Builder, PositionOrBuilder>
+        private SingleFieldBuilderV3<Position, Position.Builder, PositionOrBuilder> 
         getPositionFieldBuilder() {
             if (positionBuilder_ == null) {
-                positionBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
-                        getPosition(),
-                        getParentForChildren(),
+                positionBuilder_ = new SingleFieldBuilderV3<>(getPosition(), getParentForChildren(),
                         isClean());
                 position_ = null;
             }
@@ -1956,7 +1838,7 @@ public final class VehiclePosition extends
             return this;
         }
         
-        private java.lang.Object stopId_ = "";
+        private @Setter(AccessLevel.PRIVATE) Object stopId_ = "";
         
         /**
          * <pre>
@@ -1980,19 +1862,8 @@ public final class VehiclePosition extends
          * <code>optional string stop_id = 7;</code>
          */
         @Override
-        public java.lang.String getStopId() {
-            final java.lang.Object ref = stopId_;
-            if (!(ref instanceof java.lang.String)) {
-                final com.google.protobuf.ByteString bs =
-                        (com.google.protobuf.ByteString) ref;
-                final java.lang.String s = bs.toStringUtf8();
-                if (bs.isValidUtf8()) {
-                    stopId_ = s;
-                }
-                return s;
-            } else {
-                return (java.lang.String) ref;
-            }
+        public String getStopId() {
+            return ProtoUtils.asString(stopId_, this::setStopId_);
         }
         
         /**
@@ -2004,18 +1875,8 @@ public final class VehiclePosition extends
          * <code>optional string stop_id = 7;</code>
          */
         @Override
-        public com.google.protobuf.ByteString
-        getStopIdBytes() {
-            final java.lang.Object ref = stopId_;
-            if (ref instanceof String) {
-                final com.google.protobuf.ByteString b =
-                        com.google.protobuf.ByteString.copyFromUtf8(
-                                (java.lang.String) ref);
-                stopId_ = b;
-                return b;
-            } else {
-                return (com.google.protobuf.ByteString) ref;
-            }
+        public ByteString getStopIdBytes() {
+            return ProtoUtils.asBytes(stopId_, this::setStopId_);
         }
         
         /**
@@ -2026,11 +1887,8 @@ public final class VehiclePosition extends
          * <p>
          * <code>optional string stop_id = 7;</code>
          */
-        public Builder setStopId(
-                final java.lang.String value) {
-            if (value == null) {
-                throw new NullPointerException();
-            }
+        public Builder setStopId(final String value) {
+            Objects.requireNonNull(value);
             bitField0_ |= 0x00000010;
             stopId_ = value;
             onChanged();
@@ -2060,11 +1918,8 @@ public final class VehiclePosition extends
          * <p>
          * <code>optional string stop_id = 7;</code>
          */
-        public Builder setStopIdBytes(
-                final com.google.protobuf.ByteString value) {
-            if (value == null) {
-                throw new NullPointerException();
-            }
+        public Builder setStopIdBytes(final ByteString value) {
+            Objects.requireNonNull(value);
             bitField0_ |= 0x00000010;
             stopId_ = value;
             onChanged();
@@ -2097,10 +1952,9 @@ public final class VehiclePosition extends
          * [default = IN_TRANSIT_TO];</code>
          */
         @Override
-        public VehiclePosition.VehicleStopStatus getCurrentStatus() {
-            final VehiclePosition.VehicleStopStatus result =
-                    VehiclePosition.VehicleStopStatus.valueOf(currentStatus_);
-            return result == null ? VehiclePosition.VehicleStopStatus.IN_TRANSIT_TO : result;
+        public VehicleStopStatus getCurrentStatus() {
+            final VehicleStopStatus result = VehicleStopStatus.valueOf(currentStatus_);
+            return result == null ? VehicleStopStatus.IN_TRANSIT_TO : result;
         }
         
         /**
@@ -2112,10 +1966,8 @@ public final class VehiclePosition extends
          * <code>optional .transit_realtime.VehiclePosition.VehicleStopStatus current_status = 4
          * [default = IN_TRANSIT_TO];</code>
          */
-        public Builder setCurrentStatus(final VehiclePosition.VehicleStopStatus value) {
-            if (value == null) {
-                throw new NullPointerException();
-            }
+        public Builder setCurrentStatus(final VehicleStopStatus value) {
+            Objects.requireNonNull(value);
             bitField0_ |= 0x00000020;
             currentStatus_ = value.getNumber();
             onChanged();
@@ -2212,21 +2064,17 @@ public final class VehiclePosition extends
          * </code>
          */
         @Override
-        public VehiclePosition.CongestionLevel getCongestionLevel() {
-            final VehiclePosition.CongestionLevel result =
-                    VehiclePosition.CongestionLevel.valueOf(congestionLevel_);
-            return result == null ? VehiclePosition.CongestionLevel.UNKNOWN_CONGESTION_LEVEL
-                    : result;
+        public CongestionLevel getCongestionLevel() {
+            final CongestionLevel result = CongestionLevel.valueOf(congestionLevel_);
+            return result == null ? CongestionLevel.UNKNOWN_CONGESTION_LEVEL : result;
         }
         
         /**
          * <code>optional .transit_realtime.VehiclePosition.CongestionLevel congestion_level = 6;
          * </code>
          */
-        public Builder setCongestionLevel(final VehiclePosition.CongestionLevel value) {
-            if (value == null) {
-                throw new NullPointerException();
-            }
+        public Builder setCongestionLevel(final CongestionLevel value) {
+            Objects.requireNonNull(value);
             bitField0_ |= 0x00000080;
             congestionLevel_ = value.getNumber();
             onChanged();
@@ -2245,14 +2093,12 @@ public final class VehiclePosition extends
         }
         
         @Override
-        public final Builder setUnknownFields(
-                final com.google.protobuf.UnknownFieldSet unknownFields) {
+        public final Builder setUnknownFields(final UnknownFieldSet unknownFields) {
             return super.setUnknownFields(unknownFields);
         }
         
         @Override
-        public final Builder mergeUnknownFields(
-                final com.google.protobuf.UnknownFieldSet unknownFields) {
+        public final Builder mergeUnknownFields(final UnknownFieldSet unknownFields) {
             return super.mergeUnknownFields(unknownFields);
         }
         
@@ -2271,24 +2117,22 @@ public final class VehiclePosition extends
         return DEFAULT_INSTANCE;
     }
     
-    @java.lang.Deprecated public static final com.google.protobuf.Parser<VehiclePosition>
-            PARSER = new com.google.protobuf.AbstractParser<>() {
+    @Deprecated public static final Parser<VehiclePosition> PARSER = new AbstractParser<>() {
         
         @Override
-        public VehiclePosition parsePartialFrom(
-                final com.google.protobuf.CodedInputStream input,
-                final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws com.google.protobuf.InvalidProtocolBufferException {
+        public VehiclePosition parsePartialFrom(final CodedInputStream input,
+                final ExtensionRegistryLite extensionRegistry)
+                throws InvalidProtocolBufferException {
             return new VehiclePosition(input, extensionRegistry);
         }
     };
     
-    public static com.google.protobuf.Parser<VehiclePosition> parser() {
+    public static Parser<VehiclePosition> parser() {
         return PARSER;
     }
     
-    @java.lang.Override
-    public com.google.protobuf.Parser<VehiclePosition> getParserForType() {
+    @Override
+    public Parser<VehiclePosition> getParserForType() {
         return PARSER;
     }
     
@@ -2298,4 +2142,3 @@ public final class VehiclePosition extends
     }
     
 }
-

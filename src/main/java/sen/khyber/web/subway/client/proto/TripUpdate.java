@@ -3,6 +3,43 @@
 
 package sen.khyber.web.subway.client.proto;
 
+import sen.khyber.proto.ProtoUtils;
+import sen.khyber.web.subway.client.proto.TripUpdate.StopTimeUpdate.ScheduleRelationship;
+
+import lombok.AccessLevel;
+import lombok.Setter;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.ByteBuffer;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+import com.google.protobuf.AbstractMessageLite;
+import com.google.protobuf.AbstractParser;
+import com.google.protobuf.ByteString;
+import com.google.protobuf.CodedInputStream;
+import com.google.protobuf.CodedOutputStream;
+import com.google.protobuf.Descriptors.Descriptor;
+import com.google.protobuf.Descriptors.EnumDescriptor;
+import com.google.protobuf.Descriptors.EnumValueDescriptor;
+import com.google.protobuf.Descriptors.FieldDescriptor;
+import com.google.protobuf.Descriptors.OneofDescriptor;
+import com.google.protobuf.ExtensionRegistryLite;
+import com.google.protobuf.GeneratedMessage.GeneratedExtension;
+import com.google.protobuf.GeneratedMessageV3;
+import com.google.protobuf.GeneratedMessageV3.ExtendableMessage;
+import com.google.protobuf.Internal;
+import com.google.protobuf.Internal.EnumLiteMap;
+import com.google.protobuf.InvalidProtocolBufferException;
+import com.google.protobuf.Message;
+import com.google.protobuf.Parser;
+import com.google.protobuf.ProtocolMessageEnum;
+import com.google.protobuf.RepeatedFieldBuilderV3;
+import com.google.protobuf.SingleFieldBuilderV3;
+import com.google.protobuf.UnknownFieldSet;
+
 /**
  * <pre>
  * Realtime update of the progress of a vehicle along a trip.
@@ -33,39 +70,30 @@ package sen.khyber.web.subway.client.proto;
  * <p>
  * Protobuf type {@code transit_realtime.TripUpdate}
  */
-public final class TripUpdate extends
-        com.google.protobuf.GeneratedMessageV3.ExtendableMessage<
-                TripUpdate> implements
-        // @@protoc_insertion_point(message_implements:transit_realtime.TripUpdate)
-        TripUpdateOrBuilder {
+public final class TripUpdate extends ExtendableMessage<TripUpdate> implements TripUpdateOrBuilder {
     
     private static final long serialVersionUID = 0L;
     
     // Use TripUpdate.newBuilder() to construct.
-    private TripUpdate(
-            final com.google.protobuf.GeneratedMessageV3.ExtendableBuilder<TripUpdate, ?> builder) {
+    private TripUpdate(final ExtendableBuilder<TripUpdate, ?> builder) {
         super(builder);
     }
     
     private TripUpdate() {
-        stopTimeUpdate_ = java.util.Collections.emptyList();
+        stopTimeUpdate_ = Collections.emptyList();
         timestamp_ = 0L;
     }
     
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
+    @Override
+    public final UnknownFieldSet getUnknownFields() {
         return unknownFields;
     }
     
-    private TripUpdate(
-            final com.google.protobuf.CodedInputStream input,
-            final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
+    private TripUpdate(final CodedInputStream input, final ExtensionRegistryLite extensionRegistry)
+            throws InvalidProtocolBufferException {
         this();
         int mutable_bitField0_ = 0;
-        final com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-                com.google.protobuf.UnknownFieldSet.newBuilder();
+        final UnknownFieldSet.Builder unknownFields = UnknownFieldSet.newBuilder();
         try {
             boolean done = false;
             while (!done) {
@@ -75,8 +103,7 @@ public final class TripUpdate extends
                         done = true;
                         break;
                     default: {
-                        if (!parseUnknownField(
-                                input, unknownFields, extensionRegistry, tag)) {
+                        if (!parseUnknownField(input, unknownFields, extensionRegistry, tag)) {
                             done = true;
                         }
                         break;
@@ -96,12 +123,11 @@ public final class TripUpdate extends
                     }
                     case 18: {
                         if (!((mutable_bitField0_ & 0x00000004) == 0x00000004)) {
-                            stopTimeUpdate_ = new java.util.ArrayList<>();
+                            stopTimeUpdate_ = new ArrayList<>();
                             mutable_bitField0_ |= 0x00000004;
                         }
-                        stopTimeUpdate_.add(
-                                input.readMessage(TripUpdate.StopTimeUpdate.PARSER,
-                                        extensionRegistry));
+                        stopTimeUpdate_
+                                .add(input.readMessage(StopTimeUpdate.PARSER, extensionRegistry));
                         break;
                     }
                     case 26: {
@@ -124,37 +150,32 @@ public final class TripUpdate extends
                     }
                 }
             }
-        } catch (final com.google.protobuf.InvalidProtocolBufferException e) {
+        } catch (final InvalidProtocolBufferException e) {
             throw e.setUnfinishedMessage(this);
-        } catch (final java.io.IOException e) {
-            throw new com.google.protobuf.InvalidProtocolBufferException(
-                    e).setUnfinishedMessage(this);
+        } catch (final IOException e) {
+            throw new InvalidProtocolBufferException(e).setUnfinishedMessage(this);
         } finally {
             if (((mutable_bitField0_ & 0x00000004) == 0x00000004)) {
-                stopTimeUpdate_ = java.util.Collections.unmodifiableList(stopTimeUpdate_);
+                stopTimeUpdate_ = Collections.unmodifiableList(stopTimeUpdate_);
             }
             this.unknownFields = unknownFields.build();
             makeExtensionsImmutable();
         }
     }
     
-    public static final com.google.protobuf.Descriptors.Descriptor
-    getDescriptor() {
+    public static final Descriptor getDescriptor() {
         return GtfsRealtime.internal_static_transit_realtime_TripUpdate_descriptor;
     }
     
     @Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-    internalGetFieldAccessorTable() {
+    protected FieldAccessorTable internalGetFieldAccessorTable() {
         return GtfsRealtime.internal_static_transit_realtime_TripUpdate_fieldAccessorTable
-                .ensureFieldAccessorsInitialized(
-                        TripUpdate.class, TripUpdate.Builder.class);
+                .ensureFieldAccessorsInitialized(TripUpdate.class, Builder.class);
     }
     
     public interface StopTimeEventOrBuilder extends
             // @@protoc_insertion_point(interface_extends:transit_realtime.TripUpdate.StopTimeEvent)
-            com.google.protobuf.GeneratedMessageV3.
-                    ExtendableMessageOrBuilder<StopTimeEvent> {
+            ExtendableMessageOrBuilder<StopTimeEvent> {
         
         /**
          * <pre>
@@ -245,9 +266,7 @@ public final class TripUpdate extends
      * <p>
      * Protobuf type {@code transit_realtime.TripUpdate.StopTimeEvent}
      */
-    public static final class StopTimeEvent extends
-            com.google.protobuf.GeneratedMessageV3.ExtendableMessage<
-                    StopTimeEvent> implements
+    public static final class StopTimeEvent extends ExtendableMessage<StopTimeEvent> implements
             // @@protoc_insertion_point(message_implements:transit_realtime.TripUpdate
             // .StopTimeEvent)
             StopTimeEventOrBuilder {
@@ -255,9 +274,7 @@ public final class TripUpdate extends
         private static final long serialVersionUID = 0L;
         
         // Use StopTimeEvent.newBuilder() to construct.
-        private StopTimeEvent(
-                final com.google.protobuf.GeneratedMessageV3.ExtendableBuilder<TripUpdate
-                        .StopTimeEvent, ?> builder) {
+        private StopTimeEvent(final ExtendableBuilder<StopTimeEvent, ?> builder) {
             super(builder);
         }
         
@@ -267,20 +284,17 @@ public final class TripUpdate extends
             uncertainty_ = 0;
         }
         
-        @java.lang.Override
-        public final com.google.protobuf.UnknownFieldSet
-        getUnknownFields() {
+        @Override
+        public final UnknownFieldSet getUnknownFields() {
             return unknownFields;
         }
         
-        private StopTimeEvent(
-                final com.google.protobuf.CodedInputStream input,
-                final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws com.google.protobuf.InvalidProtocolBufferException {
+        private StopTimeEvent(final CodedInputStream input,
+                final ExtensionRegistryLite extensionRegistry)
+                throws InvalidProtocolBufferException {
             this();
             final int mutable_bitField0_ = 0;
-            final com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-                    com.google.protobuf.UnknownFieldSet.newBuilder();
+            final UnknownFieldSet.Builder unknownFields = UnknownFieldSet.newBuilder();
             try {
                 boolean done = false;
                 while (!done) {
@@ -290,8 +304,7 @@ public final class TripUpdate extends
                             done = true;
                             break;
                         default: {
-                            if (!parseUnknownField(
-                                    input, unknownFields, extensionRegistry, tag)) {
+                            if (!parseUnknownField(input, unknownFields, extensionRegistry, tag)) {
                                 done = true;
                             }
                             break;
@@ -313,30 +326,26 @@ public final class TripUpdate extends
                         }
                     }
                 }
-            } catch (final com.google.protobuf.InvalidProtocolBufferException e) {
+            } catch (final InvalidProtocolBufferException e) {
                 throw e.setUnfinishedMessage(this);
-            } catch (final java.io.IOException e) {
-                throw new com.google.protobuf.InvalidProtocolBufferException(
-                        e).setUnfinishedMessage(this);
+            } catch (final IOException e) {
+                throw new InvalidProtocolBufferException(e).setUnfinishedMessage(this);
             } finally {
                 this.unknownFields = unknownFields.build();
                 makeExtensionsImmutable();
             }
         }
         
-        public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
+        public static final Descriptor getDescriptor() {
             return GtfsRealtime
                     .internal_static_transit_realtime_TripUpdate_StopTimeEvent_descriptor;
         }
         
         @Override
-        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
+        protected FieldAccessorTable internalGetFieldAccessorTable() {
             return GtfsRealtime
                     .internal_static_transit_realtime_TripUpdate_StopTimeEvent_fieldAccessorTable
-                    .ensureFieldAccessorsInitialized(
-                            TripUpdate.StopTimeEvent.class, TripUpdate.StopTimeEvent.Builder.class);
+                    .ensureFieldAccessorsInitialized(StopTimeEvent.class, Builder.class);
         }
         
         private int bitField0_;
@@ -452,11 +461,9 @@ public final class TripUpdate extends
         }
         
         @Override
-        public void writeTo(final com.google.protobuf.CodedOutputStream output)
-                throws java.io.IOException {
-            final com.google.protobuf.GeneratedMessageV3
-                    .ExtendableMessage<TripUpdate.StopTimeEvent>.ExtensionWriter
-                    extensionWriter = newExtensionWriter();
+        public void writeTo(final CodedOutputStream output) throws IOException {
+            final ExtendableMessage<StopTimeEvent>.ExtensionWriter extensionWriter =
+                    newExtensionWriter();
             if (((bitField0_ & 0x00000001) == 0x00000001)) {
                 output.writeInt32(1, delay_);
             }
@@ -477,16 +484,13 @@ public final class TripUpdate extends
             
             size = 0;
             if (((bitField0_ & 0x00000001) == 0x00000001)) {
-                size += com.google.protobuf.CodedOutputStream
-                        .computeInt32Size(1, delay_);
+                size += CodedOutputStream.computeInt32Size(1, delay_);
             }
             if (((bitField0_ & 0x00000002) == 0x00000002)) {
-                size += com.google.protobuf.CodedOutputStream
-                        .computeInt64Size(2, time_);
+                size += CodedOutputStream.computeInt64Size(2, time_);
             }
             if (((bitField0_ & 0x00000004) == 0x00000004)) {
-                size += com.google.protobuf.CodedOutputStream
-                        .computeInt32Size(3, uncertainty_);
+                size += CodedOutputStream.computeInt32Size(3, uncertainty_);
             }
             size += extensionsSerializedSize();
             size += unknownFields.getSerializedSize();
@@ -494,39 +498,35 @@ public final class TripUpdate extends
             return size;
         }
         
-        @java.lang.Override
-        public boolean equals(final java.lang.Object obj) {
+        @Override
+        public boolean equals(final Object obj) {
             if (obj == this) {
                 return true;
             }
-            if (!(obj instanceof TripUpdate.StopTimeEvent)) {
+            if (!(obj instanceof StopTimeEvent)) {
                 return super.equals(obj);
             }
-            final TripUpdate.StopTimeEvent other = (TripUpdate.StopTimeEvent) obj;
+            final StopTimeEvent other = (StopTimeEvent) obj;
             
             boolean result = true;
             result = result && (hasDelay() == other.hasDelay());
             if (hasDelay()) {
-                result = result && (getDelay()
-                        == other.getDelay());
+                result = result && (getDelay() == other.getDelay());
             }
             result = result && (hasTime() == other.hasTime());
             if (hasTime()) {
-                result = result && (getTime()
-                        == other.getTime());
+                result = result && (getTime() == other.getTime());
             }
             result = result && (hasUncertainty() == other.hasUncertainty());
             if (hasUncertainty()) {
-                result = result && (getUncertainty()
-                        == other.getUncertainty());
+                result = result && (getUncertainty() == other.getUncertainty());
             }
             result = result && unknownFields.equals(other.unknownFields);
-            result = result &&
-                    getExtensionFields().equals(other.getExtensionFields());
+            result = result && getExtensionFields().equals(other.getExtensionFields());
             return result;
         }
         
-        @java.lang.Override
+        @Override
         public int hashCode() {
             if (memoizedHashCode != 0) {
                 return memoizedHashCode;
@@ -539,8 +539,7 @@ public final class TripUpdate extends
             }
             if (hasTime()) {
                 hash = (37 * hash) + TIME_FIELD_NUMBER;
-                hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-                        getTime());
+                hash = (53 * hash) + Internal.hashLong(getTime());
             }
             if (hasUncertainty()) {
                 hash = (37 * hash) + UNCERTAINTY_FIELD_NUMBER;
@@ -552,85 +551,65 @@ public final class TripUpdate extends
             return hash;
         }
         
-        public static TripUpdate.StopTimeEvent parseFrom(
-                final java.nio.ByteBuffer data)
-                throws com.google.protobuf.InvalidProtocolBufferException {
+        public static StopTimeEvent parseFrom(final ByteBuffer data)
+                throws InvalidProtocolBufferException {
             return PARSER.parseFrom(data);
         }
         
-        public static TripUpdate.StopTimeEvent parseFrom(
-                final java.nio.ByteBuffer data,
-                final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws com.google.protobuf.InvalidProtocolBufferException {
+        public static StopTimeEvent parseFrom(final ByteBuffer data,
+                final ExtensionRegistryLite extensionRegistry)
+                throws InvalidProtocolBufferException {
             return PARSER.parseFrom(data, extensionRegistry);
         }
         
-        public static TripUpdate.StopTimeEvent parseFrom(
-                final com.google.protobuf.ByteString data)
-                throws com.google.protobuf.InvalidProtocolBufferException {
+        public static StopTimeEvent parseFrom(final ByteString data)
+                throws InvalidProtocolBufferException {
             return PARSER.parseFrom(data);
         }
         
-        public static TripUpdate.StopTimeEvent parseFrom(
-                final com.google.protobuf.ByteString data,
-                final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws com.google.protobuf.InvalidProtocolBufferException {
+        public static StopTimeEvent parseFrom(final ByteString data,
+                final ExtensionRegistryLite extensionRegistry)
+                throws InvalidProtocolBufferException {
             return PARSER.parseFrom(data, extensionRegistry);
         }
         
-        public static TripUpdate.StopTimeEvent parseFrom(final byte[] data)
-                throws com.google.protobuf.InvalidProtocolBufferException {
+        public static StopTimeEvent parseFrom(final byte[] data)
+                throws InvalidProtocolBufferException {
             return PARSER.parseFrom(data);
         }
         
-        public static TripUpdate.StopTimeEvent parseFrom(
-                final byte[] data,
-                final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws com.google.protobuf.InvalidProtocolBufferException {
+        public static StopTimeEvent parseFrom(final byte[] data,
+                final ExtensionRegistryLite extensionRegistry)
+                throws InvalidProtocolBufferException {
             return PARSER.parseFrom(data, extensionRegistry);
         }
         
-        public static TripUpdate.StopTimeEvent parseFrom(final java.io.InputStream input)
-                throws java.io.IOException {
-            return com.google.protobuf.GeneratedMessageV3
-                    .parseWithIOException(PARSER, input);
+        public static StopTimeEvent parseFrom(final InputStream input) throws IOException {
+            return GeneratedMessageV3.parseWithIOException(PARSER, input);
         }
         
-        public static TripUpdate.StopTimeEvent parseFrom(
-                final java.io.InputStream input,
-                final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws java.io.IOException {
-            return com.google.protobuf.GeneratedMessageV3
-                    .parseWithIOException(PARSER, input, extensionRegistry);
+        public static StopTimeEvent parseFrom(final InputStream input,
+                final ExtensionRegistryLite extensionRegistry) throws IOException {
+            return GeneratedMessageV3.parseWithIOException(PARSER, input, extensionRegistry);
         }
         
-        public static TripUpdate.StopTimeEvent parseDelimitedFrom(final java.io.InputStream input)
-                throws java.io.IOException {
-            return com.google.protobuf.GeneratedMessageV3
-                    .parseDelimitedWithIOException(PARSER, input);
+        public static StopTimeEvent parseDelimitedFrom(final InputStream input) throws IOException {
+            return GeneratedMessageV3.parseDelimitedWithIOException(PARSER, input);
         }
         
-        public static TripUpdate.StopTimeEvent parseDelimitedFrom(
-                final java.io.InputStream input,
-                final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws java.io.IOException {
-            return com.google.protobuf.GeneratedMessageV3
+        public static StopTimeEvent parseDelimitedFrom(final InputStream input,
+                final ExtensionRegistryLite extensionRegistry) throws IOException {
+            return GeneratedMessageV3
                     .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
         }
         
-        public static TripUpdate.StopTimeEvent parseFrom(
-                final com.google.protobuf.CodedInputStream input)
-                throws java.io.IOException {
-            return com.google.protobuf.GeneratedMessageV3
-                    .parseWithIOException(PARSER, input);
+        public static StopTimeEvent parseFrom(final CodedInputStream input) throws IOException {
+            return GeneratedMessageV3.parseWithIOException(PARSER, input);
         }
         
-        public static TripUpdate.StopTimeEvent parseFrom(
-                final com.google.protobuf.CodedInputStream input,
-                final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws java.io.IOException {
-            return com.google.protobuf.GeneratedMessageV3
-                    .parseWithIOException(PARSER, input, extensionRegistry);
+        public static StopTimeEvent parseFrom(final CodedInputStream input,
+                final ExtensionRegistryLite extensionRegistry) throws IOException {
+            return GeneratedMessageV3.parseWithIOException(PARSER, input, extensionRegistry);
         }
         
         @Override
@@ -640,19 +619,17 @@ public final class TripUpdate extends
             return DEFAULT_INSTANCE.toBuilder();
         }
         
-        public static Builder newBuilder(final TripUpdate.StopTimeEvent prototype) {
+        public static Builder newBuilder(final StopTimeEvent prototype) {
             return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
         }
         
         @Override
         public Builder toBuilder() {
-            return this == DEFAULT_INSTANCE
-                    ? new Builder() : new Builder().mergeFrom(this);
+            return this == DEFAULT_INSTANCE ? new Builder() : new Builder().mergeFrom(this);
         }
         
-        @java.lang.Override
-        protected Builder newBuilderForType(
-                final com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        @Override
+        protected Builder newBuilderForType(final BuilderParent parent) {
             final Builder builder = new Builder(parent);
             return builder;
         }
@@ -677,27 +654,22 @@ public final class TripUpdate extends
          * <p>
          * Protobuf type {@code transit_realtime.TripUpdate.StopTimeEvent}
          */
-        public static final class Builder extends
-                com.google.protobuf.GeneratedMessageV3.ExtendableBuilder<
-                        TripUpdate.StopTimeEvent, Builder> implements
+        public static final class Builder extends ExtendableBuilder<StopTimeEvent, Builder>
+                implements
                 // @@protoc_insertion_point(builder_implements:transit_realtime.TripUpdate
                 // .StopTimeEvent)
-                TripUpdate.StopTimeEventOrBuilder {
+                StopTimeEventOrBuilder {
             
-            public static final com.google.protobuf.Descriptors.Descriptor
-            getDescriptor() {
+            public static final Descriptor getDescriptor() {
                 return GtfsRealtime
                         .internal_static_transit_realtime_TripUpdate_StopTimeEvent_descriptor;
             }
             
             @Override
-            protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-            internalGetFieldAccessorTable() {
+            protected FieldAccessorTable internalGetFieldAccessorTable() {
                 return GtfsRealtime
                         .internal_static_transit_realtime_TripUpdate_StopTimeEvent_fieldAccessorTable
-                        .ensureFieldAccessorsInitialized(
-                                TripUpdate.StopTimeEvent.class,
-                                TripUpdate.StopTimeEvent.Builder.class);
+                        .ensureFieldAccessorsInitialized(StopTimeEvent.class, Builder.class);
             }
             
             // Construct using sen.khyber.subway.client.proto.TripUpdate.StopTimeEvent.newBuilder()
@@ -705,15 +677,13 @@ public final class TripUpdate extends
                 maybeForceBuilderInitialization();
             }
             
-            private Builder(
-                    final com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+            private Builder(final BuilderParent parent) {
                 super(parent);
                 maybeForceBuilderInitialization();
             }
             
             private void maybeForceBuilderInitialization() {
-                if (com.google.protobuf.GeneratedMessageV3
-                        .alwaysUseFieldBuilders) {
+                if (GeneratedMessageV3.alwaysUseFieldBuilders) {
                 }
             }
             
@@ -730,20 +700,19 @@ public final class TripUpdate extends
             }
             
             @Override
-            public com.google.protobuf.Descriptors.Descriptor
-            getDescriptorForType() {
+            public Descriptor getDescriptorForType() {
                 return GtfsRealtime
                         .internal_static_transit_realtime_TripUpdate_StopTimeEvent_descriptor;
             }
             
             @Override
-            public TripUpdate.StopTimeEvent getDefaultInstanceForType() {
-                return TripUpdate.StopTimeEvent.getDefaultInstance();
+            public StopTimeEvent getDefaultInstanceForType() {
+                return getDefaultInstance();
             }
             
             @Override
-            public TripUpdate.StopTimeEvent build() {
-                final TripUpdate.StopTimeEvent result = buildPartial();
+            public StopTimeEvent build() {
+                final StopTimeEvent result = buildPartial();
                 if (!result.isInitialized()) {
                     throw newUninitializedMessageException(result);
                 }
@@ -751,8 +720,8 @@ public final class TripUpdate extends
             }
             
             @Override
-            public TripUpdate.StopTimeEvent buildPartial() {
-                final TripUpdate.StopTimeEvent result = new TripUpdate.StopTimeEvent(this);
+            public StopTimeEvent buildPartial() {
+                final StopTimeEvent result = new StopTimeEvent(this);
                 final int from_bitField0_ = bitField0_;
                 int to_bitField0_ = 0;
                 if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
@@ -774,85 +743,73 @@ public final class TripUpdate extends
             
             @Override
             public Builder clone() {
-                return (Builder) super.clone();
+                return super.clone();
             }
             
             @Override
-            public Builder setField(
-                    final com.google.protobuf.Descriptors.FieldDescriptor field,
-                    final java.lang.Object value) {
-                return (Builder) super.setField(field, value);
+            public Builder setField(final FieldDescriptor field, final Object value) {
+                return super.setField(field, value);
             }
             
             @Override
-            public Builder clearField(
-                    final com.google.protobuf.Descriptors.FieldDescriptor field) {
-                return (Builder) super.clearField(field);
+            public Builder clearField(final FieldDescriptor field) {
+                return super.clearField(field);
             }
             
             @Override
-            public Builder clearOneof(
-                    final com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-                return (Builder) super.clearOneof(oneof);
+            public Builder clearOneof(final OneofDescriptor oneof) {
+                return super.clearOneof(oneof);
             }
             
             @Override
-            public Builder setRepeatedField(
-                    final com.google.protobuf.Descriptors.FieldDescriptor field,
-                    final int index, final java.lang.Object value) {
-                return (Builder) super.setRepeatedField(field, index, value);
+            public Builder setRepeatedField(final FieldDescriptor field, final int index,
+                    final Object value) {
+                return super.setRepeatedField(field, index, value);
             }
             
             @Override
-            public Builder addRepeatedField(
-                    final com.google.protobuf.Descriptors.FieldDescriptor field,
-                    final java.lang.Object value) {
-                return (Builder) super.addRepeatedField(field, value);
+            public Builder addRepeatedField(final FieldDescriptor field, final Object value) {
+                return super.addRepeatedField(field, value);
             }
             
             @Override
             public <Type> Builder setExtension(
-                    final com.google.protobuf.GeneratedMessage.GeneratedExtension<
-                            TripUpdate.StopTimeEvent, Type> extension,
+                    final GeneratedExtension<StopTimeEvent, Type> extension, final Type value) {
+                return super.setExtension(extension, value);
+            }
+            
+            @Override
+            public <Type> Builder setExtension(
+                    final GeneratedExtension<StopTimeEvent, List<Type>> extension, final int index,
                     final Type value) {
-                return (Builder) super.setExtension(extension, value);
-            }
-            
-            @Override
-            public <Type> Builder setExtension(
-                    final com.google.protobuf.GeneratedMessage.GeneratedExtension<
-                            TripUpdate.StopTimeEvent, java.util.List<Type>> extension,
-                    final int index, final Type value) {
-                return (Builder) super.setExtension(extension, index, value);
+                return super.setExtension(extension, index, value);
             }
             
             @Override
             public <Type> Builder addExtension(
-                    final com.google.protobuf.GeneratedMessage.GeneratedExtension<
-                            TripUpdate.StopTimeEvent, java.util.List<Type>> extension,
+                    final GeneratedExtension<StopTimeEvent, List<Type>> extension,
                     final Type value) {
-                return (Builder) super.addExtension(extension, value);
+                return super.addExtension(extension, value);
             }
             
             @Override
             public <Type> Builder clearExtension(
-                    final com.google.protobuf.GeneratedMessage.GeneratedExtension<
-                            TripUpdate.StopTimeEvent, ?> extension) {
-                return (Builder) super.clearExtension(extension);
+                    final GeneratedExtension<StopTimeEvent, ?> extension) {
+                return super.clearExtension(extension);
             }
             
             @Override
-            public Builder mergeFrom(final com.google.protobuf.Message other) {
-                if (other instanceof TripUpdate.StopTimeEvent) {
-                    return mergeFrom((TripUpdate.StopTimeEvent) other);
+            public Builder mergeFrom(final Message other) {
+                if (other instanceof StopTimeEvent) {
+                    return mergeFrom((StopTimeEvent) other);
                 } else {
                     super.mergeFrom(other);
                     return this;
                 }
             }
             
-            public Builder mergeFrom(final TripUpdate.StopTimeEvent other) {
-                if (other == TripUpdate.StopTimeEvent.getDefaultInstance()) {return this;}
+            public Builder mergeFrom(final StopTimeEvent other) {
+                if (other == getDefaultInstance()) {return this;}
                 if (other.hasDelay()) {
                     setDelay(other.getDelay());
                 }
@@ -870,22 +827,17 @@ public final class TripUpdate extends
             
             @Override
             public final boolean isInitialized() {
-                if (!extensionsAreInitialized()) {
-                    return false;
-                }
-                return true;
+                return extensionsAreInitialized();
             }
             
             @Override
-            public Builder mergeFrom(
-                    final com.google.protobuf.CodedInputStream input,
-                    final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                    throws java.io.IOException {
-                TripUpdate.StopTimeEvent parsedMessage = null;
+            public Builder mergeFrom(final CodedInputStream input,
+                    final ExtensionRegistryLite extensionRegistry) throws IOException {
+                StopTimeEvent parsedMessage = null;
                 try {
                     parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-                } catch (final com.google.protobuf.InvalidProtocolBufferException e) {
-                    parsedMessage = (TripUpdate.StopTimeEvent) e.getUnfinishedMessage();
+                } catch (final InvalidProtocolBufferException e) {
+                    parsedMessage = (StopTimeEvent) e.getUnfinishedMessage();
                     throw e.unwrapIOException();
                 } finally {
                     if (parsedMessage != null) {
@@ -1088,14 +1040,12 @@ public final class TripUpdate extends
             }
             
             @Override
-            public final Builder setUnknownFields(
-                    final com.google.protobuf.UnknownFieldSet unknownFields) {
+            public final Builder setUnknownFields(final UnknownFieldSet unknownFields) {
                 return super.setUnknownFields(unknownFields);
             }
             
             @Override
-            public final Builder mergeUnknownFields(
-                    final com.google.protobuf.UnknownFieldSet unknownFields) {
+            public final Builder mergeUnknownFields(final UnknownFieldSet unknownFields) {
                 return super.mergeUnknownFields(unknownFields);
             }
             
@@ -1104,39 +1054,37 @@ public final class TripUpdate extends
         }
         
         // @@protoc_insertion_point(class_scope:transit_realtime.TripUpdate.StopTimeEvent)
-        private static final TripUpdate.StopTimeEvent DEFAULT_INSTANCE;
+        private static final StopTimeEvent DEFAULT_INSTANCE;
         
         static {
-            DEFAULT_INSTANCE = new TripUpdate.StopTimeEvent();
+            DEFAULT_INSTANCE = new StopTimeEvent();
         }
         
-        public static TripUpdate.StopTimeEvent getDefaultInstance() {
+        public static StopTimeEvent getDefaultInstance() {
             return DEFAULT_INSTANCE;
         }
         
-        @java.lang.Deprecated public static final com.google.protobuf.Parser<StopTimeEvent>
-                PARSER = new com.google.protobuf.AbstractParser<>() {
+        @Deprecated public static final Parser<StopTimeEvent> PARSER = new AbstractParser<>() {
             
             @Override
-            public StopTimeEvent parsePartialFrom(
-                    final com.google.protobuf.CodedInputStream input,
-                    final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                    throws com.google.protobuf.InvalidProtocolBufferException {
+            public StopTimeEvent parsePartialFrom(final CodedInputStream input,
+                    final ExtensionRegistryLite extensionRegistry)
+                    throws InvalidProtocolBufferException {
                 return new StopTimeEvent(input, extensionRegistry);
             }
         };
         
-        public static com.google.protobuf.Parser<StopTimeEvent> parser() {
-            return PARSER;
-        }
-        
-        @java.lang.Override
-        public com.google.protobuf.Parser<StopTimeEvent> getParserForType() {
+        public static Parser<StopTimeEvent> parser() {
             return PARSER;
         }
         
         @Override
-        public TripUpdate.StopTimeEvent getDefaultInstanceForType() {
+        public Parser<StopTimeEvent> getParserForType() {
+            return PARSER;
+        }
+        
+        @Override
+        public StopTimeEvent getDefaultInstanceForType() {
             return DEFAULT_INSTANCE;
         }
         
@@ -1145,8 +1093,7 @@ public final class TripUpdate extends
     public interface StopTimeUpdateOrBuilder extends
             // @@protoc_insertion_point(interface_extends:transit_realtime.TripUpdate
             // .StopTimeUpdate)
-            com.google.protobuf.GeneratedMessageV3.
-                    ExtendableMessageOrBuilder<StopTimeUpdate> {
+            ExtendableMessageOrBuilder<StopTimeUpdate> {
         
         /**
          * <pre>
@@ -1182,7 +1129,7 @@ public final class TripUpdate extends
          * <p>
          * <code>optional string stop_id = 4;</code>
          */
-        java.lang.String getStopId();
+        String getStopId();
         
         /**
          * <pre>
@@ -1191,8 +1138,7 @@ public final class TripUpdate extends
          * <p>
          * <code>optional string stop_id = 4;</code>
          */
-        com.google.protobuf.ByteString
-        getStopIdBytes();
+        ByteString getStopIdBytes();
         
         /**
          * <code>optional .transit_realtime.TripUpdate.StopTimeEvent arrival = 2;</code>
@@ -1202,12 +1148,12 @@ public final class TripUpdate extends
         /**
          * <code>optional .transit_realtime.TripUpdate.StopTimeEvent arrival = 2;</code>
          */
-        TripUpdate.StopTimeEvent getArrival();
+        StopTimeEvent getArrival();
         
         /**
          * <code>optional .transit_realtime.TripUpdate.StopTimeEvent arrival = 2;</code>
          */
-        TripUpdate.StopTimeEventOrBuilder getArrivalOrBuilder();
+        StopTimeEventOrBuilder getArrivalOrBuilder();
         
         /**
          * <code>optional .transit_realtime.TripUpdate.StopTimeEvent departure = 3;</code>
@@ -1217,12 +1163,12 @@ public final class TripUpdate extends
         /**
          * <code>optional .transit_realtime.TripUpdate.StopTimeEvent departure = 3;</code>
          */
-        TripUpdate.StopTimeEvent getDeparture();
+        StopTimeEvent getDeparture();
         
         /**
          * <code>optional .transit_realtime.TripUpdate.StopTimeEvent departure = 3;</code>
          */
-        TripUpdate.StopTimeEventOrBuilder getDepartureOrBuilder();
+        StopTimeEventOrBuilder getDepartureOrBuilder();
         
         /**
          * <code>optional .transit_realtime.TripUpdate.StopTimeUpdate.ScheduleRelationship
@@ -1234,7 +1180,7 @@ public final class TripUpdate extends
          * <code>optional .transit_realtime.TripUpdate.StopTimeUpdate.ScheduleRelationship
          * schedule_relationship = 5 [default = SCHEDULED];</code>
          */
-        TripUpdate.StopTimeUpdate.ScheduleRelationship getScheduleRelationship();
+        ScheduleRelationship getScheduleRelationship();
     }
     
     /**
@@ -1246,9 +1192,7 @@ public final class TripUpdate extends
      * <p>
      * Protobuf type {@code transit_realtime.TripUpdate.StopTimeUpdate}
      */
-    public static final class StopTimeUpdate extends
-            com.google.protobuf.GeneratedMessageV3.ExtendableMessage<
-                    StopTimeUpdate> implements
+    public static final class StopTimeUpdate extends ExtendableMessage<StopTimeUpdate> implements
             // @@protoc_insertion_point(message_implements:transit_realtime.TripUpdate
             // .StopTimeUpdate)
             StopTimeUpdateOrBuilder {
@@ -1256,9 +1200,7 @@ public final class TripUpdate extends
         private static final long serialVersionUID = 0L;
         
         // Use StopTimeUpdate.newBuilder() to construct.
-        private StopTimeUpdate(
-                final com.google.protobuf.GeneratedMessageV3.ExtendableBuilder<TripUpdate
-                        .StopTimeUpdate, ?> builder) {
+        private StopTimeUpdate(final ExtendableBuilder<StopTimeUpdate, ?> builder) {
             super(builder);
         }
         
@@ -1268,20 +1210,17 @@ public final class TripUpdate extends
             scheduleRelationship_ = 0;
         }
         
-        @java.lang.Override
-        public final com.google.protobuf.UnknownFieldSet
-        getUnknownFields() {
+        @Override
+        public final UnknownFieldSet getUnknownFields() {
             return unknownFields;
         }
         
-        private StopTimeUpdate(
-                final com.google.protobuf.CodedInputStream input,
-                final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws com.google.protobuf.InvalidProtocolBufferException {
+        private StopTimeUpdate(final CodedInputStream input,
+                final ExtensionRegistryLite extensionRegistry)
+                throws InvalidProtocolBufferException {
             this();
             final int mutable_bitField0_ = 0;
-            final com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-                    com.google.protobuf.UnknownFieldSet.newBuilder();
+            final UnknownFieldSet.Builder unknownFields = UnknownFieldSet.newBuilder();
             try {
                 boolean done = false;
                 while (!done) {
@@ -1291,8 +1230,7 @@ public final class TripUpdate extends
                             done = true;
                             break;
                         default: {
-                            if (!parseUnknownField(
-                                    input, unknownFields, extensionRegistry, tag)) {
+                            if (!parseUnknownField(input, unknownFields, extensionRegistry, tag)) {
                                 done = true;
                             }
                             break;
@@ -1303,12 +1241,11 @@ public final class TripUpdate extends
                             break;
                         }
                         case 18: {
-                            TripUpdate.StopTimeEvent.Builder subBuilder = null;
+                            StopTimeEvent.Builder subBuilder = null;
                             if (((bitField0_ & 0x00000004) == 0x00000004)) {
                                 subBuilder = arrival_.toBuilder();
                             }
-                            arrival_ = input.readMessage(TripUpdate.StopTimeEvent.PARSER,
-                                    extensionRegistry);
+                            arrival_ = input.readMessage(StopTimeEvent.PARSER, extensionRegistry);
                             if (subBuilder != null) {
                                 subBuilder.mergeFrom(arrival_);
                                 arrival_ = subBuilder.buildPartial();
@@ -1317,12 +1254,11 @@ public final class TripUpdate extends
                             break;
                         }
                         case 26: {
-                            TripUpdate.StopTimeEvent.Builder subBuilder = null;
+                            StopTimeEvent.Builder subBuilder = null;
                             if (((bitField0_ & 0x00000008) == 0x00000008)) {
                                 subBuilder = departure_.toBuilder();
                             }
-                            departure_ = input.readMessage(TripUpdate.StopTimeEvent.PARSER,
-                                    extensionRegistry);
+                            departure_ = input.readMessage(StopTimeEvent.PARSER, extensionRegistry);
                             if (subBuilder != null) {
                                 subBuilder.mergeFrom(departure_);
                                 departure_ = subBuilder.buildPartial();
@@ -1331,16 +1267,15 @@ public final class TripUpdate extends
                             break;
                         }
                         case 34: {
-                            final com.google.protobuf.ByteString bs = input.readBytes();
+                            final ByteString bs = input.readBytes();
                             bitField0_ |= 0x00000002;
                             stopId_ = bs;
                             break;
                         }
                         case 40: {
                             final int rawValue = input.readEnum();
-                            final TripUpdate.StopTimeUpdate.ScheduleRelationship value =
-                                    TripUpdate.StopTimeUpdate.ScheduleRelationship
-                                            .valueOf(rawValue);
+                            final ScheduleRelationship value =
+                                    ScheduleRelationship.valueOf(rawValue);
                             if (value == null) {
                                 unknownFields.mergeVarintField(5, rawValue);
                             } else {
@@ -1351,31 +1286,26 @@ public final class TripUpdate extends
                         }
                     }
                 }
-            } catch (final com.google.protobuf.InvalidProtocolBufferException e) {
+            } catch (final InvalidProtocolBufferException e) {
                 throw e.setUnfinishedMessage(this);
-            } catch (final java.io.IOException e) {
-                throw new com.google.protobuf.InvalidProtocolBufferException(
-                        e).setUnfinishedMessage(this);
+            } catch (final IOException e) {
+                throw new InvalidProtocolBufferException(e).setUnfinishedMessage(this);
             } finally {
                 this.unknownFields = unknownFields.build();
                 makeExtensionsImmutable();
             }
         }
         
-        public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
+        public static final Descriptor getDescriptor() {
             return GtfsRealtime
                     .internal_static_transit_realtime_TripUpdate_StopTimeUpdate_descriptor;
         }
         
         @Override
-        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
+        protected FieldAccessorTable internalGetFieldAccessorTable() {
             return GtfsRealtime
                     .internal_static_transit_realtime_TripUpdate_StopTimeUpdate_fieldAccessorTable
-                    .ensureFieldAccessorsInitialized(
-                            TripUpdate.StopTimeUpdate.class,
-                            TripUpdate.StopTimeUpdate.Builder.class);
+                    .ensureFieldAccessorsInitialized(StopTimeUpdate.class, Builder.class);
         }
         
         /**
@@ -1385,8 +1315,7 @@ public final class TripUpdate extends
          * <p>
          * Protobuf enum {@code transit_realtime.TripUpdate.StopTimeUpdate.ScheduleRelationship}
          */
-        public enum ScheduleRelationship
-                implements com.google.protobuf.ProtocolMessageEnum {
+        public enum ScheduleRelationship implements ProtocolMessageEnum {
             /**
              * <pre>
              * The vehicle is proceeding in accordance with its static schedule of
@@ -1464,7 +1393,7 @@ public final class TripUpdate extends
             /**
              * @deprecated Use {@link #forNumber(int)} instead.
              */
-            @java.lang.Deprecated
+            @Deprecated
             public static ScheduleRelationship valueOf(final int value) {
                 return forNumber(value);
             }
@@ -1482,52 +1411,45 @@ public final class TripUpdate extends
                 }
             }
             
-            public static com.google.protobuf.Internal.EnumLiteMap<ScheduleRelationship>
-            internalGetValueMap() {
+            public static EnumLiteMap<ScheduleRelationship> internalGetValueMap() {
                 return internalValueMap;
             }
             
-            private static final com.google.protobuf.Internal.EnumLiteMap<
-                    ScheduleRelationship> internalValueMap =
-                    new com.google.protobuf.Internal.EnumLiteMap<>() {
+            private static final EnumLiteMap<ScheduleRelationship> internalValueMap =
+                    new EnumLiteMap<>() {
                         
                         @Override
                         public ScheduleRelationship findValueByNumber(final int number) {
-                            return ScheduleRelationship.forNumber(number);
+                            return forNumber(number);
                         }
                     };
             
             @Override
-            public final com.google.protobuf.Descriptors.EnumValueDescriptor
-            getValueDescriptor() {
+            public final EnumValueDescriptor getValueDescriptor() {
                 return getDescriptor().getValues().get(ordinal());
             }
             
             @Override
-            public final com.google.protobuf.Descriptors.EnumDescriptor
-            getDescriptorForType() {
+            public final EnumDescriptor getDescriptorForType() {
                 return getDescriptor();
             }
             
-            public static final com.google.protobuf.Descriptors.EnumDescriptor
-            getDescriptor() {
-                return TripUpdate.StopTimeUpdate.getDescriptor().getEnumTypes().get(0);
+            public static final EnumDescriptor getDescriptor() {
+                return StopTimeUpdate.getDescriptor().getEnumTypes().get(0);
             }
             
             private static final ScheduleRelationship[] VALUES = values();
             
-            public static ScheduleRelationship valueOf(
-                    final com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+            public static ScheduleRelationship valueOf(final EnumValueDescriptor desc) {
                 if (desc.getType() != getDescriptor()) {
-                    throw new java.lang.IllegalArgumentException(
-                            "EnumValueDescriptor is not for this type.");
+                    throw new IllegalArgumentException("EnumValueDescriptor is not for this type.");
                 }
                 return VALUES[desc.getIndex()];
             }
             
             private final int value;
             
-            private ScheduleRelationship(final int value) {
+            ScheduleRelationship(final int value) {
                 this.value = value;
             }
             
@@ -1564,7 +1486,7 @@ public final class TripUpdate extends
         }
         
         public static final int STOP_ID_FIELD_NUMBER = 4;
-        private volatile java.lang.Object stopId_;
+        private volatile @Setter(AccessLevel.PRIVATE) Object stopId_;
         
         /**
          * <pre>
@@ -1586,19 +1508,8 @@ public final class TripUpdate extends
          * <code>optional string stop_id = 4;</code>
          */
         @Override
-        public java.lang.String getStopId() {
-            final java.lang.Object ref = stopId_;
-            if (ref instanceof java.lang.String) {
-                return (java.lang.String) ref;
-            } else {
-                final com.google.protobuf.ByteString bs =
-                        (com.google.protobuf.ByteString) ref;
-                final java.lang.String s = bs.toStringUtf8();
-                if (bs.isValidUtf8()) {
-                    stopId_ = s;
-                }
-                return s;
-            }
+        public String getStopId() {
+            return ProtoUtils.asString(stopId_, this::setStopId_);
         }
         
         /**
@@ -1609,22 +1520,12 @@ public final class TripUpdate extends
          * <code>optional string stop_id = 4;</code>
          */
         @Override
-        public com.google.protobuf.ByteString
-        getStopIdBytes() {
-            final java.lang.Object ref = stopId_;
-            if (ref instanceof java.lang.String) {
-                final com.google.protobuf.ByteString b =
-                        com.google.protobuf.ByteString.copyFromUtf8(
-                                (java.lang.String) ref);
-                stopId_ = b;
-                return b;
-            } else {
-                return (com.google.protobuf.ByteString) ref;
-            }
+        public ByteString getStopIdBytes() {
+            return ProtoUtils.asBytes(stopId_, this::setStopId_);
         }
         
         public static final int ARRIVAL_FIELD_NUMBER = 2;
-        private TripUpdate.StopTimeEvent arrival_;
+        private StopTimeEvent arrival_;
         
         /**
          * <code>optional .transit_realtime.TripUpdate.StopTimeEvent arrival = 2;</code>
@@ -1638,20 +1539,20 @@ public final class TripUpdate extends
          * <code>optional .transit_realtime.TripUpdate.StopTimeEvent arrival = 2;</code>
          */
         @Override
-        public TripUpdate.StopTimeEvent getArrival() {
-            return arrival_ == null ? TripUpdate.StopTimeEvent.getDefaultInstance() : arrival_;
+        public StopTimeEvent getArrival() {
+            return arrival_ == null ? StopTimeEvent.getDefaultInstance() : arrival_;
         }
         
         /**
          * <code>optional .transit_realtime.TripUpdate.StopTimeEvent arrival = 2;</code>
          */
         @Override
-        public TripUpdate.StopTimeEventOrBuilder getArrivalOrBuilder() {
-            return arrival_ == null ? TripUpdate.StopTimeEvent.getDefaultInstance() : arrival_;
+        public StopTimeEventOrBuilder getArrivalOrBuilder() {
+            return arrival_ == null ? StopTimeEvent.getDefaultInstance() : arrival_;
         }
         
         public static final int DEPARTURE_FIELD_NUMBER = 3;
-        private TripUpdate.StopTimeEvent departure_;
+        private StopTimeEvent departure_;
         
         /**
          * <code>optional .transit_realtime.TripUpdate.StopTimeEvent departure = 3;</code>
@@ -1665,16 +1566,16 @@ public final class TripUpdate extends
          * <code>optional .transit_realtime.TripUpdate.StopTimeEvent departure = 3;</code>
          */
         @Override
-        public TripUpdate.StopTimeEvent getDeparture() {
-            return departure_ == null ? TripUpdate.StopTimeEvent.getDefaultInstance() : departure_;
+        public StopTimeEvent getDeparture() {
+            return departure_ == null ? StopTimeEvent.getDefaultInstance() : departure_;
         }
         
         /**
          * <code>optional .transit_realtime.TripUpdate.StopTimeEvent departure = 3;</code>
          */
         @Override
-        public TripUpdate.StopTimeEventOrBuilder getDepartureOrBuilder() {
-            return departure_ == null ? TripUpdate.StopTimeEvent.getDefaultInstance() : departure_;
+        public StopTimeEventOrBuilder getDepartureOrBuilder() {
+            return departure_ == null ? StopTimeEvent.getDefaultInstance() : departure_;
         }
         
         public static final int SCHEDULE_RELATIONSHIP_FIELD_NUMBER = 5;
@@ -1694,11 +1595,9 @@ public final class TripUpdate extends
          * schedule_relationship = 5 [default = SCHEDULED];</code>
          */
         @Override
-        public TripUpdate.StopTimeUpdate.ScheduleRelationship getScheduleRelationship() {
-            final TripUpdate.StopTimeUpdate.ScheduleRelationship result = TripUpdate.StopTimeUpdate
-                    .ScheduleRelationship.valueOf(scheduleRelationship_);
-            return result == null ? TripUpdate.StopTimeUpdate.ScheduleRelationship.SCHEDULED
-                    : result;
+        public ScheduleRelationship getScheduleRelationship() {
+            final ScheduleRelationship result = ScheduleRelationship.valueOf(scheduleRelationship_);
+            return result == null ? ScheduleRelationship.SCHEDULED : result;
         }
         
         private byte memoizedIsInitialized = -1;
@@ -1730,11 +1629,9 @@ public final class TripUpdate extends
         }
         
         @Override
-        public void writeTo(final com.google.protobuf.CodedOutputStream output)
-                throws java.io.IOException {
-            final com.google.protobuf.GeneratedMessageV3
-                    .ExtendableMessage<TripUpdate.StopTimeUpdate>.ExtensionWriter
-                    extensionWriter = newExtensionWriter();
+        public void writeTo(final CodedOutputStream output) throws IOException {
+            final ExtendableMessage<StopTimeUpdate>.ExtensionWriter extensionWriter =
+                    newExtensionWriter();
             if (((bitField0_ & 0x00000001) == 0x00000001)) {
                 output.writeUInt32(1, stopSequence_);
             }
@@ -1745,7 +1642,7 @@ public final class TripUpdate extends
                 output.writeMessage(3, getDeparture());
             }
             if (((bitField0_ & 0x00000002) == 0x00000002)) {
-                com.google.protobuf.GeneratedMessageV3.writeString(output, 4, stopId_);
+                GeneratedMessageV3.writeString(output, 4, stopId_);
             }
             if (((bitField0_ & 0x00000010) == 0x00000010)) {
                 output.writeEnum(5, scheduleRelationship_);
@@ -1761,23 +1658,19 @@ public final class TripUpdate extends
             
             size = 0;
             if (((bitField0_ & 0x00000001) == 0x00000001)) {
-                size += com.google.protobuf.CodedOutputStream
-                        .computeUInt32Size(1, stopSequence_);
+                size += CodedOutputStream.computeUInt32Size(1, stopSequence_);
             }
             if (((bitField0_ & 0x00000004) == 0x00000004)) {
-                size += com.google.protobuf.CodedOutputStream
-                        .computeMessageSize(2, getArrival());
+                size += CodedOutputStream.computeMessageSize(2, getArrival());
             }
             if (((bitField0_ & 0x00000008) == 0x00000008)) {
-                size += com.google.protobuf.CodedOutputStream
-                        .computeMessageSize(3, getDeparture());
+                size += CodedOutputStream.computeMessageSize(3, getDeparture());
             }
             if (((bitField0_ & 0x00000002) == 0x00000002)) {
-                size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, stopId_);
+                size += GeneratedMessageV3.computeStringSize(4, stopId_);
             }
             if (((bitField0_ & 0x00000010) == 0x00000010)) {
-                size += com.google.protobuf.CodedOutputStream
-                        .computeEnumSize(5, scheduleRelationship_);
+                size += CodedOutputStream.computeEnumSize(5, scheduleRelationship_);
             }
             size += extensionsSerializedSize();
             size += unknownFields.getSerializedSize();
@@ -1785,48 +1678,43 @@ public final class TripUpdate extends
             return size;
         }
         
-        @java.lang.Override
-        public boolean equals(final java.lang.Object obj) {
+        @Override
+        public boolean equals(final Object obj) {
             if (obj == this) {
                 return true;
             }
-            if (!(obj instanceof TripUpdate.StopTimeUpdate)) {
+            if (!(obj instanceof StopTimeUpdate)) {
                 return super.equals(obj);
             }
-            final TripUpdate.StopTimeUpdate other = (TripUpdate.StopTimeUpdate) obj;
+            final StopTimeUpdate other = (StopTimeUpdate) obj;
             
             boolean result = true;
             result = result && (hasStopSequence() == other.hasStopSequence());
             if (hasStopSequence()) {
-                result = result && (getStopSequence()
-                        == other.getStopSequence());
+                result = result && (getStopSequence() == other.getStopSequence());
             }
             result = result && (hasStopId() == other.hasStopId());
             if (hasStopId()) {
-                result = result && getStopId()
-                        .equals(other.getStopId());
+                result = result && getStopId().equals(other.getStopId());
             }
             result = result && (hasArrival() == other.hasArrival());
             if (hasArrival()) {
-                result = result && getArrival()
-                        .equals(other.getArrival());
+                result = result && getArrival().equals(other.getArrival());
             }
             result = result && (hasDeparture() == other.hasDeparture());
             if (hasDeparture()) {
-                result = result && getDeparture()
-                        .equals(other.getDeparture());
+                result = result && getDeparture().equals(other.getDeparture());
             }
             result = result && (hasScheduleRelationship() == other.hasScheduleRelationship());
             if (hasScheduleRelationship()) {
                 result = result && scheduleRelationship_ == other.scheduleRelationship_;
             }
             result = result && unknownFields.equals(other.unknownFields);
-            result = result &&
-                    getExtensionFields().equals(other.getExtensionFields());
+            result = result && getExtensionFields().equals(other.getExtensionFields());
             return result;
         }
         
-        @java.lang.Override
+        @Override
         public int hashCode() {
             if (memoizedHashCode != 0) {
                 return memoizedHashCode;
@@ -1859,85 +1747,66 @@ public final class TripUpdate extends
             return hash;
         }
         
-        public static TripUpdate.StopTimeUpdate parseFrom(
-                final java.nio.ByteBuffer data)
-                throws com.google.protobuf.InvalidProtocolBufferException {
+        public static StopTimeUpdate parseFrom(final ByteBuffer data)
+                throws InvalidProtocolBufferException {
             return PARSER.parseFrom(data);
         }
         
-        public static TripUpdate.StopTimeUpdate parseFrom(
-                final java.nio.ByteBuffer data,
-                final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws com.google.protobuf.InvalidProtocolBufferException {
+        public static StopTimeUpdate parseFrom(final ByteBuffer data,
+                final ExtensionRegistryLite extensionRegistry)
+                throws InvalidProtocolBufferException {
             return PARSER.parseFrom(data, extensionRegistry);
         }
         
-        public static TripUpdate.StopTimeUpdate parseFrom(
-                final com.google.protobuf.ByteString data)
-                throws com.google.protobuf.InvalidProtocolBufferException {
+        public static StopTimeUpdate parseFrom(final ByteString data)
+                throws InvalidProtocolBufferException {
             return PARSER.parseFrom(data);
         }
         
-        public static TripUpdate.StopTimeUpdate parseFrom(
-                final com.google.protobuf.ByteString data,
-                final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws com.google.protobuf.InvalidProtocolBufferException {
+        public static StopTimeUpdate parseFrom(final ByteString data,
+                final ExtensionRegistryLite extensionRegistry)
+                throws InvalidProtocolBufferException {
             return PARSER.parseFrom(data, extensionRegistry);
         }
         
-        public static TripUpdate.StopTimeUpdate parseFrom(final byte[] data)
-                throws com.google.protobuf.InvalidProtocolBufferException {
+        public static StopTimeUpdate parseFrom(final byte[] data)
+                throws InvalidProtocolBufferException {
             return PARSER.parseFrom(data);
         }
         
-        public static TripUpdate.StopTimeUpdate parseFrom(
-                final byte[] data,
-                final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws com.google.protobuf.InvalidProtocolBufferException {
+        public static StopTimeUpdate parseFrom(final byte[] data,
+                final ExtensionRegistryLite extensionRegistry)
+                throws InvalidProtocolBufferException {
             return PARSER.parseFrom(data, extensionRegistry);
         }
         
-        public static TripUpdate.StopTimeUpdate parseFrom(final java.io.InputStream input)
-                throws java.io.IOException {
-            return com.google.protobuf.GeneratedMessageV3
-                    .parseWithIOException(PARSER, input);
+        public static StopTimeUpdate parseFrom(final InputStream input) throws IOException {
+            return GeneratedMessageV3.parseWithIOException(PARSER, input);
         }
         
-        public static TripUpdate.StopTimeUpdate parseFrom(
-                final java.io.InputStream input,
-                final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws java.io.IOException {
-            return com.google.protobuf.GeneratedMessageV3
-                    .parseWithIOException(PARSER, input, extensionRegistry);
+        public static StopTimeUpdate parseFrom(final InputStream input,
+                final ExtensionRegistryLite extensionRegistry) throws IOException {
+            return GeneratedMessageV3.parseWithIOException(PARSER, input, extensionRegistry);
         }
         
-        public static TripUpdate.StopTimeUpdate parseDelimitedFrom(final java.io.InputStream input)
-                throws java.io.IOException {
-            return com.google.protobuf.GeneratedMessageV3
-                    .parseDelimitedWithIOException(PARSER, input);
+        public static StopTimeUpdate parseDelimitedFrom(final InputStream input)
+                throws IOException {
+            return GeneratedMessageV3.parseDelimitedWithIOException(PARSER, input);
         }
         
-        public static TripUpdate.StopTimeUpdate parseDelimitedFrom(
-                final java.io.InputStream input,
-                final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws java.io.IOException {
-            return com.google.protobuf.GeneratedMessageV3
+        public static StopTimeUpdate parseDelimitedFrom(final InputStream input,
+                final ExtensionRegistryLite extensionRegistry) throws IOException {
+            return GeneratedMessageV3
                     .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
         }
         
-        public static TripUpdate.StopTimeUpdate parseFrom(
-                final com.google.protobuf.CodedInputStream input)
-                throws java.io.IOException {
-            return com.google.protobuf.GeneratedMessageV3
-                    .parseWithIOException(PARSER, input);
+        public static StopTimeUpdate parseFrom(final CodedInputStream input) throws IOException {
+            return GeneratedMessageV3.parseWithIOException(PARSER, input);
         }
         
-        public static TripUpdate.StopTimeUpdate parseFrom(
-                final com.google.protobuf.CodedInputStream input,
-                final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws java.io.IOException {
-            return com.google.protobuf.GeneratedMessageV3
-                    .parseWithIOException(PARSER, input, extensionRegistry);
+        public static StopTimeUpdate parseFrom(final CodedInputStream input,
+                final ExtensionRegistryLite extensionRegistry) throws IOException {
+            return GeneratedMessageV3.parseWithIOException(PARSER, input, extensionRegistry);
         }
         
         @Override
@@ -1947,19 +1816,17 @@ public final class TripUpdate extends
             return DEFAULT_INSTANCE.toBuilder();
         }
         
-        public static Builder newBuilder(final TripUpdate.StopTimeUpdate prototype) {
+        public static Builder newBuilder(final StopTimeUpdate prototype) {
             return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
         }
         
         @Override
         public Builder toBuilder() {
-            return this == DEFAULT_INSTANCE
-                    ? new Builder() : new Builder().mergeFrom(this);
+            return this == DEFAULT_INSTANCE ? new Builder() : new Builder().mergeFrom(this);
         }
         
-        @java.lang.Override
-        protected Builder newBuilderForType(
-                final com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        @Override
+        protected Builder newBuilderForType(final BuilderParent parent) {
             final Builder builder = new Builder(parent);
             return builder;
         }
@@ -1973,27 +1840,22 @@ public final class TripUpdate extends
          * <p>
          * Protobuf type {@code transit_realtime.TripUpdate.StopTimeUpdate}
          */
-        public static final class Builder extends
-                com.google.protobuf.GeneratedMessageV3.ExtendableBuilder<
-                        TripUpdate.StopTimeUpdate, Builder> implements
+        public static final class Builder extends ExtendableBuilder<StopTimeUpdate, Builder>
+                implements
                 // @@protoc_insertion_point(builder_implements:transit_realtime.TripUpdate
                 // .StopTimeUpdate)
-                TripUpdate.StopTimeUpdateOrBuilder {
+                StopTimeUpdateOrBuilder {
             
-            public static final com.google.protobuf.Descriptors.Descriptor
-            getDescriptor() {
+            public static final Descriptor getDescriptor() {
                 return GtfsRealtime
                         .internal_static_transit_realtime_TripUpdate_StopTimeUpdate_descriptor;
             }
             
             @Override
-            protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-            internalGetFieldAccessorTable() {
+            protected FieldAccessorTable internalGetFieldAccessorTable() {
                 return GtfsRealtime
                         .internal_static_transit_realtime_TripUpdate_StopTimeUpdate_fieldAccessorTable
-                        .ensureFieldAccessorsInitialized(
-                                TripUpdate.StopTimeUpdate.class,
-                                TripUpdate.StopTimeUpdate.Builder.class);
+                        .ensureFieldAccessorsInitialized(StopTimeUpdate.class, Builder.class);
             }
             
             // Construct using sen.khyber.subway.client.proto.TripUpdate.StopTimeUpdate.newBuilder()
@@ -2001,15 +1863,13 @@ public final class TripUpdate extends
                 maybeForceBuilderInitialization();
             }
             
-            private Builder(
-                    final com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+            private Builder(final BuilderParent parent) {
                 super(parent);
                 maybeForceBuilderInitialization();
             }
             
             private void maybeForceBuilderInitialization() {
-                if (com.google.protobuf.GeneratedMessageV3
-                        .alwaysUseFieldBuilders) {
+                if (GeneratedMessageV3.alwaysUseFieldBuilders) {
                     getArrivalFieldBuilder();
                     getDepartureFieldBuilder();
                 }
@@ -2040,20 +1900,19 @@ public final class TripUpdate extends
             }
             
             @Override
-            public com.google.protobuf.Descriptors.Descriptor
-            getDescriptorForType() {
+            public Descriptor getDescriptorForType() {
                 return GtfsRealtime
                         .internal_static_transit_realtime_TripUpdate_StopTimeUpdate_descriptor;
             }
             
             @Override
-            public TripUpdate.StopTimeUpdate getDefaultInstanceForType() {
-                return TripUpdate.StopTimeUpdate.getDefaultInstance();
+            public StopTimeUpdate getDefaultInstanceForType() {
+                return getDefaultInstance();
             }
             
             @Override
-            public TripUpdate.StopTimeUpdate build() {
-                final TripUpdate.StopTimeUpdate result = buildPartial();
+            public StopTimeUpdate build() {
+                final StopTimeUpdate result = buildPartial();
                 if (!result.isInitialized()) {
                     throw newUninitializedMessageException(result);
                 }
@@ -2061,8 +1920,8 @@ public final class TripUpdate extends
             }
             
             @Override
-            public TripUpdate.StopTimeUpdate buildPartial() {
-                final TripUpdate.StopTimeUpdate result = new TripUpdate.StopTimeUpdate(this);
+            public StopTimeUpdate buildPartial() {
+                final StopTimeUpdate result = new StopTimeUpdate(this);
                 final int from_bitField0_ = bitField0_;
                 int to_bitField0_ = 0;
                 if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
@@ -2100,85 +1959,73 @@ public final class TripUpdate extends
             
             @Override
             public Builder clone() {
-                return (Builder) super.clone();
+                return super.clone();
             }
             
             @Override
-            public Builder setField(
-                    final com.google.protobuf.Descriptors.FieldDescriptor field,
-                    final java.lang.Object value) {
-                return (Builder) super.setField(field, value);
+            public Builder setField(final FieldDescriptor field, final Object value) {
+                return super.setField(field, value);
             }
             
             @Override
-            public Builder clearField(
-                    final com.google.protobuf.Descriptors.FieldDescriptor field) {
-                return (Builder) super.clearField(field);
+            public Builder clearField(final FieldDescriptor field) {
+                return super.clearField(field);
             }
             
             @Override
-            public Builder clearOneof(
-                    final com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-                return (Builder) super.clearOneof(oneof);
+            public Builder clearOneof(final OneofDescriptor oneof) {
+                return super.clearOneof(oneof);
             }
             
             @Override
-            public Builder setRepeatedField(
-                    final com.google.protobuf.Descriptors.FieldDescriptor field,
-                    final int index, final java.lang.Object value) {
-                return (Builder) super.setRepeatedField(field, index, value);
+            public Builder setRepeatedField(final FieldDescriptor field, final int index,
+                    final Object value) {
+                return super.setRepeatedField(field, index, value);
             }
             
             @Override
-            public Builder addRepeatedField(
-                    final com.google.protobuf.Descriptors.FieldDescriptor field,
-                    final java.lang.Object value) {
-                return (Builder) super.addRepeatedField(field, value);
+            public Builder addRepeatedField(final FieldDescriptor field, final Object value) {
+                return super.addRepeatedField(field, value);
             }
             
             @Override
             public <Type> Builder setExtension(
-                    final com.google.protobuf.GeneratedMessage.GeneratedExtension<
-                            TripUpdate.StopTimeUpdate, Type> extension,
+                    final GeneratedExtension<StopTimeUpdate, Type> extension, final Type value) {
+                return super.setExtension(extension, value);
+            }
+            
+            @Override
+            public <Type> Builder setExtension(
+                    final GeneratedExtension<StopTimeUpdate, List<Type>> extension, final int index,
                     final Type value) {
-                return (Builder) super.setExtension(extension, value);
-            }
-            
-            @Override
-            public <Type> Builder setExtension(
-                    final com.google.protobuf.GeneratedMessage.GeneratedExtension<
-                            TripUpdate.StopTimeUpdate, java.util.List<Type>> extension,
-                    final int index, final Type value) {
-                return (Builder) super.setExtension(extension, index, value);
+                return super.setExtension(extension, index, value);
             }
             
             @Override
             public <Type> Builder addExtension(
-                    final com.google.protobuf.GeneratedMessage.GeneratedExtension<
-                            TripUpdate.StopTimeUpdate, java.util.List<Type>> extension,
+                    final GeneratedExtension<StopTimeUpdate, List<Type>> extension,
                     final Type value) {
-                return (Builder) super.addExtension(extension, value);
+                return super.addExtension(extension, value);
             }
             
             @Override
             public <Type> Builder clearExtension(
-                    final com.google.protobuf.GeneratedMessage.GeneratedExtension<
-                            TripUpdate.StopTimeUpdate, ?> extension) {
-                return (Builder) super.clearExtension(extension);
+                    final GeneratedExtension<StopTimeUpdate, ?> extension) {
+                return super.clearExtension(extension);
             }
             
             @Override
-            public Builder mergeFrom(final com.google.protobuf.Message other) {
-                if (other instanceof TripUpdate.StopTimeUpdate) {
-                    return mergeFrom((TripUpdate.StopTimeUpdate) other);
+            public Builder mergeFrom(final Message other) {
+                if (other instanceof StopTimeUpdate) {
+                    return mergeFrom((StopTimeUpdate) other);
                 } else {
                     super.mergeFrom(other);
                     return this;
                 }
             }
             
-            public Builder mergeFrom(final TripUpdate.StopTimeUpdate other) {
-                if (other == TripUpdate.StopTimeUpdate.getDefaultInstance()) {return this;}
+            public Builder mergeFrom(final StopTimeUpdate other) {
+                if (other == getDefaultInstance()) {return this;}
                 if (other.hasStopSequence()) {
                     setStopSequence(other.getStopSequence());
                 }
@@ -2214,22 +2061,17 @@ public final class TripUpdate extends
                         return false;
                     }
                 }
-                if (!extensionsAreInitialized()) {
-                    return false;
-                }
-                return true;
+                return extensionsAreInitialized();
             }
             
             @Override
-            public Builder mergeFrom(
-                    final com.google.protobuf.CodedInputStream input,
-                    final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                    throws java.io.IOException {
-                TripUpdate.StopTimeUpdate parsedMessage = null;
+            public Builder mergeFrom(final CodedInputStream input,
+                    final ExtensionRegistryLite extensionRegistry) throws IOException {
+                StopTimeUpdate parsedMessage = null;
                 try {
                     parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-                } catch (final com.google.protobuf.InvalidProtocolBufferException e) {
-                    parsedMessage = (TripUpdate.StopTimeUpdate) e.getUnfinishedMessage();
+                } catch (final InvalidProtocolBufferException e) {
+                    parsedMessage = (StopTimeUpdate) e.getUnfinishedMessage();
                     throw e.unwrapIOException();
                 } finally {
                     if (parsedMessage != null) {
@@ -2295,7 +2137,7 @@ public final class TripUpdate extends
                 return this;
             }
             
-            private java.lang.Object stopId_ = "";
+            private @Setter(AccessLevel.PRIVATE) Object stopId_ = "";
             
             /**
              * <pre>
@@ -2317,19 +2159,8 @@ public final class TripUpdate extends
              * <code>optional string stop_id = 4;</code>
              */
             @Override
-            public java.lang.String getStopId() {
-                final java.lang.Object ref = stopId_;
-                if (!(ref instanceof java.lang.String)) {
-                    final com.google.protobuf.ByteString bs =
-                            (com.google.protobuf.ByteString) ref;
-                    final java.lang.String s = bs.toStringUtf8();
-                    if (bs.isValidUtf8()) {
-                        stopId_ = s;
-                    }
-                    return s;
-                } else {
-                    return (java.lang.String) ref;
-                }
+            public String getStopId() {
+                return ProtoUtils.asString(stopId_, this::setStopId_);
             }
             
             /**
@@ -2340,18 +2171,8 @@ public final class TripUpdate extends
              * <code>optional string stop_id = 4;</code>
              */
             @Override
-            public com.google.protobuf.ByteString
-            getStopIdBytes() {
-                final java.lang.Object ref = stopId_;
-                if (ref instanceof String) {
-                    final com.google.protobuf.ByteString b =
-                            com.google.protobuf.ByteString.copyFromUtf8(
-                                    (java.lang.String) ref);
-                    stopId_ = b;
-                    return b;
-                } else {
-                    return (com.google.protobuf.ByteString) ref;
-                }
+            public ByteString getStopIdBytes() {
+                return ProtoUtils.asBytes(stopId_, this::setStopId_);
             }
             
             /**
@@ -2361,11 +2182,8 @@ public final class TripUpdate extends
              * <p>
              * <code>optional string stop_id = 4;</code>
              */
-            public Builder setStopId(
-                    final java.lang.String value) {
-                if (value == null) {
-                    throw new NullPointerException();
-                }
+            public Builder setStopId(final String value) {
+                Objects.requireNonNull(value);
                 bitField0_ |= 0x00000002;
                 stopId_ = value;
                 onChanged();
@@ -2393,21 +2211,18 @@ public final class TripUpdate extends
              * <p>
              * <code>optional string stop_id = 4;</code>
              */
-            public Builder setStopIdBytes(
-                    final com.google.protobuf.ByteString value) {
-                if (value == null) {
-                    throw new NullPointerException();
-                }
+            public Builder setStopIdBytes(final ByteString value) {
+                Objects.requireNonNull(value);
                 bitField0_ |= 0x00000002;
                 stopId_ = value;
                 onChanged();
                 return this;
             }
             
-            private TripUpdate.StopTimeEvent arrival_ = null;
-            private com.google.protobuf.SingleFieldBuilderV3<
-                    TripUpdate.StopTimeEvent, TripUpdate.StopTimeEvent.Builder, TripUpdate
-                    .StopTimeEventOrBuilder> arrivalBuilder_;
+            private StopTimeEvent arrival_ = null;
+            private SingleFieldBuilderV3<StopTimeEvent, StopTimeEvent.Builder, 
+                    StopTimeEventOrBuilder>
+                    arrivalBuilder_;
             
             /**
              * <code>optional .transit_realtime.TripUpdate.StopTimeEvent arrival = 2;</code>
@@ -2421,10 +2236,9 @@ public final class TripUpdate extends
              * <code>optional .transit_realtime.TripUpdate.StopTimeEvent arrival = 2;</code>
              */
             @Override
-            public TripUpdate.StopTimeEvent getArrival() {
+            public StopTimeEvent getArrival() {
                 if (arrivalBuilder_ == null) {
-                    return arrival_ == null ? TripUpdate.StopTimeEvent.getDefaultInstance()
-                            : arrival_;
+                    return arrival_ == null ? StopTimeEvent.getDefaultInstance() : arrival_;
                 } else {
                     return arrivalBuilder_.getMessage();
                 }
@@ -2433,11 +2247,9 @@ public final class TripUpdate extends
             /**
              * <code>optional .transit_realtime.TripUpdate.StopTimeEvent arrival = 2;</code>
              */
-            public Builder setArrival(final TripUpdate.StopTimeEvent value) {
+            public Builder setArrival(final StopTimeEvent value) {
                 if (arrivalBuilder_ == null) {
-                    if (value == null) {
-                        throw new NullPointerException();
-                    }
+                    Objects.requireNonNull(value);
                     arrival_ = value;
                     onChanged();
                 } else {
@@ -2450,8 +2262,7 @@ public final class TripUpdate extends
             /**
              * <code>optional .transit_realtime.TripUpdate.StopTimeEvent arrival = 2;</code>
              */
-            public Builder setArrival(
-                    final TripUpdate.StopTimeEvent.Builder builderForValue) {
+            public Builder setArrival(final StopTimeEvent.Builder builderForValue) {
                 if (arrivalBuilder_ == null) {
                     arrival_ = builderForValue.build();
                     onChanged();
@@ -2465,14 +2276,12 @@ public final class TripUpdate extends
             /**
              * <code>optional .transit_realtime.TripUpdate.StopTimeEvent arrival = 2;</code>
              */
-            public Builder mergeArrival(final TripUpdate.StopTimeEvent value) {
+            public Builder mergeArrival(final StopTimeEvent value) {
                 if (arrivalBuilder_ == null) {
-                    if (((bitField0_ & 0x00000004) == 0x00000004) &&
-                            arrival_ != null &&
-                            arrival_ != TripUpdate.StopTimeEvent.getDefaultInstance()) {
+                    if (((bitField0_ & 0x00000004) == 0x00000004) && arrival_ != null
+                            && arrival_ != StopTimeEvent.getDefaultInstance()) {
                         arrival_ =
-                                TripUpdate.StopTimeEvent.newBuilder(arrival_).mergeFrom(value)
-                                        .buildPartial();
+                                StopTimeEvent.newBuilder(arrival_).mergeFrom(value).buildPartial();
                     } else {
                         arrival_ = value;
                     }
@@ -2501,7 +2310,7 @@ public final class TripUpdate extends
             /**
              * <code>optional .transit_realtime.TripUpdate.StopTimeEvent arrival = 2;</code>
              */
-            public TripUpdate.StopTimeEvent.Builder getArrivalBuilder() {
+            public StopTimeEvent.Builder getArrivalBuilder() {
                 bitField0_ |= 0x00000004;
                 onChanged();
                 return getArrivalFieldBuilder().getBuilder();
@@ -2511,36 +2320,31 @@ public final class TripUpdate extends
              * <code>optional .transit_realtime.TripUpdate.StopTimeEvent arrival = 2;</code>
              */
             @Override
-            public TripUpdate.StopTimeEventOrBuilder getArrivalOrBuilder() {
+            public StopTimeEventOrBuilder getArrivalOrBuilder() {
                 if (arrivalBuilder_ != null) {
                     return arrivalBuilder_.getMessageOrBuilder();
                 } else {
-                    return arrival_ == null ?
-                            TripUpdate.StopTimeEvent.getDefaultInstance() : arrival_;
+                    return arrival_ == null ? StopTimeEvent.getDefaultInstance() : arrival_;
                 }
             }
             
             /**
              * <code>optional .transit_realtime.TripUpdate.StopTimeEvent arrival = 2;</code>
              */
-            private com.google.protobuf.SingleFieldBuilderV3<
-                    TripUpdate.StopTimeEvent, TripUpdate.StopTimeEvent.Builder, TripUpdate
-                    .StopTimeEventOrBuilder>
-            getArrivalFieldBuilder() {
+            private SingleFieldBuilderV3<StopTimeEvent, StopTimeEvent.Builder, 
+                    StopTimeEventOrBuilder> getArrivalFieldBuilder() {
                 if (arrivalBuilder_ == null) {
-                    arrivalBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
-                            getArrival(),
-                            getParentForChildren(),
-                            isClean());
+                    arrivalBuilder_ =
+                            new SingleFieldBuilderV3<>(getArrival(), getParentForChildren(),
+                                    isClean());
                     arrival_ = null;
                 }
                 return arrivalBuilder_;
             }
             
-            private TripUpdate.StopTimeEvent departure_ = null;
-            private com.google.protobuf.SingleFieldBuilderV3<
-                    TripUpdate.StopTimeEvent, TripUpdate.StopTimeEvent.Builder, TripUpdate
-                    .StopTimeEventOrBuilder>
+            private StopTimeEvent departure_ = null;
+            private SingleFieldBuilderV3<StopTimeEvent, StopTimeEvent.Builder, 
+                    StopTimeEventOrBuilder>
                     departureBuilder_;
             
             /**
@@ -2555,10 +2359,9 @@ public final class TripUpdate extends
              * <code>optional .transit_realtime.TripUpdate.StopTimeEvent departure = 3;</code>
              */
             @Override
-            public TripUpdate.StopTimeEvent getDeparture() {
+            public StopTimeEvent getDeparture() {
                 if (departureBuilder_ == null) {
-                    return departure_ == null ? TripUpdate.StopTimeEvent.getDefaultInstance()
-                            : departure_;
+                    return departure_ == null ? StopTimeEvent.getDefaultInstance() : departure_;
                 } else {
                     return departureBuilder_.getMessage();
                 }
@@ -2567,11 +2370,9 @@ public final class TripUpdate extends
             /**
              * <code>optional .transit_realtime.TripUpdate.StopTimeEvent departure = 3;</code>
              */
-            public Builder setDeparture(final TripUpdate.StopTimeEvent value) {
+            public Builder setDeparture(final StopTimeEvent value) {
                 if (departureBuilder_ == null) {
-                    if (value == null) {
-                        throw new NullPointerException();
-                    }
+                    Objects.requireNonNull(value);
                     departure_ = value;
                     onChanged();
                 } else {
@@ -2584,8 +2385,7 @@ public final class TripUpdate extends
             /**
              * <code>optional .transit_realtime.TripUpdate.StopTimeEvent departure = 3;</code>
              */
-            public Builder setDeparture(
-                    final TripUpdate.StopTimeEvent.Builder builderForValue) {
+            public Builder setDeparture(final StopTimeEvent.Builder builderForValue) {
                 if (departureBuilder_ == null) {
                     departure_ = builderForValue.build();
                     onChanged();
@@ -2599,14 +2399,12 @@ public final class TripUpdate extends
             /**
              * <code>optional .transit_realtime.TripUpdate.StopTimeEvent departure = 3;</code>
              */
-            public Builder mergeDeparture(final TripUpdate.StopTimeEvent value) {
+            public Builder mergeDeparture(final StopTimeEvent value) {
                 if (departureBuilder_ == null) {
-                    if (((bitField0_ & 0x00000008) == 0x00000008) &&
-                            departure_ != null &&
-                            departure_ != TripUpdate.StopTimeEvent.getDefaultInstance()) {
-                        departure_ =
-                                TripUpdate.StopTimeEvent.newBuilder(departure_).mergeFrom(value)
-                                        .buildPartial();
+                    if (((bitField0_ & 0x00000008) == 0x00000008) && departure_ != null
+                            && departure_ != StopTimeEvent.getDefaultInstance()) {
+                        departure_ = StopTimeEvent.newBuilder(departure_).mergeFrom(value)
+                                .buildPartial();
                     } else {
                         departure_ = value;
                     }
@@ -2635,7 +2433,7 @@ public final class TripUpdate extends
             /**
              * <code>optional .transit_realtime.TripUpdate.StopTimeEvent departure = 3;</code>
              */
-            public TripUpdate.StopTimeEvent.Builder getDepartureBuilder() {
+            public StopTimeEvent.Builder getDepartureBuilder() {
                 bitField0_ |= 0x00000008;
                 onChanged();
                 return getDepartureFieldBuilder().getBuilder();
@@ -2645,27 +2443,23 @@ public final class TripUpdate extends
              * <code>optional .transit_realtime.TripUpdate.StopTimeEvent departure = 3;</code>
              */
             @Override
-            public TripUpdate.StopTimeEventOrBuilder getDepartureOrBuilder() {
+            public StopTimeEventOrBuilder getDepartureOrBuilder() {
                 if (departureBuilder_ != null) {
                     return departureBuilder_.getMessageOrBuilder();
                 } else {
-                    return departure_ == null ?
-                            TripUpdate.StopTimeEvent.getDefaultInstance() : departure_;
+                    return departure_ == null ? StopTimeEvent.getDefaultInstance() : departure_;
                 }
             }
             
             /**
              * <code>optional .transit_realtime.TripUpdate.StopTimeEvent departure = 3;</code>
              */
-            private com.google.protobuf.SingleFieldBuilderV3<
-                    TripUpdate.StopTimeEvent, TripUpdate.StopTimeEvent.Builder, TripUpdate
-                    .StopTimeEventOrBuilder>
-            getDepartureFieldBuilder() {
+            private SingleFieldBuilderV3<StopTimeEvent, StopTimeEvent.Builder, 
+                    StopTimeEventOrBuilder> getDepartureFieldBuilder() {
                 if (departureBuilder_ == null) {
-                    departureBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
-                            getDeparture(),
-                            getParentForChildren(),
-                            isClean());
+                    departureBuilder_ =
+                            new SingleFieldBuilderV3<>(getDeparture(), getParentForChildren(),
+                                    isClean());
                     departure_ = null;
                 }
                 return departureBuilder_;
@@ -2687,24 +2481,18 @@ public final class TripUpdate extends
              * schedule_relationship = 5 [default = SCHEDULED];</code>
              */
             @Override
-            public TripUpdate.StopTimeUpdate.ScheduleRelationship getScheduleRelationship() {
-                final TripUpdate.StopTimeUpdate.ScheduleRelationship result =
-                        TripUpdate.StopTimeUpdate
-                                .ScheduleRelationship.valueOf(scheduleRelationship_);
-                return result == null ? TripUpdate.StopTimeUpdate.ScheduleRelationship.SCHEDULED
-                        : result;
+            public ScheduleRelationship getScheduleRelationship() {
+                final ScheduleRelationship result =
+                        ScheduleRelationship.valueOf(scheduleRelationship_);
+                return result == null ? ScheduleRelationship.SCHEDULED : result;
             }
             
             /**
              * <code>optional .transit_realtime.TripUpdate.StopTimeUpdate.ScheduleRelationship
              * schedule_relationship = 5 [default = SCHEDULED];</code>
              */
-            public Builder setScheduleRelationship(
-                    final TripUpdate.StopTimeUpdate.ScheduleRelationship
-                            value) {
-                if (value == null) {
-                    throw new NullPointerException();
-                }
+            public Builder setScheduleRelationship(final ScheduleRelationship value) {
+                Objects.requireNonNull(value);
                 bitField0_ |= 0x00000010;
                 scheduleRelationship_ = value.getNumber();
                 onChanged();
@@ -2723,14 +2511,12 @@ public final class TripUpdate extends
             }
             
             @Override
-            public final Builder setUnknownFields(
-                    final com.google.protobuf.UnknownFieldSet unknownFields) {
+            public final Builder setUnknownFields(final UnknownFieldSet unknownFields) {
                 return super.setUnknownFields(unknownFields);
             }
             
             @Override
-            public final Builder mergeUnknownFields(
-                    final com.google.protobuf.UnknownFieldSet unknownFields) {
+            public final Builder mergeUnknownFields(final UnknownFieldSet unknownFields) {
                 return super.mergeUnknownFields(unknownFields);
             }
             
@@ -2739,39 +2525,37 @@ public final class TripUpdate extends
         }
         
         // @@protoc_insertion_point(class_scope:transit_realtime.TripUpdate.StopTimeUpdate)
-        private static final TripUpdate.StopTimeUpdate DEFAULT_INSTANCE;
+        private static final StopTimeUpdate DEFAULT_INSTANCE;
         
         static {
-            DEFAULT_INSTANCE = new TripUpdate.StopTimeUpdate();
+            DEFAULT_INSTANCE = new StopTimeUpdate();
         }
         
-        public static TripUpdate.StopTimeUpdate getDefaultInstance() {
+        public static StopTimeUpdate getDefaultInstance() {
             return DEFAULT_INSTANCE;
         }
         
-        @java.lang.Deprecated public static final com.google.protobuf.Parser<StopTimeUpdate>
-                PARSER = new com.google.protobuf.AbstractParser<>() {
+        @Deprecated public static final Parser<StopTimeUpdate> PARSER = new AbstractParser<>() {
             
             @Override
-            public StopTimeUpdate parsePartialFrom(
-                    final com.google.protobuf.CodedInputStream input,
-                    final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                    throws com.google.protobuf.InvalidProtocolBufferException {
+            public StopTimeUpdate parsePartialFrom(final CodedInputStream input,
+                    final ExtensionRegistryLite extensionRegistry)
+                    throws InvalidProtocolBufferException {
                 return new StopTimeUpdate(input, extensionRegistry);
             }
         };
         
-        public static com.google.protobuf.Parser<StopTimeUpdate> parser() {
-            return PARSER;
-        }
-        
-        @java.lang.Override
-        public com.google.protobuf.Parser<StopTimeUpdate> getParserForType() {
+        public static Parser<StopTimeUpdate> parser() {
             return PARSER;
         }
         
         @Override
-        public TripUpdate.StopTimeUpdate getDefaultInstanceForType() {
+        public Parser<StopTimeUpdate> getParserForType() {
+            return PARSER;
+        }
+        
+        @Override
+        public StopTimeUpdate getDefaultInstanceForType() {
             return DEFAULT_INSTANCE;
         }
         
@@ -2866,7 +2650,7 @@ public final class TripUpdate extends
     }
     
     public static final int STOP_TIME_UPDATE_FIELD_NUMBER = 2;
-    private java.util.List<TripUpdate.StopTimeUpdate> stopTimeUpdate_;
+    private List<StopTimeUpdate> stopTimeUpdate_;
     
     /**
      * <pre>
@@ -2892,7 +2676,7 @@ public final class TripUpdate extends
      * <code>repeated .transit_realtime.TripUpdate.StopTimeUpdate stop_time_update = 2;</code>
      */
     @Override
-    public java.util.List<TripUpdate.StopTimeUpdate> getStopTimeUpdateList() {
+    public List<StopTimeUpdate> getStopTimeUpdateList() {
         return stopTimeUpdate_;
     }
     
@@ -2920,8 +2704,7 @@ public final class TripUpdate extends
      * <code>repeated .transit_realtime.TripUpdate.StopTimeUpdate stop_time_update = 2;</code>
      */
     @Override
-    public java.util.List<? extends TripUpdate.StopTimeUpdateOrBuilder>
-    getStopTimeUpdateOrBuilderList() {
+    public List<? extends StopTimeUpdateOrBuilder> getStopTimeUpdateOrBuilderList() {
         return stopTimeUpdate_;
     }
     
@@ -2977,7 +2760,7 @@ public final class TripUpdate extends
      * <code>repeated .transit_realtime.TripUpdate.StopTimeUpdate stop_time_update = 2;</code>
      */
     @Override
-    public TripUpdate.StopTimeUpdate getStopTimeUpdate(final int index) {
+    public StopTimeUpdate getStopTimeUpdate(final int index) {
         return stopTimeUpdate_.get(index);
     }
     
@@ -3005,8 +2788,7 @@ public final class TripUpdate extends
      * <code>repeated .transit_realtime.TripUpdate.StopTimeUpdate stop_time_update = 2;</code>
      */
     @Override
-    public TripUpdate.StopTimeUpdateOrBuilder getStopTimeUpdateOrBuilder(
-            final int index) {
+    public StopTimeUpdateOrBuilder getStopTimeUpdateOrBuilder(final int index) {
         return stopTimeUpdate_.get(index);
     }
     
@@ -3076,11 +2858,8 @@ public final class TripUpdate extends
     }
     
     @Override
-    public void writeTo(final com.google.protobuf.CodedOutputStream output)
-            throws java.io.IOException {
-        final com.google.protobuf.GeneratedMessageV3
-                .ExtendableMessage<TripUpdate>.ExtensionWriter
-                extensionWriter = newExtensionWriter();
+    public void writeTo(final CodedOutputStream output) throws IOException {
+        final ExtendableMessage<TripUpdate>.ExtensionWriter extensionWriter = newExtensionWriter();
         if (((bitField0_ & 0x00000001) == 0x00000001)) {
             output.writeMessage(1, getTrip());
         }
@@ -3104,20 +2883,16 @@ public final class TripUpdate extends
         
         size = 0;
         if (((bitField0_ & 0x00000001) == 0x00000001)) {
-            size += com.google.protobuf.CodedOutputStream
-                    .computeMessageSize(1, getTrip());
+            size += CodedOutputStream.computeMessageSize(1, getTrip());
         }
         for (int i = 0; i < stopTimeUpdate_.size(); i++) {
-            size += com.google.protobuf.CodedOutputStream
-                    .computeMessageSize(2, stopTimeUpdate_.get(i));
+            size += CodedOutputStream.computeMessageSize(2, stopTimeUpdate_.get(i));
         }
         if (((bitField0_ & 0x00000002) == 0x00000002)) {
-            size += com.google.protobuf.CodedOutputStream
-                    .computeMessageSize(3, getVehicle());
+            size += CodedOutputStream.computeMessageSize(3, getVehicle());
         }
         if (((bitField0_ & 0x00000004) == 0x00000004)) {
-            size += com.google.protobuf.CodedOutputStream
-                    .computeUInt64Size(4, timestamp_);
+            size += CodedOutputStream.computeUInt64Size(4, timestamp_);
         }
         size += extensionsSerializedSize();
         size += unknownFields.getSerializedSize();
@@ -3125,8 +2900,8 @@ public final class TripUpdate extends
         return size;
     }
     
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
+    @Override
+    public boolean equals(final Object obj) {
         if (obj == this) {
             return true;
         }
@@ -3138,28 +2913,23 @@ public final class TripUpdate extends
         boolean result = true;
         result = result && (hasTrip() == other.hasTrip());
         if (hasTrip()) {
-            result = result && getTrip()
-                    .equals(other.getTrip());
+            result = result && getTrip().equals(other.getTrip());
         }
         result = result && (hasVehicle() == other.hasVehicle());
         if (hasVehicle()) {
-            result = result && getVehicle()
-                    .equals(other.getVehicle());
+            result = result && getVehicle().equals(other.getVehicle());
         }
-        result = result && getStopTimeUpdateList()
-                .equals(other.getStopTimeUpdateList());
+        result = result && getStopTimeUpdateList().equals(other.getStopTimeUpdateList());
         result = result && (hasTimestamp() == other.hasTimestamp());
         if (hasTimestamp()) {
-            result = result && (getTimestamp()
-                    == other.getTimestamp());
+            result = result && (getTimestamp() == other.getTimestamp());
         }
         result = result && unknownFields.equals(other.unknownFields);
-        result = result &&
-                getExtensionFields().equals(other.getExtensionFields());
+        result = result && getExtensionFields().equals(other.getExtensionFields());
         return result;
     }
     
-    @java.lang.Override
+    @Override
     public int hashCode() {
         if (memoizedHashCode != 0) {
             return memoizedHashCode;
@@ -3180,8 +2950,7 @@ public final class TripUpdate extends
         }
         if (hasTimestamp()) {
             hash = (37 * hash) + TIMESTAMP_FIELD_NUMBER;
-            hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-                    getTimestamp());
+            hash = (53 * hash) + Internal.hashLong(getTimestamp());
         }
         hash = hashFields(hash, getExtensionFields());
         hash = (29 * hash) + unknownFields.hashCode();
@@ -3189,85 +2958,60 @@ public final class TripUpdate extends
         return hash;
     }
     
-    public static TripUpdate parseFrom(
-            final java.nio.ByteBuffer data)
-            throws com.google.protobuf.InvalidProtocolBufferException {
+    public static TripUpdate parseFrom(final ByteBuffer data)
+            throws InvalidProtocolBufferException {
         return PARSER.parseFrom(data);
     }
     
-    public static TripUpdate parseFrom(
-            final java.nio.ByteBuffer data,
-            final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
+    public static TripUpdate parseFrom(final ByteBuffer data,
+            final ExtensionRegistryLite extensionRegistry) throws InvalidProtocolBufferException {
         return PARSER.parseFrom(data, extensionRegistry);
     }
     
-    public static TripUpdate parseFrom(
-            final com.google.protobuf.ByteString data)
-            throws com.google.protobuf.InvalidProtocolBufferException {
+    public static TripUpdate parseFrom(final ByteString data)
+            throws InvalidProtocolBufferException {
         return PARSER.parseFrom(data);
     }
     
-    public static TripUpdate parseFrom(
-            final com.google.protobuf.ByteString data,
-            final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
+    public static TripUpdate parseFrom(final ByteString data,
+            final ExtensionRegistryLite extensionRegistry) throws InvalidProtocolBufferException {
         return PARSER.parseFrom(data, extensionRegistry);
     }
     
-    public static TripUpdate parseFrom(final byte[] data)
-            throws com.google.protobuf.InvalidProtocolBufferException {
+    public static TripUpdate parseFrom(final byte[] data) throws InvalidProtocolBufferException {
         return PARSER.parseFrom(data);
     }
     
-    public static TripUpdate parseFrom(
-            final byte[] data,
-            final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
+    public static TripUpdate parseFrom(final byte[] data,
+            final ExtensionRegistryLite extensionRegistry) throws InvalidProtocolBufferException {
         return PARSER.parseFrom(data, extensionRegistry);
     }
     
-    public static TripUpdate parseFrom(final java.io.InputStream input)
-            throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-                .parseWithIOException(PARSER, input);
+    public static TripUpdate parseFrom(final InputStream input) throws IOException {
+        return GeneratedMessageV3.parseWithIOException(PARSER, input);
     }
     
-    public static TripUpdate parseFrom(
-            final java.io.InputStream input,
-            final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-                .parseWithIOException(PARSER, input, extensionRegistry);
+    public static TripUpdate parseFrom(final InputStream input,
+            final ExtensionRegistryLite extensionRegistry) throws IOException {
+        return GeneratedMessageV3.parseWithIOException(PARSER, input, extensionRegistry);
     }
     
-    public static TripUpdate parseDelimitedFrom(final java.io.InputStream input)
-            throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-                .parseDelimitedWithIOException(PARSER, input);
+    public static TripUpdate parseDelimitedFrom(final InputStream input) throws IOException {
+        return GeneratedMessageV3.parseDelimitedWithIOException(PARSER, input);
     }
     
-    public static TripUpdate parseDelimitedFrom(
-            final java.io.InputStream input,
-            final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-                .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    public static TripUpdate parseDelimitedFrom(final InputStream input,
+            final ExtensionRegistryLite extensionRegistry) throws IOException {
+        return GeneratedMessageV3.parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
     
-    public static TripUpdate parseFrom(
-            final com.google.protobuf.CodedInputStream input)
-            throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-                .parseWithIOException(PARSER, input);
+    public static TripUpdate parseFrom(final CodedInputStream input) throws IOException {
+        return GeneratedMessageV3.parseWithIOException(PARSER, input);
     }
     
-    public static TripUpdate parseFrom(
-            final com.google.protobuf.CodedInputStream input,
-            final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-                .parseWithIOException(PARSER, input, extensionRegistry);
+    public static TripUpdate parseFrom(final CodedInputStream input,
+            final ExtensionRegistryLite extensionRegistry) throws IOException {
+        return GeneratedMessageV3.parseWithIOException(PARSER, input, extensionRegistry);
     }
     
     @Override
@@ -3283,13 +3027,11 @@ public final class TripUpdate extends
     
     @Override
     public Builder toBuilder() {
-        return this == DEFAULT_INSTANCE
-                ? new Builder() : new Builder().mergeFrom(this);
+        return this == DEFAULT_INSTANCE ? new Builder() : new Builder().mergeFrom(this);
     }
     
-    @java.lang.Override
-    protected Builder newBuilderForType(
-            final com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+    @Override
+    protected Builder newBuilderForType(final BuilderParent parent) {
         final Builder builder = new Builder(parent);
         return builder;
     }
@@ -3324,23 +3066,18 @@ public final class TripUpdate extends
      * <p>
      * Protobuf type {@code transit_realtime.TripUpdate}
      */
-    public static final class Builder extends
-            com.google.protobuf.GeneratedMessageV3.ExtendableBuilder<
-                    TripUpdate, Builder> implements
+    public static final class Builder extends ExtendableBuilder<TripUpdate, Builder> implements
             // @@protoc_insertion_point(builder_implements:transit_realtime.TripUpdate)
             TripUpdateOrBuilder {
         
-        public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
+        public static final Descriptor getDescriptor() {
             return GtfsRealtime.internal_static_transit_realtime_TripUpdate_descriptor;
         }
         
         @Override
-        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
+        protected FieldAccessorTable internalGetFieldAccessorTable() {
             return GtfsRealtime.internal_static_transit_realtime_TripUpdate_fieldAccessorTable
-                    .ensureFieldAccessorsInitialized(
-                            TripUpdate.class, TripUpdate.Builder.class);
+                    .ensureFieldAccessorsInitialized(TripUpdate.class, Builder.class);
         }
         
         // Construct using sen.khyber.subway.client.proto.TripUpdate.newBuilder()
@@ -3348,15 +3085,13 @@ public final class TripUpdate extends
             maybeForceBuilderInitialization();
         }
         
-        private Builder(
-                final com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        private Builder(final BuilderParent parent) {
             super(parent);
             maybeForceBuilderInitialization();
         }
         
         private void maybeForceBuilderInitialization() {
-            if (com.google.protobuf.GeneratedMessageV3
-                    .alwaysUseFieldBuilders) {
+            if (GeneratedMessageV3.alwaysUseFieldBuilders) {
                 getTripFieldBuilder();
                 getVehicleFieldBuilder();
                 getStopTimeUpdateFieldBuilder();
@@ -3379,7 +3114,7 @@ public final class TripUpdate extends
             }
             bitField0_ = (bitField0_ & ~0x00000002);
             if (stopTimeUpdateBuilder_ == null) {
-                stopTimeUpdate_ = java.util.Collections.emptyList();
+                stopTimeUpdate_ = Collections.emptyList();
                 bitField0_ = (bitField0_ & ~0x00000004);
             } else {
                 stopTimeUpdateBuilder_.clear();
@@ -3390,14 +3125,13 @@ public final class TripUpdate extends
         }
         
         @Override
-        public com.google.protobuf.Descriptors.Descriptor
-        getDescriptorForType() {
+        public Descriptor getDescriptorForType() {
             return GtfsRealtime.internal_static_transit_realtime_TripUpdate_descriptor;
         }
         
         @Override
         public TripUpdate getDefaultInstanceForType() {
-            return TripUpdate.getDefaultInstance();
+            return getDefaultInstance();
         }
         
         @Override
@@ -3432,7 +3166,7 @@ public final class TripUpdate extends
             }
             if (stopTimeUpdateBuilder_ == null) {
                 if (((bitField0_ & 0x00000004) == 0x00000004)) {
-                    stopTimeUpdate_ = java.util.Collections.unmodifiableList(stopTimeUpdate_);
+                    stopTimeUpdate_ = Collections.unmodifiableList(stopTimeUpdate_);
                     bitField0_ = (bitField0_ & ~0x00000004);
                 }
                 result.stopTimeUpdate_ = stopTimeUpdate_;
@@ -3450,75 +3184,61 @@ public final class TripUpdate extends
         
         @Override
         public Builder clone() {
-            return (Builder) super.clone();
+            return super.clone();
         }
         
         @Override
-        public Builder setField(
-                final com.google.protobuf.Descriptors.FieldDescriptor field,
-                final java.lang.Object value) {
-            return (Builder) super.setField(field, value);
+        public Builder setField(final FieldDescriptor field, final Object value) {
+            return super.setField(field, value);
         }
         
         @Override
-        public Builder clearField(
-                final com.google.protobuf.Descriptors.FieldDescriptor field) {
-            return (Builder) super.clearField(field);
+        public Builder clearField(final FieldDescriptor field) {
+            return super.clearField(field);
         }
         
         @Override
-        public Builder clearOneof(
-                final com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-            return (Builder) super.clearOneof(oneof);
+        public Builder clearOneof(final OneofDescriptor oneof) {
+            return super.clearOneof(oneof);
         }
         
         @Override
-        public Builder setRepeatedField(
-                final com.google.protobuf.Descriptors.FieldDescriptor field,
-                final int index, final java.lang.Object value) {
-            return (Builder) super.setRepeatedField(field, index, value);
+        public Builder setRepeatedField(final FieldDescriptor field, final int index,
+                final Object value) {
+            return super.setRepeatedField(field, index, value);
         }
         
         @Override
-        public Builder addRepeatedField(
-                final com.google.protobuf.Descriptors.FieldDescriptor field,
-                final java.lang.Object value) {
-            return (Builder) super.addRepeatedField(field, value);
+        public Builder addRepeatedField(final FieldDescriptor field, final Object value) {
+            return super.addRepeatedField(field, value);
         }
         
         @Override
-        public <Type> Builder setExtension(
-                final com.google.protobuf.GeneratedMessage.GeneratedExtension<
-                        TripUpdate, Type> extension,
+        public <Type> Builder setExtension(final GeneratedExtension<TripUpdate, Type> extension,
                 final Type value) {
-            return (Builder) super.setExtension(extension, value);
+            return super.setExtension(extension, value);
         }
         
         @Override
         public <Type> Builder setExtension(
-                final com.google.protobuf.GeneratedMessage.GeneratedExtension<
-                        TripUpdate, java.util.List<Type>> extension,
-                final int index, final Type value) {
-            return (Builder) super.setExtension(extension, index, value);
+                final GeneratedExtension<TripUpdate, List<Type>> extension, final int index,
+                final Type value) {
+            return super.setExtension(extension, index, value);
         }
         
         @Override
         public <Type> Builder addExtension(
-                final com.google.protobuf.GeneratedMessage.GeneratedExtension<
-                        TripUpdate, java.util.List<Type>> extension,
-                final Type value) {
-            return (Builder) super.addExtension(extension, value);
+                final GeneratedExtension<TripUpdate, List<Type>> extension, final Type value) {
+            return super.addExtension(extension, value);
         }
         
         @Override
-        public <Type> Builder clearExtension(
-                final com.google.protobuf.GeneratedMessage.GeneratedExtension<
-                        TripUpdate, ?> extension) {
-            return (Builder) super.clearExtension(extension);
+        public <Type> Builder clearExtension(final GeneratedExtension<TripUpdate, ?> extension) {
+            return super.clearExtension(extension);
         }
         
         @Override
-        public Builder mergeFrom(final com.google.protobuf.Message other) {
+        public Builder mergeFrom(final Message other) {
             if (other instanceof TripUpdate) {
                 return mergeFrom((TripUpdate) other);
             } else {
@@ -3528,7 +3248,7 @@ public final class TripUpdate extends
         }
         
         public Builder mergeFrom(final TripUpdate other) {
-            if (other == TripUpdate.getDefaultInstance()) {return this;}
+            if (other == getDefaultInstance()) {return this;}
             if (other.hasTrip()) {
                 mergeTrip(other.getTrip());
             }
@@ -3553,9 +3273,8 @@ public final class TripUpdate extends
                         stopTimeUpdateBuilder_ = null;
                         stopTimeUpdate_ = other.stopTimeUpdate_;
                         bitField0_ = (bitField0_ & ~0x00000004);
-                        stopTimeUpdateBuilder_ =
-                                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
-                                        getStopTimeUpdateFieldBuilder() : null;
+                        stopTimeUpdateBuilder_ = GeneratedMessageV3.alwaysUseFieldBuilders
+                                ? getStopTimeUpdateFieldBuilder() : null;
                     } else {
                         stopTimeUpdateBuilder_.addAllMessages(other.stopTimeUpdate_);
                     }
@@ -3588,21 +3307,16 @@ public final class TripUpdate extends
                     return false;
                 }
             }
-            if (!extensionsAreInitialized()) {
-                return false;
-            }
-            return true;
+            return extensionsAreInitialized();
         }
         
         @Override
-        public Builder mergeFrom(
-                final com.google.protobuf.CodedInputStream input,
-                final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws java.io.IOException {
+        public Builder mergeFrom(final CodedInputStream input,
+                final ExtensionRegistryLite extensionRegistry) throws IOException {
             TripUpdate parsedMessage = null;
             try {
                 parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-            } catch (final com.google.protobuf.InvalidProtocolBufferException e) {
+            } catch (final InvalidProtocolBufferException e) {
                 parsedMessage = (TripUpdate) e.getUnfinishedMessage();
                 throw e.unwrapIOException();
             } finally {
@@ -3616,8 +3330,9 @@ public final class TripUpdate extends
         private int bitField0_;
         
         private TripDescriptor trip_ = null;
-        private com.google.protobuf.SingleFieldBuilderV3<
-                TripDescriptor, TripDescriptor.Builder, TripDescriptorOrBuilder> tripBuilder_;
+        private SingleFieldBuilderV3<TripDescriptor, TripDescriptor.Builder, 
+                TripDescriptorOrBuilder>
+                tripBuilder_;
         
         /**
          * <pre>
@@ -3665,9 +3380,7 @@ public final class TripUpdate extends
          */
         public Builder setTrip(final TripDescriptor value) {
             if (tripBuilder_ == null) {
-                if (value == null) {
-                    throw new NullPointerException();
-                }
+                Objects.requireNonNull(value);
                 trip_ = value;
                 onChanged();
             } else {
@@ -3687,8 +3400,7 @@ public final class TripUpdate extends
          * <p>
          * <code>required .transit_realtime.TripDescriptor trip = 1;</code>
          */
-        public Builder setTrip(
-                final TripDescriptor.Builder builderForValue) {
+        public Builder setTrip(final TripDescriptor.Builder builderForValue) {
             if (tripBuilder_ == null) {
                 trip_ = builderForValue.build();
                 onChanged();
@@ -3711,11 +3423,9 @@ public final class TripUpdate extends
          */
         public Builder mergeTrip(final TripDescriptor value) {
             if (tripBuilder_ == null) {
-                if (((bitField0_ & 0x00000001) == 0x00000001) &&
-                        trip_ != null &&
-                        trip_ != TripDescriptor.getDefaultInstance()) {
-                    trip_ =
-                            TripDescriptor.newBuilder(trip_).mergeFrom(value).buildPartial();
+                if (((bitField0_ & 0x00000001) == 0x00000001) && trip_ != null
+                        && trip_ != TripDescriptor.getDefaultInstance()) {
+                    trip_ = TripDescriptor.newBuilder(trip_).mergeFrom(value).buildPartial();
                 } else {
                     trip_ = value;
                 }
@@ -3779,8 +3489,7 @@ public final class TripUpdate extends
             if (tripBuilder_ != null) {
                 return tripBuilder_.getMessageOrBuilder();
             } else {
-                return trip_ == null ?
-                        TripDescriptor.getDefaultInstance() : trip_;
+                return trip_ == null ? TripDescriptor.getDefaultInstance() : trip_;
             }
         }
         
@@ -3794,22 +3503,19 @@ public final class TripUpdate extends
          * <p>
          * <code>required .transit_realtime.TripDescriptor trip = 1;</code>
          */
-        private com.google.protobuf.SingleFieldBuilderV3<
-                TripDescriptor, TripDescriptor.Builder, TripDescriptorOrBuilder>
-        getTripFieldBuilder() {
+        private SingleFieldBuilderV3<TripDescriptor, TripDescriptor.Builder, 
+                TripDescriptorOrBuilder> getTripFieldBuilder() {
             if (tripBuilder_ == null) {
-                tripBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
-                        getTrip(),
-                        getParentForChildren(),
-                        isClean());
+                tripBuilder_ =
+                        new SingleFieldBuilderV3<>(getTrip(), getParentForChildren(), isClean());
                 trip_ = null;
             }
             return tripBuilder_;
         }
         
         private VehicleDescriptor vehicle_ = null;
-        private com.google.protobuf.SingleFieldBuilderV3<
-                VehicleDescriptor, VehicleDescriptor.Builder, VehicleDescriptorOrBuilder>
+        private SingleFieldBuilderV3<VehicleDescriptor, VehicleDescriptor.Builder, 
+                VehicleDescriptorOrBuilder>
                 vehicleBuilder_;
         
         /**
@@ -3849,9 +3555,7 @@ public final class TripUpdate extends
          */
         public Builder setVehicle(final VehicleDescriptor value) {
             if (vehicleBuilder_ == null) {
-                if (value == null) {
-                    throw new NullPointerException();
-                }
+                Objects.requireNonNull(value);
                 vehicle_ = value;
                 onChanged();
             } else {
@@ -3868,8 +3572,7 @@ public final class TripUpdate extends
          * <p>
          * <code>optional .transit_realtime.VehicleDescriptor vehicle = 3;</code>
          */
-        public Builder setVehicle(
-                final VehicleDescriptor.Builder builderForValue) {
+        public Builder setVehicle(final VehicleDescriptor.Builder builderForValue) {
             if (vehicleBuilder_ == null) {
                 vehicle_ = builderForValue.build();
                 onChanged();
@@ -3889,9 +3592,8 @@ public final class TripUpdate extends
          */
         public Builder mergeVehicle(final VehicleDescriptor value) {
             if (vehicleBuilder_ == null) {
-                if (((bitField0_ & 0x00000002) == 0x00000002) &&
-                        vehicle_ != null &&
-                        vehicle_ != VehicleDescriptor.getDefaultInstance()) {
+                if (((bitField0_ & 0x00000002) == 0x00000002) && vehicle_ != null
+                        && vehicle_ != VehicleDescriptor.getDefaultInstance()) {
                     vehicle_ =
                             VehicleDescriptor.newBuilder(vehicle_).mergeFrom(value).buildPartial();
                 } else {
@@ -3948,8 +3650,7 @@ public final class TripUpdate extends
             if (vehicleBuilder_ != null) {
                 return vehicleBuilder_.getMessageOrBuilder();
             } else {
-                return vehicle_ == null ?
-                        VehicleDescriptor.getDefaultInstance() : vehicle_;
+                return vehicle_ == null ? VehicleDescriptor.getDefaultInstance() : vehicle_;
             }
         }
         
@@ -3960,32 +3661,27 @@ public final class TripUpdate extends
          * <p>
          * <code>optional .transit_realtime.VehicleDescriptor vehicle = 3;</code>
          */
-        private com.google.protobuf.SingleFieldBuilderV3<
-                VehicleDescriptor, VehicleDescriptor.Builder, VehicleDescriptorOrBuilder>
-        getVehicleFieldBuilder() {
+        private SingleFieldBuilderV3<VehicleDescriptor, VehicleDescriptor.Builder, 
+                VehicleDescriptorOrBuilder> getVehicleFieldBuilder() {
             if (vehicleBuilder_ == null) {
-                vehicleBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
-                        getVehicle(),
-                        getParentForChildren(),
-                        isClean());
+                vehicleBuilder_ =
+                        new SingleFieldBuilderV3<>(getVehicle(), getParentForChildren(), isClean());
                 vehicle_ = null;
             }
             return vehicleBuilder_;
         }
         
-        private java.util.List<TripUpdate.StopTimeUpdate> stopTimeUpdate_ =
-                java.util.Collections.emptyList();
+        private List<StopTimeUpdate> stopTimeUpdate_ = Collections.emptyList();
         
         private void ensureStopTimeUpdateIsMutable() {
             if (!((bitField0_ & 0x00000004) == 0x00000004)) {
-                stopTimeUpdate_ = new java.util.ArrayList<>(stopTimeUpdate_);
+                stopTimeUpdate_ = new ArrayList<>(stopTimeUpdate_);
                 bitField0_ |= 0x00000004;
             }
         }
         
-        private com.google.protobuf.RepeatedFieldBuilderV3<
-                TripUpdate.StopTimeUpdate, TripUpdate.StopTimeUpdate.Builder, TripUpdate
-                .StopTimeUpdateOrBuilder>
+        private RepeatedFieldBuilderV3<StopTimeUpdate, StopTimeUpdate.Builder, 
+                StopTimeUpdateOrBuilder>
                 stopTimeUpdateBuilder_;
         
         /**
@@ -4012,9 +3708,9 @@ public final class TripUpdate extends
          * <code>repeated .transit_realtime.TripUpdate.StopTimeUpdate stop_time_update = 2;</code>
          */
         @Override
-        public java.util.List<TripUpdate.StopTimeUpdate> getStopTimeUpdateList() {
+        public List<StopTimeUpdate> getStopTimeUpdateList() {
             if (stopTimeUpdateBuilder_ == null) {
-                return java.util.Collections.unmodifiableList(stopTimeUpdate_);
+                return Collections.unmodifiableList(stopTimeUpdate_);
             } else {
                 return stopTimeUpdateBuilder_.getMessageList();
             }
@@ -4076,7 +3772,7 @@ public final class TripUpdate extends
          * <code>repeated .transit_realtime.TripUpdate.StopTimeUpdate stop_time_update = 2;</code>
          */
         @Override
-        public TripUpdate.StopTimeUpdate getStopTimeUpdate(final int index) {
+        public StopTimeUpdate getStopTimeUpdate(final int index) {
             if (stopTimeUpdateBuilder_ == null) {
                 return stopTimeUpdate_.get(index);
             } else {
@@ -4107,12 +3803,9 @@ public final class TripUpdate extends
          * <p>
          * <code>repeated .transit_realtime.TripUpdate.StopTimeUpdate stop_time_update = 2;</code>
          */
-        public Builder setStopTimeUpdate(
-                final int index, final TripUpdate.StopTimeUpdate value) {
+        public Builder setStopTimeUpdate(final int index, final StopTimeUpdate value) {
             if (stopTimeUpdateBuilder_ == null) {
-                if (value == null) {
-                    throw new NullPointerException();
-                }
+                Objects.requireNonNull(value);
                 ensureStopTimeUpdateIsMutable();
                 stopTimeUpdate_.set(index, value);
                 onChanged();
@@ -4145,8 +3838,8 @@ public final class TripUpdate extends
          * <p>
          * <code>repeated .transit_realtime.TripUpdate.StopTimeUpdate stop_time_update = 2;</code>
          */
-        public Builder setStopTimeUpdate(
-                final int index, final TripUpdate.StopTimeUpdate.Builder builderForValue) {
+        public Builder setStopTimeUpdate(final int index,
+                final StopTimeUpdate.Builder builderForValue) {
             if (stopTimeUpdateBuilder_ == null) {
                 ensureStopTimeUpdateIsMutable();
                 stopTimeUpdate_.set(index, builderForValue.build());
@@ -4180,11 +3873,9 @@ public final class TripUpdate extends
          * <p>
          * <code>repeated .transit_realtime.TripUpdate.StopTimeUpdate stop_time_update = 2;</code>
          */
-        public Builder addStopTimeUpdate(final TripUpdate.StopTimeUpdate value) {
+        public Builder addStopTimeUpdate(final StopTimeUpdate value) {
             if (stopTimeUpdateBuilder_ == null) {
-                if (value == null) {
-                    throw new NullPointerException();
-                }
+                Objects.requireNonNull(value);
                 ensureStopTimeUpdateIsMutable();
                 stopTimeUpdate_.add(value);
                 onChanged();
@@ -4217,12 +3908,9 @@ public final class TripUpdate extends
          * <p>
          * <code>repeated .transit_realtime.TripUpdate.StopTimeUpdate stop_time_update = 2;</code>
          */
-        public Builder addStopTimeUpdate(
-                final int index, final TripUpdate.StopTimeUpdate value) {
+        public Builder addStopTimeUpdate(final int index, final StopTimeUpdate value) {
             if (stopTimeUpdateBuilder_ == null) {
-                if (value == null) {
-                    throw new NullPointerException();
-                }
+                Objects.requireNonNull(value);
                 ensureStopTimeUpdateIsMutable();
                 stopTimeUpdate_.add(index, value);
                 onChanged();
@@ -4255,8 +3943,7 @@ public final class TripUpdate extends
          * <p>
          * <code>repeated .transit_realtime.TripUpdate.StopTimeUpdate stop_time_update = 2;</code>
          */
-        public Builder addStopTimeUpdate(
-                final TripUpdate.StopTimeUpdate.Builder builderForValue) {
+        public Builder addStopTimeUpdate(final StopTimeUpdate.Builder builderForValue) {
             if (stopTimeUpdateBuilder_ == null) {
                 ensureStopTimeUpdateIsMutable();
                 stopTimeUpdate_.add(builderForValue.build());
@@ -4290,8 +3977,8 @@ public final class TripUpdate extends
          * <p>
          * <code>repeated .transit_realtime.TripUpdate.StopTimeUpdate stop_time_update = 2;</code>
          */
-        public Builder addStopTimeUpdate(
-                final int index, final TripUpdate.StopTimeUpdate.Builder builderForValue) {
+        public Builder addStopTimeUpdate(final int index,
+                final StopTimeUpdate.Builder builderForValue) {
             if (stopTimeUpdateBuilder_ == null) {
                 ensureStopTimeUpdateIsMutable();
                 stopTimeUpdate_.add(index, builderForValue.build());
@@ -4325,12 +4012,10 @@ public final class TripUpdate extends
          * <p>
          * <code>repeated .transit_realtime.TripUpdate.StopTimeUpdate stop_time_update = 2;</code>
          */
-        public Builder addAllStopTimeUpdate(
-                final java.lang.Iterable<? extends TripUpdate.StopTimeUpdate> values) {
+        public Builder addAllStopTimeUpdate(final Iterable<? extends StopTimeUpdate> values) {
             if (stopTimeUpdateBuilder_ == null) {
                 ensureStopTimeUpdateIsMutable();
-                com.google.protobuf.AbstractMessageLite.Builder.addAll(
-                        values, stopTimeUpdate_);
+                AbstractMessageLite.Builder.addAll(values, stopTimeUpdate_);
                 onChanged();
             } else {
                 stopTimeUpdateBuilder_.addAllMessages(values);
@@ -4363,7 +4048,7 @@ public final class TripUpdate extends
          */
         public Builder clearStopTimeUpdate() {
             if (stopTimeUpdateBuilder_ == null) {
-                stopTimeUpdate_ = java.util.Collections.emptyList();
+                stopTimeUpdate_ = Collections.emptyList();
                 bitField0_ = (bitField0_ & ~0x00000004);
                 onChanged();
             } else {
@@ -4429,8 +4114,7 @@ public final class TripUpdate extends
          * <p>
          * <code>repeated .transit_realtime.TripUpdate.StopTimeUpdate stop_time_update = 2;</code>
          */
-        public TripUpdate.StopTimeUpdate.Builder getStopTimeUpdateBuilder(
-                final int index) {
+        public StopTimeUpdate.Builder getStopTimeUpdateBuilder(final int index) {
             return getStopTimeUpdateFieldBuilder().getBuilder(index);
         }
         
@@ -4458,8 +4142,7 @@ public final class TripUpdate extends
          * <code>repeated .transit_realtime.TripUpdate.StopTimeUpdate stop_time_update = 2;</code>
          */
         @Override
-        public TripUpdate.StopTimeUpdateOrBuilder getStopTimeUpdateOrBuilder(
-                final int index) {
+        public StopTimeUpdateOrBuilder getStopTimeUpdateOrBuilder(final int index) {
             if (stopTimeUpdateBuilder_ == null) {
                 return stopTimeUpdate_.get(index);
             } else {
@@ -4491,12 +4174,11 @@ public final class TripUpdate extends
          * <code>repeated .transit_realtime.TripUpdate.StopTimeUpdate stop_time_update = 2;</code>
          */
         @Override
-        public java.util.List<? extends TripUpdate.StopTimeUpdateOrBuilder>
-        getStopTimeUpdateOrBuilderList() {
+        public List<? extends StopTimeUpdateOrBuilder> getStopTimeUpdateOrBuilderList() {
             if (stopTimeUpdateBuilder_ != null) {
                 return stopTimeUpdateBuilder_.getMessageOrBuilderList();
             } else {
-                return java.util.Collections.unmodifiableList(stopTimeUpdate_);
+                return Collections.unmodifiableList(stopTimeUpdate_);
             }
         }
         
@@ -4523,9 +4205,8 @@ public final class TripUpdate extends
          * <p>
          * <code>repeated .transit_realtime.TripUpdate.StopTimeUpdate stop_time_update = 2;</code>
          */
-        public TripUpdate.StopTimeUpdate.Builder addStopTimeUpdateBuilder() {
-            return getStopTimeUpdateFieldBuilder().addBuilder(
-                    TripUpdate.StopTimeUpdate.getDefaultInstance());
+        public StopTimeUpdate.Builder addStopTimeUpdateBuilder() {
+            return getStopTimeUpdateFieldBuilder().addBuilder(StopTimeUpdate.getDefaultInstance());
         }
         
         /**
@@ -4551,10 +4232,9 @@ public final class TripUpdate extends
          * <p>
          * <code>repeated .transit_realtime.TripUpdate.StopTimeUpdate stop_time_update = 2;</code>
          */
-        public TripUpdate.StopTimeUpdate.Builder addStopTimeUpdateBuilder(
-                final int index) {
-            return getStopTimeUpdateFieldBuilder().addBuilder(
-                    index, TripUpdate.StopTimeUpdate.getDefaultInstance());
+        public StopTimeUpdate.Builder addStopTimeUpdateBuilder(final int index) {
+            return getStopTimeUpdateFieldBuilder()
+                    .addBuilder(index, StopTimeUpdate.getDefaultInstance());
         }
         
         /**
@@ -4580,20 +4260,15 @@ public final class TripUpdate extends
          * <p>
          * <code>repeated .transit_realtime.TripUpdate.StopTimeUpdate stop_time_update = 2;</code>
          */
-        public java.util.List<TripUpdate.StopTimeUpdate.Builder>
-        getStopTimeUpdateBuilderList() {
+        public List<StopTimeUpdate.Builder> getStopTimeUpdateBuilderList() {
             return getStopTimeUpdateFieldBuilder().getBuilderList();
         }
         
-        private com.google.protobuf.RepeatedFieldBuilderV3<
-                TripUpdate.StopTimeUpdate, TripUpdate.StopTimeUpdate.Builder, TripUpdate
-                .StopTimeUpdateOrBuilder>
-        getStopTimeUpdateFieldBuilder() {
+        private RepeatedFieldBuilderV3<StopTimeUpdate, StopTimeUpdate.Builder, 
+                StopTimeUpdateOrBuilder> getStopTimeUpdateFieldBuilder() {
             if (stopTimeUpdateBuilder_ == null) {
-                stopTimeUpdateBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
-                        stopTimeUpdate_,
-                        ((bitField0_ & 0x00000004) == 0x00000004),
-                        getParentForChildren(),
+                stopTimeUpdateBuilder_ = new RepeatedFieldBuilderV3<>(stopTimeUpdate_,
+                        ((bitField0_ & 0x00000004) == 0x00000004), getParentForChildren(),
                         isClean());
                 stopTimeUpdate_ = null;
             }
@@ -4659,14 +4334,12 @@ public final class TripUpdate extends
         }
         
         @Override
-        public final Builder setUnknownFields(
-                final com.google.protobuf.UnknownFieldSet unknownFields) {
+        public final Builder setUnknownFields(final UnknownFieldSet unknownFields) {
             return super.setUnknownFields(unknownFields);
         }
         
         @Override
-        public final Builder mergeUnknownFields(
-                final com.google.protobuf.UnknownFieldSet unknownFields) {
+        public final Builder mergeUnknownFields(final UnknownFieldSet unknownFields) {
             return super.mergeUnknownFields(unknownFields);
         }
         
@@ -4685,24 +4358,22 @@ public final class TripUpdate extends
         return DEFAULT_INSTANCE;
     }
     
-    @java.lang.Deprecated public static final com.google.protobuf.Parser<TripUpdate>
-            PARSER = new com.google.protobuf.AbstractParser<>() {
+    @Deprecated public static final Parser<TripUpdate> PARSER = new AbstractParser<>() {
         
         @Override
-        public TripUpdate parsePartialFrom(
-                final com.google.protobuf.CodedInputStream input,
-                final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws com.google.protobuf.InvalidProtocolBufferException {
+        public TripUpdate parsePartialFrom(final CodedInputStream input,
+                final ExtensionRegistryLite extensionRegistry)
+                throws InvalidProtocolBufferException {
             return new TripUpdate(input, extensionRegistry);
         }
     };
     
-    public static com.google.protobuf.Parser<TripUpdate> parser() {
+    public static Parser<TripUpdate> parser() {
         return PARSER;
     }
     
-    @java.lang.Override
-    public com.google.protobuf.Parser<TripUpdate> getParserForType() {
+    @Override
+    public Parser<TripUpdate> getParserForType() {
         return PARSER;
     }
     
@@ -4712,4 +4383,3 @@ public final class TripUpdate extends
     }
     
 }
-

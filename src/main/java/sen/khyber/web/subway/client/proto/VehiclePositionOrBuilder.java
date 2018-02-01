@@ -6,10 +6,10 @@ package sen.khyber.web.subway.client.proto;
 import sen.khyber.web.subway.client.proto.VehiclePosition.CongestionLevel;
 import sen.khyber.web.subway.client.proto.VehiclePosition.VehicleStopStatus;
 
-public interface VehiclePositionOrBuilder extends
-        // @@protoc_insertion_point(interface_extends:transit_realtime.VehiclePosition)
-        com.google.protobuf.GeneratedMessageV3.
-                ExtendableMessageOrBuilder<VehiclePosition> {
+import com.google.protobuf.ByteString;
+import com.google.protobuf.GeneratedMessageV3.ExtendableMessageOrBuilder;
+
+public interface VehiclePositionOrBuilder extends ExtendableMessageOrBuilder<VehiclePosition> {
     
     /**
      * <pre>
@@ -140,7 +140,7 @@ public interface VehiclePositionOrBuilder extends
      * <p>
      * <code>optional string stop_id = 7;</code>
      */
-    java.lang.String getStopId();
+    String getStopId();
     
     /**
      * <pre>
@@ -150,8 +150,7 @@ public interface VehiclePositionOrBuilder extends
      * <p>
      * <code>optional string stop_id = 7;</code>
      */
-    com.google.protobuf.ByteString
-    getStopIdBytes();
+    ByteString getStopIdBytes();
     
     /**
      * <pre>
@@ -204,4 +203,5 @@ public interface VehiclePositionOrBuilder extends
      * <code>optional .transit_realtime.VehiclePosition.CongestionLevel congestion_level = 6;</code>
      */
     CongestionLevel getCongestionLevel();
+    
 }

@@ -3,6 +3,29 @@
 
 package sen.khyber.web.subway.client.proto;
 
+import sen.khyber.proto.ProtoUtils;
+
+import lombok.AccessLevel;
+import lombok.Setter;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.ByteBuffer;
+
+import com.google.protobuf.AbstractParser;
+import com.google.protobuf.ByteString;
+import com.google.protobuf.CodedInputStream;
+import com.google.protobuf.CodedOutputStream;
+import com.google.protobuf.Descriptors.Descriptor;
+import com.google.protobuf.Descriptors.FieldDescriptor;
+import com.google.protobuf.Descriptors.OneofDescriptor;
+import com.google.protobuf.ExtensionRegistryLite;
+import com.google.protobuf.GeneratedMessageV3;
+import com.google.protobuf.InvalidProtocolBufferException;
+import com.google.protobuf.Message;
+import com.google.protobuf.Parser;
+import com.google.protobuf.UnknownFieldSet;
+
 /**
  * <pre>
  * NYCT Subway extensions for the stop time update
@@ -10,15 +33,13 @@ package sen.khyber.web.subway.client.proto;
  * <p>
  * Protobuf type {@code NyctStopTimeUpdate}
  */
-public final class NyctStopTimeUpdate extends
-        com.google.protobuf.GeneratedMessageV3 implements
-        // @@protoc_insertion_point(message_implements:NyctStopTimeUpdate)
-        NyctStopTimeUpdateOrBuilder {
+public final class NyctStopTimeUpdate extends GeneratedMessageV3
+        implements NyctStopTimeUpdateOrBuilder {
     
     private static final long serialVersionUID = 0L;
     
     // Use NyctStopTimeUpdate.newBuilder() to construct.
-    private NyctStopTimeUpdate(final com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    private NyctStopTimeUpdate(final GeneratedMessageV3.Builder<?> builder) {
         super(builder);
     }
     
@@ -27,20 +48,16 @@ public final class NyctStopTimeUpdate extends
         actualTrack_ = "";
     }
     
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
+    @Override
+    public final UnknownFieldSet getUnknownFields() {
         return unknownFields;
     }
     
-    private NyctStopTimeUpdate(
-            final com.google.protobuf.CodedInputStream input,
-            final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
+    private NyctStopTimeUpdate(final CodedInputStream input,
+            final ExtensionRegistryLite extensionRegistry) throws InvalidProtocolBufferException {
         this();
         final int mutable_bitField0_ = 0;
-        final com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-                com.google.protobuf.UnknownFieldSet.newBuilder();
+        final UnknownFieldSet.Builder unknownFields = UnknownFieldSet.newBuilder();
         try {
             boolean done = false;
             while (!done) {
@@ -50,53 +67,48 @@ public final class NyctStopTimeUpdate extends
                         done = true;
                         break;
                     default: {
-                        if (!parseUnknownField(
-                                input, unknownFields, extensionRegistry, tag)) {
+                        if (!parseUnknownField(input, unknownFields, extensionRegistry, tag)) {
                             done = true;
                         }
                         break;
                     }
                     case 10: {
-                        final com.google.protobuf.ByteString bs = input.readBytes();
+                        final ByteString bs = input.readBytes();
                         bitField0_ |= 0x00000001;
                         scheduledTrack_ = bs;
                         break;
                     }
                     case 18: {
-                        final com.google.protobuf.ByteString bs = input.readBytes();
+                        final ByteString bs = input.readBytes();
                         bitField0_ |= 0x00000002;
                         actualTrack_ = bs;
                         break;
                     }
                 }
             }
-        } catch (final com.google.protobuf.InvalidProtocolBufferException e) {
+        } catch (final InvalidProtocolBufferException e) {
             throw e.setUnfinishedMessage(this);
-        } catch (final java.io.IOException e) {
-            throw new com.google.protobuf.InvalidProtocolBufferException(
-                    e).setUnfinishedMessage(this);
+        } catch (final IOException e) {
+            throw new InvalidProtocolBufferException(e).setUnfinishedMessage(this);
         } finally {
             this.unknownFields = unknownFields.build();
             makeExtensionsImmutable();
         }
     }
     
-    public static final com.google.protobuf.Descriptors.Descriptor
-    getDescriptor() {
+    public static final Descriptor getDescriptor() {
         return NyctSubway.internal_static_NyctStopTimeUpdate_descriptor;
     }
     
     @Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-    internalGetFieldAccessorTable() {
+    protected FieldAccessorTable internalGetFieldAccessorTable() {
         return NyctSubway.internal_static_NyctStopTimeUpdate_fieldAccessorTable
-                .ensureFieldAccessorsInitialized(
-                        NyctStopTimeUpdate.class, NyctStopTimeUpdate.Builder.class);
+                .ensureFieldAccessorsInitialized(NyctStopTimeUpdate.class, Builder.class);
     }
     
     private int bitField0_;
     public static final int SCHEDULED_TRACK_FIELD_NUMBER = 1;
-    private volatile java.lang.Object scheduledTrack_;
+    private volatile @Setter(AccessLevel.PRIVATE) Object scheduledTrack_;
     
     /**
      * <pre>
@@ -142,19 +154,8 @@ public final class NyctStopTimeUpdate extends
      * <code>optional string scheduled_track = 1;</code>
      */
     @Override
-    public java.lang.String getScheduledTrack() {
-        final java.lang.Object ref = scheduledTrack_;
-        if (ref instanceof java.lang.String) {
-            return (java.lang.String) ref;
-        } else {
-            final com.google.protobuf.ByteString bs =
-                    (com.google.protobuf.ByteString) ref;
-            final java.lang.String s = bs.toStringUtf8();
-            if (bs.isValidUtf8()) {
-                scheduledTrack_ = s;
-            }
-            return s;
-        }
+    public String getScheduledTrack() {
+        return ProtoUtils.asString(scheduledTrack_, this::setScheduledTrack_);
     }
     
     /**
@@ -177,22 +178,12 @@ public final class NyctStopTimeUpdate extends
      * <code>optional string scheduled_track = 1;</code>
      */
     @Override
-    public com.google.protobuf.ByteString
-    getScheduledTrackBytes() {
-        final java.lang.Object ref = scheduledTrack_;
-        if (ref instanceof java.lang.String) {
-            final com.google.protobuf.ByteString b =
-                    com.google.protobuf.ByteString.copyFromUtf8(
-                            (java.lang.String) ref);
-            scheduledTrack_ = b;
-            return b;
-        } else {
-            return (com.google.protobuf.ByteString) ref;
-        }
+    public ByteString getScheduledTrackBytes() {
+        return ProtoUtils.asBytes(scheduledTrack_, this::setScheduledTrack_);
     }
     
     public static final int ACTUAL_TRACK_FIELD_NUMBER = 2;
-    private volatile java.lang.Object actualTrack_;
+    private volatile @Setter(AccessLevel.PRIVATE) Object actualTrack_;
     
     /**
      * <pre>
@@ -234,19 +225,8 @@ public final class NyctStopTimeUpdate extends
      * <code>optional string actual_track = 2;</code>
      */
     @Override
-    public java.lang.String getActualTrack() {
-        final java.lang.Object ref = actualTrack_;
-        if (ref instanceof java.lang.String) {
-            return (java.lang.String) ref;
-        } else {
-            final com.google.protobuf.ByteString bs =
-                    (com.google.protobuf.ByteString) ref;
-            final java.lang.String s = bs.toStringUtf8();
-            if (bs.isValidUtf8()) {
-                actualTrack_ = s;
-            }
-            return s;
-        }
+    public String getActualTrack() {
+        return ProtoUtils.asString(actualTrack_, this::setActualTrack_);
     }
     
     /**
@@ -267,18 +247,8 @@ public final class NyctStopTimeUpdate extends
      * <code>optional string actual_track = 2;</code>
      */
     @Override
-    public com.google.protobuf.ByteString
-    getActualTrackBytes() {
-        final java.lang.Object ref = actualTrack_;
-        if (ref instanceof java.lang.String) {
-            final com.google.protobuf.ByteString b =
-                    com.google.protobuf.ByteString.copyFromUtf8(
-                            (java.lang.String) ref);
-            actualTrack_ = b;
-            return b;
-        } else {
-            return (com.google.protobuf.ByteString) ref;
-        }
+    public ByteString getActualTrackBytes() {
+        return ProtoUtils.asBytes(actualTrack_, this::setActualTrack_);
     }
     
     private byte memoizedIsInitialized = -1;
@@ -294,13 +264,12 @@ public final class NyctStopTimeUpdate extends
     }
     
     @Override
-    public void writeTo(final com.google.protobuf.CodedOutputStream output)
-            throws java.io.IOException {
+    public void writeTo(final CodedOutputStream output) throws IOException {
         if (((bitField0_ & 0x00000001) == 0x00000001)) {
-            com.google.protobuf.GeneratedMessageV3.writeString(output, 1, scheduledTrack_);
+            GeneratedMessageV3.writeString(output, 1, scheduledTrack_);
         }
         if (((bitField0_ & 0x00000002) == 0x00000002)) {
-            com.google.protobuf.GeneratedMessageV3.writeString(output, 2, actualTrack_);
+            GeneratedMessageV3.writeString(output, 2, actualTrack_);
         }
         unknownFields.writeTo(output);
     }
@@ -312,18 +281,18 @@ public final class NyctStopTimeUpdate extends
         
         size = 0;
         if (((bitField0_ & 0x00000001) == 0x00000001)) {
-            size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, scheduledTrack_);
+            size += GeneratedMessageV3.computeStringSize(1, scheduledTrack_);
         }
         if (((bitField0_ & 0x00000002) == 0x00000002)) {
-            size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, actualTrack_);
+            size += GeneratedMessageV3.computeStringSize(2, actualTrack_);
         }
         size += unknownFields.getSerializedSize();
         memoizedSize = size;
         return size;
     }
     
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
+    @Override
+    public boolean equals(final Object obj) {
         if (obj == this) {
             return true;
         }
@@ -335,19 +304,17 @@ public final class NyctStopTimeUpdate extends
         boolean result = true;
         result = result && (hasScheduledTrack() == other.hasScheduledTrack());
         if (hasScheduledTrack()) {
-            result = result && getScheduledTrack()
-                    .equals(other.getScheduledTrack());
+            result = result && getScheduledTrack().equals(other.getScheduledTrack());
         }
         result = result && (hasActualTrack() == other.hasActualTrack());
         if (hasActualTrack()) {
-            result = result && getActualTrack()
-                    .equals(other.getActualTrack());
+            result = result && getActualTrack().equals(other.getActualTrack());
         }
         result = result && unknownFields.equals(other.unknownFields);
         return result;
     }
     
-    @java.lang.Override
+    @Override
     public int hashCode() {
         if (memoizedHashCode != 0) {
             return memoizedHashCode;
@@ -367,85 +334,62 @@ public final class NyctStopTimeUpdate extends
         return hash;
     }
     
-    public static NyctStopTimeUpdate parseFrom(
-            final java.nio.ByteBuffer data)
-            throws com.google.protobuf.InvalidProtocolBufferException {
+    public static NyctStopTimeUpdate parseFrom(final ByteBuffer data)
+            throws InvalidProtocolBufferException {
         return PARSER.parseFrom(data);
     }
     
-    public static NyctStopTimeUpdate parseFrom(
-            final java.nio.ByteBuffer data,
-            final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
+    public static NyctStopTimeUpdate parseFrom(final ByteBuffer data,
+            final ExtensionRegistryLite extensionRegistry) throws InvalidProtocolBufferException {
         return PARSER.parseFrom(data, extensionRegistry);
     }
     
-    public static NyctStopTimeUpdate parseFrom(
-            final com.google.protobuf.ByteString data)
-            throws com.google.protobuf.InvalidProtocolBufferException {
+    public static NyctStopTimeUpdate parseFrom(final ByteString data)
+            throws InvalidProtocolBufferException {
         return PARSER.parseFrom(data);
     }
     
-    public static NyctStopTimeUpdate parseFrom(
-            final com.google.protobuf.ByteString data,
-            final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
+    public static NyctStopTimeUpdate parseFrom(final ByteString data,
+            final ExtensionRegistryLite extensionRegistry) throws InvalidProtocolBufferException {
         return PARSER.parseFrom(data, extensionRegistry);
     }
     
     public static NyctStopTimeUpdate parseFrom(final byte[] data)
-            throws com.google.protobuf.InvalidProtocolBufferException {
+            throws InvalidProtocolBufferException {
         return PARSER.parseFrom(data);
     }
     
-    public static NyctStopTimeUpdate parseFrom(
-            final byte[] data,
-            final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
+    public static NyctStopTimeUpdate parseFrom(final byte[] data,
+            final ExtensionRegistryLite extensionRegistry) throws InvalidProtocolBufferException {
         return PARSER.parseFrom(data, extensionRegistry);
     }
     
-    public static NyctStopTimeUpdate parseFrom(final java.io.InputStream input)
-            throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-                .parseWithIOException(PARSER, input);
+    public static NyctStopTimeUpdate parseFrom(final InputStream input) throws IOException {
+        return GeneratedMessageV3.parseWithIOException(PARSER, input);
     }
     
-    public static NyctStopTimeUpdate parseFrom(
-            final java.io.InputStream input,
-            final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-                .parseWithIOException(PARSER, input, extensionRegistry);
+    public static NyctStopTimeUpdate parseFrom(final InputStream input,
+            final ExtensionRegistryLite extensionRegistry) throws IOException {
+        return GeneratedMessageV3.parseWithIOException(PARSER, input, extensionRegistry);
     }
     
-    public static NyctStopTimeUpdate parseDelimitedFrom(final java.io.InputStream input)
-            throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-                .parseDelimitedWithIOException(PARSER, input);
+    public static NyctStopTimeUpdate parseDelimitedFrom(final InputStream input)
+            throws IOException {
+        return GeneratedMessageV3.parseDelimitedWithIOException(PARSER, input);
     }
     
-    public static NyctStopTimeUpdate parseDelimitedFrom(
-            final java.io.InputStream input,
-            final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-                .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    public static NyctStopTimeUpdate parseDelimitedFrom(final InputStream input,
+            final ExtensionRegistryLite extensionRegistry) throws IOException {
+        return GeneratedMessageV3.parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
     
-    public static NyctStopTimeUpdate parseFrom(
-            final com.google.protobuf.CodedInputStream input)
-            throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-                .parseWithIOException(PARSER, input);
+    public static NyctStopTimeUpdate parseFrom(final CodedInputStream input) throws IOException {
+        return GeneratedMessageV3.parseWithIOException(PARSER, input);
     }
     
-    public static NyctStopTimeUpdate parseFrom(
-            final com.google.protobuf.CodedInputStream input,
-            final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-                .parseWithIOException(PARSER, input, extensionRegistry);
+    public static NyctStopTimeUpdate parseFrom(final CodedInputStream input,
+            final ExtensionRegistryLite extensionRegistry) throws IOException {
+        return GeneratedMessageV3.parseWithIOException(PARSER, input, extensionRegistry);
     }
     
     @Override
@@ -461,13 +405,11 @@ public final class NyctStopTimeUpdate extends
     
     @Override
     public Builder toBuilder() {
-        return this == DEFAULT_INSTANCE
-                ? new Builder() : new Builder().mergeFrom(this);
+        return this == DEFAULT_INSTANCE ? new Builder() : new Builder().mergeFrom(this);
     }
     
-    @java.lang.Override
-    protected Builder newBuilderForType(
-            final com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+    @Override
+    protected Builder newBuilderForType(final BuilderParent parent) {
         final Builder builder = new Builder(parent);
         return builder;
     }
@@ -479,22 +421,18 @@ public final class NyctStopTimeUpdate extends
      * <p>
      * Protobuf type {@code NyctStopTimeUpdate}
      */
-    public static final class Builder extends
-            com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+    public static final class Builder extends GeneratedMessageV3.Builder<Builder> implements
             // @@protoc_insertion_point(builder_implements:NyctStopTimeUpdate)
             NyctStopTimeUpdateOrBuilder {
         
-        public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
+        public static final Descriptor getDescriptor() {
             return NyctSubway.internal_static_NyctStopTimeUpdate_descriptor;
         }
         
         @Override
-        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
+        protected FieldAccessorTable internalGetFieldAccessorTable() {
             return NyctSubway.internal_static_NyctStopTimeUpdate_fieldAccessorTable
-                    .ensureFieldAccessorsInitialized(
-                            NyctStopTimeUpdate.class, NyctStopTimeUpdate.Builder.class);
+                    .ensureFieldAccessorsInitialized(NyctStopTimeUpdate.class, Builder.class);
         }
         
         // Construct using sen.khyber.subway.client.proto.NyctStopTimeUpdate.newBuilder()
@@ -502,15 +440,13 @@ public final class NyctStopTimeUpdate extends
             maybeForceBuilderInitialization();
         }
         
-        private Builder(
-                final com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        private Builder(final BuilderParent parent) {
             super(parent);
             maybeForceBuilderInitialization();
         }
         
         private void maybeForceBuilderInitialization() {
-            if (com.google.protobuf.GeneratedMessageV3
-                    .alwaysUseFieldBuilders) {
+            if (GeneratedMessageV3.alwaysUseFieldBuilders) {
             }
         }
         
@@ -525,14 +461,13 @@ public final class NyctStopTimeUpdate extends
         }
         
         @Override
-        public com.google.protobuf.Descriptors.Descriptor
-        getDescriptorForType() {
+        public Descriptor getDescriptorForType() {
             return NyctSubway.internal_static_NyctStopTimeUpdate_descriptor;
         }
         
         @Override
         public NyctStopTimeUpdate getDefaultInstanceForType() {
-            return NyctStopTimeUpdate.getDefaultInstance();
+            return getDefaultInstance();
         }
         
         @Override
@@ -564,44 +499,37 @@ public final class NyctStopTimeUpdate extends
         
         @Override
         public Builder clone() {
-            return (Builder) super.clone();
+            return super.clone();
         }
         
         @Override
-        public Builder setField(
-                final com.google.protobuf.Descriptors.FieldDescriptor field,
-                final java.lang.Object value) {
-            return (Builder) super.setField(field, value);
+        public Builder setField(final FieldDescriptor field, final Object value) {
+            return super.setField(field, value);
         }
         
         @Override
-        public Builder clearField(
-                final com.google.protobuf.Descriptors.FieldDescriptor field) {
-            return (Builder) super.clearField(field);
+        public Builder clearField(final FieldDescriptor field) {
+            return super.clearField(field);
         }
         
         @Override
-        public Builder clearOneof(
-                final com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-            return (Builder) super.clearOneof(oneof);
+        public Builder clearOneof(final OneofDescriptor oneof) {
+            return super.clearOneof(oneof);
         }
         
         @Override
-        public Builder setRepeatedField(
-                final com.google.protobuf.Descriptors.FieldDescriptor field,
-                final int index, final java.lang.Object value) {
-            return (Builder) super.setRepeatedField(field, index, value);
+        public Builder setRepeatedField(final FieldDescriptor field, final int index,
+                final Object value) {
+            return super.setRepeatedField(field, index, value);
         }
         
         @Override
-        public Builder addRepeatedField(
-                final com.google.protobuf.Descriptors.FieldDescriptor field,
-                final java.lang.Object value) {
-            return (Builder) super.addRepeatedField(field, value);
+        public Builder addRepeatedField(final FieldDescriptor field, final Object value) {
+            return super.addRepeatedField(field, value);
         }
         
         @Override
-        public Builder mergeFrom(final com.google.protobuf.Message other) {
+        public Builder mergeFrom(final Message other) {
             if (other instanceof NyctStopTimeUpdate) {
                 return mergeFrom((NyctStopTimeUpdate) other);
             } else {
@@ -611,7 +539,7 @@ public final class NyctStopTimeUpdate extends
         }
         
         public Builder mergeFrom(final NyctStopTimeUpdate other) {
-            if (other == NyctStopTimeUpdate.getDefaultInstance()) {return this;}
+            if (other == getDefaultInstance()) {return this;}
             if (other.hasScheduledTrack()) {
                 bitField0_ |= 0x00000001;
                 scheduledTrack_ = other.scheduledTrack_;
@@ -633,14 +561,12 @@ public final class NyctStopTimeUpdate extends
         }
         
         @Override
-        public Builder mergeFrom(
-                final com.google.protobuf.CodedInputStream input,
-                final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws java.io.IOException {
+        public Builder mergeFrom(final CodedInputStream input,
+                final ExtensionRegistryLite extensionRegistry) throws IOException {
             NyctStopTimeUpdate parsedMessage = null;
             try {
                 parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-            } catch (final com.google.protobuf.InvalidProtocolBufferException e) {
+            } catch (final InvalidProtocolBufferException e) {
                 parsedMessage = (NyctStopTimeUpdate) e.getUnfinishedMessage();
                 throw e.unwrapIOException();
             } finally {
@@ -653,7 +579,7 @@ public final class NyctStopTimeUpdate extends
         
         private int bitField0_;
         
-        private java.lang.Object scheduledTrack_ = "";
+        private @Setter(AccessLevel.PRIVATE) Object scheduledTrack_ = "";
         
         /**
          * <pre>
@@ -699,19 +625,8 @@ public final class NyctStopTimeUpdate extends
          * <code>optional string scheduled_track = 1;</code>
          */
         @Override
-        public java.lang.String getScheduledTrack() {
-            final java.lang.Object ref = scheduledTrack_;
-            if (!(ref instanceof java.lang.String)) {
-                final com.google.protobuf.ByteString bs =
-                        (com.google.protobuf.ByteString) ref;
-                final java.lang.String s = bs.toStringUtf8();
-                if (bs.isValidUtf8()) {
-                    scheduledTrack_ = s;
-                }
-                return s;
-            } else {
-                return (java.lang.String) ref;
-            }
+        public String getScheduledTrack() {
+            return ProtoUtils.asString(scheduledTrack_, this::setScheduledTrack_);
         }
         
         /**
@@ -734,18 +649,8 @@ public final class NyctStopTimeUpdate extends
          * <code>optional string scheduled_track = 1;</code>
          */
         @Override
-        public com.google.protobuf.ByteString
-        getScheduledTrackBytes() {
-            final java.lang.Object ref = scheduledTrack_;
-            if (ref instanceof String) {
-                final com.google.protobuf.ByteString b =
-                        com.google.protobuf.ByteString.copyFromUtf8(
-                                (java.lang.String) ref);
-                scheduledTrack_ = b;
-                return b;
-            } else {
-                return (com.google.protobuf.ByteString) ref;
-            }
+        public ByteString getScheduledTrackBytes() {
+            return ProtoUtils.asBytes(scheduledTrack_, this::setScheduledTrack_);
         }
         
         /**
@@ -767,11 +672,8 @@ public final class NyctStopTimeUpdate extends
          * <p>
          * <code>optional string scheduled_track = 1;</code>
          */
-        public Builder setScheduledTrack(
-                final java.lang.String value) {
-            if (value == null) {
-                throw new NullPointerException();
-            }
+        public Builder setScheduledTrack(final String value) {
+            Objects.requireNonNull(value);
             bitField0_ |= 0x00000001;
             scheduledTrack_ = value;
             onChanged();
@@ -823,18 +725,15 @@ public final class NyctStopTimeUpdate extends
          * <p>
          * <code>optional string scheduled_track = 1;</code>
          */
-        public Builder setScheduledTrackBytes(
-                final com.google.protobuf.ByteString value) {
-            if (value == null) {
-                throw new NullPointerException();
-            }
+        public Builder setScheduledTrackBytes(final ByteString value) {
+            Objects.requireNonNull(value);
             bitField0_ |= 0x00000001;
             scheduledTrack_ = value;
             onChanged();
             return this;
         }
         
-        private java.lang.Object actualTrack_ = "";
+        private @Setter(AccessLevel.PRIVATE) Object actualTrack_ = "";
         
         /**
          * <pre>
@@ -876,19 +775,8 @@ public final class NyctStopTimeUpdate extends
          * <code>optional string actual_track = 2;</code>
          */
         @Override
-        public java.lang.String getActualTrack() {
-            final java.lang.Object ref = actualTrack_;
-            if (!(ref instanceof java.lang.String)) {
-                final com.google.protobuf.ByteString bs =
-                        (com.google.protobuf.ByteString) ref;
-                final java.lang.String s = bs.toStringUtf8();
-                if (bs.isValidUtf8()) {
-                    actualTrack_ = s;
-                }
-                return s;
-            } else {
-                return (java.lang.String) ref;
-            }
+        public String getActualTrack() {
+            return ProtoUtils.asString(actualTrack_, this::setActualTrack_);
         }
         
         /**
@@ -909,18 +797,8 @@ public final class NyctStopTimeUpdate extends
          * <code>optional string actual_track = 2;</code>
          */
         @Override
-        public com.google.protobuf.ByteString
-        getActualTrackBytes() {
-            final java.lang.Object ref = actualTrack_;
-            if (ref instanceof String) {
-                final com.google.protobuf.ByteString b =
-                        com.google.protobuf.ByteString.copyFromUtf8(
-                                (java.lang.String) ref);
-                actualTrack_ = b;
-                return b;
-            } else {
-                return (com.google.protobuf.ByteString) ref;
-            }
+        public ByteString getActualTrackBytes() {
+            return ProtoUtils.asBytes(actualTrack_, this::setActualTrack_);
         }
         
         /**
@@ -940,11 +818,8 @@ public final class NyctStopTimeUpdate extends
          * <p>
          * <code>optional string actual_track = 2;</code>
          */
-        public Builder setActualTrack(
-                final java.lang.String value) {
-            if (value == null) {
-                throw new NullPointerException();
-            }
+        public Builder setActualTrack(final String value) {
+            Objects.requireNonNull(value);
             bitField0_ |= 0x00000002;
             actualTrack_ = value;
             onChanged();
@@ -992,11 +867,8 @@ public final class NyctStopTimeUpdate extends
          * <p>
          * <code>optional string actual_track = 2;</code>
          */
-        public Builder setActualTrackBytes(
-                final com.google.protobuf.ByteString value) {
-            if (value == null) {
-                throw new NullPointerException();
-            }
+        public Builder setActualTrackBytes(final ByteString value) {
+            Objects.requireNonNull(value);
             bitField0_ |= 0x00000002;
             actualTrack_ = value;
             onChanged();
@@ -1004,14 +876,12 @@ public final class NyctStopTimeUpdate extends
         }
         
         @Override
-        public final Builder setUnknownFields(
-                final com.google.protobuf.UnknownFieldSet unknownFields) {
+        public final Builder setUnknownFields(final UnknownFieldSet unknownFields) {
             return super.setUnknownFields(unknownFields);
         }
         
         @Override
-        public final Builder mergeUnknownFields(
-                final com.google.protobuf.UnknownFieldSet unknownFields) {
+        public final Builder mergeUnknownFields(final UnknownFieldSet unknownFields) {
             return super.mergeUnknownFields(unknownFields);
         }
         
@@ -1030,24 +900,22 @@ public final class NyctStopTimeUpdate extends
         return DEFAULT_INSTANCE;
     }
     
-    @java.lang.Deprecated public static final com.google.protobuf.Parser<NyctStopTimeUpdate>
-            PARSER = new com.google.protobuf.AbstractParser<>() {
+    @Deprecated public static final Parser<NyctStopTimeUpdate> PARSER = new AbstractParser<>() {
         
         @Override
-        public NyctStopTimeUpdate parsePartialFrom(
-                final com.google.protobuf.CodedInputStream input,
-                final com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws com.google.protobuf.InvalidProtocolBufferException {
+        public NyctStopTimeUpdate parsePartialFrom(final CodedInputStream input,
+                final ExtensionRegistryLite extensionRegistry)
+                throws InvalidProtocolBufferException {
             return new NyctStopTimeUpdate(input, extensionRegistry);
         }
     };
     
-    public static com.google.protobuf.Parser<NyctStopTimeUpdate> parser() {
+    public static Parser<NyctStopTimeUpdate> parser() {
         return PARSER;
     }
     
-    @java.lang.Override
-    public com.google.protobuf.Parser<NyctStopTimeUpdate> getParserForType() {
+    @Override
+    public Parser<NyctStopTimeUpdate> getParserForType() {
         return PARSER;
     }
     
@@ -1057,4 +925,3 @@ public final class NyctStopTimeUpdate extends
     }
     
 }
-

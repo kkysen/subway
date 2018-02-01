@@ -6,10 +6,11 @@ package sen.khyber.web.subway.client.proto;
 import sen.khyber.web.subway.client.proto.TripUpdate.StopTimeUpdate;
 import sen.khyber.web.subway.client.proto.TripUpdate.StopTimeUpdateOrBuilder;
 
-public interface TripUpdateOrBuilder extends
-        // @@protoc_insertion_point(interface_extends:transit_realtime.TripUpdate)
-        com.google.protobuf.GeneratedMessageV3.
-                ExtendableMessageOrBuilder<TripUpdate> {
+import java.util.List;
+
+import com.google.protobuf.GeneratedMessageV3.ExtendableMessageOrBuilder;
+
+public interface TripUpdateOrBuilder extends ExtendableMessageOrBuilder<TripUpdate> {
     
     /**
      * <pre>
@@ -97,8 +98,7 @@ public interface TripUpdateOrBuilder extends
      * <p>
      * <code>repeated .transit_realtime.TripUpdate.StopTimeUpdate stop_time_update = 2;</code>
      */
-    java.util.List<StopTimeUpdate>
-    getStopTimeUpdateList();
+    List<StopTimeUpdate> getStopTimeUpdateList();
     
     /**
      * <pre>
@@ -173,8 +173,7 @@ public interface TripUpdateOrBuilder extends
      * <p>
      * <code>repeated .transit_realtime.TripUpdate.StopTimeUpdate stop_time_update = 2;</code>
      */
-    java.util.List<? extends StopTimeUpdateOrBuilder>
-    getStopTimeUpdateOrBuilderList();
+    List<? extends StopTimeUpdateOrBuilder> getStopTimeUpdateOrBuilderList();
     
     /**
      * <pre>
@@ -199,8 +198,7 @@ public interface TripUpdateOrBuilder extends
      * <p>
      * <code>repeated .transit_realtime.TripUpdate.StopTimeUpdate stop_time_update = 2;</code>
      */
-    StopTimeUpdateOrBuilder getStopTimeUpdateOrBuilder(
-            int index);
+    StopTimeUpdateOrBuilder getStopTimeUpdateOrBuilder(int index);
     
     /**
      * <pre>
@@ -221,4 +219,5 @@ public interface TripUpdateOrBuilder extends
      * <code>optional uint64 timestamp = 4;</code>
      */
     long getTimestamp();
+    
 }
