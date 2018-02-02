@@ -40,18 +40,30 @@ public class MappedList<T, R> extends Mapper<T, R> implements List<R> {
         this.delegate = delegate;
     }
     
+    /**
+     * Creates a new MappedList mapping the result of this MappedList with another mapper.
+     */
     public <S> MappedList<T, S> map(final Function<? super R, ? extends S> mapper) {
         return new MappedList<>(delegate, this.mapper.andThen(mapper));
     }
     
+    /**
+     * If a list is RandomAccess.
+     */
     private static <T> boolean isRam(final List<T> list) {
         return list instanceof RandomAccess;
     }
     
+    /**
+     * An iterator if not RandomAccess, else null.
+     */
     private static <T> Iterator<T> iterator(final List<T> list) {
         return isRam(list) ? null : list.iterator();
     }
     
+    /**
+     * The next element, using List#get(int) if RandomAccess, else using using Iterator#next()
+     */
     private static <T> T next(
             final boolean ram, final int i, final List<? extends T> list,
             final Iterator<? extends T> iter) {
@@ -157,20 +169,21 @@ public class MappedList<T, R> extends Mapper<T, R> implements List<R> {
     
     @Override
     public int indexOf(final Object o) {
+        final List<? extends T> list = delegate;
         if (o == null) {
-            return delegate.indexOf(null);
+            return list.indexOf(null);
         }
-        if (delegate instanceof RandomAccess) {
-            final int size = delegate.size();
+        if (isRam(list)) {
+            final int size = list.size();
             for (int i = 0; i < size; i++) {
-                final T t = delegate.get(i);
+                final T t = list.get(i);
                 if (o.equals(map(t))) {
                     return i;
                 }
             }
         } else {
             int i = 0;
-            for (final T t : delegate) {
+            for (final T t : list) {
                 if (o.equals(map(t))) {
                     return i;
                 }
@@ -182,19 +195,20 @@ public class MappedList<T, R> extends Mapper<T, R> implements List<R> {
     
     @Override
     public int lastIndexOf(final Object o) {
+        final List<? extends T> list = delegate;
         if (o == null) {
-            return delegate.indexOf(null);
+            return list.indexOf(null);
         }
-        if (delegate instanceof RandomAccess) {
-            for (int i = delegate.size() - 1; i >= 0; i--) {
-                final T t = delegate.get(i);
+        if (isRam(list)) {
+            for (int i = list.size() - 1; i >= 0; i--) {
+                final T t = list.get(i);
                 if (o.equals(map(t))) {
                     return i;
                 }
             }
         } else {
-            final int i = delegate.size() - 1;
-            final ListIterator<? extends T> iter = delegate.listIterator(i);
+            final int i = list.size() - 1;
+            final ListIterator<? extends T> iter = list.listIterator(i);
             while (iter.hasPrevious()) {
                 final T t = iter.previous();
                 if (o.equals(map(t))) {
@@ -265,7 +279,7 @@ public class MappedList<T, R> extends Mapper<T, R> implements List<R> {
             
             @Override
             public void forEachRemaining(final Consumer<? super R> action) {
-                iter.forEachRemaining(t -> action.accept(map(t)));
+                iter.forEachRemaining(accepting(action));
             }
             
         };
@@ -306,7 +320,7 @@ public class MappedList<T, R> extends Mapper<T, R> implements List<R> {
             
             @Override
             public void forEachRemaining(final Consumer<? super R> action) {
-                iter.forEachRemaining(t -> action.accept(map(t)));
+                iter.forEachRemaining(accepting(action));
             }
             
         };

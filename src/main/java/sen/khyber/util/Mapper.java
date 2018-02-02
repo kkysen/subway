@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.experimental.Accessors;
 
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 
 import org.jetbrains.annotations.NotNull;
@@ -25,6 +26,10 @@ public class Mapper<T, R> {
     
     public final R map(final T t) {
         return t == null ? null : mapper.apply(t);
+    }
+    
+    public final Consumer<? super T> accepting(Consumer<? super R> action) {
+        return t -> action.accept(map(t));
     }
     
 }

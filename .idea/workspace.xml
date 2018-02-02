@@ -4,104 +4,11 @@
     <option name="SCOPE_TYPE" value="3" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d9e19bf5-212d-4cc6-aaa9-eaf034bf55a1" name="Default" comment="cleaned up protobuf code, including refactoring String &lt;=&gt; ByteString conversions&#10;&#10;added a simple FeedController that just prints a Feed to JS in HTML so that I can inspect it using Chrome's better object inspector">
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/misc/Misc.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/util/MappedList.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/util/MappedSpliterator.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/util/Mapper.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/util/Parallelism.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/util/Retrier.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/util/Retrier2.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/util/function/IntBinaryPredicate.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/SubwaySystem.java" />
+    <list default="true" id="d9e19bf5-212d-4cc6-aaa9-eaf034bf55a1" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/SubwayClient.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/SubwayClient.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/proto/Alert.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/proto/Alert.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/proto/FeedMessage.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/proto/FeedMessage.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/proto/NyctStopTimeUpdate.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/proto/NyctStopTimeUpdate.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/proto/NyctTripDescriptor.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/proto/NyctTripDescriptor.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/proto/TranslatedString.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/proto/TranslatedString.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/proto/TripUpdate.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/proto/TripUpdate.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/proto/VehicleDescriptor.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/proto/VehicleDescriptor.java" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/unsafe/fields/ByteBufferUtils.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/unsafe/fields/ByteBufferUtils.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/SubwayClient.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/Alert$1.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/Alert$1.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/Alert$Builder.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/Alert$Builder.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/Alert$Cause$1.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/Alert$Cause$1.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/Alert$Cause.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/Alert$Cause.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/Alert$Effect$1.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/Alert$Effect$1.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/Alert$Effect.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/Alert$Effect.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/Alert.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/Alert.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/EntitySelector$1.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/EntitySelector$1.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/EntitySelector$Builder.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/EntitySelector$Builder.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/EntitySelector.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/EntitySelector.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/FeedEntity$1.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/FeedEntity$1.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/FeedEntity$Builder.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/FeedEntity$Builder.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/FeedEntity.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/FeedEntity.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/FeedHeader$1.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/FeedHeader$1.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/FeedHeader$Builder.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/FeedHeader$Builder.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/FeedHeader$Incrementality$1.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/FeedHeader$Incrementality$1.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/FeedHeader$Incrementality.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/FeedHeader$Incrementality.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/FeedHeader.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/FeedHeader.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/FeedMessage$1.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/FeedMessage$1.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/FeedMessage$Builder.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/FeedMessage$Builder.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/FeedMessage.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/FeedMessage.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/GtfsRealtime$1.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/GtfsRealtime$1.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/GtfsRealtime.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/GtfsRealtime.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/NyctFeedHeader$1.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/NyctFeedHeader$1.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/NyctFeedHeader$Builder.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/NyctFeedHeader$Builder.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/NyctFeedHeader.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/NyctFeedHeader.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/NyctStopTimeUpdate$1.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/NyctStopTimeUpdate$1.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/NyctStopTimeUpdate$Builder.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/NyctStopTimeUpdate$Builder.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/NyctStopTimeUpdate.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/NyctStopTimeUpdate.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/NyctSubway$1.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/NyctSubway$1.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/NyctSubway.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/NyctSubway.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/NyctTripDescriptor$1.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/NyctTripDescriptor$1.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/NyctTripDescriptor$Builder.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/NyctTripDescriptor$Builder.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/NyctTripDescriptor$Direction$1.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/NyctTripDescriptor$Direction$1.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/NyctTripDescriptor$Direction.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/NyctTripDescriptor$Direction.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/NyctTripDescriptor.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/NyctTripDescriptor.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/Position$1.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/Position$1.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/Position$Builder.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/Position$Builder.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/Position.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/Position.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TimeRange$1.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TimeRange$1.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TimeRange$Builder.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TimeRange$Builder.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TimeRange.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TimeRange.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TranslatedString$1.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TranslatedString$1.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TranslatedString$Builder.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TranslatedString$Builder.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TranslatedString$Translation$1.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TranslatedString$Translation$1.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TranslatedString$Translation$Builder.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TranslatedString$Translation$Builder.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TranslatedString$Translation.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TranslatedString$Translation.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TranslatedString.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TranslatedString.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TripDescriptor$1.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TripDescriptor$1.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TripDescriptor$Builder.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TripDescriptor$Builder.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TripDescriptor$ScheduleRelationship$1.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TripDescriptor$ScheduleRelationship$1.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TripDescriptor$ScheduleRelationship.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TripDescriptor$ScheduleRelationship.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TripDescriptor.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TripDescriptor.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TripReplacementPeriod$1.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TripReplacementPeriod$1.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TripReplacementPeriod$Builder.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TripReplacementPeriod$Builder.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TripReplacementPeriod.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TripReplacementPeriod.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TripUpdate$1.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TripUpdate$1.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TripUpdate$Builder.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TripUpdate$Builder.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TripUpdate$StopTimeEvent$1.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TripUpdate$StopTimeEvent$1.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TripUpdate$StopTimeEvent$Builder.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TripUpdate$StopTimeEvent$Builder.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TripUpdate$StopTimeEvent.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TripUpdate$StopTimeEvent.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TripUpdate$StopTimeUpdate$1.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TripUpdate$StopTimeUpdate$1.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TripUpdate$StopTimeUpdate$Builder.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TripUpdate$StopTimeUpdate$Builder.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TripUpdate$StopTimeUpdate$ScheduleRelationship$1.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TripUpdate$StopTimeUpdate$ScheduleRelationship$1.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TripUpdate$StopTimeUpdate$ScheduleRelationship.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TripUpdate$StopTimeUpdate$ScheduleRelationship.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TripUpdate$StopTimeUpdate.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TripUpdate$StopTimeUpdate.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TripUpdate.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TripUpdate.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/VehicleDescriptor$1.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/VehicleDescriptor$1.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/VehicleDescriptor$Builder.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/VehicleDescriptor$Builder.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/VehicleDescriptor.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/VehicleDescriptor.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/VehiclePosition$1.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/VehiclePosition$1.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/VehiclePosition$Builder.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/VehiclePosition$Builder.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/VehiclePosition$CongestionLevel$1.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/VehiclePosition$CongestionLevel$1.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/VehiclePosition$CongestionLevel.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/VehiclePosition$CongestionLevel.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/VehiclePosition$VehicleStopStatus$1.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/VehiclePosition$VehicleStopStatus$1.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/VehiclePosition$VehicleStopStatus.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/VehiclePosition$VehicleStopStatus.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/VehiclePosition.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/VehiclePosition.class" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/util/MappedList.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/util/MappedList.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/util/MappedSpliterator.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/util/MappedSpliterator.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/util/Mapper.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/util/Mapper.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -142,148 +49,7 @@
     <option name="diffsInCommentsNonSignificant" value="false" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="750">
-      <file leaf-file-name="SubwayClient.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/SubwayClient.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="754">
-              <caret line="33" column="5" lean-forward="false" selection-start-line="33" selection-start-column="5" selection-end-line="33" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Retrier.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/util/Retrier.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="339">
-              <caret line="100" column="13" lean-forward="false" selection-start-line="100" selection-start-column="13" selection-end-line="100" selection-end-column="13" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#4789#4819#0" expanded="true" />
-                <element signature="e#4872#4873#0" expanded="true" />
-                <element signature="e#4924#4925#0" expanded="true" />
-                <element signature="e#5003#5004#0" expanded="true" />
-                <element signature="e#5036#5037#0" expanded="true" />
-                <element signature="class#RetrierBuilders#0;class#Retrier#0" expanded="false" />
-                <element signature="class#RetrierBuilder#0;class#Retrier#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Misc.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/misc/Misc.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="674">
-              <caret line="24" column="36" lean-forward="false" selection-start-line="24" selection-start-column="36" selection-end-line="24" selection-end-column="36" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#178#208#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MappedList.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/util/MappedList.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="280">
-              <caret line="26" column="0" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="25" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1362#1363#0" expanded="true" />
-                <element signature="e#1413#1414#0" expanded="true" />
-                <element signature="e#4748#4749#0" expanded="true" />
-                <element signature="e#4786#4787#0" expanded="true" />
-                <element signature="e#4836#4837#0" expanded="true" />
-                <element signature="e#4877#4878#0" expanded="true" />
-                <element signature="e#6378#6379#0" expanded="true" />
-                <element signature="e#6416#6417#0" expanded="true" />
-                <element signature="e#6721#6722#0" expanded="true" />
-                <element signature="e#6774#6775#0" expanded="true" />
-                <element signature="e#6839#6840#0" expanded="true" />
-                <element signature="e#6894#6895#0" expanded="true" />
-                <element signature="e#6972#6973#0" expanded="true" />
-                <element signature="e#7025#7026#0" expanded="true" />
-                <element signature="e#7094#7095#0" expanded="true" />
-                <element signature="e#7153#7154#0" expanded="true" />
-                <element signature="e#7225#7226#0" expanded="true" />
-                <element signature="e#7280#7281#0" expanded="true" />
-                <element signature="e#7356#7357#0" expanded="true" />
-                <element signature="e#7411#7412#0" expanded="true" />
-                <element signature="e#7481#7482#0" expanded="true" />
-                <element signature="e#7526#7527#0" expanded="true" />
-                <element signature="e#7602#7603#0" expanded="true" />
-                <element signature="e#7645#7646#0" expanded="true" />
-                <element signature="e#7721#7722#0" expanded="true" />
-                <element signature="e#7764#7765#0" expanded="true" />
-                <element signature="e#8238#8239#0" expanded="true" />
-                <element signature="e#8277#8278#0" expanded="true" />
-                <element signature="e#8542#8543#0" expanded="true" />
-                <element signature="e#8595#8596#0" expanded="true" />
-                <element signature="e#8660#8661#0" expanded="true" />
-                <element signature="e#8715#8716#0" expanded="true" />
-                <element signature="e#8785#8786#0" expanded="true" />
-                <element signature="e#8830#8831#0" expanded="true" />
-                <element signature="e#9721#9722#0" expanded="true" />
-                <element signature="e#9768#9769#0" expanded="true" />
-                <element signature="e#9823#9824#0" expanded="true" />
-                <element signature="e#9850#9851#0" expanded="true" />
-                <element signature="e#9919#9920#0" expanded="true" />
-                <element signature="e#9946#9947#0" expanded="true" />
-                <element signature="e#10012#10013#0" expanded="true" />
-                <element signature="e#10039#10040#0" expanded="true" />
-                <element signature="e#10097#10098#0" expanded="true" />
-                <element signature="e#10147#10148#0" expanded="true" />
-                <element signature="e#11168#11169#0" expanded="true" />
-                <element signature="e#11203#11204#0" expanded="true" />
-                <element signature="e#12720#12721#0" expanded="true" />
-                <element signature="e#12769#12770#0" expanded="true" />
-                <element signature="e#12949#12950#0" expanded="true" />
-                <element signature="e#12981#12982#0" expanded="true" />
-                <element signature="e#13171#13172#0" expanded="true" />
-                <element signature="e#13223#13224#0" expanded="true" />
-                <element signature="e#13282#13283#0" expanded="true" />
-                <element signature="e#13342#13343#0" expanded="true" />
-                <element signature="e#14096#14097#0" expanded="true" />
-                <element signature="e#14157#14158#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MappedSpliterator.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/util/MappedSpliterator.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="400">
-              <caret line="17" column="25" lean-forward="false" selection-start-line="17" selection-start-column="25" selection-end-line="17" selection-end-column="25" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1500#1501#0" expanded="true" />
-                <element signature="e#1546#1547#0" expanded="true" />
-                <element signature="e#1600#1601#0" expanded="true" />
-                <element signature="e#1649#1650#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Mapper.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/util/Mapper.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="760">
-              <caret line="23" column="5" lean-forward="true" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#585#586#0" expanded="true" />
-                <element signature="e#642#643#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="750" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -318,6 +84,8 @@
       <find>batch</find>
       <find>removeAll</find>
       <find>removeIf</find>
+      <find>instanceof</find>
+      <find>t -&gt;</find>
     </findStrings>
     <replaceStrings>
       <replace>long</replace>
@@ -387,12 +155,12 @@
         <option value="$PROJECT_DIR$/src/main/java/sen/khyber/util/ExceptionalRetrier.java" />
         <option value="$PROJECT_DIR$/src/main/java/sen/khyber/util/function/IntBinaryPredicate.java" />
         <option value="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/SubwaySystem.java" />
-        <option value="$PROJECT_DIR$/src/main/java/sen/khyber/util/MappedList.java" />
-        <option value="$PROJECT_DIR$/src/main/java/sen/khyber/util/Mapper.java" />
-        <option value="$PROJECT_DIR$/src/main/java/sen/khyber/util/MappedSpliterator.java" />
         <option value="$PROJECT_DIR$/src/main/java/sen/khyber/misc/Misc.java" />
         <option value="$PROJECT_DIR$/src/main/java/sen/khyber/util/Retrier.java" />
         <option value="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/SubwayClient.java" />
+        <option value="$PROJECT_DIR$/src/main/java/sen/khyber/util/Mapper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/sen/khyber/util/MappedSpliterator.java" />
+        <option value="$PROJECT_DIR$/src/main/java/sen/khyber/util/MappedList.java" />
       </list>
     </option>
   </component>
@@ -821,7 +589,7 @@
       <workItem from="1517361533137" duration="5405000" />
       <workItem from="1517438716520" duration="51000" />
       <workItem from="1517439008994" duration="24168000" />
-      <workItem from="1517525055852" duration="17971000" />
+      <workItem from="1517525055852" duration="18938000" />
     </task>
     <task id="LOCAL-00001" summary="got Hello World example to work in Spring Boot">
       <created>1517269361130</created>
@@ -851,11 +619,18 @@
       <option name="project" value="LOCAL" />
       <updated>1517445476599</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="wrote a more robust Retrier using MappedList&#10;&#10;MappedList wraps a delegate list and using a mapping function,&#10;presents a lazily mapped view of delegated list.&#10;MappedSpliterator is similar, and both inherit from Mapper,&#10;which just contains a few convenience methods &#10;(maybe it should be an interface with default methods).&#10;&#10;Retrier&lt;T, R&gt; uses a BiConsumer&lt;List&lt;T&gt;, List&lt;R&gt;&gt; &#10;to repeatedly try a List&lt;T&gt;, whose errors go into a List&lt;R&gt;.&#10;A reconverter Function&lt;R, T&gt; then maps the errors back for Retrier to try again.&#10;&#10;Retrier supports an optimized version &#10;where the reconverter is the identity, that is T = R.&#10;&#10;Exceptional Retriers can also be used that map a List&lt;T&gt; to a List&lt;Pair&lt;T, Exception&gt;&gt;,&#10;where Exception can be any exception type, &#10;with Exception, RuntimeException, and IOException built in&#10;(accessible through Retrier.builders()).">
+      <created>1517547153386</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1517547153386</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="70351000" />
+    <option name="totallyTimeSpent" value="71318000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -868,7 +643,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-16" y="-16" width="3232" height="1732" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="FindBugs-IDEA" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -889,7 +663,7 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293201" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="DB Browser" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3293201" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293201" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="AllProjects" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293201" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -900,7 +674,7 @@
       <window_info id="CheckStyle" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run with VisualVM" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25906736" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25906736" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="JProfiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -953,7 +727,8 @@
     <MESSAGE value="added protobuf files for MTA GTFS Realtime API" />
     <MESSAGE value="got MTA GTFS realtime API to work using protobufs&#10;ported some unsafe, reflection, IO, and web stuff from old repo&#10;    and improved a bunch of it, too" />
     <MESSAGE value="cleaned up protobuf code, including refactoring String &lt;=&gt; ByteString conversions&#10;&#10;added a simple FeedController that just prints a Feed to JS in HTML so that I can inspect it using Chrome's better object inspector" />
-    <option name="LAST_COMMIT_MESSAGE" value="cleaned up protobuf code, including refactoring String &lt;=&gt; ByteString conversions&#10;&#10;added a simple FeedController that just prints a Feed to JS in HTML so that I can inspect it using Chrome's better object inspector" />
+    <MESSAGE value="wrote a more robust Retrier using MappedList&#10;&#10;MappedList wraps a delegate list and using a mapping function,&#10;presents a lazily mapped view of delegated list.&#10;MappedSpliterator is similar, and both inherit from Mapper,&#10;which just contains a few convenience methods &#10;(maybe it should be an interface with default methods).&#10;&#10;Retrier&lt;T, R&gt; uses a BiConsumer&lt;List&lt;T&gt;, List&lt;R&gt;&gt; &#10;to repeatedly try a List&lt;T&gt;, whose errors go into a List&lt;R&gt;.&#10;A reconverter Function&lt;R, T&gt; then maps the errors back for Retrier to try again.&#10;&#10;Retrier supports an optimized version &#10;where the reconverter is the identity, that is T = R.&#10;&#10;Exceptional Retriers can also be used that map a List&lt;T&gt; to a List&lt;Pair&lt;T, Exception&gt;&gt;,&#10;where Exception can be any exception type, &#10;with Exception, RuntimeException, and IOException built in&#10;(accessible through Retrier.builders())." />
+    <option name="LAST_COMMIT_MESSAGE" value="wrote a more robust Retrier using MappedList&#10;&#10;MappedList wraps a delegate list and using a mapping function,&#10;presents a lazily mapped view of delegated list.&#10;MappedSpliterator is similar, and both inherit from Mapper,&#10;which just contains a few convenience methods &#10;(maybe it should be an interface with default methods).&#10;&#10;Retrier&lt;T, R&gt; uses a BiConsumer&lt;List&lt;T&gt;, List&lt;R&gt;&gt; &#10;to repeatedly try a List&lt;T&gt;, whose errors go into a List&lt;R&gt;.&#10;A reconverter Function&lt;R, T&gt; then maps the errors back for Retrier to try again.&#10;&#10;Retrier supports an optimized version &#10;where the reconverter is the identity, that is T = R.&#10;&#10;Exceptional Retriers can also be used that map a List&lt;T&gt; to a List&lt;Pair&lt;T, Exception&gt;&gt;,&#10;where Exception can be any exception type, &#10;with Exception, RuntimeException, and IOException built in&#10;(accessible through Retrier.builders())." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1308,6 +1083,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="480">
           <caret line="16" column="5" lean-forward="false" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1434,121 +1210,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/util/MappedList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="26" column="0" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="25" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1362#1363#0" expanded="true" />
-            <element signature="e#1413#1414#0" expanded="true" />
-            <element signature="e#4748#4749#0" expanded="true" />
-            <element signature="e#4786#4787#0" expanded="true" />
-            <element signature="e#4836#4837#0" expanded="true" />
-            <element signature="e#4877#4878#0" expanded="true" />
-            <element signature="e#6378#6379#0" expanded="true" />
-            <element signature="e#6416#6417#0" expanded="true" />
-            <element signature="e#6721#6722#0" expanded="true" />
-            <element signature="e#6774#6775#0" expanded="true" />
-            <element signature="e#6839#6840#0" expanded="true" />
-            <element signature="e#6894#6895#0" expanded="true" />
-            <element signature="e#6972#6973#0" expanded="true" />
-            <element signature="e#7025#7026#0" expanded="true" />
-            <element signature="e#7094#7095#0" expanded="true" />
-            <element signature="e#7153#7154#0" expanded="true" />
-            <element signature="e#7225#7226#0" expanded="true" />
-            <element signature="e#7280#7281#0" expanded="true" />
-            <element signature="e#7356#7357#0" expanded="true" />
-            <element signature="e#7411#7412#0" expanded="true" />
-            <element signature="e#7481#7482#0" expanded="true" />
-            <element signature="e#7526#7527#0" expanded="true" />
-            <element signature="e#7602#7603#0" expanded="true" />
-            <element signature="e#7645#7646#0" expanded="true" />
-            <element signature="e#7721#7722#0" expanded="true" />
-            <element signature="e#7764#7765#0" expanded="true" />
-            <element signature="e#8238#8239#0" expanded="true" />
-            <element signature="e#8277#8278#0" expanded="true" />
-            <element signature="e#8542#8543#0" expanded="true" />
-            <element signature="e#8595#8596#0" expanded="true" />
-            <element signature="e#8660#8661#0" expanded="true" />
-            <element signature="e#8715#8716#0" expanded="true" />
-            <element signature="e#8785#8786#0" expanded="true" />
-            <element signature="e#8830#8831#0" expanded="true" />
-            <element signature="e#9721#9722#0" expanded="true" />
-            <element signature="e#9768#9769#0" expanded="true" />
-            <element signature="e#9823#9824#0" expanded="true" />
-            <element signature="e#9850#9851#0" expanded="true" />
-            <element signature="e#9919#9920#0" expanded="true" />
-            <element signature="e#9946#9947#0" expanded="true" />
-            <element signature="e#10012#10013#0" expanded="true" />
-            <element signature="e#10039#10040#0" expanded="true" />
-            <element signature="e#10097#10098#0" expanded="true" />
-            <element signature="e#10147#10148#0" expanded="true" />
-            <element signature="e#11168#11169#0" expanded="true" />
-            <element signature="e#11203#11204#0" expanded="true" />
-            <element signature="e#12720#12721#0" expanded="true" />
-            <element signature="e#12769#12770#0" expanded="true" />
-            <element signature="e#12949#12950#0" expanded="true" />
-            <element signature="e#12981#12982#0" expanded="true" />
-            <element signature="e#13171#13172#0" expanded="true" />
-            <element signature="e#13223#13224#0" expanded="true" />
-            <element signature="e#13282#13283#0" expanded="true" />
-            <element signature="e#13342#13343#0" expanded="true" />
-            <element signature="e#14096#14097#0" expanded="true" />
-            <element signature="e#14157#14158#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/util/MappedSpliterator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="17" column="25" lean-forward="false" selection-start-line="17" selection-start-column="25" selection-end-line="17" selection-end-column="25" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1500#1501#0" expanded="true" />
-            <element signature="e#1546#1547#0" expanded="true" />
-            <element signature="e#1600#1601#0" expanded="true" />
-            <element signature="e#1649#1650#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk-9.0.4/lib/src.zip!/java.base/java/util/AbstractList.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="425">
           <caret line="168" column="0" lean-forward="true" selection-start-line="168" selection-start-column="0" selection-end-line="168" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/util/Mapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="760">
-          <caret line="23" column="5" lean-forward="true" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#585#586#0" expanded="true" />
-            <element signature="e#642#643#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/misc/Misc.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="674">
-          <caret line="24" column="36" lean-forward="false" selection-start-line="24" selection-start-column="36" selection-end-line="24" selection-end-column="36" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#178#208#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/SubwayClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="754">
-          <caret line="33" column="5" lean-forward="false" selection-start-line="33" selection-start-column="5" selection-end-line="33" selection-end-column="5" />
           <folding />
         </state>
       </provider>
@@ -1566,6 +1231,97 @@
             <element signature="e#5036#5037#0" expanded="true" />
             <element signature="class#RetrierBuilders#0;class#Retrier#0" expanded="false" />
             <element signature="class#RetrierBuilder#0;class#Retrier#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/SubwayClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="800">
+          <caret line="33" column="5" lean-forward="false" selection-start-line="33" selection-start-column="5" selection-end-line="33" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/misc/Misc.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="800">
+          <caret line="24" column="36" lean-forward="false" selection-start-line="24" selection-start-column="36" selection-end-line="24" selection-end-column="36" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#178#208#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/util/Mapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1080">
+          <caret line="32" column="5" lean-forward="true" selection-start-line="32" selection-start-column="5" selection-end-line="32" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#621#622#0" expanded="true" />
+            <element signature="e#678#679#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/util/MappedSpliterator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1440">
+          <caret line="40" column="51" lean-forward="false" selection-start-line="40" selection-start-column="51" selection-end-line="40" selection-end-column="51" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1426#1427#0" expanded="true" />
+            <element signature="e#1472#1473#0" expanded="true" />
+            <element signature="e#1526#1527#0" expanded="true" />
+            <element signature="e#1575#1576#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/util/MappedList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="26" column="25" lean-forward="true" selection-start-line="26" selection-start-column="25" selection-end-line="26" selection-end-column="25" />
+          <folding>
+            <element signature="method#uoe#0;class#MappedList#0" expanded="false" />
+            <element signature="method#MappedList#0;class#MappedList#0" expanded="false" />
+            <element signature="method#map#0;class#MappedList#0" expanded="false" />
+            <element signature="method#iterator#0;class#MappedList#0" expanded="false" />
+            <element signature="method#next#0;class#MappedList#0" expanded="false" />
+            <element signature="method#notEquals#0;class#MappedList#0" expanded="false" />
+            <element signature="method#equals#0;class#MappedList#0" expanded="false" />
+            <element signature="method#equals#1;class#MappedList#0" expanded="false" />
+            <element signature="method#hashCode#0;class#MappedList#0" expanded="false" />
+            <element signature="method#indexOf#0;class#MappedList#0" expanded="false" />
+            <element signature="method#lastIndexOf#0;class#MappedList#0" expanded="false" />
+            <element signature="e#6668#6676#0" expanded="false" />
+            <element signature="e#6782#6790#0" expanded="false" />
+            <element signature="method#listIterator#1;class#MappedList#0" expanded="false" />
+            <element signature="class#6883:8327" expanded="false" />
+            <element signature="method#forEachRemaining#0;class#6883:8327" expanded="false" />
+            <element signature="e#8344#8352#0" expanded="false" />
+            <element signature="method#subList#0;class#MappedList#0" expanded="false" />
+            <element signature="e#8634#8642#0" expanded="false" />
+            <element signature="method#iterator#1;class#MappedList#0" expanded="false" />
+            <element signature="class#8712:9384" expanded="false" />
+            <element signature="method#forEachRemaining#0;class#8712:9384" expanded="false" />
+            <element signature="e#9401#9409#0" expanded="false" />
+            <element signature="method#toArray#0;class#MappedList#0" expanded="false" />
+            <element signature="e#9662#9699#0" expanded="false" />
+            <element signature="e#9662#9699#0" expanded="false" />
+            <element signature="method#toArray#1;class#MappedList#0" expanded="false" />
+            <element signature="method#remove#1;class#MappedList#0" expanded="false" />
+            <element signature="method#containsAll#0;class#MappedList#0" expanded="false" />
+            <element signature="method#addAll#1;class#MappedList#0" expanded="false" />
+            <element signature="method#removeAll#0;class#MappedList#0" expanded="false" />
+            <element signature="method#retainAll#0;class#MappedList#0" expanded="false" />
+            <element signature="method#removeIf#0;class#MappedList#0" expanded="false" />
+            <element signature="method#retainIf#0;class#MappedList#0" expanded="false" />
+            <element signature="method#sort#0;class#MappedList#0" expanded="false" />
+            <element signature="method#spliterator#0;class#MappedList#0" expanded="false" />
+            <element signature="method#append#0;class#MappedList#0" expanded="false" />
           </folding>
         </state>
       </provider>

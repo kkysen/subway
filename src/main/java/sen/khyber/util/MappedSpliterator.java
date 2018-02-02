@@ -33,12 +33,12 @@ public class MappedSpliterator<T, R> extends Mapper<T, R> implements Spliterator
     
     @Override
     public boolean tryAdvance(final Consumer<? super R> action) {
-        return delegate.tryAdvance(t -> action.accept(t == null ? null : mapper.apply(t)));
+        return delegate.tryAdvance(accepting(action));
     }
     
     @Override
     public void forEachRemaining(final Consumer<? super R> action) {
-        delegate.forEachRemaining(t -> action.accept(t == null ? null : mapper.apply(t)));
+        delegate.forEachRemaining(accepting(action));
     }
     
     @Override
