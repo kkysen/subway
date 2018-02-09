@@ -56,9 +56,12 @@ public final class IO {
     public static final Path Workspace = Home.resolve("workspace");
     
     public static final Path Project = Workspace.resolve("Subway");
-    public static final Path ProjectResources = Project
-            .resolve("src")
-            .resolve("main")
+    public static final Path ProjectMain = Project.resolve("src").resolve("main");
+    public static final Path ProjectJava = ProjectMain
+            .resolve("java")
+            .resolve("sen")
+            .resolve("khyber");
+    public static final Path ProjectResources = ProjectMain
             .resolve("resources")
             .resolve("sen")
             .resolve("khyber");
@@ -326,7 +329,9 @@ public final class IO {
     
     public static final String readString(final Path path, final Charset charset) throws
             IOException {
-        return StringUtils.newString(IO.readChars(path, charset));
+        //        return StringUtils.newString(IO.readChars(path, charset));
+        // FIXME
+        return new String(IO.readBytes(path), charset);
     }
     
     public static final String readString(final Path path) throws IOException {
@@ -356,6 +361,11 @@ public final class IO {
     
     public static final boolean hasLength(final File file, final long length) {
         return file != null && file.exists() && file.length() == length;
+    }
+    
+    public static final char[][] readMutableLinesAsChars(final Path path, final Charset charset)
+            throws IOException {
+        return null; // TODO
     }
     
 }

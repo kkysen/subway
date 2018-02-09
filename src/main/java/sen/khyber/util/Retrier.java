@@ -1,6 +1,7 @@
 package sen.khyber.util;
 
 import sen.khyber.util.function.IntBinaryPredicate;
+import sen.khyber.util.mapped.MappedList;
 
 import lombok.AccessLevel;
 import lombok.NonNull;

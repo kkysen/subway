@@ -6,6 +6,7 @@ import java.lang.invoke.MethodHandle;
 import java.lang.invoke.MethodHandles;
 import java.lang.invoke.MethodHandles.Lookup;
 import java.lang.reflect.AccessibleObject;
+import java.lang.reflect.Field;
 import java.lang.reflect.Member;
 import java.lang.reflect.Method;
 import java.util.AbstractMap.SimpleEntry;
@@ -46,6 +47,19 @@ public abstract class Reflector<T extends AccessibleObject & Member> {
     
     private final Map<Class<?>, Entry<Map<String, T>, T[]>> cache = new HashMap<>();
     
+    private static final ReflectedField accessibleObjectOverrideField;
+    
+    static {
+        final Field field;
+        try {
+            // Reflectors not initialized yet, so must use normal reflection
+            field = AccessibleObject.class.getDeclaredField("override");
+        } catch (final NoSuchFieldException e) {
+            throw ExceptionUtils.atRuntime(e);
+        }
+        accessibleObjectOverrideField = new ReflectedField(field);
+    }
+    
     protected Reflector(final MemberType memberType) {
         final Method method;
         try {
@@ -61,9 +75,21 @@ public abstract class Reflector<T extends AccessibleObject & Member> {
         }
     }
     
+    public static final void setAccessible(final AccessibleObject accessibleObject,
+            final boolean accessible) {
+        accessibleObjectOverrideField.bind(accessibleObject).setBoolean(accessible);
+    }
+    
+    public static final void setAccessible(final AccessibleObject accessibleObject) {
+        setAccessible(accessibleObject, true);
+    }
+    
     T[] getRawMembers(final Class<?> klass) {
         try {
             @SuppressWarnings("unchecked") final T[] members = (T[]) reflector.invoke(klass, false);
+            for (final T member : members) {
+                setAccessible(member);
+            }
             return members;
             /*
              * invokeExact requires return type to match exactly
@@ -117,7 +143,7 @@ public abstract class Reflector<T extends AccessibleObject & Member> {
     public MethodHandle getDeclaredHandle(final Class<?> klass, final String name) {
         try {
             final T member = getDeclaredMember(klass, name);
-            member.setAccessible(true);
+            // setAccessible already run
             return convertToHandle(member);
         } catch (final IllegalAccessException e) {
             throw ExceptionUtils.atRuntime(e); // shouldn't happen

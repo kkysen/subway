@@ -1,8 +1,8 @@
 package sen.khyber.unsafe.fields;
 
 import sen.khyber.unsafe.UnsafeUtils;
+import sen.khyber.unsafe.reflectors.ReflectedField;
 import sen.khyber.unsafe.reflectors.Reflectors;
-import sen.khyber.unsafe.reflectors.UnboundedReflectedField;
 import sen.khyber.util.exceptions.ExceptionUtils;
 
 import sun.misc.Unsafe;
@@ -23,11 +23,11 @@ public class StringUtils {
     private static final Unsafe unsafe = UnsafeUtils.getUnsafe();
     
     static {
-        final UnboundedReflectedField field =
+        final ReflectedField field =
                 Reflectors.forClass(String.class).reflectedField("COMPACT_STRINGS");
         PRE_JAVA_9 = field == null;
         //noinspection SimplifiableConditionalExpression, ConstantConditions
-        COMPACT_STRINGS = PRE_JAVA_9 ? false : field.bindStatic().getBoolean();
+        COMPACT_STRINGS = PRE_JAVA_9 ? false : field.getBoolean();
     }
     
     public static final byte coder(final String s) {
@@ -59,9 +59,11 @@ public class StringUtils {
     }
     
     public static final String newString(final char[] chars) {
-        final String s = newString();
-        // FIXME set chars
-        return s;
+        //        final String s = newString();
+        //        // FIXME set chars
+        //        return s;
+        // FIXME
+        return new String(chars);
     }
     
 }

@@ -1,4 +1,4 @@
-package sen.khyber.util;
+package sen.khyber.util.mapped;
 
 import lombok.Getter;
 import lombok.experimental.Accessors;
@@ -28,8 +28,10 @@ public class Mapper<T, R> {
         return t == null ? null : mapper.apply(t);
     }
     
-    public final Consumer<? super T> accepting(Consumer<? super R> action) {
+    public final Consumer<? super T> accepting(final Consumer<? super R> action) {
         return t -> action.accept(map(t));
     }
     
 }
+
+// TODO add Mapped versions for all Collections

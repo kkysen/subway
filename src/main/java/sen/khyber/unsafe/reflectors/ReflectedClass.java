@@ -32,13 +32,13 @@ public final class ReflectedClass {
         return FIELDS.getDeclaredMember(klass, name);
     }
     
-    public final UnboundedReflectedField reflectedField(final String name) {
+    public final ReflectedField reflectedField(final String name) {
         // TODO cache
         final Field field = field(name);
         if (field == null) {
             return null;
         }
-        return new UnboundedReflectedField(field);
+        return new ReflectedField(field);
     }
     
     public final MethodHandle fieldHandle(final String name) {
