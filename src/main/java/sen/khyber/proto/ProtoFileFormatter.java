@@ -1,5 +1,7 @@
 package sen.khyber.proto;
 
+import sen.khyber.util.Classes;
+
 import lombok.AccessLevel;
 import lombok.Setter;
 
@@ -8,13 +10,18 @@ import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import static java.time.temporal.ChronoField.DAY_OF_MONTH;
+import static java.time.temporal.ChronoField.MONTH_OF_YEAR;
+import static java.time.temporal.ChronoField.YEAR;
 
 /**
  * Created by Khyber Sen on 2/2/2018.
@@ -23,11 +30,26 @@ import java.util.regex.Pattern;
  */
 public class ProtoFileFormatter {
     
+    /*
+    Run as IntelliJ inspections:
+    
+    - Anonymous type can be replaced with method reference
+     */
+    
     private final Charset charset = StandardCharsets.UTF_8;
+    
+    private final DateTimeFormatter formatter = new DateTimeFormatterBuilder()
+            .parseCaseInsensitive()
+            .appendValue(MONTH_OF_YEAR)
+            .appendLiteral('/')
+            .appendValue(DAY_OF_MONTH)
+            .appendLiteral('/')
+            .appendValue(YEAR)
+            .toFormatter();
     
     private final List<String> lines;
     
-    private final Set<Class<?>> imports = new HashSet<>();
+    private final Classes imports = new Classes();
     
     public ProtoFileFormatter(final Path path) throws IOException {
         Objects.requireNonNull(path);
@@ -46,13 +68,13 @@ public class ProtoFileFormatter {
         boolean found = false;
         for (int i = 0; i < lines.size() - 2; i++) {
             final String line = lines.get(i);
-            int numNullCheckLines = 3;
+            final int numNullCheckLines = 3;
             if (line.contains("== null")) {
-                List<String> nullCheckLines = lines.subList(i, i + numNullCheckLines);
-                String nullCheck = String.join(" ", nullCheckLines);
-                Matcher matcher = nullCheckPattern.matcher(nullCheck);
+                final List<String> nullCheckLines = lines.subList(i, i + numNullCheckLines);
+                final String nullCheck = String.join(" ", nullCheckLines);
+                final Matcher matcher = nullCheckPattern.matcher(nullCheck);
                 if (matcher.find()) {
-                    String variableName = matcher.group(1);
+                    final String variableName = matcher.group(1);
                     nullCheckLines.subList(1, numNullCheckLines).clear();
                     nullCheckLines.set(0, "Objects.requireNonNull(" + variableName + ");");
                     found = true;
@@ -74,8 +96,38 @@ public class ProtoFileFormatter {
         }
     }
     
-    public void addAuthorTagInClassJavadoc() {
+    public void replaceDeprecatedValueOfWithForNumber() {
         
+    }
+    
+    public void addClassJavadoc() {
+        final String date = LocalDate.now().format(formatter);
+        final String[] javadoc = {
+                "/**",
+                "* Created by Khyber Sen on " + date + ".",
+                "*",
+                "* @author Khyber Sen", "*/",
+        };
+        
+        //        IntStream.range(0, lines.size())
+        //                .mapToObj(i -> Pair.of(i, lines.get(i)))
+        //                .filter(line -> line.getValue().contains(" class "))
+        //                .filter(line -> !lines.get(line.getKey()).contains("*/"))
+        //                // subList ensures that each insertion doesn't change mess up indices
+        //                .map(line -> lines.subList(line.getKey(), line.getKey()))
+        //                .forEach(insertionPoint -> insertionPoint.addAll(Arrays.asList(javadoc)));
+        
+        for (int i = 0; i < lines.size(); i++) {
+            // place before class declaration and only if no comment already there
+            if (lines.get(i).contains(" class ") && !lines.get(i - 1).contains("*/")) {
+                lines.addAll(i - 1, Arrays.asList(javadoc));
+                i += javadoc.length;
+            }
+        }
+    }
+    
+    public void removeImplicitConstructorCalls() {
+        lines.removeIf(line -> line.contains("this()") || line.contains("super()"));
     }
     
     private static boolean isWhitespace(final String s) {
@@ -102,7 +154,6 @@ public class ProtoFileFormatter {
                 return i + 1;
             }
         }
-        
         return -1;
     }
     
@@ -112,6 +163,11 @@ public class ProtoFileFormatter {
         }
         final int i = importLineNumber();
         if (i != -1) {
+            lines.subList(i, lines.size())
+                    .stream()
+                    .takeWhile(line -> line.contains(" class "))
+                    .filter(imports::addImport)
+                    .count();
             final String[] importStrings = imports
                     .stream()
                     .map(klass -> "import " + klass.getName() + ";")

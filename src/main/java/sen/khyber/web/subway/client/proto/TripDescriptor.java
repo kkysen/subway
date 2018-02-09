@@ -266,13 +266,7 @@ public final class TripDescriptor extends ExtendableMessage<TripDescriptor>
         }
         
         private static final EnumLiteMap<ScheduleRelationship> internalValueMap =
-                new EnumLiteMap<>() {
-                    
-                    @Override
-                    public ScheduleRelationship findValueByNumber(final int number) {
-                        return forNumber(number);
-                    }
-                };
+                ScheduleRelationship::forNumber;
         
         @Override
         public final EnumValueDescriptor getValueDescriptor() {

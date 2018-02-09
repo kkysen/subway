@@ -20,7 +20,7 @@ public class ProtoFormatter {
     public static List<Consumer<ProtoFileFormatter>> allActions() {
         return Arrays.asList(
                 ProtoFileFormatter::removeProtocInsertionPointComments,
-                ProtoFileFormatter::addAuthorTagInClassJavadoc,
+                ProtoFileFormatter::addClassJavadoc,
                 ProtoFileFormatter::formatLastFewLines,
                 ProtoFileFormatter::refactorNullChecks,
                 ProtoFileFormatter::refactorNullChecks,
@@ -30,7 +30,7 @@ public class ProtoFormatter {
     
     private final Set<Consumer<ProtoFileFormatter>> actions = new HashSet<>();
     
-    public void addAction(Consumer<ProtoFileFormatter> action) {
+    public void addAction(final Consumer<ProtoFileFormatter> action) {
         actions.add(action);
     }
     

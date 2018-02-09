@@ -198,13 +198,7 @@ public final class NyctTripDescriptor extends GeneratedMessageV3
             return internalValueMap;
         }
         
-        private static final EnumLiteMap<Direction> internalValueMap = new EnumLiteMap<>() {
-            
-            @Override
-            public Direction findValueByNumber(final int number) {
-                return forNumber(number);
-            }
-        };
+        private static final EnumLiteMap<Direction> internalValueMap = Direction::forNumber;
         
         @Override
         public final EnumValueDescriptor getValueDescriptor() {

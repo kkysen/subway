@@ -271,13 +271,8 @@ public final class VehiclePosition extends ExtendableMessage<VehiclePosition>
             return internalValueMap;
         }
         
-        private static final EnumLiteMap<VehicleStopStatus> internalValueMap = new EnumLiteMap<>() {
-            
-            @Override
-            public VehicleStopStatus findValueByNumber(final int number) {
-                return forNumber(number);
-            }
-        };
+        private static final EnumLiteMap<VehicleStopStatus> internalValueMap =
+                VehicleStopStatus::forNumber;
         
         @Override
         public final EnumValueDescriptor getValueDescriptor() {
@@ -404,13 +399,8 @@ public final class VehiclePosition extends ExtendableMessage<VehiclePosition>
             return internalValueMap;
         }
         
-        private static final EnumLiteMap<CongestionLevel> internalValueMap = new EnumLiteMap<>() {
-            
-            @Override
-            public CongestionLevel findValueByNumber(final int number) {
-                return forNumber(number);
-            }
-        };
+        private static final EnumLiteMap<CongestionLevel> internalValueMap =
+                CongestionLevel::forNumber;
         
         @Override
         public final EnumValueDescriptor getValueDescriptor() {
@@ -1284,7 +1274,7 @@ public final class VehiclePosition extends ExtendableMessage<VehiclePosition>
         private int bitField0_;
         
         private TripDescriptor trip_ = null;
-        private SingleFieldBuilderV3<TripDescriptor, TripDescriptor.Builder, 
+        private SingleFieldBuilderV3<TripDescriptor, TripDescriptor.Builder,
                 TripDescriptorOrBuilder>
                 tripBuilder_;
         
@@ -1448,7 +1438,7 @@ public final class VehiclePosition extends ExtendableMessage<VehiclePosition>
          * <p>
          * <code>optional .transit_realtime.TripDescriptor trip = 1;</code>
          */
-        private SingleFieldBuilderV3<TripDescriptor, TripDescriptor.Builder, 
+        private SingleFieldBuilderV3<TripDescriptor, TripDescriptor.Builder,
                 TripDescriptorOrBuilder> getTripFieldBuilder() {
             if (tripBuilder_ == null) {
                 tripBuilder_ =
@@ -1459,7 +1449,7 @@ public final class VehiclePosition extends ExtendableMessage<VehiclePosition>
         }
         
         private VehicleDescriptor vehicle_ = null;
-        private SingleFieldBuilderV3<VehicleDescriptor, VehicleDescriptor.Builder, 
+        private SingleFieldBuilderV3<VehicleDescriptor, VehicleDescriptor.Builder,
                 VehicleDescriptorOrBuilder>
                 vehicleBuilder_;
         
@@ -1606,7 +1596,7 @@ public final class VehiclePosition extends ExtendableMessage<VehiclePosition>
          * <p>
          * <code>optional .transit_realtime.VehicleDescriptor vehicle = 8;</code>
          */
-        private SingleFieldBuilderV3<VehicleDescriptor, VehicleDescriptor.Builder, 
+        private SingleFieldBuilderV3<VehicleDescriptor, VehicleDescriptor.Builder,
                 VehicleDescriptorOrBuilder> getVehicleFieldBuilder() {
             if (vehicleBuilder_ == null) {
                 vehicleBuilder_ =
@@ -1762,7 +1752,7 @@ public final class VehiclePosition extends ExtendableMessage<VehiclePosition>
          * <p>
          * <code>optional .transit_realtime.Position position = 2;</code>
          */
-        private SingleFieldBuilderV3<Position, Position.Builder, PositionOrBuilder> 
+        private SingleFieldBuilderV3<Position, Position.Builder, PositionOrBuilder>
         getPositionFieldBuilder() {
             if (positionBuilder_ == null) {
                 positionBuilder_ = new SingleFieldBuilderV3<>(getPosition(), getParentForChildren(),

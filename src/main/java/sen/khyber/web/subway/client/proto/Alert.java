@@ -368,13 +368,7 @@ public final class Alert extends ExtendableMessage<Alert> implements
             return internalValueMap;
         }
         
-        private static final EnumLiteMap<Cause> internalValueMap = new EnumLiteMap<>() {
-            
-            @Override
-            public Cause findValueByNumber(final int number) {
-                return forNumber(number);
-            }
-        };
+        private static final EnumLiteMap<Cause> internalValueMap = Cause::forNumber;
         
         @Override
         public final EnumValueDescriptor getValueDescriptor() {
@@ -545,13 +539,7 @@ public final class Alert extends ExtendableMessage<Alert> implements
             return internalValueMap;
         }
         
-        private static final EnumLiteMap<Effect> internalValueMap = new EnumLiteMap<>() {
-            
-            @Override
-            public Effect findValueByNumber(final int number) {
-                return forNumber(number);
-            }
-        };
+        private static final EnumLiteMap<Effect> internalValueMap = Effect::forNumber;
         
         @Override
         public final EnumValueDescriptor getValueDescriptor() {
@@ -1816,7 +1804,7 @@ public final class Alert extends ExtendableMessage<Alert> implements
             return getActivePeriodFieldBuilder().getBuilderList();
         }
         
-        private RepeatedFieldBuilderV3<TimeRange, TimeRange.Builder, TimeRangeOrBuilder> 
+        private RepeatedFieldBuilderV3<TimeRange, TimeRange.Builder, TimeRangeOrBuilder>
         getActivePeriodFieldBuilder() {
             if (activePeriodBuilder_ == null) {
                 activePeriodBuilder_ = new RepeatedFieldBuilderV3<>(activePeriod_,
@@ -1836,7 +1824,7 @@ public final class Alert extends ExtendableMessage<Alert> implements
             }
         }
         
-        private RepeatedFieldBuilderV3<EntitySelector, EntitySelector.Builder, 
+        private RepeatedFieldBuilderV3<EntitySelector, EntitySelector.Builder,
                 EntitySelectorOrBuilder>
                 informedEntityBuilder_;
         
@@ -2132,7 +2120,7 @@ public final class Alert extends ExtendableMessage<Alert> implements
             return getInformedEntityFieldBuilder().getBuilderList();
         }
         
-        private RepeatedFieldBuilderV3<EntitySelector, EntitySelector.Builder, 
+        private RepeatedFieldBuilderV3<EntitySelector, EntitySelector.Builder,
                 EntitySelectorOrBuilder> getInformedEntityFieldBuilder() {
             if (informedEntityBuilder_ == null) {
                 informedEntityBuilder_ = new RepeatedFieldBuilderV3<>(informedEntity_,
@@ -2228,7 +2216,7 @@ public final class Alert extends ExtendableMessage<Alert> implements
         }
         
         private TranslatedString url_ = null;
-        private SingleFieldBuilderV3<TranslatedString, TranslatedString.Builder, 
+        private SingleFieldBuilderV3<TranslatedString, TranslatedString.Builder,
                 TranslatedStringOrBuilder>
                 urlBuilder_;
         
@@ -2374,7 +2362,7 @@ public final class Alert extends ExtendableMessage<Alert> implements
          * <p>
          * <code>optional .transit_realtime.TranslatedString url = 8;</code>
          */
-        private SingleFieldBuilderV3<TranslatedString, TranslatedString.Builder, 
+        private SingleFieldBuilderV3<TranslatedString, TranslatedString.Builder,
                 TranslatedStringOrBuilder> getUrlFieldBuilder() {
             if (urlBuilder_ == null) {
                 urlBuilder_ =
@@ -2385,7 +2373,7 @@ public final class Alert extends ExtendableMessage<Alert> implements
         }
         
         private TranslatedString headerText_ = null;
-        private SingleFieldBuilderV3<TranslatedString, TranslatedString.Builder, 
+        private SingleFieldBuilderV3<TranslatedString, TranslatedString.Builder,
                 TranslatedStringOrBuilder>
                 headerTextBuilder_;
         
@@ -2532,7 +2520,7 @@ public final class Alert extends ExtendableMessage<Alert> implements
          * <p>
          * <code>optional .transit_realtime.TranslatedString header_text = 10;</code>
          */
-        private SingleFieldBuilderV3<TranslatedString, TranslatedString.Builder, 
+        private SingleFieldBuilderV3<TranslatedString, TranslatedString.Builder,
                 TranslatedStringOrBuilder> getHeaderTextFieldBuilder() {
             if (headerTextBuilder_ == null) {
                 headerTextBuilder_ =
@@ -2544,7 +2532,7 @@ public final class Alert extends ExtendableMessage<Alert> implements
         }
         
         private TranslatedString descriptionText_ = null;
-        private SingleFieldBuilderV3<TranslatedString, TranslatedString.Builder, 
+        private SingleFieldBuilderV3<TranslatedString, TranslatedString.Builder,
                 TranslatedStringOrBuilder>
                 descriptionTextBuilder_;
         
@@ -2703,7 +2691,7 @@ public final class Alert extends ExtendableMessage<Alert> implements
          * <p>
          * <code>optional .transit_realtime.TranslatedString description_text = 11;</code>
          */
-        private SingleFieldBuilderV3<TranslatedString, TranslatedString.Builder, 
+        private SingleFieldBuilderV3<TranslatedString, TranslatedString.Builder,
                 TranslatedStringOrBuilder> getDescriptionTextFieldBuilder() {
             if (descriptionTextBuilder_ == null) {
                 descriptionTextBuilder_ =

@@ -184,13 +184,8 @@ public final class FeedHeader extends ExtendableMessage<FeedHeader> implements F
             return internalValueMap;
         }
         
-        private static final EnumLiteMap<Incrementality> internalValueMap = new EnumLiteMap<>() {
-            
-            @Override
-            public Incrementality findValueByNumber(final int number) {
-                return forNumber(number);
-            }
-        };
+        private static final EnumLiteMap<Incrementality> internalValueMap =
+                Incrementality::forNumber;
         
         @Override
         public final EnumValueDescriptor getValueDescriptor() {

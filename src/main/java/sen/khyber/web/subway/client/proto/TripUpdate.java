@@ -1417,13 +1417,7 @@ public final class TripUpdate extends ExtendableMessage<TripUpdate> implements T
             }
             
             private static final EnumLiteMap<ScheduleRelationship> internalValueMap =
-                    new EnumLiteMap<>() {
-                        
-                        @Override
-                        public ScheduleRelationship findValueByNumber(final int number) {
-                            return forNumber(number);
-                        }
-                    };
+                    ScheduleRelationship::forNumber;
             
             @Override
             public final EnumValueDescriptor getValueDescriptor() {
@@ -2221,7 +2215,7 @@ public final class TripUpdate extends ExtendableMessage<TripUpdate> implements T
             }
             
             private StopTimeEvent arrival_ = null;
-            private SingleFieldBuilderV3<StopTimeEvent, StopTimeEvent.Builder, 
+            private SingleFieldBuilderV3<StopTimeEvent, StopTimeEvent.Builder,
                     StopTimeEventOrBuilder>
                     arrivalBuilder_;
             
@@ -2332,7 +2326,7 @@ public final class TripUpdate extends ExtendableMessage<TripUpdate> implements T
             /**
              * <code>optional .transit_realtime.TripUpdate.StopTimeEvent arrival = 2;</code>
              */
-            private SingleFieldBuilderV3<StopTimeEvent, StopTimeEvent.Builder, 
+            private SingleFieldBuilderV3<StopTimeEvent, StopTimeEvent.Builder,
                     StopTimeEventOrBuilder> getArrivalFieldBuilder() {
                 if (arrivalBuilder_ == null) {
                     arrivalBuilder_ =
@@ -2344,7 +2338,7 @@ public final class TripUpdate extends ExtendableMessage<TripUpdate> implements T
             }
             
             private StopTimeEvent departure_ = null;
-            private SingleFieldBuilderV3<StopTimeEvent, StopTimeEvent.Builder, 
+            private SingleFieldBuilderV3<StopTimeEvent, StopTimeEvent.Builder,
                     StopTimeEventOrBuilder>
                     departureBuilder_;
             
@@ -2455,7 +2449,7 @@ public final class TripUpdate extends ExtendableMessage<TripUpdate> implements T
             /**
              * <code>optional .transit_realtime.TripUpdate.StopTimeEvent departure = 3;</code>
              */
-            private SingleFieldBuilderV3<StopTimeEvent, StopTimeEvent.Builder, 
+            private SingleFieldBuilderV3<StopTimeEvent, StopTimeEvent.Builder,
                     StopTimeEventOrBuilder> getDepartureFieldBuilder() {
                 if (departureBuilder_ == null) {
                     departureBuilder_ =
@@ -3331,7 +3325,7 @@ public final class TripUpdate extends ExtendableMessage<TripUpdate> implements T
         private int bitField0_;
         
         private TripDescriptor trip_ = null;
-        private SingleFieldBuilderV3<TripDescriptor, TripDescriptor.Builder, 
+        private SingleFieldBuilderV3<TripDescriptor, TripDescriptor.Builder,
                 TripDescriptorOrBuilder>
                 tripBuilder_;
         
@@ -3504,7 +3498,7 @@ public final class TripUpdate extends ExtendableMessage<TripUpdate> implements T
          * <p>
          * <code>required .transit_realtime.TripDescriptor trip = 1;</code>
          */
-        private SingleFieldBuilderV3<TripDescriptor, TripDescriptor.Builder, 
+        private SingleFieldBuilderV3<TripDescriptor, TripDescriptor.Builder,
                 TripDescriptorOrBuilder> getTripFieldBuilder() {
             if (tripBuilder_ == null) {
                 tripBuilder_ =
@@ -3515,7 +3509,7 @@ public final class TripUpdate extends ExtendableMessage<TripUpdate> implements T
         }
         
         private VehicleDescriptor vehicle_ = null;
-        private SingleFieldBuilderV3<VehicleDescriptor, VehicleDescriptor.Builder, 
+        private SingleFieldBuilderV3<VehicleDescriptor, VehicleDescriptor.Builder,
                 VehicleDescriptorOrBuilder>
                 vehicleBuilder_;
         
@@ -3662,7 +3656,7 @@ public final class TripUpdate extends ExtendableMessage<TripUpdate> implements T
          * <p>
          * <code>optional .transit_realtime.VehicleDescriptor vehicle = 3;</code>
          */
-        private SingleFieldBuilderV3<VehicleDescriptor, VehicleDescriptor.Builder, 
+        private SingleFieldBuilderV3<VehicleDescriptor, VehicleDescriptor.Builder,
                 VehicleDescriptorOrBuilder> getVehicleFieldBuilder() {
             if (vehicleBuilder_ == null) {
                 vehicleBuilder_ =
@@ -3681,7 +3675,7 @@ public final class TripUpdate extends ExtendableMessage<TripUpdate> implements T
             }
         }
         
-        private RepeatedFieldBuilderV3<StopTimeUpdate, StopTimeUpdate.Builder, 
+        private RepeatedFieldBuilderV3<StopTimeUpdate, StopTimeUpdate.Builder,
                 StopTimeUpdateOrBuilder>
                 stopTimeUpdateBuilder_;
         
@@ -4265,7 +4259,7 @@ public final class TripUpdate extends ExtendableMessage<TripUpdate> implements T
             return getStopTimeUpdateFieldBuilder().getBuilderList();
         }
         
-        private RepeatedFieldBuilderV3<StopTimeUpdate, StopTimeUpdate.Builder, 
+        private RepeatedFieldBuilderV3<StopTimeUpdate, StopTimeUpdate.Builder,
                 StopTimeUpdateOrBuilder> getStopTimeUpdateFieldBuilder() {
             if (stopTimeUpdateBuilder_ == null) {
                 stopTimeUpdateBuilder_ = new RepeatedFieldBuilderV3<>(stopTimeUpdate_,
