@@ -97,7 +97,16 @@ public class ProtoFileFormatter {
     }
     
     public void replaceDeprecatedValueOfWithForNumber() {
-        
+        for (int i = 0; i < lines.size(); i++) {
+            final String line = lines.get(i);
+            final int classNameEnd = line.indexOf(".valueOf(");
+            if (classNameEnd == -1) {
+                continue;
+            }
+            final int classNameStart = line.lastIndexOf(' ', classNameEnd);
+            final String className = line.substring(classNameStart, classNameStart);
+            
+        }
     }
     
     public void addClassJavadoc() {
@@ -163,16 +172,18 @@ public class ProtoFileFormatter {
         }
         final int i = importLineNumber();
         if (i != -1) {
-            lines.subList(i, lines.size())
-                    .stream()
-                    .takeWhile(line -> line.contains(" class "))
-                    .filter(imports::addImport)
-                    .count();
-            final String[] importStrings = imports
-                    .stream()
-                    .map(klass -> "import " + klass.getName() + ";")
-                    .toArray(String[]::new);
-            lines.addAll(i, Arrays.asList(importStrings));
+            for (int j = i; j < lines.size(); j++) {
+                // remove existing
+                final String line = lines.get(j);
+                if (line.contains(" class ")) {
+                    break;
+                }
+                if (imports.addImport(line)) {
+                    lines.remove(j);
+                    j--;
+                }
+            }
+            lines.addAll(i, Arrays.asList(imports.toImports()));
         }
     }
     

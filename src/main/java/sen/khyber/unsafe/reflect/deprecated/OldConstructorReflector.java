@@ -1,4 +1,4 @@
-package sen.khyber.unsafe.reflectors;
+package sen.khyber.unsafe.reflect.deprecated;
 
 import java.lang.invoke.MethodHandle;
 import java.lang.reflect.Constructor;
@@ -8,9 +8,10 @@ import java.lang.reflect.Constructor;
  *
  * @author Khyber Sen
  */
-public final class ConstructorReflector extends Reflector<Constructor<?>> {
+@Deprecated
+public final class OldConstructorReflector extends OldReflector<Constructor<?>> {
     
-    ConstructorReflector() {
+    OldConstructorReflector() {
         super(MemberType.Constructor);
     }
     

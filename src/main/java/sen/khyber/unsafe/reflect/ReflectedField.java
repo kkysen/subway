@@ -1,12 +1,12 @@
-package sen.khyber.unsafe.reflectors;
+package sen.khyber.unsafe.reflect;
 
 import sen.khyber.unsafe.UnsafeUtils;
 
 import lombok.Getter;
 import lombok.experimental.Accessors;
 
+import java.lang.invoke.VarHandle;
 import java.lang.reflect.Field;
-import java.lang.reflect.Modifier;
 
 import sun.misc.Unsafe;
 
@@ -17,20 +17,29 @@ import sun.misc.Unsafe;
  */
 @Accessors(fluent = true)
 @Getter
-public final class ReflectedField {
+public final class ReflectedField extends ReflectedMember<Field, VarHandle> {
     
     private static final Unsafe unsafe = UnsafeUtils.getUnsafe();
     
     private final Field field;
-    private final boolean isStatic;
     private Object object;
     private final long offset;
     
     public ReflectedField(final Field field) {
+        super(field);
         this.field = field;
-        isStatic = Modifier.isStatic(field.getModifiers());
         object = isStatic ? field.getDeclaringClass() : null;
         offset = isStatic ? unsafe.staticFieldOffset(field) : unsafe.objectFieldOffset(field);
+    }
+    
+    @Override
+    protected final VarHandle convertToHandle() throws IllegalAccessException {
+        return LOOKUP.unreflectVarHandle(field);
+    }
+    
+    public final ReflectedField bindUnsafe(final Object newObject) {
+        object = newObject;
+        return this;
     }
     
     public final ReflectedField bind(final Object newObject) {
@@ -41,8 +50,7 @@ public final class ReflectedField {
             throw new IllegalArgumentException(
                     newObject + " is not an instance of the declaring class of " + field);
         }
-        object = newObject;
-        return this;
+        return bindUnsafe(newObject);
     }
     
     // TODO finish for all types

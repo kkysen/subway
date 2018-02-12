@@ -2,7 +2,7 @@ package sen.khyber.misc;
 
 import sen.khyber.io.IO;
 import sen.khyber.proto.ProtoFileFormatter;
-import sen.khyber.unsafe.reflectors.Reflectors;
+import sen.khyber.unsafe.reflect.Reflectors;
 import sen.khyber.util.RegexUtils;
 
 import java.io.IOException;
@@ -45,7 +45,7 @@ public class Misc {
     private static void nullCheckRegex() throws IOException {
         final Pattern pattern = (Pattern) Objects.requireNonNull(
                 Reflectors.forClass(ProtoFileFormatter.class)
-                        .reflectedField("nullCheckPattern"))
+                        .field("nullCheckPattern"))
                 .getObject();
         final Path path = IO.ProjectJava.resolve("misc").resolve("Misc.java");
         System.out.println(path);

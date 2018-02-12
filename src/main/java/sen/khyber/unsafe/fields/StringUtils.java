@@ -1,8 +1,8 @@
 package sen.khyber.unsafe.fields;
 
 import sen.khyber.unsafe.UnsafeUtils;
-import sen.khyber.unsafe.reflectors.ReflectedField;
-import sen.khyber.unsafe.reflectors.Reflectors;
+import sen.khyber.unsafe.reflect.ReflectedField;
+import sen.khyber.unsafe.reflect.Reflectors;
 import sen.khyber.util.exceptions.ExceptionUtils;
 
 import sun.misc.Unsafe;
@@ -24,7 +24,7 @@ public class StringUtils {
     
     static {
         final ReflectedField field =
-                Reflectors.forClass(String.class).reflectedField("COMPACT_STRINGS");
+                Reflectors.forClass(String.class).field("COMPACT_STRINGS");
         PRE_JAVA_9 = field == null;
         //noinspection SimplifiableConditionalExpression, ConstantConditions
         COMPACT_STRINGS = PRE_JAVA_9 ? false : field.getBoolean();

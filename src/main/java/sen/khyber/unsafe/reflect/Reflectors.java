@@ -1,11 +1,12 @@
-package sen.khyber.unsafe.reflectors;
+package sen.khyber.unsafe.reflect;
 
 import sen.khyber.util.exceptions.ExceptionUtils;
 
-import lombok.NonNull;
-
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
+
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Created by Khyber Sen on 1/30/2018.
@@ -16,7 +17,7 @@ public final class Reflectors {
     
     private Reflectors() {}
     
-    static Class<?> classForName(final String className) {
+    private static Class<?> classForName(final String className) {
         try {
             return Class.forName(className);
         } catch (final ClassNotFoundException e) {
@@ -26,11 +27,15 @@ public final class Reflectors {
     
     private static final Map<Class<?>, ReflectedClass> reflectors = new HashMap<>();
     
-    public static ReflectedClass forClass(final @NonNull Class<?> klass) {
+    @NotNull
+    public static final ReflectedClass forClass(final @NotNull Class<?> klass) {
+        Objects.requireNonNull(klass);
         return reflectors.computeIfAbsent(klass, ReflectedClass::new);
     }
     
-    public static ReflectedClass forClassName(final @NonNull String className) {
+    @NotNull
+    public static final ReflectedClass forClassName(final @NotNull String className) {
+        Objects.requireNonNull(className);
         return forClass(classForName(className));
     }
     

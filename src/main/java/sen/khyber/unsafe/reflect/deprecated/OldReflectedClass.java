@@ -1,4 +1,6 @@
-package sen.khyber.unsafe.reflectors;
+package sen.khyber.unsafe.reflect.deprecated;
+
+import sen.khyber.unsafe.reflect.ReflectedField;
 
 import lombok.NonNull;
 
@@ -12,15 +14,16 @@ import java.lang.reflect.Method;
  *
  * @author Khyber Sen
  */
-public final class ReflectedClass {
+@Deprecated
+public final class OldReflectedClass {
     
-    static final FieldReflector FIELDS = new FieldReflector();
-    static final MethodReflector METHODS = new MethodReflector();
-    static final ConstructorReflector CONSTRUCTORS = new ConstructorReflector();
+    private static final OldFieldReflector FIELDS = new OldFieldReflector();
+    private static final OldMethodReflector METHODS = new OldMethodReflector();
+    private static final OldConstructorReflector CONSTRUCTORS = new OldConstructorReflector();
     
     private final Class<?> klass;
     
-    ReflectedClass(final @NonNull Class<?> klass) {
+    OldReflectedClass(final @NonNull Class<?> klass) {
         this.klass = klass;
     }
     
@@ -32,12 +35,19 @@ public final class ReflectedClass {
         return FIELDS.getDeclaredMember(klass, name);
     }
     
+    public final boolean hasField(final String name) {
+        return field(name) != null;
+    }
+    
     public final ReflectedField reflectedField(final String name) {
-        // TODO cache
         final Field field = field(name);
         if (field == null) {
             return null;
         }
+        // don't cache to avoid any synchronization issues
+        // this may be bound to an object, 
+        // giving the ReflectedField mutable state that isn't thread safe
+        // and shouldn't be for performance reasons
         return new ReflectedField(field);
     }
     

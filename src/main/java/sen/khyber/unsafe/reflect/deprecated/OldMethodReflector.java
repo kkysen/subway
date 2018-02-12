@@ -1,4 +1,4 @@
-package sen.khyber.unsafe.reflectors;
+package sen.khyber.unsafe.reflect.deprecated;
 
 import java.lang.invoke.MethodHandle;
 import java.lang.reflect.Method;
@@ -8,9 +8,10 @@ import java.lang.reflect.Method;
  *
  * @author Khyber Sen
  */
-public final class MethodReflector extends Reflector<Method> {
+@Deprecated
+public final class OldMethodReflector extends OldReflector<Method> {
     
-    MethodReflector() {
+    OldMethodReflector() {
         super(MemberType.Method);
     }
     

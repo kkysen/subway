@@ -1,7 +1,7 @@
 package sen.khyber.unsafe.fields;
 
 import sen.khyber.unsafe.UnsafeUtils;
-import sen.khyber.unsafe.reflectors.Reflectors;
+import sen.khyber.unsafe.reflect.Reflectors;
 import sen.khyber.util.exceptions.ExceptionUtils;
 
 import java.lang.invoke.MethodHandle;
@@ -40,10 +40,12 @@ public final class ByteBufferUtils {
     private static final MethodHandle internalCleanerCleanMethod;
     
     static {
+        //noinspection ConstantConditions
         directBufferCleanerMethod =
-                Reflectors.forClassName("sun.nio.ch.DirectBuffer").methodHandle("cleaner");
+                Reflectors.forClassName("sun.nio.ch.DirectBuffer").method("cleaner").handle();
+        //noinspection ConstantConditions
         internalCleanerCleanMethod =
-                Reflectors.forClassName("jdk.internal.ref.Cleaner").methodHandle("clean");
+                Reflectors.forClassName("jdk.internal.ref.Cleaner").method("clean").handle();
         Objects.requireNonNull(directBufferCleanerMethod);
         Objects.requireNonNull(internalCleanerCleanMethod);
     }

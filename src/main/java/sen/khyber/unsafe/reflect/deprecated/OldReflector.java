@@ -1,5 +1,6 @@
-package sen.khyber.unsafe.reflectors;
+package sen.khyber.unsafe.reflect.deprecated;
 
+import sen.khyber.unsafe.reflect.ReflectedField;
 import sen.khyber.util.exceptions.ExceptionUtils;
 
 import java.lang.invoke.MethodHandle;
@@ -20,7 +21,8 @@ import java.util.Map.Entry;
  * @param <T> Field, Method, or Constructor (all Members)
  * @author Khyber Sen
  */
-public abstract class Reflector<T extends AccessibleObject & Member> {
+@Deprecated
+public abstract class OldReflector<T extends AccessibleObject & Member> {
     
     protected static final Lookup LOOKUP = MethodHandles.lookup();
     
@@ -45,7 +47,8 @@ public abstract class Reflector<T extends AccessibleObject & Member> {
     
     // TODO cache MethodHandles
     
-    private final Map<Class<?>, Entry<Map<String, T>, T[]>> cache = new HashMap<>();
+    private final Map<Class<?>, Entry<Map<String, T>, T[]>> cache =
+            new HashMap<>();
     
     private static final ReflectedField accessibleObjectOverrideField;
     
@@ -60,7 +63,7 @@ public abstract class Reflector<T extends AccessibleObject & Member> {
         accessibleObjectOverrideField = new ReflectedField(field);
     }
     
-    protected Reflector(final MemberType memberType) {
+    protected OldReflector(final MemberType memberType) {
         final Method method;
         try {
             method = Class.class.getDeclaredMethod(memberType.methodName(), boolean.class);

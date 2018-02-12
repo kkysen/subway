@@ -1,4 +1,4 @@
-package sen.khyber.unsafe.reflectors;
+package sen.khyber.unsafe.reflect.deprecated;
 
 import java.lang.invoke.MethodHandle;
 import java.lang.reflect.Field;
@@ -8,9 +8,10 @@ import java.lang.reflect.Field;
  *
  * @author Khyber Sen
  */
-public final class FieldReflector extends Reflector<Field> {
+@Deprecated
+public final class OldFieldReflector extends OldReflector<Field> {
     
-    FieldReflector() {
+    OldFieldReflector() {
         super(MemberType.Field);
     }
     
