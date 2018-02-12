@@ -123,4 +123,10 @@ public final class ReflectedClass {
         return constructors.hasMember(name);
     }
     
+    void clear() {
+        fields.clear();
+        methods.clear();
+        constructors.clear();
+    }
+    
 }

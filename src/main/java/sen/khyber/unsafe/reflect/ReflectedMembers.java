@@ -1,5 +1,6 @@
 package sen.khyber.unsafe.reflect;
 
+import sen.khyber.util.exceptions.ExceptionUtils;
 import sen.khyber.util.immutable.ImmutableArrayList;
 import sen.khyber.util.immutable.ImmutableList;
 
@@ -8,6 +9,7 @@ import lombok.experimental.Accessors;
 
 import java.lang.reflect.AccessibleObject;
 import java.lang.reflect.Member;
+import java.util.Arrays;
 import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Stream;
@@ -22,39 +24,79 @@ import org.jetbrains.annotations.Nullable;
  * @author Khyber Sen
  */
 @Accessors(fluent = true)
-@Getter(onMethod = @__(@NotNull))
 public abstract class ReflectedMembers<T extends AccessibleObject & Member, Handle> {
     
-    private final @NotNull Class<?> klass;
-    private final @NotNull T[] rawMembers;
-    private final @NotNull ImmutableList<? extends ReflectedMember<T, Handle>> members;
-    // TODO use ImmutableType
-    protected final @NotNull Map<String, ? extends ReflectedMember<T, Handle>> membersMap;
+    private static final @NotNull ReflectedField immutableMapTable;
+    static {
+        //noinspection OverwrittenKey
+        Class<?> immutableMapClass = Map.of("", "", "", "").getClass();
+        try {
+            immutableMapTable = new ReflectedField(immutableMapClass.getDeclaredField("table"));
+        } catch (NoSuchFieldException e) {
+            throw ExceptionUtils.atRuntime(e);
+        }
+    }
     
-    @NotNull
-    abstract ReflectedMember<T, Handle> reflectMember(T member);
+    private final @NotNull @Getter(onMethod = @__(@NotNull)) Class<?> klass;
+    
+    private final @NotNull T[] rawMembers;
+    private final @NotNull ReflectedMember<T, Handle>[] mutableMembers;
+    private final @NotNull ImmutableList<? extends ReflectedMember<T, Handle>> members;
+    
+    /**
+     * The JDK impl. of ImmutableList isn't that performant, so I'm using my own,
+     * but the JDK impl. of ImmutableMap is much better
+     */
+    private final @NotNull Map<String, ? extends ReflectedMember<T, Handle>> membersMap;
+    
+    private @Getter boolean cleared = false;
     
     @SuppressWarnings("unchecked")
     ReflectedMembers(final @NotNull Class<?> klass, final @NotNull MemberType memberType) {
         this.klass = klass;
         rawMembers = memberType.rawMembers(klass);
-        members = new ImmutableArrayList<ReflectedMember<T, Handle>>(
-                Stream.of(rawMembers)
-                        .map(this::reflectMember)
-                        .toArray(ReflectedMember[]::new)
-        );
+        mutableMembers = Stream.of(rawMembers)
+                .map(this::reflectMember)
+                .toArray(ReflectedMember[]::new);
+        members = new ImmutableArrayList<ReflectedMember<T, Handle>>(mutableMembers);
         membersMap = Map.ofEntries(
                 members.stream()
                         .map(member -> Pair.of(member.name(), member))
                         .toArray(Pair[]::new)
         );
-        members();
+    }
+    
+    private void checkCleared() {
+        if (cleared) {
+            throw new IllegalStateException("cleared");
+        }
+    }
+    
+    @NotNull
+    abstract ReflectedMember<T, Handle> reflectMember(T member);
+    
+    @NotNull
+    public final T[] rawMembers() {
+        checkCleared();
+        return rawMembers;
+    }
+    
+    @NotNull
+    public ImmutableList<? extends ReflectedMember<T, Handle>> members() {
+        checkCleared();
+        return members;
+    }
+    
+    @NotNull
+    public Map<String, ? extends ReflectedMember<T, Handle>> membersMap() {
+        checkCleared();
+        return membersMap;
     }
     
     @Nullable
     public ReflectedMember<T, Handle> member(final @NotNull String name) {
         Objects.requireNonNull(name);
-        return membersMap.get(name);
+        return membersMap().get(name);
     }
     
     @Nullable
@@ -64,8 +106,15 @@ public abstract class ReflectedMembers<T extends AccessibleObject & Member, Hand
     }
     
     public final boolean hasMember(final @NotNull String name) {
-        Objects.requireNonNull(name);
         return member(name) != null;
+    }
+    
+    void clear() {
+        cleared = true;
+        Arrays.fill(rawMembers, null);
+        Arrays.fill(mutableMembers, null);
+        Object[] table = (Object[]) immutableMapTable.bind(membersMap).getObject();
+        Arrays.fill(table, null);
     }
     
 }

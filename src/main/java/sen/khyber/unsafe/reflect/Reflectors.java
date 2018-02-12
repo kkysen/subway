@@ -17,7 +17,9 @@ public final class Reflectors {
     
     private Reflectors() {}
     
-    private static Class<?> classForName(final String className) {
+    @NotNull
+    private static Class<?> classForName(final @NotNull String className) {
+        Objects.requireNonNull(className);
         try {
             return Class.forName(className);
         } catch (final ClassNotFoundException e) {
@@ -25,18 +27,29 @@ public final class Reflectors {
         }
     }
     
-    private static final Map<Class<?>, ReflectedClass> reflectors = new HashMap<>();
+    private static final Map<Class<?>, ReflectedClass> reflectedClasses = new HashMap<>();
     
     @NotNull
     public static final ReflectedClass forClass(final @NotNull Class<?> klass) {
         Objects.requireNonNull(klass);
-        return reflectors.computeIfAbsent(klass, ReflectedClass::new);
+        return reflectedClasses.computeIfAbsent(klass, ReflectedClass::new);
     }
     
     @NotNull
     public static final ReflectedClass forClassName(final @NotNull String className) {
-        Objects.requireNonNull(className);
         return forClass(classForName(className));
+    }
+    
+    public static final void unCacheClass(final @NotNull Class<?> klass) {
+        Objects.requireNonNull(klass);
+        ReflectedClass reflectedClass = reflectedClasses.remove(klass);
+        if (reflectedClass != null) {
+            reflectedClass.clear();
+        }
+    }
+    
+    public static final void unCacheClass(final @NotNull String className) {
+        unCacheClass(classForName(className));
     }
     
 }
