@@ -28,7 +28,8 @@ public class ImmutableArrayList<E> extends ImmutableList<E> {
         this.length = length;
     }
     
-    public ImmutableArrayList(final E[] elements) {
+    @SafeVarargs
+    public ImmutableArrayList(final E... elements) {
         this(elements, 0, elements.length);
     }
     

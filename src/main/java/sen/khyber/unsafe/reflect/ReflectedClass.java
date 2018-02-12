@@ -1,5 +1,6 @@
 package sen.khyber.unsafe.reflect;
 
+import sen.khyber.unsafe.UnsafeUtils;
 import sen.khyber.util.immutable.ImmutableList;
 
 import lombok.Getter;
@@ -14,6 +15,8 @@ import java.util.Objects;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import sun.misc.Unsafe;
+
 /**
  * Created by Khyber Sen on 2/11/2018.
  *
@@ -21,19 +24,21 @@ import org.jetbrains.annotations.Nullable;
  */
 @Accessors(fluent = true)
 @Getter(onMethod = @__(@NotNull))
-public final class ReflectedClass {
+public final class ReflectedClass<T> {
     
-    private final @NotNull Class<?> klass;
+    private static final Unsafe unsafe = UnsafeUtils.getUnsafe();
+    
+    private final @NotNull Class<T> klass;
     private final @NotNull ReflectedFields fields;
     private final @NotNull ReflectedMethods methods;
-    private final @NotNull ReflectedConstructors constructors;
+    private final @NotNull ReflectedConstructors<T> constructors;
     
-    ReflectedClass(final @NotNull Class<?> klass) {
+    ReflectedClass(final @NotNull Class<T> klass) {
         Objects.requireNonNull(klass);
         this.klass = klass;
         fields = new ReflectedFields(klass);
         methods = new ReflectedMethods(klass);
-        constructors = new ReflectedConstructors(klass);
+        constructors = new ReflectedConstructors<>(klass);
     }
     
     @NotNull
@@ -95,32 +100,44 @@ public final class ReflectedClass {
     }
     
     @NotNull
-    public final ImmutableList<ReflectedConstructor> constructors() {
+    public final ImmutableList<ReflectedConstructor<T>> constructors() {
         return constructors.members();
     }
     
     @NotNull
-    public final Map<String, ReflectedConstructor> constructorMap() {
+    public final Map<String, ReflectedConstructor<T>> constructorMap() {
         return constructors.membersMap();
     }
     
     @Nullable
-    public final ReflectedConstructor constructor(final @NotNull String name) {
+    public final ReflectedConstructor<?> constructor(final @NotNull String name) {
         return constructors.member(name);
     }
     
     @NotNull
-    public final Constructor[] rawConstructors() {
+    public final Constructor<T>[] rawConstructors() {
         return constructors.rawMembers();
     }
     
     @Nullable
-    public final Constructor rawConstructor(final @NotNull String name) {
+    public final Constructor<T> rawConstructor(final @NotNull String name) {
         return constructors.rawMember(name);
     }
     
     public final boolean hasConstructor(final @NotNull String name) {
         return constructors.hasMember(name);
+    }
+    
+    @SuppressWarnings("unchecked")
+    @NotNull
+    public final T allocateInstance() {
+        try {
+            return (T) unsafe.allocateInstance(klass);
+        } catch (final InstantiationException e) {
+            unsafe.throwException(e);
+            System.exit(1);
+            return null;
+        }
     }
     
     void clear() {

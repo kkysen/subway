@@ -1,10 +1,10 @@
 package sen.khyber.proto;
 
+import lombok.ToString;
+
 import java.io.IOException;
 import java.nio.file.Path;
-import java.util.Arrays;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 import java.util.function.Consumer;
 
@@ -15,22 +15,29 @@ import java.util.function.Consumer;
  *
  * @author Khyber Sen
  */
+@ToString
 public class ProtoFormatter {
     
-    public static List<Consumer<ProtoFileFormatter>> allActions() {
-        return Arrays.asList(
-                ProtoFileFormatter::removeProtocInsertionPointComments,
-                ProtoFileFormatter::addClassJavadoc,
-                ProtoFileFormatter::formatLastFewLines,
-                ProtoFileFormatter::refactorNullChecks,
-                ProtoFileFormatter::refactorNullChecks,
-                ProtoFileFormatter::refactorStringAndByteStringGetters
-        );
+    private static final Set<Consumer<ProtoFileFormatter>> ALL_ACTIONS = Set.of(
+            ProtoFileFormatter::removeProtocInsertionPointComments,
+            ProtoFileFormatter::addClassJavadoc,
+            ProtoFileFormatter::formatLastFewLines,
+            ProtoFileFormatter::refactorNullChecks,
+            ProtoFileFormatter::refactorNullChecks,
+            ProtoFileFormatter::refactorStringAndByteStringGetters,
+            ProtoFileFormatter::removeImplicitConstructorCalls,
+            ProtoFileFormatter::replaceDeprecatedValueOfWithForNumber
+    );
+    
+    public static Set<Consumer<ProtoFileFormatter>> allActions() {
+        return ALL_ACTIONS;
     }
     
     private final Set<Consumer<ProtoFileFormatter>> actions = new HashSet<>();
     
-    public void addAction(final Consumer<ProtoFileFormatter> action) {
+    public ProtoFormatter() {}
+    
+    public final void addAction(final Consumer<ProtoFileFormatter> action) {
         actions.add(action);
     }
     
@@ -38,13 +45,13 @@ public class ProtoFormatter {
     
     // TODO other constructors
     
-    public void format(final Path inPath, final Path outPath) throws IOException {
+    public final void format(final Path inPath, final Path outPath) throws IOException {
         final ProtoFileFormatter formatter = new ProtoFileFormatter(inPath);
         actions.forEach(action -> action.accept(formatter));
         formatter.save(outPath);
     }
     
-    public void format(final Path path) throws IOException {
+    public final void format(final Path path) throws IOException {
         format(path, path);
     }
     

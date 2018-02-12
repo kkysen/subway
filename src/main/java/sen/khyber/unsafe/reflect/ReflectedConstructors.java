@@ -14,37 +14,37 @@ import org.jetbrains.annotations.Nullable;
  *
  * @author Khyber Sen
  */
-public final class ReflectedConstructors
-        extends ReflectedMembers<Constructor<?>, MethodHandle> {
+public final class ReflectedConstructors<T>
+        extends ReflectedMembers<Constructor<T>, MethodHandle> {
     
-    public ReflectedConstructors(final @NotNull Class<?> klass) {
+    public ReflectedConstructors(final @NotNull Class<T> klass) {
         super(klass, MemberType.CONSTRUCTOR);
     }
     
     @NotNull
     @Override
-    final ReflectedConstructor reflectMember(final @NotNull Constructor<?> constructor) {
-        return new ReflectedConstructor(constructor);
+    final ReflectedConstructor<T> reflectMember(final @NotNull Constructor<T> constructor) {
+        return new ReflectedConstructor<>(constructor);
     }
     
     @SuppressWarnings("unchecked")
     @NotNull
     @Override
-    public final ImmutableList<ReflectedConstructor> members() {
-        return (ImmutableList<ReflectedConstructor>) super.members();
+    public final ImmutableList<ReflectedConstructor<T>> members() {
+        return (ImmutableList<ReflectedConstructor<T>>) super.members();
     }
     
     @SuppressWarnings("unchecked")
     @NotNull
     @Override
-    public final Map<String, ReflectedConstructor> membersMap() {
-        return (Map<String, ReflectedConstructor>) super.membersMap();
+    public final Map<String, ReflectedConstructor<T>> membersMap() {
+        return (Map<String, ReflectedConstructor<T>>) super.membersMap();
     }
     
     @Nullable
     @Override
-    public final ReflectedConstructor member(final @NotNull String name) {
-        return (ReflectedConstructor) super.member(name);
+    public final ReflectedConstructor<T> member(final @NotNull String name) {
+        return (ReflectedConstructor<T>) super.member(name);
     }
     
 }

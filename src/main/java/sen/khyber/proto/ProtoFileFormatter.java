@@ -1,6 +1,8 @@
 package sen.khyber.proto;
 
-import sen.khyber.util.Classes;
+import sen.khyber.unsafe.reflect.ReflectedClass;
+import sen.khyber.unsafe.reflect.Reflector;
+import sen.khyber.util.Imports;
 
 import lombok.AccessLevel;
 import lombok.Setter;
@@ -16,6 +18,7 @@ import java.time.format.DateTimeFormatterBuilder;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -47,16 +50,25 @@ public class ProtoFileFormatter {
             .appendValue(YEAR)
             .toFormatter();
     
+    private final Path path;
+    
     private final List<String> lines;
     
-    private final Classes imports = new Classes();
+    private final Imports imports = new Imports();
     
     public ProtoFileFormatter(final Path path) throws IOException {
         Objects.requireNonNull(path);
+        this.path = path;
         lines = Files.readAllLines(path, charset);
+        loadExistingImports();
     }
     
-    public void removeProtocInsertionPointComments() {
+    @Override
+    public final String toString() {
+        return "ProtoFileFormatter[path=" + path + ']';
+    }
+    
+    public final void removeProtocInsertionPointComments() {
         lines.removeIf(line -> line.contains("// @@protoc_insertion_point"));
     }
     
@@ -64,7 +76,7 @@ public class ProtoFileFormatter {
             "if \\(([^ ]*) == null\\) \\{[\\s]*throw new NullPointerException\\(\\);"
                     + "[^}]*}");
     
-    public void refactorNullChecks() {
+    public final void refactorNullChecks() {
         boolean found = false;
         for (int i = 0; i < lines.size() - 2; i++) {
             final String line = lines.get(i);
@@ -86,7 +98,7 @@ public class ProtoFileFormatter {
         }
     }
     
-    public void refactorStringAndByteStringGetters() {
+    public final void refactorStringAndByteStringGetters() {
         final boolean found = false;
         // TODO
         if (found) {
@@ -96,24 +108,43 @@ public class ProtoFileFormatter {
         }
     }
     
-    public void replaceDeprecatedValueOfWithForNumber() {
+    public final void replaceDeprecatedValueOfWithForNumber() {
+        final String toReplace = "valueOf";
+        final String replaceWith = "forNumber";
         for (int i = 0; i < lines.size(); i++) {
             final String line = lines.get(i);
-            final int classNameEnd = line.indexOf(".valueOf(");
+            final int classNameEnd = line.indexOf('.' + toReplace + ')');
             if (classNameEnd == -1) {
                 continue;
             }
             final int classNameStart = line.lastIndexOf(' ', classNameEnd);
             final String className = line.substring(classNameStart, classNameStart);
-            
+            Class<?> klass = imports.importedClass(className);
+            if (klass == null) {
+                final Optional<Class<?>> optionalClass = Reflector.classForName(className);
+                if (!optionalClass.isPresent()) {
+                    throw new IllegalStateException("illegal class name: " + className);
+                }
+                klass = optionalClass.get();
+            }
+            final ReflectedClass<?> reflectedClass = Reflector.get().forClass(klass);
+            if (reflectedClass.hasMethod(toReplace) && reflectedClass.hasMethod(replaceWith)) {
+                final String newLine = line.substring(0, classNameEnd + ".".length())
+                        + replaceWith
+                        + line.substring(classNameEnd + ('.' + toReplace).length());
+                lines.set(i, newLine);
+                i--; // recheck this line for any more replacements
+            }
         }
     }
     
-    public void addClassJavadoc() {
+    private static final String classStartPattern = " class ";
+    
+    public final void addClassJavadoc() {
         final String date = LocalDate.now().format(formatter);
         final String[] javadoc = {
                 "/**",
-                "* Created by Khyber Sen on " + date + ".",
+                "* Created by Khyber Sen on " + date + '.',
                 "*",
                 "* @author Khyber Sen", "*/",
         };
@@ -128,14 +159,14 @@ public class ProtoFileFormatter {
         
         for (int i = 0; i < lines.size(); i++) {
             // place before class declaration and only if no comment already there
-            if (lines.get(i).contains(" class ") && !lines.get(i - 1).contains("*/")) {
+            if (lines.get(i).contains(classStartPattern) && !lines.get(i - 1).contains("*/")) {
                 lines.addAll(i - 1, Arrays.asList(javadoc));
                 i += javadoc.length;
             }
         }
     }
     
-    public void removeImplicitConstructorCalls() {
+    public final void removeImplicitConstructorCalls() {
         lines.removeIf(line -> line.contains("this()") || line.contains("super()"));
     }
     
@@ -143,7 +174,7 @@ public class ProtoFileFormatter {
         return s.trim().isEmpty();
     }
     
-    public void formatLastFewLines() {
+    public final void formatLastFewLines() {
         int i = lines.size() - 1;
         for (; i >= 0; i--) {
             if (isWhitespace(lines.get(i))) {
@@ -166,16 +197,13 @@ public class ProtoFileFormatter {
         return -1;
     }
     
-    private void addImports() {
-        if (imports.size() == 0) {
-            return;
-        }
+    private void loadExistingImports() {
         final int i = importLineNumber();
         if (i != -1) {
             for (int j = i; j < lines.size(); j++) {
                 // remove existing
                 final String line = lines.get(j);
-                if (line.contains(" class ")) {
+                if (line.contains(classStartPattern)) {
                     break;
                 }
                 if (imports.addImport(line)) {
@@ -183,11 +211,20 @@ public class ProtoFileFormatter {
                     j--;
                 }
             }
+        }
+    }
+    
+    private void addImports() {
+        if (imports.size() == 0) {
+            return;
+        }
+        final int i = importLineNumber();
+        if (i != -1) {
             lines.addAll(i, Arrays.asList(imports.toImports()));
         }
     }
     
-    public void save(final Path path) throws IOException {
+    public final void save(final Path path) throws IOException {
         addImports();
         Files.write(path, lines, charset);
     }

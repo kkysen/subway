@@ -13,11 +13,11 @@ import java.lang.reflect.Constructor;
  */
 @Accessors(fluent = true)
 @Getter
-public final class ReflectedConstructor extends ReflectedMember<Constructor<?>, MethodHandle> {
+public final class ReflectedConstructor<T> extends ReflectedMember<Constructor<T>, MethodHandle> {
     
-    private final Constructor<?> constructor;
+    private final Constructor<T> constructor;
     
-    public ReflectedConstructor(final Constructor<?> constructor) {
+    public ReflectedConstructor(final Constructor<T> constructor) {
         super(constructor);
         this.constructor = constructor;
     }

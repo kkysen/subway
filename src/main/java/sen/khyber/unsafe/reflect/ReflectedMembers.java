@@ -7,6 +7,7 @@ import sen.khyber.util.immutable.ImmutableList;
 import lombok.Getter;
 import lombok.experimental.Accessors;
 
+import java.lang.invoke.VarHandle;
 import java.lang.reflect.AccessibleObject;
 import java.lang.reflect.Member;
 import java.util.Arrays;
@@ -27,12 +28,14 @@ import org.jetbrains.annotations.Nullable;
 public abstract class ReflectedMembers<T extends AccessibleObject & Member, Handle> {
     
     private static final @NotNull ReflectedField immutableMapTable;
+    
     static {
         //noinspection OverwrittenKey
-        Class<?> immutableMapClass = Map.of("", "", "", "").getClass();
+        final Class<?> immutableMapClass = Map.of("", "", "", "").getClass();
         try {
+            // use Class#getDeclaredField b/c this must not use any of the ReflectedMembers code
             immutableMapTable = new ReflectedField(immutableMapClass.getDeclaredField("table"));
-        } catch (NoSuchFieldException e) {
+        } catch (final NoSuchFieldException e) {
             throw ExceptionUtils.atRuntime(e);
         }
     }
@@ -58,7 +61,7 @@ public abstract class ReflectedMembers<T extends AccessibleObject & Member, Hand
         mutableMembers = Stream.of(rawMembers)
                 .map(this::reflectMember)
                 .toArray(ReflectedMember[]::new);
-        members = new ImmutableArrayList<ReflectedMember<T, Handle>>(mutableMembers);
+        members = new ImmutableArrayList<>(mutableMembers);
         membersMap = Map.ofEntries(
                 members.stream()
                         .map(member -> Pair.of(member.name(), member))
@@ -113,7 +116,8 @@ public abstract class ReflectedMembers<T extends AccessibleObject & Member, Hand
         cleared = true;
         Arrays.fill(rawMembers, null);
         Arrays.fill(mutableMembers, null);
-        Object[] table = (Object[]) immutableMapTable.bind(membersMap).getObject();
+        final VarHandle handle = immutableMapTable.handle();
+        final Object[] table = (Object[]) immutableMapTable.bind(membersMap).getObject();
         Arrays.fill(table, null);
     }
     
