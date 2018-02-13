@@ -164,7 +164,7 @@ public final class VehicleDescriptor extends ExtendableMessage<VehicleDescriptor
     }
     
     public static final int LABEL_FIELD_NUMBER = 2;
-    private volatile @Setter(AccessLevel.PRIVATE) Object label_;
+    @Setter(AccessLevel.PRIVATE) private volatile Object label_;
     
     /**
      * <pre>
@@ -206,7 +206,7 @@ public final class VehicleDescriptor extends ExtendableMessage<VehicleDescriptor
     }
     
     public static final int LICENSE_PLATE_FIELD_NUMBER = 3;
-    private volatile @Setter(AccessLevel.PRIVATE) Object licensePlate_;
+    @Setter(AccessLevel.PRIVATE) private volatile Object licensePlate_;
     
     /**
      * <pre>
@@ -635,7 +635,7 @@ public final class VehicleDescriptor extends ExtendableMessage<VehicleDescriptor
         
         private int bitField0_;
         
-        private @Setter(AccessLevel.PRIVATE) Object id_ = "";
+        @Setter(AccessLevel.PRIVATE) private Object id_ = "";
         
         /**
          * <pre>
@@ -729,7 +729,7 @@ public final class VehicleDescriptor extends ExtendableMessage<VehicleDescriptor
             return this;
         }
         
-        private @Setter(AccessLevel.PRIVATE) Object label_ = "";
+        @Setter(AccessLevel.PRIVATE) private Object label_ = "";
         
         /**
          * <pre>
@@ -817,7 +817,7 @@ public final class VehicleDescriptor extends ExtendableMessage<VehicleDescriptor
             return this;
         }
         
-        private @Setter(AccessLevel.PRIVATE) Object licensePlate_ = "";
+        @Setter(AccessLevel.PRIVATE) private Object licensePlate_ = "";
         
         /**
          * <pre>

@@ -13,9 +13,10 @@ import java.lang.reflect.Member;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import org.apache.commons.lang3.tuple.Pair;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -31,7 +32,7 @@ public abstract class ReflectedMembers<T extends AccessibleObject & Member, Hand
     
     static {
         //noinspection OverwrittenKey
-        final Class<?> immutableMapClass = Map.of("", "", "", "").getClass();
+        final Class<?> immutableMapClass = Map.of("1", "", "2", "").getClass();
         try {
             // use Class#getDeclaredField b/c this must not use any of the ReflectedMembers code
             immutableMapTable = new ReflectedField(immutableMapClass.getDeclaredField("table"));
@@ -40,7 +41,7 @@ public abstract class ReflectedMembers<T extends AccessibleObject & Member, Hand
         }
     }
     
-    private final @NotNull @Getter(onMethod = @__(@NotNull)) Class<?> klass;
+    private final @Getter(onMethod = @__(@NotNull)) @NotNull Class<?> klass;
     
     private final @NotNull T[] rawMembers;
     private final @NotNull ReflectedMember<T, Handle>[] mutableMembers;
@@ -62,11 +63,16 @@ public abstract class ReflectedMembers<T extends AccessibleObject & Member, Hand
                 .map(this::reflectMember)
                 .toArray(ReflectedMember[]::new);
         members = new ImmutableArrayList<>(mutableMembers);
-        membersMap = Map.ofEntries(
-                members.stream()
-                        .map(member -> Pair.of(member.name(), member))
-                        .toArray(Pair[]::new)
-        );
+        //        membersMap = Map.ofEntries(
+        //                members.stream()
+        //                        .map(member -> Pair.of(member.name(), member))
+        //                        .toArray(Pair[]::new)
+        //        );
+        // TODO fix overloaded methods may have same names
+        // TODO and all constructors do too
+        membersMap = members
+                .stream()
+                .collect(Collectors.toMap(ReflectedMember::name, Function.identity(), (a, b) -> a));
     }
     
     private void checkCleared() {
@@ -75,35 +81,29 @@ public abstract class ReflectedMembers<T extends AccessibleObject & Member, Hand
         }
     }
     
-    @NotNull
-    abstract ReflectedMember<T, Handle> reflectMember(T member);
+    abstract @NotNull ReflectedMember<T, Handle> reflectMember(T member);
     
-    @NotNull
-    public final T[] rawMembers() {
+    public final @NotNull T[] rawMembers() {
         checkCleared();
         return rawMembers;
     }
     
-    @NotNull
-    public ImmutableList<? extends ReflectedMember<T, Handle>> members() {
+    public @NotNull ImmutableList<? extends ReflectedMember<T, Handle>> members() {
         checkCleared();
         return members;
     }
     
-    @NotNull
-    public Map<String, ? extends ReflectedMember<T, Handle>> membersMap() {
+    public @NotNull Map<String, ? extends ReflectedMember<T, Handle>> membersMap() {
         checkCleared();
         return membersMap;
     }
     
-    @Nullable
-    public ReflectedMember<T, Handle> member(final @NotNull String name) {
+    public @Nullable ReflectedMember<T, Handle> member(final @NotNull String name) {
         Objects.requireNonNull(name);
         return membersMap().get(name);
     }
     
-    @Nullable
-    public final T rawMember(final @NotNull String name) {
+    public final @Nullable T rawMember(final @NotNull String name) {
         final ReflectedMember<T, Handle> reflectedMember = member(name);
         return reflectedMember == null ? null : reflectedMember.member();
     }

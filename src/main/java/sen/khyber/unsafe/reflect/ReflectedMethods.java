@@ -20,29 +20,25 @@ public final class ReflectedMethods extends ReflectedMembers<Method, MethodHandl
         super(klass, MemberType.METHOD);
     }
     
-    @NotNull
     @Override
-    final ReflectedMethod reflectMember(final @NotNull Method method) {
+    final @NotNull ReflectedMethod reflectMember(final @NotNull Method method) {
         return new ReflectedMethod(method);
     }
     
-    @SuppressWarnings("unchecked")
-    @NotNull
     @Override
-    public final ImmutableList<ReflectedMethod> members() {
+    @SuppressWarnings("unchecked")
+    public final @NotNull ImmutableList<ReflectedMethod> members() {
         return (ImmutableList<ReflectedMethod>) super.members();
     }
     
-    @SuppressWarnings("unchecked")
-    @NotNull
     @Override
-    public final Map<String, ReflectedMethod> membersMap() {
+    @SuppressWarnings("unchecked")
+    public final @NotNull Map<String, ReflectedMethod> membersMap() {
         return (Map<String, ReflectedMethod>) super.membersMap();
     }
     
-    @Nullable
     @Override
-    public final ReflectedMethod member(final @NotNull String name) {
+    public final @Nullable ReflectedMethod member(final @NotNull String name) {
         return (ReflectedMethod) super.member(name);
     }
     

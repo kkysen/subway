@@ -182,7 +182,9 @@ public class UnsafeUtils {
     
     public static final long objectSize(final Object o) {
         assert !o.getClass().isArray();
-        return unsafe.getAddress((unsafe.getLong(o, 4L) << 32 >>> 32 << 3) + 12L);
+        final long unalignedAddress = unsafe.getLong(o, 4L);
+        final long address = unalignedAddress << Integer.SIZE >>> Integer.SIZE << 3;
+        return unsafe.getAddress(address + 12L);
         //return unsafe.getAddress(o.objectAddress(4L) + 3 * OOP_SIZE);
     }
     

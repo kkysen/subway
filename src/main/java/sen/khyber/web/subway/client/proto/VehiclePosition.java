@@ -1828,7 +1828,7 @@ public final class VehiclePosition extends ExtendableMessage<VehiclePosition>
             return this;
         }
         
-        private @Setter(AccessLevel.PRIVATE) Object stopId_ = "";
+        @Setter(AccessLevel.PRIVATE) private Object stopId_ = "";
         
         /**
          * <pre>

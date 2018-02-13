@@ -45,7 +45,7 @@ public class CharBufferReader extends Reader {
     }
     
     @Override
-    public int read(@NotNull final char[] charBuffer, final int offset, final int length)
+    public int read(final @NotNull char[] charBuffer, final int offset, final int length)
             throws IOException {
         if (buffer.remaining() == 0) {
             return -1;
@@ -56,7 +56,7 @@ public class CharBufferReader extends Reader {
     }
     
     @Override
-    public int read(@NotNull final CharBuffer target) throws IOException {
+    public int read(final @NotNull CharBuffer target) throws IOException {
         if (buffer.remaining() == 0) {
             return -1;
         }

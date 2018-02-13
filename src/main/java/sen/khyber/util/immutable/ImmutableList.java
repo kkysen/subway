@@ -17,7 +17,7 @@ import org.jetbrains.annotations.NotNull;
 public abstract class ImmutableList<E> extends ImmutableCollection<E> implements List<E> {
     
     @Override
-    public final boolean addAll(final int index, @NotNull final Collection<? extends E> c) {
+    public final boolean addAll(final int index, final @NotNull Collection<? extends E> c) {
         throw uoe();
     }
     
@@ -46,15 +46,13 @@ public abstract class ImmutableList<E> extends ImmutableCollection<E> implements
         throw uoe();
     }
     
-    @NotNull
     @Override
-    public ImmutableListIterator<E> listIterator() {
+    public @NotNull ImmutableListIterator<E> listIterator() {
         return listIterator(0);
     }
     
-    @NotNull
     @Override
-    public abstract ImmutableListIterator<E> listIterator(int index);
+    public abstract @NotNull ImmutableListIterator<E> listIterator(int index);
     
     @Override
     public boolean isEmpty() {
@@ -67,7 +65,7 @@ public abstract class ImmutableList<E> extends ImmutableCollection<E> implements
     }
     
     @Override
-    public boolean containsAll(@NotNull final Collection<?> c) {
+    public boolean containsAll(final @NotNull Collection<?> c) {
         Objects.requireNonNull(c);
         for (final Object o : c) {
             if (!contains(o)) {

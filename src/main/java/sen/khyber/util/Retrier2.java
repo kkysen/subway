@@ -14,6 +14,7 @@ import java.util.function.Supplier;
  *
  * @author Khyber Sen
  */
+@Deprecated
 @RequiredArgsConstructor
 public class Retrier2<T> {
     

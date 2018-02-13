@@ -580,7 +580,7 @@ public final class NyctStopTimeUpdate extends GeneratedMessageV3
         
         private int bitField0_;
         
-        private @Setter(AccessLevel.PRIVATE) Object scheduledTrack_ = "";
+        @Setter(AccessLevel.PRIVATE) private Object scheduledTrack_ = "";
         
         /**
          * <pre>
@@ -734,7 +734,7 @@ public final class NyctStopTimeUpdate extends GeneratedMessageV3
             return this;
         }
         
-        private @Setter(AccessLevel.PRIVATE) Object actualTrack_ = "";
+        @Setter(AccessLevel.PRIVATE) private Object actualTrack_ = "";
         
         /**
          * <pre>

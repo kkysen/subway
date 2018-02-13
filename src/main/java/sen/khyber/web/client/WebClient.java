@@ -2,8 +2,6 @@ package sen.khyber.web.client;
 
 import sen.khyber.io.IO;
 
-import lombok.NonNull;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Reader;
@@ -14,7 +12,10 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
@@ -42,7 +43,9 @@ public class WebClient {
     private final OkHttpClient client;
     private final Charset defaultCharset;
     
-    public WebClient(final @NonNull OkHttpClient client, final @NonNull Charset defaultCharset) {
+    public WebClient(final @NotNull OkHttpClient client, final @NotNull Charset defaultCharset) {
+        Objects.requireNonNull(client);
+        Objects.requireNonNull(defaultCharset);
         this.client = client;
         this.defaultCharset = defaultCharset;
     }
@@ -54,7 +57,8 @@ public class WebClient {
     private final Map<String, WebResponse> responseCache = new HashMap<>();
     
     public WebResponse forUrl(final String url) {
-        return responseCache.computeIfAbsent(url, WebResponse::new).refresh();
+        //noinspection resource
+        return responseCache.computeIfAbsent(url, WebResponseImpl::new).refresh();
     }
     
     /**
@@ -62,138 +66,170 @@ public class WebClient {
      *
      * @author Khyber Sen
      */
-    public class WebResponse {
+    private final class WebResponseImpl implements WebResponse {
         
         private final String url;
         
-        private Response response;
-        private MediaType contentType;
-        private Charset charset;
-        private ByteBuffer byteBuffer;
-        private CharBuffer charBuffer;
-        private String string;
-        private Document document;
-        private HtmlPage renderedPage;
-        private Document renderedDocument;
+        private @Nullable Response response;
+        private @Nullable MediaType contentType;
+        private @Nullable Charset charset;
+        private @Nullable ByteBuffer byteBuffer;
+        private @Nullable CharBuffer charBuffer;
+        private @Nullable String string;
+        private @Nullable Document document;
+        private @Nullable HtmlPage renderedPage;
+        private @Nullable Document renderedDocument;
         
-        public WebResponse(final @NonNull String url) {
+        public WebResponseImpl(final @NotNull String url) {
+            Objects.requireNonNull(url);
             this.url = url;
         }
         
-        public Response response() throws IOException {
+        @Override
+        public final @NotNull Response response() throws IOException {
             if (response == null) {
                 response = client.newCall(new Request.Builder().url(url).build()).execute();
             }
             return response;
         }
         
-        public String realUrl() throws IOException {
+        @Override
+        public final @NotNull String realUrl() throws IOException {
             return response().request().url().toString();
         }
         
-        public ResponseBody body() throws IOException {
+        @Override
+        public final @NotNull ResponseBody body() throws IOException {
             return response().body();
         }
         
-        public MediaType contentType() throws IOException {
+        @Override
+        public final @NotNull MediaType contentType() throws IOException {
             if (contentType == null) {
                 contentType = body().contentType();
             }
             return contentType;
         }
         
-        public Charset charset() throws IOException {
+        @Override
+        public final @NotNull Charset charset() throws IOException {
             if (charset == null) {
                 charset = contentType().charset(defaultCharset);
             }
             return charset;
         }
         
-        public ByteBuffer byteBuffer() throws IOException {
+        @Override
+        public final @NotNull ByteBuffer byteBuffer() throws IOException {
             if (byteBuffer == null) {
                 byteBuffer = ByteBuffer.wrap(body().bytes());
             }
             return byteBuffer;
         }
         
-        public CharBuffer charBuffer() throws IOException {
+        @Override
+        public final @NotNull CharBuffer charBuffer() throws IOException {
             if (charBuffer == null) {
                 charBuffer = charset().decode(byteBuffer());
             }
             return charBuffer;
         }
         
-        public long length() throws IOException {
+        @Override
+        public final long length() throws IOException {
             if (byteBuffer != null) {
                 return byteBuffer.array().length;
             }
             return body().contentLength();
         }
         
-        public byte[] bytes() throws IOException {
+        @Override
+        public final @NotNull byte[] bytes() throws IOException {
             return byteBuffer().array();
         }
         
-        public char[] chars() throws IOException {
+        @Override
+        public final @NotNull char[] chars() throws IOException {
             return charBuffer().array();
         }
         
-        public String string() throws IOException {
+        @Override
+        public final @NotNull String string() throws IOException {
             if (string == null) {
                 if (charset() == StandardCharsets.ISO_8859_1) {
                     // TODO unsafe
                 }
-                string = charBuffer.toString();
+                string = charBuffer().toString();
             }
             return string;
         }
         
-        public StringBuilder append(final StringBuilder sb) throws IOException {
+        @Override
+        public final @NotNull StringBuilder append(final @NotNull StringBuilder sb)
+                throws IOException {
             return sb.append(chars());
         }
         
-        public StringBuilder stringBuilder() throws IOException {
+        @Override
+        public final @NotNull StringBuilder stringBuilder() throws IOException {
             return append(new StringBuilder(chars().length));
         }
         
-        public InputStream inputStream() throws IOException {
+        @Override
+        public final @NotNull InputStream inputStream() throws IOException {
             return body().byteStream();
         }
         
-        public Reader reader() throws IOException {
+        @Override
+        public final @NotNull Reader reader() throws IOException {
             return body().charStream();
         }
         
-        public ByteBuffer put(final ByteBuffer out) throws IOException {
+        @Override
+        public final @NotNull ByteBuffer put(final @NotNull ByteBuffer out) throws IOException {
             return out.put(byteBuffer());
         }
         
-        public void download(final Path path) throws IOException {
+        @Override
+        public final void download(final @NotNull Path path) throws IOException {
             put(IO.mmap(path));
         }
         
-        public Document document() throws IOException {
+        @Override
+        public final @NotNull Document document() throws IOException {
             if (document == null) {
                 document = Jsoup.parse(inputStream(), charset().name(), realUrl());
             }
             return document;
         }
         
-        public HtmlPage renderedPage() throws IOException {
+        @Override
+        public final @NotNull HtmlPage renderedPage() throws IOException {
             if (renderedPage == null) {
                 renderedPage = SilencedRenderingWebClient.get().getPage(realUrl());
             }
+            //noinspection ConstantConditions
             return renderedPage;
         }
         
-        public Document renderedDocument() throws IOException {
+        @Override
+        public final @NotNull Document renderedDocument() throws IOException {
             if (renderedDocument == null) {
                 renderedDocument = Jsoup.parse(renderedPage().asXml());
             }
             return renderedDocument;
         }
         
-        public WebResponse refresh() {
+        @Override
+        public final void close() {
+            if (response != null) {
+                response.close();
+            }
+        }
+        
+        @Override
+        public final @NotNull WebResponse refresh() {
+            close();
             response = null;
             contentType = null;
             charset = null;

@@ -12,6 +12,8 @@ import java.lang.reflect.Field;
  */
 public final class Accessor {
     
+    private Accessor() {}
+    
     private static final ReflectedField accessibleObjectOverrideField;
     
     static {
@@ -22,7 +24,7 @@ public final class Accessor {
         } catch (final NoSuchFieldException e) {
             throw ExceptionUtils.atRuntime(e);
         }
-        field.setAccessible(true);
+        //        field.setAccessible(true);
         accessibleObjectOverrideField = new ReflectedField(field);
     }
     

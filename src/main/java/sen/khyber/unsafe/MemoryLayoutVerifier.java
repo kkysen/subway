@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  *
  * @author Khyber Sen
  */
-public class MemoryLayoutVerifier {
+public final class MemoryLayoutVerifier {
     
     private MemoryLayoutVerifier() {}
     

@@ -790,7 +790,7 @@ public final class FeedEntity extends GeneratedMessageV3 implements FeedEntityOr
         
         private int bitField0_;
         
-        private @Setter(AccessLevel.PRIVATE) Object id_ = "";
+        @Setter(AccessLevel.PRIVATE) private Object id_ = "";
         
         /**
          * <pre>
@@ -1128,7 +1128,7 @@ public final class FeedEntity extends GeneratedMessageV3 implements FeedEntityOr
          * <p>
          * <code>optional .transit_realtime.TripUpdate trip_update = 3;</code>
          */
-        private SingleFieldBuilderV3<TripUpdate, TripUpdate.Builder, TripUpdateOrBuilder> 
+        private SingleFieldBuilderV3<TripUpdate, TripUpdate.Builder, TripUpdateOrBuilder>
         getTripUpdateFieldBuilder() {
             if (tripUpdateBuilder_ == null) {
                 tripUpdateBuilder_ =
@@ -1140,7 +1140,7 @@ public final class FeedEntity extends GeneratedMessageV3 implements FeedEntityOr
         }
         
         private VehiclePosition vehicle_ = null;
-        private SingleFieldBuilderV3<VehiclePosition, VehiclePosition.Builder, 
+        private SingleFieldBuilderV3<VehiclePosition, VehiclePosition.Builder,
                 VehiclePositionOrBuilder>
                 vehicleBuilder_;
         
@@ -1250,7 +1250,7 @@ public final class FeedEntity extends GeneratedMessageV3 implements FeedEntityOr
         /**
          * <code>optional .transit_realtime.VehiclePosition vehicle = 4;</code>
          */
-        private SingleFieldBuilderV3<VehiclePosition, VehiclePosition.Builder, 
+        private SingleFieldBuilderV3<VehiclePosition, VehiclePosition.Builder,
                 VehiclePositionOrBuilder> getVehicleFieldBuilder() {
             if (vehicleBuilder_ == null) {
                 vehicleBuilder_ =

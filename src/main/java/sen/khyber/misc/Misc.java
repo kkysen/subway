@@ -2,15 +2,21 @@ package sen.khyber.misc;
 
 import sen.khyber.io.IO;
 import sen.khyber.proto.ProtoFileFormatter;
+import sen.khyber.unsafe.reflect.ReflectedClass;
+import sen.khyber.unsafe.reflect.ReflectedMember;
 import sen.khyber.unsafe.reflect.Reflector;
 import sen.khyber.util.RegexUtils;
+import sen.khyber.util.exceptions.ExceptionUtils;
+import sen.khyber.web.subway.client.proto.NyctTripDescriptor;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Stream;
 
 /**
  * Created by Khyber Sen on 2/1/2018.
@@ -58,6 +64,22 @@ public class Misc {
         }
     }
     
+    private static void getMethodLineNumber() {
+        final ReflectedClass<?> klass = Reflector.get().forClass(NyctTripDescriptor.class);
+        final Object proto = klass.allocateInstance();
+        final Object ref = 0;
+        klass.field("trainId_").bindUnsafe(proto).setObject(ref);
+        try {
+            klass.rawMethod("getTrainId").invoke(proto);
+            throw new IllegalStateException(
+                    "should've caused and caught a ClassCastException");
+        } catch (final IllegalAccessException e) {
+            throw ExceptionUtils.atRuntime(e);
+        } catch (final InvocationTargetException e) {
+            Stream.of(e.getTargetException().getStackTrace()).forEach(System.out::println);
+        }
+    }
+    
     public static void main(final String[] args) throws IOException {
         //        testGenerics();
         //        nullCheckRegex();
@@ -65,6 +87,27 @@ public class Misc {
         System.out.println(RegexUtils.expandSpacesToVariableWhitespace("[ ]*abc[^ ]*")
                 .matcher(s).matches());
         System.out.println(Pattern.compile("[\\s]*abc[^ ]*").matcher(s).matches());
+        
+        ReflectedMember.useSimpleNameInToString(true);
+        System.out.println(ReflectedMember.isUsingSimpleNameInToString());
+        System.out.println(Reflector.get()
+                .forClass(ProtoFileFormatter.class)
+                .field("nullCheckPattern"));
+        
+        //        getMethodLineNumber();
+        
+        final List<Integer> list = new ArrayList<>();
+        list.add(5);
+        list.add(10);
+        final List<Integer> subList = list.subList(0, 1);
+        System.out.println("list: " + list);
+        System.out.println("sub: " + subList);
+        list.add(0, 0);
+        System.out.println("list: " + list);
+        System.out.println("sub: " + subList);
+        subList.add(15);
+        System.out.println("list: " + list);
+        System.out.println("sub: " + subList);
     }
     
 }

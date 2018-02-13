@@ -752,7 +752,7 @@ public final class NyctTripDescriptor extends GeneratedMessageV3
         
         private int bitField0_;
         
-        private @Setter(AccessLevel.PRIVATE) Object trainId_ = "";
+        @Setter(AccessLevel.PRIVATE) private Object trainId_ = "";
         
         /**
          * <pre>

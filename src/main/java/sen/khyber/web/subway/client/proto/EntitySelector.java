@@ -187,7 +187,7 @@ public final class EntitySelector extends ExtendableMessage<EntitySelector>
     }
     
     public static final int ROUTE_ID_FIELD_NUMBER = 2;
-    private volatile @Setter(AccessLevel.PRIVATE) Object routeId_;
+    @Setter(AccessLevel.PRIVATE) private volatile Object routeId_;
     
     /**
      * <code>optional string route_id = 2;</code>
@@ -268,7 +268,7 @@ public final class EntitySelector extends ExtendableMessage<EntitySelector>
     }
     
     public static final int STOP_ID_FIELD_NUMBER = 5;
-    private volatile @Setter(AccessLevel.PRIVATE) Object stopId_;
+    @Setter(AccessLevel.PRIVATE) private volatile Object stopId_;
     
     /**
      * <code>optional string stop_id = 5;</code>
@@ -748,7 +748,7 @@ public final class EntitySelector extends ExtendableMessage<EntitySelector>
         
         private int bitField0_;
         
-        private @Setter(AccessLevel.PRIVATE) Object agencyId_ = "";
+        @Setter(AccessLevel.PRIVATE) private Object agencyId_ = "";
         
         /**
          * <pre>
@@ -848,7 +848,7 @@ public final class EntitySelector extends ExtendableMessage<EntitySelector>
             return this;
         }
         
-        private @Setter(AccessLevel.PRIVATE) Object routeId_ = "";
+        @Setter(AccessLevel.PRIVATE) private Object routeId_ = "";
         
         /**
          * <code>optional string route_id = 2;</code>
@@ -961,7 +961,7 @@ public final class EntitySelector extends ExtendableMessage<EntitySelector>
         }
         
         private TripDescriptor trip_ = null;
-        private SingleFieldBuilderV3<TripDescriptor, TripDescriptor.Builder, 
+        private SingleFieldBuilderV3<TripDescriptor, TripDescriptor.Builder,
                 TripDescriptorOrBuilder>
                 tripBuilder_;
         
@@ -1071,7 +1071,7 @@ public final class EntitySelector extends ExtendableMessage<EntitySelector>
         /**
          * <code>optional .transit_realtime.TripDescriptor trip = 4;</code>
          */
-        private SingleFieldBuilderV3<TripDescriptor, TripDescriptor.Builder, 
+        private SingleFieldBuilderV3<TripDescriptor, TripDescriptor.Builder,
                 TripDescriptorOrBuilder> getTripFieldBuilder() {
             if (tripBuilder_ == null) {
                 tripBuilder_ =
@@ -1081,7 +1081,7 @@ public final class EntitySelector extends ExtendableMessage<EntitySelector>
             return tripBuilder_;
         }
         
-        private @Setter(AccessLevel.PRIVATE) Object stopId_ = "";
+        @Setter(AccessLevel.PRIVATE) private Object stopId_ = "";
         
         /**
          * <code>optional string stop_id = 5;</code>

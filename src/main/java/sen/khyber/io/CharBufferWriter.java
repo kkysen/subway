@@ -25,13 +25,13 @@ public class CharBufferWriter extends Writer {
     }
     
     @Override
-    public void write(@NotNull final char[] chars, final int offset, final int length)
+    public void write(final @NotNull char[] chars, final int offset, final int length)
             throws IOException {
         buffer.put(chars, offset, length);
     }
     
     @Override
-    public void write(@NotNull final String s, final int offset, final int length)
+    public void write(final @NotNull String s, final int offset, final int length)
             throws IOException {
         write(StringUtils.getCharArray(s), offset, length);
     }

@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Objects;
 import java.util.Spliterator;
+import java.util.StringJoiner;
 import java.util.function.Consumer;
 import java.util.stream.Stream;
 
@@ -83,7 +84,7 @@ public class ImmutableArrayList<E> extends ImmutableList<E> {
     
     private final class ListItr extends ImmutableListIterator<E> {
         
-        private final ImmutableArrayList parent = ImmutableArrayList.this;
+        private final ImmutableArrayList<E> parent = ImmutableArrayList.this;
         
         private final int last = offset + length;
         
@@ -161,17 +162,26 @@ public class ImmutableArrayList<E> extends ImmutableList<E> {
             }
         }
         
+        @Override
+        public String toString() {
+            final int prevIndex = i;
+            final StringJoiner sj = new StringJoiner(", \n", "[", "]");
+            while (hasNext()) {
+                sj.add(String.valueOf(next()));
+            }
+            i = prevIndex; // return to original state before toString()
+            return sj.toString();
+        }
+        
     }
     
-    @NotNull
     @Override
-    public ImmutableListIterator<E> listIterator(final int index) {
+    public @NotNull ImmutableListIterator<E> listIterator(final int index) {
         return new ListItr(index);
     }
     
-    @NotNull
     @Override
-    public List<E> subList(final int fromIndex, final int toIndex) {
+    public @NotNull List<E> subList(final int fromIndex, final int toIndex) {
         return new ImmutableArrayList<>(elements, offset + fromIndex, offset + toIndex - fromIndex);
     }
     
@@ -185,15 +195,13 @@ public class ImmutableArrayList<E> extends ImmutableList<E> {
         return length == 0;
     }
     
-    @NotNull
     @Override
-    public E[] toArray() {
+    public @NotNull E[] toArray() {
         return Arrays.copyOfRange(elements, offset, offset + length);
     }
     
-    @NotNull
     @Override
-    public <T> T[] toArray(@NotNull final T[] a) {
+    public @NotNull <T> T[] toArray(final @NotNull T[] a) {
         // let System.arraycopy take care of type check
         //noinspection SuspiciousSystemArraycopy
         System.arraycopy(elements, offset, a, 0, Math.min(a.length, length));
@@ -210,9 +218,8 @@ public class ImmutableArrayList<E> extends ImmutableList<E> {
         return Arrays.stream(elements, offset, offset + length);
     }
     
-    @NotNull
     @Override
-    public ImmutableIterator<E> iterator() {
+    public @NotNull ImmutableIterator<E> iterator() {
         return listIterator();
     }
     

@@ -16,8 +16,7 @@ import org.jetbrains.annotations.NotNull;
  */
 public final class Reflector {
     
-    @NotNull
-    public static Optional<Class<?>> classForName(final @NotNull String className) {
+    public static @NotNull Optional<Class<?>> classForName(final @NotNull String className) {
         Objects.requireNonNull(className);
         try {
             return Optional.of(Class.forName(className));
@@ -36,25 +35,23 @@ public final class Reflector {
     
     private final Map<Class<?>, ReflectedClass<?>> reflectedClasses = new HashMap<>();
     
-    @NotNull
-    public final ReflectedClass<?> forClass(final @NotNull Class<?> klass) {
+    public final @NotNull ReflectedClass<?> forClass(final @NotNull Class<?> klass) {
         Objects.requireNonNull(klass);
         return reflectedClasses.computeIfAbsent(klass, ReflectedClass::new);
     }
     
-    @NotNull
-    public final Optional<ReflectedClass<?>> forClassName(final @NotNull String className) {
+    public final @NotNull Optional<ReflectedClass<?>> forClassName(
+            final @NotNull String className) {
         return classForName(className).map(this::forClass);
     }
     
-    @NotNull
-    public final ReflectedClass<?> forClassNameUnchecked(final @NotNull String className) {
+    public final @NotNull ReflectedClass<?> forClassNameUnchecked(final @NotNull String className) {
         //noinspection ConstantConditions
         return forClassName(className).get();
     }
     
-    @Null
-    private static ReflectedClass<?> removeAndClearReflectedClass(final @NotNull Class<?> klass,
+    private static @Null ReflectedClass<?> removeAndClearReflectedClass(
+            final @NotNull Class<?> klass,
             final @NotNull ReflectedClass reflectedClass) {
         reflectedClass.clear();
         return null;

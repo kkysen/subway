@@ -1,13 +1,19 @@
 package sen.khyber.proto;
 
 import sen.khyber.unsafe.reflect.ReflectedClass;
+import sen.khyber.unsafe.reflect.ReflectedField;
+import sen.khyber.unsafe.reflect.ReflectedMember;
+import sen.khyber.unsafe.reflect.ReflectedMethod;
 import sen.khyber.unsafe.reflect.Reflector;
 import sen.khyber.util.Imports;
+import sen.khyber.util.exceptions.ExceptionUtils;
+import sen.khyber.util.immutable.ImmutableArrayList;
 
 import lombok.AccessLevel;
 import lombok.Setter;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -21,6 +27,8 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import com.google.protobuf.ByteString;
 
 import static java.time.temporal.ChronoField.DAY_OF_MONTH;
 import static java.time.temporal.ChronoField.MONTH_OF_YEAR;
@@ -53,6 +61,7 @@ public class ProtoFileFormatter {
     private final Path path;
     
     private final List<String> lines;
+//    private final List<List<String>> initialLines;
     
     private final Imports imports = new Imports();
     
@@ -60,6 +69,9 @@ public class ProtoFileFormatter {
         Objects.requireNonNull(path);
         this.path = path;
         lines = Files.readAllLines(path, charset);
+//        initialLines = IntStream.range(0, lines.size())
+//                .mapToObj(i -> lines.subList(i, i + 1))
+//                .collect(Collectors.toList());
         loadExistingImports();
     }
     
@@ -98,14 +110,122 @@ public class ProtoFileFormatter {
         }
     }
     
-    public final void refactorStringAndByteStringGetters() {
-        final boolean found = false;
-        // TODO
-        if (found) {
-            imports.add(ProtoUtils.class);
-            imports.add(Setter.class);
-            imports.add(AccessLevel.class);
+    private static final String classStartPattern = " class ";
+    
+    private String findBetween(final String preIdentifier, final char postIdenitifer,
+            final String name) {
+        for (final String line : lines) {
+            int index = line.indexOf(preIdentifier);
+            if (index == -1) {
+                continue;
+            }
+            index += preIdentifier.length();
+            return line.substring(index, line.indexOf(postIdenitifer, index)).trim();
         }
+        throw new IllegalStateException("no " + name + " found");
+    }
+    
+    private String packageName() {
+        return findBetween("package ", ';', "package");
+    }
+    
+    private String className() {
+        return findBetween(classStartPattern, '{', "class");
+    }
+    
+    private ReflectedClass<?> loadProtoClass() {
+        final String fullClassName = packageName() + '.' + className();
+        return Reflector.get().forClassNameUnchecked(fullClassName);
+    }
+    
+    private static String uncapitalize(final String s) {
+        if (s.isEmpty()) {
+            return "";
+        }
+        final char[] chars = s.toCharArray();
+        chars[0] = Character.toLowerCase(chars[0]);
+        return new String(chars);
+    }
+    
+    private void refactorStringUnionByteStringField(final ReflectedField field) {
+        return; // TODO
+    }
+    
+    private void refactorStringGetter(final ReflectedMethod method,
+            final StackTraceElement stackFrame) {
+        return; // TODO
+    }
+    
+    private void refactorByteStringGetter(final ReflectedMethod method,
+            final StackTraceElement stackFrame) {
+        return; // TODO
+    }
+    
+    private void refactorStringAndByteStringGetters(final ReflectedClass<?> klass,
+            final ReflectedField field,
+            final ReflectedMethod stringGetter,
+            final ReflectedMethod byteStringGetter) {
+        refactorStringUnionByteStringField(field);
+        final Object proto = klass.allocateInstance();
+        final Object ref = 0;
+        field.bindUnsafe(proto).setObject(ref);
+        final StackTraceElement[] stackTraces =
+                new ImmutableArrayList<>(stringGetter, byteStringGetter)
+                        .stream()
+                        .map(method -> {
+                            try {
+                                stringGetter.method().invoke(proto);
+                                throw new IllegalStateException(
+                                        "should've caused and caught a ClassCastException");
+                            } catch (final IllegalAccessException e) {
+                                throw ExceptionUtils.atRuntime(e);
+                            } catch (final InvocationTargetException e) {
+                                return e;
+                            }
+                        })
+                        .map(InvocationTargetException::getTargetException)
+                        .map(Throwable::getStackTrace)
+                        .map(a -> a[0])
+                        .toArray(StackTraceElement[]::new);
+        refactorStringGetter(stringGetter, stackTraces[0]);
+        refactorByteStringGetter(byteStringGetter, stackTraces[1]);
+    }
+    
+    private boolean refactorStringAndByteStringGetters(final ReflectedMethod stringGetter,
+            final ReflectedClass<?> klass) {
+        final String getterName = stringGetter.name();
+        final ReflectedMethod byteStringGetter =
+                klass.method(getterName + "Bytes");
+        if (byteStringGetter == null
+                || byteStringGetter.method().getReturnType() != ByteString.class) {
+            return false;
+        }
+        final String fieldName = uncapitalize(getterName.substring("get".length())) + '_';
+        final ReflectedField field = klass.field(fieldName);
+        if (field == null || field.field().getType() != Object.class) {
+            return false;
+        }
+        refactorStringAndByteStringGetters(klass, field, stringGetter, byteStringGetter);
+        return true;
+    }
+    
+    public final void refactorStringAndByteStringGetters() {
+        final ReflectedClass<?> klass = loadProtoClass();
+        // get all String getters that have a normal and bytes version
+        klass
+                .methods()
+                .stream()
+                .filter(ReflectedMember::isInstance)
+                .filter(method -> method.method().getReturnType() == String.class)
+                .filter(method -> method.name().startsWith("get"))
+                .map(stringGetter -> refactorStringAndByteStringGetters(stringGetter, klass))
+                .filter(Boolean::booleanValue)
+                .findAny()
+                .ifPresent(pair -> {
+                    imports.add(ProtoUtils.class);
+                    imports.add(Setter.class);
+                    imports.add(AccessLevel.class);
+                });
     }
     
     public final void replaceDeprecatedValueOfWithForNumber() {
@@ -137,8 +257,6 @@ public class ProtoFileFormatter {
             }
         }
     }
-    
-    private static final String classStartPattern = " class ";
     
     public final void addClassJavadoc() {
         final String date = LocalDate.now().format(formatter);

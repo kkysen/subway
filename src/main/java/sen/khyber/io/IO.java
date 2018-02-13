@@ -34,6 +34,8 @@ import java.util.stream.Stream;
 
 import org.apache.kafka.common.utils.ByteBufferInputStream;
 import org.apache.tomcat.util.http.fileupload.FileUtils;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Created by Khyber Sen on 1/29/2018.
@@ -101,7 +103,7 @@ public final class IO {
         path = path.getParent();
         final int dotIndex = file.lastIndexOf('.');
         if (dotIndex == -1) {
-            file += "." + extension;
+            file += '.' + extension;
         } else {
             file = file.substring(0, dotIndex + 1) + extension;
         }
@@ -138,32 +140,32 @@ public final class IO {
     
     public static final long copy(final InputStream in, final Path path) throws IOException {
         final ReadableByteChannel rbc = Channels.newChannel(in);
-        final FileOutputStream fos = new FileOutputStream(path.toFile());
-        final FileChannel channel = fos.getChannel();
-        final long bytesRead = channel.transferFrom(rbc, 0, Long.MAX_VALUE);
-        channel.close();
-        fos.close();
-        return bytesRead;
+        try (
+                final FileOutputStream fos = new FileOutputStream(path.toFile());
+                final FileChannel channel = fos.getChannel()) {
+            return channel.transferFrom(rbc, 0, Long.MAX_VALUE);
+        }
     }
     
     public static final long copyMmap(final InputStream in, final Path path) throws IOException {
-        final RandomAccessFile file = new RandomAccessFile(path.toFile(), "rw");
-        final FileChannel channel = file.getChannel();
-        final MappedByteBuffer out = channel.map(MapMode.READ_WRITE, 0, 1 << 30);
-        long bytesRead = 0;
-        final byte[] buffer = new byte[BUFFER_SIZE];
-        int n;
-        while ((n = in.read(buffer)) > 0) {
-            out.put(buffer);
-            bytesRead += n;
-            if ((bytesRead & (BUFFER_SIZE << 7) - 1) == 0) {
-                System.out.println("read " + bytesRead / 1000 + " KB");
+        try (
+                final RandomAccessFile file = new RandomAccessFile(path.toFile(), "rw");
+                final FileChannel channel = file.getChannel()
+        ) {
+            final MappedByteBuffer out = channel.map(MapMode.READ_WRITE, 0, 1 << 30);
+            long bytesRead = 0;
+            final byte[] buffer = new byte[BUFFER_SIZE];
+            int n;
+            while ((n = in.read(buffer)) > 0) {
+                out.put(buffer);
+                bytesRead += n;
+                if ((bytesRead & (BUFFER_SIZE << 7) - 1) == 0) {
+                    System.out.println("read " + bytesRead / 1000 + " KB");
+                }
             }
+            channel.truncate(bytesRead);
+            return bytesRead;
         }
-        channel.truncate(bytesRead);
-        channel.close();
-        file.close();
-        return bytesRead;
     }
     
     public static final BufferedReader getReader(final InputStream in) {
@@ -177,7 +179,7 @@ public final class IO {
     public static final Iterable<String> iterable(final BufferedReader reader) {
         return () -> new Iterator<>() {
             
-            private String line;
+            private @Nullable String line;
             
             @Override
             public boolean hasNext() {
@@ -193,9 +195,10 @@ public final class IO {
             }
             
             @Override
-            public String next() {
+            public @NotNull String next() {
                 if (hasNext()) {
-                    final String next = line;
+                    assert line != null;
+                    final @NotNull String next = line;
                     line = null;
                     return next;
                 }
@@ -340,7 +343,7 @@ public final class IO {
     
     public static final PrintStream printStream(final Path path, final boolean append)
             throws IOException {
-        final OpenOption[] options = new OpenOption[] {
+        final OpenOption[] options = {
                 StandardOpenOption.CREATE,
                 append ? StandardOpenOption.APPEND : StandardOpenOption.TRUNCATE_EXISTING
         };

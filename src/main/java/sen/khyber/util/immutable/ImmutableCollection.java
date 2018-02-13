@@ -30,12 +30,12 @@ public abstract class ImmutableCollection<E> extends ImmutableIterable<E>
     }
     
     @Override
-    public final boolean addAll(@NotNull final Collection<? extends E> c) {
+    public final boolean addAll(final @NotNull Collection<? extends E> c) {
         throw uoe();
     }
     
     @Override
-    public final boolean removeAll(@NotNull final Collection<?> c) {
+    public final boolean removeAll(final @NotNull Collection<?> c) {
         throw uoe();
     }
     
@@ -45,7 +45,7 @@ public abstract class ImmutableCollection<E> extends ImmutableIterable<E>
     }
     
     @Override
-    public final boolean retainAll(@NotNull final Collection<?> c) {
+    public final boolean retainAll(final @NotNull Collection<?> c) {
         throw uoe();
     }
     

@@ -219,15 +219,13 @@ public class MappedList<T, R> extends Mapper<T, R> implements List<R> {
         return -1;
     }
     
-    @NotNull
     @Override
-    public ListIterator<R> listIterator() {
+    public @NotNull ListIterator<R> listIterator() {
         return listIterator(0);
     }
     
-    @NotNull
     @Override
-    public ListIterator<R> listIterator(final int index) {
+    public @NotNull ListIterator<R> listIterator(final int index) {
         return new ListIterator<>() {
             
             private final ListIterator<? extends T> iter = delegate.listIterator(index);
@@ -285,9 +283,8 @@ public class MappedList<T, R> extends Mapper<T, R> implements List<R> {
         };
     }
     
-    @NotNull
     @Override
-    public List<R> subList(final int fromIndex, final int toIndex) {
+    public @NotNull List<R> subList(final int fromIndex, final int toIndex) {
         return new MappedList<>(delegate.subList(fromIndex, toIndex), mapper);
     }
     
@@ -296,9 +293,8 @@ public class MappedList<T, R> extends Mapper<T, R> implements List<R> {
         return indexOf(o) != -1;
     }
     
-    @NotNull
     @Override
-    public Iterator<R> iterator() {
+    public @NotNull Iterator<R> iterator() {
         return new Iterator<>() {
             
             private final Iterator<? extends T> iter = delegate.iterator();
@@ -326,9 +322,8 @@ public class MappedList<T, R> extends Mapper<T, R> implements List<R> {
         };
     }
     
-    @NotNull
     @Override
-    public Object[] toArray() {
+    public @NotNull Object[] toArray() {
         final Object[] a = delegate.toArray();
         for (int i = 0; i < a.length; i++) {
             //noinspection unchecked
@@ -337,10 +332,9 @@ public class MappedList<T, R> extends Mapper<T, R> implements List<R> {
         return a;
     }
     
-    @SuppressWarnings("NullableProblems")
-    @NotNull
     @Override
-    public <S> S[] toArray(final S[] a) {
+    @SuppressWarnings("NullableProblems")
+    public @NotNull <S> S[] toArray(final S[] a) {
         Objects.requireNonNull(a);
         final Object[] b = delegate.toArray();
         for (int i = 0; i < a.length; i++) {
@@ -401,7 +395,7 @@ public class MappedList<T, R> extends Mapper<T, R> implements List<R> {
     }
     
     @Override
-    public boolean containsAll(@NotNull final Collection<?> c) {
+    public boolean containsAll(final @NotNull Collection<?> c) {
         for (final Object e : c) {
             if (!contains(e)) {
                 return false;
@@ -411,23 +405,23 @@ public class MappedList<T, R> extends Mapper<T, R> implements List<R> {
     }
     
     @Override
-    public boolean addAll(@NotNull final Collection<? extends R> c) {
+    public boolean addAll(final @NotNull Collection<? extends R> c) {
         return addAll(0, c);
     }
     
     @Override
-    public boolean addAll(final int index, @NotNull final Collection<? extends R> c) {
+    public boolean addAll(final int index, final @NotNull Collection<? extends R> c) {
         throw uoe();
     }
     
     @Override
-    public boolean removeAll(@NotNull final Collection<?> c) {
+    public boolean removeAll(final @NotNull Collection<?> c) {
         Objects.requireNonNull(c);
         return removeIf(c::contains);
     }
     
     @Override
-    public boolean retainAll(@NotNull final Collection<?> c) {
+    public boolean retainAll(final @NotNull Collection<?> c) {
         Objects.requireNonNull(c);
         return retainIf(c::contains);
     }

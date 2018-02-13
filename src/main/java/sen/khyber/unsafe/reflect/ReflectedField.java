@@ -8,6 +8,8 @@ import lombok.experimental.Accessors;
 import java.lang.invoke.VarHandle;
 import java.lang.reflect.Field;
 
+import org.jetbrains.annotations.Nullable;
+
 import sun.misc.Unsafe;
 
 /**
@@ -22,7 +24,7 @@ public final class ReflectedField extends ReflectedMember<Field, VarHandle> {
     private static final Unsafe unsafe = UnsafeUtils.getUnsafe();
     
     private final Field field;
-    private Object object;
+    private @Nullable Object object;
     private final long offset;
     
     public ReflectedField(final Field field) {
@@ -59,12 +61,20 @@ public final class ReflectedField extends ReflectedMember<Field, VarHandle> {
         return unsafe.getObject(object, offset);
     }
     
-    public final void setObject(final Object value) {
+    public final void setObject(final @Nullable Object value) {
         unsafe.putObject(object, offset, value);
     }
     
-    public final Object setGetObject(final Object value) {
+    public final Object setGetObject(final @Nullable Object value) {
         return unsafe.getAndSetObject(object, offset, value);
+    }
+    
+    public final void setToNull() {
+        setObject(null);
+    }
+    
+    public final Object setGetToNull() {
+        return setGetObject(null);
     }
     
     public final int getInt() {

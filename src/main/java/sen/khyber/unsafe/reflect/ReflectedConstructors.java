@@ -21,29 +21,26 @@ public final class ReflectedConstructors<T>
         super(klass, MemberType.CONSTRUCTOR);
     }
     
-    @NotNull
     @Override
-    final ReflectedConstructor<T> reflectMember(final @NotNull Constructor<T> constructor) {
+    final @NotNull ReflectedConstructor<T> reflectMember(
+            final @NotNull Constructor<T> constructor) {
         return new ReflectedConstructor<>(constructor);
     }
     
-    @SuppressWarnings("unchecked")
-    @NotNull
     @Override
-    public final ImmutableList<ReflectedConstructor<T>> members() {
+    @SuppressWarnings("unchecked")
+    public final @NotNull ImmutableList<ReflectedConstructor<T>> members() {
         return (ImmutableList<ReflectedConstructor<T>>) super.members();
     }
     
-    @SuppressWarnings("unchecked")
-    @NotNull
     @Override
-    public final Map<String, ReflectedConstructor<T>> membersMap() {
+    @SuppressWarnings("unchecked")
+    public final @NotNull Map<String, ReflectedConstructor<T>> membersMap() {
         return (Map<String, ReflectedConstructor<T>>) super.membersMap();
     }
     
-    @Nullable
     @Override
-    public final ReflectedConstructor<T> member(final @NotNull String name) {
+    public final @Nullable ReflectedConstructor<T> member(final @NotNull String name) {
         return (ReflectedConstructor<T>) super.member(name);
     }
     

@@ -703,7 +703,7 @@ public final class FeedHeader extends ExtendableMessage<FeedHeader> implements F
         
         private int bitField0_;
         
-        private @Setter(AccessLevel.PRIVATE) Object gtfsRealtimeVersion_ = "";
+        @Setter(AccessLevel.PRIVATE) private Object gtfsRealtimeVersion_ = "";
         
         /**
          * <pre>

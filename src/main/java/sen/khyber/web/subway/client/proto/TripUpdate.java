@@ -2132,7 +2132,7 @@ public final class TripUpdate extends ExtendableMessage<TripUpdate> implements T
                 return this;
             }
             
-            private @Setter(AccessLevel.PRIVATE) Object stopId_ = "";
+            @Setter(AccessLevel.PRIVATE) private Object stopId_ = "";
             
             /**
              * <pre>

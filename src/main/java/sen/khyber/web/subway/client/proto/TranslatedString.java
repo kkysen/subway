@@ -308,7 +308,7 @@ public final class TranslatedString extends GeneratedMessageV3
         }
         
         public static final int LANGUAGE_FIELD_NUMBER = 2;
-        private volatile @Setter(AccessLevel.PRIVATE) Object language_;
+        @Setter(AccessLevel.PRIVATE) private volatile Object language_;
         
         /**
          * <pre>
@@ -688,7 +688,7 @@ public final class TranslatedString extends GeneratedMessageV3
             
             private int bitField0_;
             
-            private @Setter(AccessLevel.PRIVATE) Object text_ = "";
+            @Setter(AccessLevel.PRIVATE) private Object text_ = "";
             
             /**
              * <pre>
@@ -770,7 +770,7 @@ public final class TranslatedString extends GeneratedMessageV3
                 return this;
             }
             
-            private @Setter(AccessLevel.PRIVATE) Object language_ = "";
+            @Setter(AccessLevel.PRIVATE) private Object language_ = "";
             
             /**
              * <pre>
@@ -1626,7 +1626,7 @@ public final class TranslatedString extends GeneratedMessageV3
             return getTranslationFieldBuilder().getBuilderList();
         }
         
-        private RepeatedFieldBuilderV3<Translation, Translation.Builder, TranslationOrBuilder> 
+        private RepeatedFieldBuilderV3<Translation, Translation.Builder, TranslationOrBuilder>
         getTranslationFieldBuilder() {
             if (translationBuilder_ == null) {
                 translationBuilder_ = new RepeatedFieldBuilderV3<>(translation_,

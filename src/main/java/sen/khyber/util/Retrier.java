@@ -63,11 +63,8 @@ public class Retrier<T, R> {
                 (BiConsumer<List<T>, List<T>>) (BiConsumer<?, ?>) this.trier;
         List<T> failedSynced = Collections.synchronizedList(failed);
         int attemptNum = 0;
-        for (; ; ) {
+        while (!tryOnce(unfinished, (List<R>) failedSynced, attemptNum)) {
             //noinspection unchecked
-            if (tryOnce(unfinished, (List<R>) failedSynced, attemptNum)) {
-                break;
-            }
             if (newListSupplier != null && attemptNum == 1) {
                 unfinished = failed;
                 //noinspection unchecked
@@ -96,10 +93,7 @@ public class Retrier<T, R> {
         final List<T> mappedFailed = new MappedList<>(failed, reconverter);
         List<R> failedSynced = Collections.synchronizedList(failed);
         int attemptNum = 0;
-        for (; ; ) {
-            if (tryOnce(unfinished, failedSynced, attemptNum)) {
-                break;
-            }
+        while (!tryOnce(unfinished, failedSynced, attemptNum)) {
             if (newListSupplier != null && attemptNum == 1) {
                 unfinished = new MappedList<>(failed, reconverter);
                 //noinspection unchecked
@@ -131,7 +125,7 @@ public class Retrier<T, R> {
         return keepTrying(Arrays.asList(unfinished), new ArrayList<>(), ArrayList::new);
     }
     
-    private static final RetrierBuilders BUILDERS = new RetrierBuilders();
+    private static final RetrierBuilders<?> BUILDERS = new RetrierBuilders();
     
     @SuppressWarnings("unchecked")
     public static <T> RetrierBuilders<T> builders() {
@@ -180,9 +174,9 @@ public class Retrier<T, R> {
     @RequiredArgsConstructor(access = AccessLevel.PRIVATE)
     public static final class RetrierBuilder<T, R> {
         
-        private final @NonNull BiConsumer<List<T>, List<R>> trier;
+        @NonNull private final BiConsumer<List<T>, List<R>> trier;
         
-        private final @NonNull Function<R, T> reconverter;
+        @NonNull private final Function<R, T> reconverter;
         
         private IntBinaryPredicate stopTrying;
         private IntUnaryOperator sleepLength;

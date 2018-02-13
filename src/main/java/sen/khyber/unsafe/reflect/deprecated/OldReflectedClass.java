@@ -23,7 +23,7 @@ public final class OldReflectedClass {
     
     private final Class<?> klass;
     
-    OldReflectedClass(final @NonNull Class<?> klass) {
+    OldReflectedClass(@NonNull final Class<?> klass) {
         this.klass = klass;
     }
     

@@ -22,7 +22,7 @@ public class ByteBufferOutputStream extends OutputStream {
     }
     
     @Override
-    public void write(@NotNull final byte[] bytes, final int offset, final int length) {
+    public void write(final @NotNull byte[] bytes, final int offset, final int length) {
         buffer.put(bytes, offset, length);
     }
     

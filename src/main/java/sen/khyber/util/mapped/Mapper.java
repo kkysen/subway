@@ -8,6 +8,7 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Created by Khyber Sen on 2/1/2018.
@@ -24,11 +25,11 @@ public class Mapper<T, R> {
         this.mapper = mapper;
     }
     
-    public final R map(final T t) {
+    public final @Nullable R map(final T t) {
         return t == null ? null : mapper.apply(t);
     }
     
-    public final Consumer<? super T> accepting(final Consumer<? super R> action) {
+    protected final Consumer<? super T> accepting(final Consumer<? super R> action) {
         return t -> action.accept(map(t));
     }
     

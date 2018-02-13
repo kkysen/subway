@@ -30,8 +30,7 @@ public class Classes {
         return classes.size();
     }
     
-    @NotNull
-    public Stream<Class<?>> stream() {
+    public @NotNull Stream<Class<?>> stream() {
         return classes.stream();
     }
     
@@ -47,8 +46,7 @@ public class Classes {
         return classes.contains(klass);
     }
     
-    @NotNull
-    public static Optional<Class<?>> loadClass(final @NotNull String className) {
+    public static @NotNull Optional<Class<?>> loadClass(final @NotNull String className) {
         Objects.requireNonNull(className);
         try {
             return Optional.of(Class.forName(className, false, ClassLoader.getSystemClassLoader()));

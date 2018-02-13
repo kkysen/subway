@@ -617,7 +617,7 @@ public final class NyctFeedHeader extends GeneratedMessageV3 implements NyctFeed
         
         private int bitField0_;
         
-        private @Setter(AccessLevel.PRIVATE) Object nyctSubwayVersion_ = "";
+        @Setter(AccessLevel.PRIVATE) private Object nyctSubwayVersion_ = "";
         
         /**
          * <pre>
@@ -714,7 +714,7 @@ public final class NyctFeedHeader extends GeneratedMessageV3 implements NyctFeed
             }
         }
         
-        private RepeatedFieldBuilderV3<TripReplacementPeriod, TripReplacementPeriod.Builder, 
+        private RepeatedFieldBuilderV3<TripReplacementPeriod, TripReplacementPeriod.Builder,
                 TripReplacementPeriodOrBuilder>
                 tripReplacementPeriodBuilder_;
         
@@ -1077,7 +1077,7 @@ public final class NyctFeedHeader extends GeneratedMessageV3 implements NyctFeed
          * <code>repeated .TripReplacementPeriod trip_replacement_period = 2;</code>
          */
         @Override
-        public List<? extends TripReplacementPeriodOrBuilder> 
+        public List<? extends TripReplacementPeriodOrBuilder>
         getTripReplacementPeriodOrBuilderList() {
             if (tripReplacementPeriodBuilder_ != null) {
                 return tripReplacementPeriodBuilder_.getMessageOrBuilderList();
@@ -1142,7 +1142,7 @@ public final class NyctFeedHeader extends GeneratedMessageV3 implements NyctFeed
             return getTripReplacementPeriodFieldBuilder().getBuilderList();
         }
         
-        private RepeatedFieldBuilderV3<TripReplacementPeriod, TripReplacementPeriod.Builder, 
+        private RepeatedFieldBuilderV3<TripReplacementPeriod, TripReplacementPeriod.Builder,
                 TripReplacementPeriodOrBuilder> getTripReplacementPeriodFieldBuilder() {
             if (tripReplacementPeriodBuilder_ == null) {
                 tripReplacementPeriodBuilder_ = new RepeatedFieldBuilderV3<>(tripReplacementPeriod_,

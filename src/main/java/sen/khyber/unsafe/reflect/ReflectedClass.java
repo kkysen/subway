@@ -23,7 +23,7 @@ import sun.misc.Unsafe;
  * @author Khyber Sen
  */
 @Accessors(fluent = true)
-@Getter(onMethod = @__(@NotNull))
+@Getter
 public final class ReflectedClass<T> {
     
     private static final Unsafe unsafe = UnsafeUtils.getUnsafe();
@@ -41,28 +41,23 @@ public final class ReflectedClass<T> {
         constructors = new ReflectedConstructors<>(klass);
     }
     
-    @NotNull
-    public final ImmutableList<ReflectedField> fields() {
+    public final @NotNull ImmutableList<ReflectedField> fields() {
         return fields.members();
     }
     
-    @NotNull
-    public final Map<String, ReflectedField> fieldMap() {
+    public final @NotNull Map<String, ReflectedField> fieldMap() {
         return fields.membersMap();
     }
     
-    @Nullable
-    public final ReflectedField field(final @NotNull String name) {
+    public final @Nullable ReflectedField field(final @NotNull String name) {
         return fields.member(name);
     }
     
-    @NotNull
-    public final Field[] rawFields() {
+    public final @NotNull Field[] rawFields() {
         return fields.rawMembers();
     }
     
-    @Nullable
-    public final Field rawField(final @NotNull String name) {
+    public final @Nullable Field rawField(final @NotNull String name) {
         return fields.rawMember(name);
     }
     
@@ -70,28 +65,23 @@ public final class ReflectedClass<T> {
         return fields.hasMember(name);
     }
     
-    @NotNull
-    public final ImmutableList<ReflectedMethod> methods() {
+    public final @NotNull ImmutableList<ReflectedMethod> methods() {
         return methods.members();
     }
     
-    @NotNull
-    public final Map<String, ReflectedMethod> methodMap() {
+    public final @NotNull Map<String, ReflectedMethod> methodMap() {
         return methods.membersMap();
     }
     
-    @Nullable
-    public final ReflectedMethod method(final @NotNull String name) {
+    public final @Nullable ReflectedMethod method(final @NotNull String name) {
         return methods.member(name);
     }
     
-    @NotNull
-    public final Method[] rawMethods() {
+    public final @NotNull Method[] rawMethods() {
         return methods.rawMembers();
     }
     
-    @Nullable
-    public final Method rawMethod(final @NotNull String name) {
+    public final @Nullable Method rawMethod(final @NotNull String name) {
         return methods.rawMember(name);
     }
     
@@ -99,28 +89,23 @@ public final class ReflectedClass<T> {
         return methods.hasMember(name);
     }
     
-    @NotNull
-    public final ImmutableList<ReflectedConstructor<T>> constructors() {
+    public final @NotNull ImmutableList<ReflectedConstructor<T>> constructors() {
         return constructors.members();
     }
     
-    @NotNull
-    public final Map<String, ReflectedConstructor<T>> constructorMap() {
+    public final @NotNull Map<String, ReflectedConstructor<T>> constructorMap() {
         return constructors.membersMap();
     }
     
-    @Nullable
-    public final ReflectedConstructor<?> constructor(final @NotNull String name) {
+    public final @Nullable ReflectedConstructor<?> constructor(final @NotNull String name) {
         return constructors.member(name);
     }
     
-    @NotNull
-    public final Constructor<T>[] rawConstructors() {
+    public final @NotNull Constructor<T>[] rawConstructors() {
         return constructors.rawMembers();
     }
     
-    @Nullable
-    public final Constructor<T> rawConstructor(final @NotNull String name) {
+    public final @Nullable Constructor<T> rawConstructor(final @NotNull String name) {
         return constructors.rawMember(name);
     }
     
@@ -129,8 +114,7 @@ public final class ReflectedClass<T> {
     }
     
     @SuppressWarnings("unchecked")
-    @NotNull
-    public final T allocateInstance() {
+    public final @NotNull T allocateInstance() {
         try {
             return (T) unsafe.allocateInstance(klass);
         } catch (final InstantiationException e) {
@@ -140,10 +124,15 @@ public final class ReflectedClass<T> {
         }
     }
     
-    void clear() {
+    final void clear() {
         fields.clear();
         methods.clear();
         constructors.clear();
+    }
+    
+    @Override
+    public final String toString() {
+        return "ReflectedClass[" + klass.getName() + ']';
     }
     
 }

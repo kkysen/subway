@@ -350,7 +350,7 @@ public final class TripDescriptor extends ExtendableMessage<TripDescriptor>
     }
     
     public static final int ROUTE_ID_FIELD_NUMBER = 5;
-    private volatile @Setter(AccessLevel.PRIVATE) Object routeId_;
+    @Setter(AccessLevel.PRIVATE) private volatile Object routeId_;
     
     /**
      * <pre>
@@ -389,7 +389,7 @@ public final class TripDescriptor extends ExtendableMessage<TripDescriptor>
     }
     
     public static final int START_TIME_FIELD_NUMBER = 2;
-    private volatile @Setter(AccessLevel.PRIVATE) Object startTime_;
+    @Setter(AccessLevel.PRIVATE) private volatile Object startTime_;
     
     /**
      * <pre>
@@ -443,7 +443,7 @@ public final class TripDescriptor extends ExtendableMessage<TripDescriptor>
     }
     
     public static final int START_DATE_FIELD_NUMBER = 3;
-    private volatile @Setter(AccessLevel.PRIVATE) Object startDate_;
+    @Setter(AccessLevel.PRIVATE) private volatile Object startDate_;
     
     /**
      * <pre>
@@ -974,7 +974,7 @@ public final class TripDescriptor extends ExtendableMessage<TripDescriptor>
         
         private int bitField0_;
         
-        private @Setter(AccessLevel.PRIVATE) Object tripId_ = "";
+        @Setter(AccessLevel.PRIVATE) private Object tripId_ = "";
         
         /**
          * <pre>
@@ -1074,7 +1074,7 @@ public final class TripDescriptor extends ExtendableMessage<TripDescriptor>
             return this;
         }
         
-        private @Setter(AccessLevel.PRIVATE) Object routeId_ = "";
+        @Setter(AccessLevel.PRIVATE) private Object routeId_ = "";
         
         /**
          * <pre>
@@ -1156,7 +1156,7 @@ public final class TripDescriptor extends ExtendableMessage<TripDescriptor>
             return this;
         }
         
-        private @Setter(AccessLevel.PRIVATE) Object startTime_ = "";
+        @Setter(AccessLevel.PRIVATE) private Object startTime_ = "";
         
         /**
          * <pre>
@@ -1268,7 +1268,7 @@ public final class TripDescriptor extends ExtendableMessage<TripDescriptor>
             return this;
         }
         
-        private @Setter(AccessLevel.PRIVATE) Object startDate_ = "";
+        @Setter(AccessLevel.PRIVATE) private Object startDate_ = "";
         
         /**
          * <pre>

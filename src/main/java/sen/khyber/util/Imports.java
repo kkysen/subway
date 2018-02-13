@@ -44,8 +44,7 @@ public class Imports extends Classes {
         return imports.containsValue(simpleClassName);
     }
     
-    @Nullable
-    public Class<?> importedClass(final @NotNull String simpleClassName) {
+    public @Nullable Class<?> importedClass(final @NotNull String simpleClassName) {
         Objects.requireNonNull(simpleClassName);
         return imports.inverse().get(simpleClassName);
     }

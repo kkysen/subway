@@ -523,7 +523,7 @@ public final class TripReplacementPeriod extends GeneratedMessageV3
         
         private int bitField0_;
         
-        private @Setter(AccessLevel.PRIVATE) Object routeId_ = "";
+        @Setter(AccessLevel.PRIVATE) private Object routeId_ = "";
         
         /**
          * <pre>
@@ -763,7 +763,7 @@ public final class TripReplacementPeriod extends GeneratedMessageV3
          * <p>
          * <code>optional .transit_realtime.TimeRange replacement_period = 2;</code>
          */
-        private SingleFieldBuilderV3<TimeRange, TimeRange.Builder, TimeRangeOrBuilder> 
+        private SingleFieldBuilderV3<TimeRange, TimeRange.Builder, TimeRangeOrBuilder>
         getReplacementPeriodFieldBuilder() {
             if (replacementPeriodBuilder_ == null) {
                 replacementPeriodBuilder_ =

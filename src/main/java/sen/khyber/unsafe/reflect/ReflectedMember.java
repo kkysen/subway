@@ -2,9 +2,6 @@ package sen.khyber.unsafe.reflect;
 
 import sen.khyber.util.exceptions.ExceptionUtils;
 
-import lombok.Getter;
-import lombok.experimental.Accessors;
-
 import java.lang.invoke.MethodHandles;
 import java.lang.invoke.MethodHandles.Lookup;
 import java.lang.reflect.AccessibleObject;
@@ -16,9 +13,17 @@ import java.lang.reflect.Modifier;
  *
  * @author Khyber Sen
  */
-@Accessors(fluent = true)
-@Getter
 public abstract class ReflectedMember<T extends AccessibleObject & Member, Handle> {
+    
+    private static boolean useSimpleNameInToString = false;
+    
+    public static final void useSimpleNameInToString(final boolean useSimpleNameInToString) {
+        ReflectedMember.useSimpleNameInToString = useSimpleNameInToString;
+    }
+    
+    public static final boolean isUsingSimpleNameInToString() {
+        return useSimpleNameInToString;
+    }
     
     static final Lookup LOOKUP = MethodHandles.lookup();
     
@@ -35,9 +40,25 @@ public abstract class ReflectedMember<T extends AccessibleObject & Member, Handl
         isStatic = Modifier.isStatic(member.getModifiers());
     }
     
+    public final T member() {
+        return member;
+    }
+    
+    public final String name() {
+        return name;
+    }
+    
+    public final boolean isStatic() {
+        return isStatic;
+    }
+    
+    public final boolean isInstance() {
+        return !isStatic;
+    }
+    
     protected abstract Handle convertToHandle() throws IllegalAccessException;
     
-    public Handle handle() {
+    public final Handle handle() {
         if (handle == null) {
             try {
                 handle = convertToHandle();
@@ -46,6 +67,16 @@ public abstract class ReflectedMember<T extends AccessibleObject & Member, Handl
             }
         }
         return handle;
+    }
+    
+    @Override
+    public final String toString() {
+        final Class<?> declaringClass = member.getDeclaringClass();
+        final String declaringClassName = useSimpleNameInToString
+                ? declaringClass.getSimpleName()
+                : declaringClass.getName();
+        return getClass().getSimpleName() +
+                '[' + declaringClassName + "::" + name + ']';
     }
     
 }

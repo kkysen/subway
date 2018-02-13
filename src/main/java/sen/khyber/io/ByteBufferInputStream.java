@@ -45,7 +45,7 @@ public class ByteBufferInputStream extends InputStream {
     }
     
     @Override
-    public int read(@NotNull final byte[] bytes, final int offset, final int length)
+    public int read(final @NotNull byte[] bytes, final int offset, final int length)
             throws IOException {
         if (buffer.remaining() == 0) {
             return -1;
