@@ -1,6 +1,6 @@
 package sen.khyber.unsafe.reflect;
 
-import sen.khyber.util.immutable.ImmutableList;
+import sen.khyber.util.collections.immutable.ImmutableList;
 
 import java.lang.invoke.MethodHandle;
 import java.lang.reflect.Method;

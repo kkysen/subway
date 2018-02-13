@@ -1,103 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d9e19bf5-212d-4cc6-aaa9-eaf034bf55a1" name="Default" comment="IO try w/ resources&#10;&#10;TODO unsafe utils">
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/web/client/WebResponse.java" />
+    <list default="true" id="d9e19bf5-212d-4cc6-aaa9-eaf034bf55a1" name="Default" comment="">
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/util/collections/ComodifiedLinkedList.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/util/collections/ListDeque.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/util/collections/RandomListDeque.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/util/collections/SequentialListDeque.java" />
       <change beforePath="$PROJECT_DIR$/.idea/checkstyle-idea.xml" afterPath="$PROJECT_DIR$/.idea/checkstyle-idea.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/io/ByteBufferInputStream.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/io/ByteBufferInputStream.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/io/ByteBufferOutputStream.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/io/ByteBufferOutputStream.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/io/CharBufferReader.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/io/CharBufferReader.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/io/CharBufferWriter.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/io/CharBufferWriter.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/io/IO.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/io/IO.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/misc/Misc.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/misc/Misc.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/proto/ProtoFileFormatter.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/proto/ProtoFileFormatter.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/MemoryLayoutVerifier.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/MemoryLayoutVerifier.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/UnsafeUtils.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/UnsafeUtils.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflect/Accessor.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflect/Accessor.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflect/ReflectedClass.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflect/ReflectedClass.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflect/ReflectedConstructors.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflect/ReflectedConstructors.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflect/ReflectedField.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflect/ReflectedField.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflect/ReflectedFields.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflect/ReflectedFields.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflect/ReflectedMember.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflect/ReflectedMember.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflect/ReflectedMembers.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflect/ReflectedMembers.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflect/ReflectedMethods.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflect/ReflectedMethods.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflect/Reflector.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflect/Reflector.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflect/deprecated/OldReflectedClass.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflect/deprecated/OldReflectedClass.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/util/Classes.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/util/Classes.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/util/Imports.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/util/Imports.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/util/Retrier.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/util/Retrier.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/util/Retrier2.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/util/Retrier2.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/util/immutable/ImmutableArrayList.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/util/immutable/ImmutableArrayList.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/util/immutable/ImmutableCollection.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/util/immutable/ImmutableCollection.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/util/immutable/ImmutableIterable.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/util/immutable/ImmutableIterable.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/util/immutable/ImmutableList.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/util/immutable/ImmutableList.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/util/mapped/MappedList.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/util/mapped/MappedList.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/util/mapped/Mapper.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/util/mapped/Mapper.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/web/client/SilencedRenderingWebClient.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/web/client/SilencedRenderingWebClient.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/web/client/WebClient.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/web/client/WebClient.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/SubwaySystem.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/SubwaySystem.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/proto/EntitySelector.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/proto/EntitySelector.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/proto/FeedEntity.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/proto/FeedEntity.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/proto/FeedHeader.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/proto/FeedHeader.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/proto/NyctFeedHeader.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/proto/NyctFeedHeader.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/proto/NyctStopTimeUpdate.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/proto/NyctStopTimeUpdate.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/proto/NyctTripDescriptor.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/proto/NyctTripDescriptor.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/proto/TranslatedString.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/proto/TranslatedString.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/proto/TripDescriptor.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/proto/TripDescriptor.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/proto/TripReplacementPeriod.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/proto/TripReplacementPeriod.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/proto/TripUpdate.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/proto/TripUpdate.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/proto/VehicleDescriptor.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/proto/VehicleDescriptor.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/proto/VehiclePosition.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/proto/VehiclePosition.java" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/io/IO.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/io/IO.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/unsafe/UnsafeUtils.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/unsafe/UnsafeUtils.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/unsafe/fields/ByteBufferUtils.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/unsafe/fields/ByteBufferUtils.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/unsafe/fields/StringUtils.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/unsafe/fields/StringUtils.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/unsafe/reflectors/ConstructorReflector.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/unsafe/reflectors/FieldReflector.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/unsafe/reflectors/MethodReflector.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/unsafe/reflectors/ReflectedClass.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/unsafe/reflectors/ReflectedField.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/unsafe/reflectors/Reflector$MemberType.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/unsafe/reflectors/Reflector.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/unsafe/reflectors/Reflectors.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/Alert$1.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/Alert$1.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/Alert$Builder.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/Alert$Builder.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/Alert$Cause$1.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/Alert$Cause.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/Alert$Cause.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/Alert$Effect$1.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/Alert$Effect.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/Alert$Effect.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/Alert.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/Alert.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/FeedHeader$1.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/FeedHeader$1.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/FeedHeader$Builder.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/FeedHeader$Builder.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/FeedHeader$Incrementality$1.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/FeedHeader$Incrementality.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/FeedHeader$Incrementality.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/FeedHeader.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/FeedHeader.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/NyctTripDescriptor$1.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/NyctTripDescriptor$1.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/NyctTripDescriptor$Builder.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/NyctTripDescriptor$Builder.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/NyctTripDescriptor$Direction$1.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/NyctTripDescriptor$Direction.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/NyctTripDescriptor$Direction.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/NyctTripDescriptor.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/NyctTripDescriptor.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TripDescriptor$1.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TripDescriptor$1.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TripDescriptor$Builder.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TripDescriptor$Builder.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TripDescriptor$ScheduleRelationship$1.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TripDescriptor$ScheduleRelationship.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TripDescriptor$ScheduleRelationship.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TripDescriptor.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TripDescriptor.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TripUpdate$1.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TripUpdate$1.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TripUpdate$Builder.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TripUpdate$Builder.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TripUpdate$StopTimeUpdate$1.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TripUpdate$StopTimeUpdate$1.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TripUpdate$StopTimeUpdate$Builder.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TripUpdate$StopTimeUpdate$Builder.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TripUpdate$StopTimeUpdate$ScheduleRelationship$1.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TripUpdate$StopTimeUpdate$ScheduleRelationship.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TripUpdate$StopTimeUpdate$ScheduleRelationship.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TripUpdate$StopTimeUpdate.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TripUpdate$StopTimeUpdate.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TripUpdate.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TripUpdate.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/VehiclePosition$1.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/VehiclePosition$1.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/VehiclePosition$Builder.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/VehiclePosition$Builder.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/VehiclePosition$CongestionLevel$1.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/VehiclePosition$CongestionLevel.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/VehiclePosition$CongestionLevel.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/VehiclePosition$VehicleStopStatus$1.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/VehiclePosition$VehicleStopStatus.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/VehiclePosition$VehicleStopStatus.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/VehiclePosition.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/VehiclePosition.class" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/util/immutable/Immutable.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/util/collections/immutable/Immutable.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/util/immutable/ImmutableArrayList.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/util/collections/immutable/ImmutableArrayList.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/util/immutable/ImmutableCollection.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/util/collections/immutable/ImmutableCollection.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/util/immutable/ImmutableIterable.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/util/collections/immutable/ImmutableIterable.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/util/immutable/ImmutableIterator.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/util/collections/immutable/ImmutableIterator.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/util/immutable/ImmutableList.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/util/collections/immutable/ImmutableList.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/util/immutable/ImmutableListIterator.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/util/collections/immutable/ImmutableListIterator.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/util/mapped/MappedList.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/util/collections/mapped/MappedList.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/util/mapped/MappedSpliterator.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/util/collections/mapped/MappedSpliterator.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/util/mapped/Mapper.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/util/collections/mapped/Mapper.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -145,14 +72,28 @@
     <option name="diffsInCommentsNonSignificant" value="false" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file leaf-file-name="ProtoFileFormatter.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/proto/ProtoFileFormatter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="800">
+              <caret line="74" column="30" lean-forward="false" selection-start-line="74" selection-start-column="30" selection-end-line="74" selection-end-column="30" />
+              <folding>
+                <element signature="method#loadProtoClass#0;class#ProtoFileFormatter#0" expanded="false" />
+                <element signature="method#uncapitalize#0;class#ProtoFileFormatter#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -215,14 +156,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflectors/ReflectedClassMembers.java" />
-        <option value="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflectors/ReflectedFields.java" />
-        <option value="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflectors/ReflectedMethods.java" />
-        <option value="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflectors/ReflectedConstructors.java" />
-        <option value="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflectors/ReflectedMembers.java" />
-        <option value="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflectors/ReflectedClass2.java" />
-        <option value="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflectors/deprecated/CachedClassMembers.java" />
-        <option value="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflectors/deprecated/FieldReflector.java" />
         <option value="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflectors/deprecated/MethodReflector.java" />
         <option value="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflectors/deprecated/ReflectedClass.java" />
         <option value="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflectors/deprecated/Reflector2.java" />
@@ -251,7 +184,6 @@
         <option value="$PROJECT_DIR$/src/main/java/sen/khyber/util/immutable/ImmutableIterable.java" />
         <option value="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflect/ReflectedMembers.java" />
         <option value="$PROJECT_DIR$/src/main/java/sen/khyber/misc/Misc.java" />
-        <option value="$PROJECT_DIR$/src/main/java/sen/khyber/proto/ProtoFileFormatter.java" />
         <option value="$PROJECT_DIR$/src/main/java/sen/khyber/util/immutable/ImmutableIterator.java" />
         <option value="$PROJECT_DIR$/src/main/java/sen/khyber/util/immutable/ImmutableArrayList.java" />
         <option value="$PROJECT_DIR$/src/main/java/sen/khyber/util/Retrier.java" />
@@ -266,6 +198,15 @@
         <option value="$PROJECT_DIR$/src/main/java/sen/khyber/util/mapped/Mapper.java" />
         <option value="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/UnsafeUtils.java" />
         <option value="$PROJECT_DIR$/src/main/java/sen/khyber/io/IO.java" />
+        <option value="$PROJECT_DIR$/src/main/java/sen/khyber/util/ComodifiedLinkedList.java" />
+        <option value="$PROJECT_DIR$/src/main/java/sen/khyber/util/ListDeque.java" />
+        <option value="$PROJECT_DIR$/src/main/java/sen/khyber/util/RandomListDeque.java" />
+        <option value="$PROJECT_DIR$/src/main/java/sen/khyber/util/SequentialListDeque.java" />
+        <option value="$PROJECT_DIR$/src/main/java/sen/khyber/proto/ProtoFileFormatter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/sen/khyber/util/collections/ComodifiedLinkedList.java" />
+        <option value="$PROJECT_DIR$/src/main/java/sen/khyber/util/collections/ListDeque.java" />
+        <option value="$PROJECT_DIR$/src/main/java/sen/khyber/util/collections/RandomListDeque.java" />
+        <option value="$PROJECT_DIR$/src/main/java/sen/khyber/util/collections/SequentialListDeque.java" />
       </list>
     </option>
   </component>
@@ -365,6 +306,25 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="khyber" type="462c0819:PsiDirectoryNode" />
               <item name="io" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Subway" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Subway" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="khyber" type="462c0819:PsiDirectoryNode" />
+              <item name="util" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Subway" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Subway" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="khyber" type="462c0819:PsiDirectoryNode" />
+              <item name="util" type="462c0819:PsiDirectoryNode" />
+              <item name="collections" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Subway" type="b2602c69:ProjectViewProjectNode" />
@@ -623,7 +583,7 @@
       <workItem from="1518188425844" duration="39137000" />
       <workItem from="1518443357852" duration="218000" />
       <workItem from="1518443622267" duration="13099000" />
-      <workItem from="1518560572997" duration="3520000" />
+      <workItem from="1518560572997" duration="4513000" />
     </task>
     <task id="LOCAL-00001" summary="got Hello World example to work in Spring Boot">
       <created>1517269361130</created>
@@ -702,11 +662,18 @@
       <option name="project" value="LOCAL" />
       <updated>1518418078757</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="didn't finish ProtoFileFormatter::refactorStringAndByteStringGetters&#10;finished all the finding the correct methods and fields through reflection,&#10;but not making the actual code changes&#10;&#10;made a bunch of other small changes to many classes, incl. formatting">
+      <created>1518564276803</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1518564276803</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="144916000" />
+    <option name="totallyTimeSpent" value="145909000" />
   </component>
   <component name="TodoView" selected-index="4">
     <todo-panel id="selected-file">
@@ -719,6 +686,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-16" y="-16" width="3232" height="1732" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="FindBugs-IDEA" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -748,7 +716,7 @@
       <window_info id="CheckStyle" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run with VisualVM" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25906736" sideWeight="0.49716714" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25906736" sideWeight="0.49716714" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25906736" sideWeight="0.5028329" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="JProfiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -810,7 +778,8 @@
     <MESSAGE value="refactored Reflectors package and added immutable package for ImmutableCollections, (only ImmutableArrayList implemented now)" />
     <MESSAGE value="added clearing mechanism to ReflectedMembers so that they can be un-cached more efficiently" />
     <MESSAGE value="finished ProtoFileFormatter#replaceDeprecatedValueOfWithForNumber&#10;&#10;added Imports class extending Classes (with a BiMap b/w Class and simpleName)&#10;&#10;added type parameter to ReflectedConstructor, ReflectedConstructors, and ReflectedClass" />
-    <option name="LAST_COMMIT_MESSAGE" value="finished ProtoFileFormatter#replaceDeprecatedValueOfWithForNumber&#10;&#10;added Imports class extending Classes (with a BiMap b/w Class and simpleName)&#10;&#10;added type parameter to ReflectedConstructor, ReflectedConstructors, and ReflectedClass" />
+    <MESSAGE value="didn't finish ProtoFileFormatter::refactorStringAndByteStringGetters&#10;finished all the finding the correct methods and fields through reflection,&#10;but not making the actual code changes&#10;&#10;made a bunch of other small changes to many classes, incl. formatting" />
+    <option name="LAST_COMMIT_MESSAGE" value="didn't finish ProtoFileFormatter::refactorStringAndByteStringGetters&#10;finished all the finding the correct methods and fields through reflection,&#10;but not making the actual code changes&#10;&#10;made a bunch of other small changes to many classes, incl. formatting" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -876,59 +845,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://C:/Program Files/Java/jdk-9.0.4/lib/src.zip!/java.base/jdk/internal/module/IllegalAccessLogger.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="278">
-          <caret line="134" column="48" lean-forward="false" selection-start-line="134" selection-start-column="48" selection-end-line="134" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk-9.0.4/lib/src.zip!/java.base/java/lang/reflect/AccessibleObject.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="341">
-          <caret line="489" column="21" lean-forward="true" selection-start-line="489" selection-start-column="21" selection-end-line="489" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflect/Accessor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="74">
-          <caret line="11" column="3" lean-forward="true" selection-start-line="11" selection-start-column="3" selection-end-line="11" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/misc/Misc.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="10" column="1" lean-forward="true" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.16.20/lombok-1.16.20-sources.jar!/lombok/Getter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="70" column="7" lean-forward="true" selection-start-line="70" selection-start-column="7" selection-end-line="70" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflect/ReflectedMember.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-280">
-          <caret line="21" column="5" lean-forward="true" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
-          <folding>
-            <element signature="e#1244#1245#0" expanded="false" />
-            <element signature="e#1273#1274#0" expanded="false" />
-            <element signature="e#1311#1312#0" expanded="false" />
-            <element signature="e#1338#1339#0" expanded="false" />
-            <element signature="e#1381#1382#0" expanded="false" />
-            <element signature="e#1412#1413#0" expanded="false" />
-            <element signature="e#1457#1458#0" expanded="false" />
-            <element signature="e#1489#1490#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/apache/commons/commons-lang3/3.7/commons-lang3-3.7-sources.jar!/org/apache/commons/lang3/tuple/Triple.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1541">
@@ -1006,7 +922,7 @@
         <state relative-caret-position="278">
           <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
           <folding>
-            <element signature="e#533#534#0" expanded="false" />
+            <element signature="e#545#546#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1015,6 +931,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="298">
           <caret line="371" column="14" lean-forward="false" selection-start-line="371" selection-start-column="14" selection-end-line="371" selection-end-column="14" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1055,6 +972,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="298">
           <caret line="733" column="12" lean-forward="false" selection-start-line="733" selection-start-column="12" selection-end-line="733" selection-end-column="12" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1073,26 +991,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/proto/ProtoFileFormatter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="8560">
-          <caret line="230" column="5" lean-forward="true" selection-start-line="230" selection-start-column="5" selection-end-line="230" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#4418#4419#0" expanded="false" />
-            <element signature="e#4480#4481#0" expanded="false" />
-            <element signature="e#4518#4519#0" expanded="false" />
-            <element signature="e#4585#4586#0" expanded="false" />
-            <element signature="method#loadProtoClass#0;class#ProtoFileFormatter#0" expanded="false" />
-            <element signature="method#uncapitalize#0;class#ProtoFileFormatter#0" expanded="false" />
-            <element signature="e#5133#5134#0" expanded="false" />
-            <element signature="e#5163#5164#0" expanded="false" />
-            <element signature="e#11656#11657#0" expanded="false" />
-            <element signature="e#11697#11698#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk-9.0.4/lib/src.zip!/java.base/java/util/ArrayList.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="358">
@@ -1100,7 +998,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/util/immutable/ImmutableListIterator.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/util/collections/immutable/ImmutableListIterator.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="200">
           <caret line="9" column="22" lean-forward="false" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="22" />
@@ -1108,18 +1006,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/util/immutable/ImmutableArrayList.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/util/collections/immutable/ImmutableArrayList.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1154">
           <caret line="170" column="13" lean-forward="true" selection-start-line="170" selection-start-column="13" selection-end-line="170" selection-end-column="13" />
           <folding>
-            <element signature="e#890#891#0" expanded="false" />
-            <element signature="e#940#941#0" expanded="false" />
+            <element signature="e#902#903#0" expanded="false" />
+            <element signature="e#952#953#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/util/immutable/ImmutableIterator.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/util/collections/immutable/ImmutableIterator.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="280">
           <caret line="33" column="7" lean-forward="true" selection-start-line="33" selection-start-column="7" selection-end-line="33" selection-end-column="7" />
@@ -1127,7 +1025,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/util/immutable/ImmutableIterable.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/util/collections/immutable/ImmutableIterable.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="214">
           <caret line="21" column="5" lean-forward="true" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
@@ -1266,7 +1164,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/util/mapped/Mapper.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/util/collections/mapped/Mapper.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="680">
           <caret line="31" column="14" lean-forward="false" selection-start-line="31" selection-start-column="14" selection-end-line="31" selection-end-column="14" />
@@ -1305,6 +1203,75 @@
         <state relative-caret-position="6299">
           <caret line="198" column="32" lean-forward="true" selection-start-line="198" selection-start-column="32" selection-end-line="198" selection-end-column="32" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk-9.0.4/lib/src.zip!/java.base/java/util/AbstractList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="193">
+          <caret line="763" column="9" lean-forward="true" selection-start-line="763" selection-start-column="9" selection-end-line="763" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk-9.0.4/lib/src.zip!/java.base/java/util/LinkedList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-747">
+          <caret line="109" column="11" lean-forward="false" selection-start-line="109" selection-start-column="11" selection-end-line="109" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/util/collections/ComodifiedLinkedList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="10" column="22" lean-forward="false" selection-start-line="10" selection-start-column="22" selection-end-line="10" selection-end-column="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/util/collections/ListDeque.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="10" column="17" lean-forward="false" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/util/collections/RandomListDeque.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="9" column="17" lean-forward="false" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
+          <folding>
+            <element signature="e#264#265#0" expanded="true" />
+            <element signature="e#291#292#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/util/collections/SequentialListDeque.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="7" column="17" lean-forward="false" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
+          <folding>
+            <element signature="e#222#223#0" expanded="true" />
+            <element signature="e#250#251#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/proto/ProtoFileFormatter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="800">
+          <caret line="74" column="30" lean-forward="false" selection-start-line="74" selection-start-column="30" selection-end-line="74" selection-end-column="30" />
+          <folding>
+            <element signature="method#loadProtoClass#0;class#ProtoFileFormatter#0" expanded="false" />
+            <element signature="method#uncapitalize#0;class#ProtoFileFormatter#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -1,4 +1,4 @@
-package sen.khyber.util.immutable;
+package sen.khyber.util.collections.immutable;
 
 /**
  * Created by Khyber Sen on 2/11/2018.

@@ -7,7 +7,7 @@ import sen.khyber.unsafe.reflect.ReflectedMethod;
 import sen.khyber.unsafe.reflect.Reflector;
 import sen.khyber.util.Imports;
 import sen.khyber.util.exceptions.ExceptionUtils;
-import sen.khyber.util.immutable.ImmutableArrayList;
+import sen.khyber.util.collections.immutable.ImmutableArrayList;
 
 import lombok.AccessLevel;
 import lombok.Setter;
@@ -61,7 +61,7 @@ public class ProtoFileFormatter {
     private final Path path;
     
     private final List<String> lines;
-//    private final List<List<String>> initialLines;
+    //    private final List<List<String>> initialLines;
     
     private final Imports imports = new Imports();
     
@@ -69,9 +69,9 @@ public class ProtoFileFormatter {
         Objects.requireNonNull(path);
         this.path = path;
         lines = Files.readAllLines(path, charset);
-//        initialLines = IntStream.range(0, lines.size())
-//                .mapToObj(i -> lines.subList(i, i + 1))
-//                .collect(Collectors.toList());
+        //        initialLines = IntStream.range(0, lines.size())
+        //                .mapToObj(i -> lines.subList(i, i + 1))
+        //                .collect(Collectors.toList());
         loadExistingImports();
     }
     

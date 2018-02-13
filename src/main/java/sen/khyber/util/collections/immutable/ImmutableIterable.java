@@ -1,4 +1,4 @@
-package sen.khyber.util.immutable;
+package sen.khyber.util.collections.immutable;
 
 import java.util.Spliterator;
 import java.util.Spliterators;

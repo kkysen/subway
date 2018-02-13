@@ -1,7 +1,7 @@
 package sen.khyber.unsafe.reflect;
 
 import sen.khyber.unsafe.UnsafeUtils;
-import sen.khyber.util.immutable.ImmutableList;
+import sen.khyber.util.collections.immutable.ImmutableList;
 
 import lombok.Getter;
 import lombok.experimental.Accessors;

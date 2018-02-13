@@ -1,4 +1,4 @@
-package sen.khyber.util.mapped;
+package sen.khyber.util.collections.mapped;
 
 import lombok.Getter;
 import lombok.experimental.Accessors;
