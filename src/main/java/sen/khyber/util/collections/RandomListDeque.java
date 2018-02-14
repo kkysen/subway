@@ -9,6 +9,7 @@ import java.util.RandomAccess;
  */
 public interface RandomListDeque<E> extends ListDeque<E>, RandomAccess {
     
+    @Override
     public default boolean isRandomAccess() {
         return true;
     }

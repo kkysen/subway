@@ -19,7 +19,7 @@ import sun.misc.Unsafe;
  */
 @Accessors(fluent = true)
 @Getter
-public final class ReflectedField extends ReflectedMember<Field, VarHandle> {
+public final class ReflectedField extends ReflectedMember<Field, String, VarHandle> {
     
     private static final Unsafe unsafe = UnsafeUtils.getUnsafe();
     
@@ -32,6 +32,11 @@ public final class ReflectedField extends ReflectedMember<Field, VarHandle> {
         this.field = field;
         object = isStatic ? field.getDeclaringClass() : null;
         offset = isStatic ? unsafe.staticFieldOffset(field) : unsafe.objectFieldOffset(field);
+    }
+    
+    @Override
+    protected final String getSignature(final Field field) {
+        return field.getName();
     }
     
     @Override

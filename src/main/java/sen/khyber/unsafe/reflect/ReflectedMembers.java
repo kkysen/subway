@@ -1,8 +1,8 @@
 package sen.khyber.unsafe.reflect;
 
-import sen.khyber.util.exceptions.ExceptionUtils;
 import sen.khyber.util.collections.immutable.ImmutableArrayList;
 import sen.khyber.util.collections.immutable.ImmutableList;
+import sen.khyber.util.exceptions.ExceptionUtils;
 
 import lombok.Getter;
 import lombok.experimental.Accessors;
@@ -13,10 +13,9 @@ import java.lang.reflect.Member;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import org.apache.commons.lang3.tuple.Pair;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -26,7 +25,7 @@ import org.jetbrains.annotations.Nullable;
  * @author Khyber Sen
  */
 @Accessors(fluent = true)
-public abstract class ReflectedMembers<T extends AccessibleObject & Member, Handle> {
+public abstract class ReflectedMembers<T extends AccessibleObject & Member, Signature, Handle> {
     
     private static final @NotNull ReflectedField immutableMapTable;
     
@@ -44,35 +43,33 @@ public abstract class ReflectedMembers<T extends AccessibleObject & Member, Hand
     private final @Getter(onMethod = @__(@NotNull)) @NotNull Class<?> klass;
     
     private final @NotNull T[] rawMembers;
-    private final @NotNull ReflectedMember<T, Handle>[] mutableMembers;
-    private final @NotNull ImmutableList<? extends ReflectedMember<T, Handle>> members;
+    private final @NotNull ReflectedMember<T, Signature, Handle>[] mutableMembers;
+    private final @NotNull ImmutableList<? extends ReflectedMember<T, Signature, Handle>> members;
     
     /**
      * The JDK impl. of ImmutableList isn't that performant, so I'm using my own,
      * but the JDK impl. of ImmutableMap is much better
      */
-    private final @NotNull Map<String, ? extends ReflectedMember<T, Handle>> membersMap;
+    private final @NotNull Map<Signature, ? extends ReflectedMember<T, Signature, Handle>>
+            membersMap;
     
     private @Getter boolean cleared = false;
     
     @SuppressWarnings("unchecked")
     ReflectedMembers(final @NotNull Class<?> klass, final @NotNull MemberType memberType) {
+        Objects.requireNonNull(klass);
+        Objects.requireNonNull(memberType);
         this.klass = klass;
         rawMembers = memberType.rawMembers(klass);
         mutableMembers = Stream.of(rawMembers)
                 .map(this::reflectMember)
                 .toArray(ReflectedMember[]::new);
         members = new ImmutableArrayList<>(mutableMembers);
-        //        membersMap = Map.ofEntries(
-        //                members.stream()
-        //                        .map(member -> Pair.of(member.name(), member))
-        //                        .toArray(Pair[]::new)
-        //        );
-        // TODO fix overloaded methods may have same names
-        // TODO and all constructors do too
-        membersMap = members
-                .stream()
-                .collect(Collectors.toMap(ReflectedMember::name, Function.identity(), (a, b) -> a));
+        membersMap = Map.ofEntries(
+                members.stream()
+                        .map(member -> Pair.of(member.signature(), member))
+                        .toArray(Pair[]::new)
+        );
     }
     
     private void checkCleared() {
@@ -81,38 +78,39 @@ public abstract class ReflectedMembers<T extends AccessibleObject & Member, Hand
         }
     }
     
-    abstract @NotNull ReflectedMember<T, Handle> reflectMember(T member);
+    abstract @NotNull ReflectedMember<T, Signature, Handle> reflectMember(T member);
     
     public final @NotNull T[] rawMembers() {
         checkCleared();
         return rawMembers;
     }
     
-    public @NotNull ImmutableList<? extends ReflectedMember<T, Handle>> members() {
+    public @NotNull ImmutableList<? extends ReflectedMember<T, Signature, Handle>> members() {
         checkCleared();
         return members;
     }
     
-    public @NotNull Map<String, ? extends ReflectedMember<T, Handle>> membersMap() {
+    public @NotNull Map<Signature, ? extends ReflectedMember<T, Signature, Handle>> membersMap() {
         checkCleared();
         return membersMap;
     }
     
-    public @Nullable ReflectedMember<T, Handle> member(final @NotNull String name) {
-        Objects.requireNonNull(name);
-        return membersMap().get(name);
+    public @Nullable ReflectedMember<T, Signature, Handle> member(
+            final @NotNull Signature signature) {
+        Objects.requireNonNull(signature);
+        return membersMap().get(signature);
     }
     
-    public final @Nullable T rawMember(final @NotNull String name) {
-        final ReflectedMember<T, Handle> reflectedMember = member(name);
+    public final @Nullable T rawMember(final @NotNull Signature signature) {
+        final ReflectedMember<T, Signature, Handle> reflectedMember = member(signature);
         return reflectedMember == null ? null : reflectedMember.member();
     }
     
-    public final boolean hasMember(final @NotNull String name) {
-        return member(name) != null;
+    public final boolean hasMember(final @NotNull Signature signature) {
+        return member(signature) != null;
     }
     
-    void clear() {
+    final void clear() {
         cleared = true;
         Arrays.fill(rawMembers, null);
         Arrays.fill(mutableMembers, null);

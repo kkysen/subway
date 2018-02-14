@@ -1,13 +1,14 @@
 package sen.khyber.proto;
 
+import sen.khyber.unsafe.reflect.FunctionSignature;
 import sen.khyber.unsafe.reflect.ReflectedClass;
 import sen.khyber.unsafe.reflect.ReflectedField;
 import sen.khyber.unsafe.reflect.ReflectedMember;
 import sen.khyber.unsafe.reflect.ReflectedMethod;
 import sen.khyber.unsafe.reflect.Reflector;
 import sen.khyber.util.Imports;
-import sen.khyber.util.exceptions.ExceptionUtils;
 import sen.khyber.util.collections.immutable.ImmutableArrayList;
+import sen.khyber.util.exceptions.ExceptionUtils;
 
 import lombok.AccessLevel;
 import lombok.Setter;
@@ -195,7 +196,7 @@ public class ProtoFileFormatter {
             final ReflectedClass<?> klass) {
         final String getterName = stringGetter.name();
         final ReflectedMethod byteStringGetter =
-                klass.method(getterName + "Bytes");
+                klass.noArgMethod(getterName + "Bytes");
         if (byteStringGetter == null
                 || byteStringGetter.method().getReturnType() != ByteString.class) {
             return false;
@@ -248,7 +249,10 @@ public class ProtoFileFormatter {
                 klass = optionalClass.get();
             }
             final ReflectedClass<?> reflectedClass = Reflector.get().forClass(klass);
-            if (reflectedClass.hasMethod(toReplace) && reflectedClass.hasMethod(replaceWith)) {
+            final FunctionSignature toReplaceSignature = new FunctionSignature(toReplace, int.class);
+            final FunctionSignature replaceWithSignature = new FunctionSignature(replaceWith, int.class);
+            if (reflectedClass.hasMethod(toReplaceSignature)
+                    && reflectedClass.hasMethod(replaceWithSignature)) {
                 final String newLine = line.substring(0, classNameEnd + ".".length())
                         + replaceWith
                         + line.substring(classNameEnd + ('.' + toReplace).length());

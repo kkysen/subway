@@ -2,7 +2,6 @@ package sen.khyber.unsafe.reflect;
 
 import sen.khyber.util.collections.immutable.ImmutableList;
 
-import java.lang.invoke.MethodHandle;
 import java.lang.reflect.Constructor;
 import java.util.Map;
 
@@ -14,8 +13,7 @@ import org.jetbrains.annotations.Nullable;
  *
  * @author Khyber Sen
  */
-public final class ReflectedConstructors<T>
-        extends ReflectedMembers<Constructor<T>, MethodHandle> {
+public final class ReflectedConstructors<T> extends ReflectedFunctions<Constructor<T>> {
     
     public ReflectedConstructors(final @NotNull Class<T> klass) {
         super(klass, MemberType.CONSTRUCTOR);
@@ -35,13 +33,14 @@ public final class ReflectedConstructors<T>
     
     @Override
     @SuppressWarnings("unchecked")
-    public final @NotNull Map<String, ReflectedConstructor<T>> membersMap() {
-        return (Map<String, ReflectedConstructor<T>>) super.membersMap();
+    public final @NotNull Map<FunctionSignature, ReflectedConstructor<T>> membersMap() {
+        return (Map<FunctionSignature, ReflectedConstructor<T>>) super.membersMap();
     }
     
     @Override
-    public final @Nullable ReflectedConstructor<T> member(final @NotNull String name) {
-        return (ReflectedConstructor<T>) super.member(name);
+    public final @Nullable ReflectedConstructor<T> member(
+            final @NotNull FunctionSignature signature) {
+        return (ReflectedConstructor<T>) super.member(signature);
     }
     
 }

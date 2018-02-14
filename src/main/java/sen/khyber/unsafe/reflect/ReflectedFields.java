@@ -14,7 +14,7 @@ import org.jetbrains.annotations.Nullable;
  *
  * @author Khyber Sen
  */
-public final class ReflectedFields extends ReflectedMembers<Field, VarHandle> {
+public final class ReflectedFields extends ReflectedMembers<Field, String, VarHandle> {
     
     public ReflectedFields(final @NotNull Class<?> klass) {
         super(klass, MemberType.FIELD);

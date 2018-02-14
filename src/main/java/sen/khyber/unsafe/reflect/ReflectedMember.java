@@ -13,21 +13,12 @@ import java.lang.reflect.Modifier;
  *
  * @author Khyber Sen
  */
-public abstract class ReflectedMember<T extends AccessibleObject & Member, Handle> {
-    
-    private static boolean useSimpleNameInToString = false;
-    
-    public static final void useSimpleNameInToString(final boolean useSimpleNameInToString) {
-        ReflectedMember.useSimpleNameInToString = useSimpleNameInToString;
-    }
-    
-    public static final boolean isUsingSimpleNameInToString() {
-        return useSimpleNameInToString;
-    }
+public abstract class ReflectedMember<T extends AccessibleObject & Member, Signature, Handle> {
     
     static final Lookup LOOKUP = MethodHandles.lookup();
     
     private final T member;
+    protected final Signature signature;
     protected final String name;
     protected final boolean isStatic;
     
@@ -36,12 +27,19 @@ public abstract class ReflectedMember<T extends AccessibleObject & Member, Handl
     ReflectedMember(final T member) {
         Accessor.setAccessible(member);
         this.member = member;
+        signature = getSignature(member);
         name = member.getName();
         isStatic = Modifier.isStatic(member.getModifiers());
     }
     
+    protected abstract Signature getSignature(T member);
+    
     public final T member() {
         return member;
+    }
+    
+    public final Signature signature() {
+        return signature;
     }
     
     public final String name() {
@@ -71,12 +69,8 @@ public abstract class ReflectedMember<T extends AccessibleObject & Member, Handl
     
     @Override
     public final String toString() {
-        final Class<?> declaringClass = member.getDeclaringClass();
-        final String declaringClassName = useSimpleNameInToString
-                ? declaringClass.getSimpleName()
-                : declaringClass.getName();
         return getClass().getSimpleName() +
-                '[' + declaringClassName + "::" + name + ']';
+                '[' + ClassNames.classToName(member.getDeclaringClass()) + "::" + name + ']';
     }
     
 }

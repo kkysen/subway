@@ -69,48 +69,74 @@ public final class ReflectedClass<T> {
         return methods.members();
     }
     
-    public final @NotNull Map<String, ReflectedMethod> methodMap() {
+    public final @NotNull Map<FunctionSignature, ReflectedMethod> methodMap() {
         return methods.membersMap();
     }
     
-    public final @Nullable ReflectedMethod method(final @NotNull String name) {
-        return methods.member(name);
+    public final @Nullable ReflectedMethod method(final @NotNull FunctionSignature signature) {
+        return methods.member(signature);
     }
     
     public final @NotNull Method[] rawMethods() {
         return methods.rawMembers();
     }
     
-    public final @Nullable Method rawMethod(final @NotNull String name) {
-        return methods.rawMember(name);
+    public final @Nullable Method rawMethod(final @NotNull FunctionSignature signature) {
+        return methods.rawMember(signature);
     }
     
-    public final boolean hasMethod(final @NotNull String name) {
-        return methods.hasMember(name);
+    public final boolean hasMethod(final @NotNull FunctionSignature signature) {
+        return methods.hasMember(signature);
+    }
+    
+    public final @Nullable ReflectedMethod noArgMethod(final @NotNull String name) {
+        return method(new FunctionSignature(name));
+    }
+    
+    public final @Nullable Method rawNoArgMethod(final @NotNull String name) {
+        return rawMethod(new FunctionSignature(name));
+    }
+    
+    public final boolean hasNoArgMethod(final @NotNull String name) {
+        return hasMethod(new FunctionSignature(name));
     }
     
     public final @NotNull ImmutableList<ReflectedConstructor<T>> constructors() {
         return constructors.members();
     }
     
-    public final @NotNull Map<String, ReflectedConstructor<T>> constructorMap() {
+    public final @NotNull Map<FunctionSignature, ReflectedConstructor<T>> constructorMap() {
         return constructors.membersMap();
     }
     
-    public final @Nullable ReflectedConstructor<?> constructor(final @NotNull String name) {
-        return constructors.member(name);
+    public final @Nullable ReflectedConstructor<T> constructor(
+            final @NotNull FunctionSignature signature) {
+        return constructors.member(signature);
     }
     
     public final @NotNull Constructor<T>[] rawConstructors() {
         return constructors.rawMembers();
     }
     
-    public final @Nullable Constructor<T> rawConstructor(final @NotNull String name) {
-        return constructors.rawMember(name);
+    public final @Nullable Constructor<T> rawConstructor(
+            final @NotNull FunctionSignature signature) {
+        return constructors.rawMember(signature);
     }
     
-    public final boolean hasConstructor(final @NotNull String name) {
-        return constructors.hasMember(name);
+    public final boolean hasConstructor(final @NotNull FunctionSignature signature) {
+        return constructors.hasMember(signature);
+    }
+    
+    public final @Nullable ReflectedConstructor<T> noArgConstructor(final @NotNull String name) {
+        return constructor(new FunctionSignature(name));
+    }
+    
+    public final @Nullable Constructor<T> rawNoArgConstructor(final @NotNull String name) {
+        return rawConstructor(new FunctionSignature(name));
+    }
+    
+    public final boolean hasNoArgConstructor(final @NotNull String name) {
+        return hasConstructor(new FunctionSignature(name));
     }
     
     @SuppressWarnings("unchecked")

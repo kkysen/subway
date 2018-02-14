@@ -7,6 +7,7 @@ package sen.khyber.util.collections;
  */
 public interface SequentialListDeque<E> extends ListDeque<E> {
     
+    @Override
     public default boolean isRandomAccess() {
         return false;
     }

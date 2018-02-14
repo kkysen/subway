@@ -2,7 +2,6 @@ package sen.khyber.unsafe.reflect;
 
 import sen.khyber.util.collections.immutable.ImmutableList;
 
-import java.lang.invoke.MethodHandle;
 import java.lang.reflect.Method;
 import java.util.Map;
 
@@ -14,7 +13,7 @@ import org.jetbrains.annotations.Nullable;
  *
  * @author Khyber Sen
  */
-public final class ReflectedMethods extends ReflectedMembers<Method, MethodHandle> {
+public final class ReflectedMethods extends ReflectedFunctions<Method> {
     
     public ReflectedMethods(final @NotNull Class<?> klass) {
         super(klass, MemberType.METHOD);
@@ -33,13 +32,13 @@ public final class ReflectedMethods extends ReflectedMembers<Method, MethodHandl
     
     @Override
     @SuppressWarnings("unchecked")
-    public final @NotNull Map<String, ReflectedMethod> membersMap() {
-        return (Map<String, ReflectedMethod>) super.membersMap();
+    public final @NotNull Map<FunctionSignature, ReflectedMethod> membersMap() {
+        return (Map<FunctionSignature, ReflectedMethod>) super.membersMap();
     }
     
     @Override
-    public final @Nullable ReflectedMethod member(final @NotNull String name) {
-        return (ReflectedMethod) super.member(name);
+    public final @Nullable ReflectedMethod member(final @NotNull FunctionSignature signature) {
+        return (ReflectedMethod) super.member(signature);
     }
     
 }

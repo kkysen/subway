@@ -1,8 +1,5 @@
 package sen.khyber.unsafe.reflect;
 
-import lombok.Getter;
-import lombok.experimental.Accessors;
-
 import java.lang.invoke.MethodHandle;
 import java.lang.reflect.Method;
 
@@ -11,15 +8,17 @@ import java.lang.reflect.Method;
  *
  * @author Khyber Sen
  */
-@Accessors(fluent = true)
-@Getter
-public final class ReflectedMethod extends ReflectedMember<Method, MethodHandle> {
+public final class ReflectedMethod extends ReflectedFunction<Method> {
     
     private final Method method;
     
     public ReflectedMethod(final Method method) {
         super(method);
         this.method = method;
+    }
+    
+    public final Method method() {
+        return method;
     }
     
     @Override
