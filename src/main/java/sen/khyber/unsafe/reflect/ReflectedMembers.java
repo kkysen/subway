@@ -61,10 +61,12 @@ public abstract class ReflectedMembers<T extends AccessibleObject & Member, Sign
         Objects.requireNonNull(memberType);
         this.klass = klass;
         rawMembers = memberType.rawMembers(klass);
+        //noinspection rawtypes
         mutableMembers = Stream.of(rawMembers)
                 .map(this::reflectMember)
                 .toArray(ReflectedMember[]::new);
         members = new ImmutableArrayList<>(mutableMembers);
+        //noinspection rawtypes
         membersMap = Map.ofEntries(
                 members.stream()
                         .map(member -> Pair.of(member.signature(), member))

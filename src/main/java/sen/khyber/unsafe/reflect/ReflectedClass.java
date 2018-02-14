@@ -89,16 +89,16 @@ public final class ReflectedClass<T> {
         return methods.hasMember(signature);
     }
     
-    public final @Nullable ReflectedMethod noArgMethod(final @NotNull String name) {
-        return method(new FunctionSignature(name));
+    public final @Nullable ReflectedMethod method(final @NotNull String name, final @NotNull Class<?>... parameterTypes) {
+        return method(FunctionSignature.forMethod(name, parameterTypes));
     }
     
-    public final @Nullable Method rawNoArgMethod(final @NotNull String name) {
-        return rawMethod(new FunctionSignature(name));
+    public final @Nullable Method rawMethod(final @NotNull String name, final @NotNull Class<?>... parameterTypes) {
+        return rawMethod(FunctionSignature.forMethod(name, parameterTypes));
     }
     
-    public final boolean hasNoArgMethod(final @NotNull String name) {
-        return hasMethod(new FunctionSignature(name));
+    public final boolean hasMethod(final @NotNull String name, final @NotNull Class<?>... parameterTypes) {
+        return hasMethod(FunctionSignature.forMethod(name, parameterTypes));
     }
     
     public final @NotNull ImmutableList<ReflectedConstructor<T>> constructors() {
@@ -127,16 +127,16 @@ public final class ReflectedClass<T> {
         return constructors.hasMember(signature);
     }
     
-    public final @Nullable ReflectedConstructor<T> noArgConstructor(final @NotNull String name) {
-        return constructor(new FunctionSignature(name));
+    public final @Nullable ReflectedConstructor<T> constructor(final @NotNull Class<?>... parameterTypes) {
+        return constructor(FunctionSignature.forConstructor(parameterTypes));
     }
     
-    public final @Nullable Constructor<T> rawNoArgConstructor(final @NotNull String name) {
-        return rawConstructor(new FunctionSignature(name));
+    public final @Nullable Constructor<T> rawConstructor(final @NotNull Class<?>... parameterTypes) {
+        return rawConstructor(FunctionSignature.forConstructor(parameterTypes));
     }
     
-    public final boolean hasNoArgConstructor(final @NotNull String name) {
-        return hasConstructor(new FunctionSignature(name));
+    public final boolean hasConstructor(final @NotNull Class<?>... parameterTypes) {
+        return hasConstructor(FunctionSignature.forConstructor(parameterTypes));
     }
     
     @SuppressWarnings("unchecked")

@@ -24,7 +24,7 @@ public abstract class ReflectedFunction<T extends Executable>
     
     @Override
     protected final FunctionSignature getSignature(final T function) {
-        return new FunctionSignature(function);
+        return FunctionSignature.ofFunction(function);
     }
     
 }

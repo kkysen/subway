@@ -1,25 +1,78 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d9e19bf5-212d-4cc6-aaa9-eaf034bf55a1" name="Default" comment="moved collection classes in util to util.collections">
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflect/ClassNames.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflect/FunctionSignature.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflect/ReflectedFunction.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflect/ReflectedFunctions.java" />
+    <list default="true" id="d9e19bf5-212d-4cc6-aaa9-eaf034bf55a1" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/proto/ProtoFileFormatter.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/proto/ProtoFileFormatter.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflect/FunctionSignature.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflect/FunctionSignature.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflect/ReflectedClass.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflect/ReflectedClass.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflect/ReflectedConstructor.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflect/ReflectedConstructor.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflect/ReflectedConstructors.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflect/ReflectedConstructors.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflect/ReflectedField.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflect/ReflectedField.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflect/ReflectedFields.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflect/ReflectedFields.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflect/ReflectedMember.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflect/ReflectedMember.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflect/ReflectedFunction.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflect/ReflectedFunction.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflect/ReflectedMembers.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflect/ReflectedMembers.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflect/ReflectedMethod.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflect/ReflectedMethod.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflect/ReflectedMethods.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflect/ReflectedMethods.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/util/Retrier.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/util/Retrier.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/util/collections/RandomListDeque.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/util/collections/RandomListDeque.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/util/collections/SequentialListDeque.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/util/collections/SequentialListDeque.java" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/io/IO$1.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/io/IO.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/io/NewlineConverter.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/unsafe/MemoryLayoutVerifier.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/unsafe/UnsafeUtils.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/util/exceptions/WrappedRuntimeException.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/client/SilencedRenderingWebClient$1.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/client/SilencedRenderingWebClient$2.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/client/SilencedRenderingWebClient.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/client/WebClient$WebResponse.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/client/WebClient.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/EntitySelector$1.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/EntitySelector$Builder.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/EntitySelector.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/FeedEntity$1.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/FeedEntity$Builder.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/FeedEntity.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/FeedHeader$1.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/FeedHeader$Builder.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/FeedHeader$Incrementality.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/FeedHeader.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/NyctFeedHeader$1.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/NyctFeedHeader$Builder.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/NyctFeedHeader.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/NyctStopTimeUpdate$1.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/NyctStopTimeUpdate$Builder.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/NyctStopTimeUpdate.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/NyctTripDescriptor$1.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/NyctTripDescriptor$Builder.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/NyctTripDescriptor$Direction.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/NyctTripDescriptor.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TranslatedString$1.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TranslatedString$Builder.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TranslatedString$Translation$1.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TranslatedString$Translation$Builder.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TranslatedString$Translation.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TranslatedString$TranslationOrBuilder.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TranslatedString.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TripDescriptor$1.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TripDescriptor$Builder.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TripDescriptor$ScheduleRelationship.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TripDescriptor.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TripReplacementPeriod$1.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TripReplacementPeriod$Builder.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TripReplacementPeriod.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TripUpdate$1.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TripUpdate$Builder.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TripUpdate$StopTimeEvent$1.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TripUpdate$StopTimeEvent$Builder.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TripUpdate$StopTimeEvent.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TripUpdate$StopTimeEventOrBuilder.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TripUpdate$StopTimeUpdate$1.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TripUpdate$StopTimeUpdate$Builder.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TripUpdate$StopTimeUpdate$ScheduleRelationship.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TripUpdate$StopTimeUpdate.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TripUpdate$StopTimeUpdateOrBuilder.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/TripUpdate.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/VehicleDescriptor$1.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/VehicleDescriptor$Builder.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/VehicleDescriptor.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/VehiclePosition$1.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/VehiclePosition$Builder.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/VehiclePosition$CongestionLevel.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/VehiclePosition$VehicleStopStatus.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/VehiclePosition.class" afterPath="" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -68,24 +121,22 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="ReflectedClass.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflect/ReflectedClass.java">
+      <file leaf-file-name="Class.java" pinned="false" current-in-tab="true">
+        <entry file="jar://C:/Program Files/Java/jdk-9.0.4/lib/src.zip!/java.base/java/lang/Class.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="880">
-              <caret line="41" column="5" lean-forward="true" selection-start-line="41" selection-start-column="5" selection-end-line="41" selection-end-column="5" />
+            <state relative-caret-position="305">
+              <caret line="3375" column="5" lean-forward="true" selection-start-line="3375" selection-start-column="5" selection-end-line="3375" selection-end-column="5" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ReflectedMembers.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflect/ReflectedMembers.java">
+      <file leaf-file-name="ReflectedClass.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflect/ReflectedClass.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="400">
-              <caret line="54" column="4" lean-forward="true" selection-start-line="54" selection-start-column="4" selection-end-line="54" selection-end-column="4" />
-              <folding>
-                <element signature="initializer##0;class#ReflectedMembers#0" expanded="false" />
-              </folding>
+            <state relative-caret-position="640">
+              <caret line="139" column="5" lean-forward="true" selection-start-line="139" selection-start-column="5" selection-end-line="139" selection-end-column="5" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -128,11 +179,10 @@
       <find>getTrai</find>
       <find>getTrain</find>
       <find>@Getter</find>
-      <find>@Getter</find>
-      <find>@Setter</find>
       <find>equals</find>
       <find>valueOf</find>
       <find>method</find>
+      <find>native</find>
     </findStrings>
     <replaceStrings>
       <replace>long</replace>
@@ -160,7 +210,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflectors/deprecated/OldReflector.java" />
         <option value="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflectors/deprecated/OldReflectedClass.java" />
         <option value="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflectors/deprecated/OldMethodReflector.java" />
         <option value="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflectors/deprecated/OldFieldReflector.java" />
@@ -198,17 +247,18 @@
         <option value="$PROJECT_DIR$/src/main/java/sen/khyber/util/collections/SequentialListDeque.java" />
         <option value="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflect/ReflectedField.java" />
         <option value="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflect/ReflectedExecutable.java" />
-        <option value="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflect/ReflectedFunction.java" />
         <option value="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflect/ReflectedMethod.java" />
         <option value="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflect/ReflectedConstructor.java" />
         <option value="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflect/ReflectedFields.java" />
-        <option value="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflect/ReflectedMembers.java" />
         <option value="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflect/ReflectedMethods.java" />
         <option value="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflect/ReflectedConstructors.java" />
         <option value="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflect/ReflectedMember.java" />
         <option value="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflect/ClassNames.java" />
-        <option value="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflect/FunctionSignature.java" />
         <option value="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflect/ReflectedFunctions.java" />
+        <option value="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflect/ReflectedMembers.java" />
+        <option value="$PROJECT_DIR$/src/main/java/sen/khyber/util/collections/immutable/ImmutableArrayList.java" />
+        <option value="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflect/FunctionSignature.java" />
+        <option value="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflect/ReflectedFunction.java" />
         <option value="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflect/ReflectedClass.java" />
         <option value="$PROJECT_DIR$/src/main/java/sen/khyber/proto/ProtoFileFormatter.java" />
       </list>
@@ -267,7 +317,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
+      <pane id="PackagesPane" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -371,7 +421,7 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -605,7 +655,8 @@
       <workItem from="1518188425844" duration="39137000" />
       <workItem from="1518443357852" duration="218000" />
       <workItem from="1518443622267" duration="13099000" />
-      <workItem from="1518560572997" duration="10685000" />
+      <workItem from="1518560572997" duration="10848000" />
+      <workItem from="1518581552415" duration="1490000" />
     </task>
     <task id="LOCAL-00001" summary="got Hello World example to work in Spring Boot">
       <created>1517269361130</created>
@@ -698,11 +749,18 @@
       <option name="project" value="LOCAL" />
       <updated>1518565177576</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="fixed Reflected classes so that ReflectedMembers are indexed by their Signature,&#10;which is String for ReflectedFields and FunctionSignatures for ReflectedFunctions &#10;(ReflectedMethods and ReflectedConstructors)">
+      <created>1518573166854</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1518573166854</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="152081000" />
+    <option name="totallyTimeSpent" value="153734000" />
   </component>
   <component name="TodoView" selected-index="4">
     <todo-panel id="selected-file">
@@ -735,7 +793,6 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39943343" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293201" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="DB Browser" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32998705" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293201" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="AllProjects" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293201" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -759,6 +816,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection Results" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293201" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293201" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -809,7 +867,8 @@
     <MESSAGE value="finished ProtoFileFormatter#replaceDeprecatedValueOfWithForNumber&#10;&#10;added Imports class extending Classes (with a BiMap b/w Class and simpleName)&#10;&#10;added type parameter to ReflectedConstructor, ReflectedConstructors, and ReflectedClass" />
     <MESSAGE value="didn't finish ProtoFileFormatter::refactorStringAndByteStringGetters&#10;finished all the finding the correct methods and fields through reflection,&#10;but not making the actual code changes&#10;&#10;made a bunch of other small changes to many classes, incl. formatting" />
     <MESSAGE value="moved collection classes in util to util.collections" />
-    <option name="LAST_COMMIT_MESSAGE" value="moved collection classes in util to util.collections" />
+    <MESSAGE value="fixed Reflected classes so that ReflectedMembers are indexed by their Signature,&#10;which is String for ReflectedFields and FunctionSignatures for ReflectedFunctions &#10;(ReflectedMethods and ReflectedConstructors)" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed Reflected classes so that ReflectedMembers are indexed by their Signature,&#10;which is String for ReflectedFields and FunctionSignatures for ReflectedFunctions &#10;(ReflectedMethods and ReflectedConstructors)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -875,38 +934,10 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/util/collections/immutable/ImmutableListIterator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="9" column="22" lean-forward="false" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/util/collections/immutable/ImmutableArrayList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1154">
-          <caret line="170" column="13" lean-forward="true" selection-start-line="170" selection-start-column="13" selection-end-line="170" selection-end-column="13" />
-          <folding>
-            <element signature="e#902#903#0" expanded="false" />
-            <element signature="e#952#953#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/util/collections/immutable/ImmutableIterator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="33" column="7" lean-forward="true" selection-start-line="33" selection-start-column="7" selection-end-line="33" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/util/collections/immutable/ImmutableIterable.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="214">
           <caret line="21" column="5" lean-forward="true" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -914,7 +945,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1366">
           <caret line="198" column="9" lean-forward="true" selection-start-line="198" selection-start-column="9" selection-end-line="198" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -922,7 +952,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2006">
           <caret line="16" column="11" lean-forward="false" selection-start-line="16" selection-start-column="11" selection-end-line="16" selection-end-column="11" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -930,7 +959,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="194">
           <caret line="28" column="20" lean-forward="true" selection-start-line="28" selection-start-column="20" selection-end-line="28" selection-end-column="20" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -941,19 +969,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/MemoryLayoutVerifier.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/fields/MutableString.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="200">
           <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -969,7 +988,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="298">
           <caret line="508" column="32" lean-forward="false" selection-start-line="508" selection-start-column="32" selection-end-line="508" selection-end-column="32" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -977,7 +995,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -985,7 +1002,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="280">
           <caret line="20" column="26" lean-forward="false" selection-start-line="20" selection-start-column="26" selection-end-line="20" selection-end-column="26" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -993,10 +1009,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="640">
           <caret line="273" column="3" lean-forward="true" selection-start-line="273" selection-start-column="3" selection-end-line="273" selection-end-column="3" />
-          <folding>
-            <element signature="e#9329#9330#0" expanded="false" />
-            <element signature="e#9351#9352#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1004,11 +1016,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="440">
           <caret line="37" column="4" lean-forward="false" selection-start-line="37" selection-start-column="4" selection-end-line="37" selection-end-column="4" />
-          <folding>
-            <element signature="e#1303#1332#0" expanded="true" />
-            <element signature="e#1492#1493#0" expanded="true" />
-            <element signature="e#1523#1524#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1024,7 +1031,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1320">
           <caret line="68" column="12" lean-forward="false" selection-start-line="68" selection-start-column="12" selection-end-line="68" selection-end-column="12" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1032,9 +1038,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-701">
           <caret line="25" column="48" lean-forward="true" selection-start-line="25" selection-start-column="48" selection-end-line="25" selection-end-column="48" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1058,7 +1061,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="193">
           <caret line="763" column="9" lean-forward="true" selection-start-line="763" selection-start-column="9" selection-end-line="763" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1066,7 +1068,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-747">
           <caret line="109" column="11" lean-forward="false" selection-start-line="109" selection-start-column="11" selection-end-line="109" selection-end-column="11" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1074,9 +1075,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
           <caret line="10" column="22" lean-forward="false" selection-start-line="10" selection-start-column="22" selection-end-line="10" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1084,9 +1082,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
           <caret line="10" column="17" lean-forward="false" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1094,10 +1089,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="200">
           <caret line="9" column="17" lean-forward="false" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
-          <folding>
-            <element signature="e#278#279#0" expanded="true" />
-            <element signature="e#305#306#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1105,10 +1096,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="320">
           <caret line="12" column="5" lean-forward="true" selection-start-line="12" selection-start-column="5" selection-end-line="12" selection-end-column="5" />
-          <folding>
-            <element signature="e#236#237#0" expanded="true" />
-            <element signature="e#264#265#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1116,7 +1103,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2320">
           <caret line="161" column="17" lean-forward="false" selection-start-line="161" selection-start-column="17" selection-end-line="161" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1131,18 +1117,6 @@
             <element signature="e#2162#2163#0" expanded="true" />
             <element signature="e#2208#2209#0" expanded="true" />
             <element signature="e#2249#2250#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflect/ReflectedFunction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="720">
-          <caret line="22" column="5" lean-forward="true" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#498#499#0" expanded="true" />
-            <element signature="e#529#530#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1173,7 +1147,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="960">
           <caret line="37" column="5" lean-forward="false" selection-start-line="37" selection-start-column="5" selection-end-line="37" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1189,15 +1162,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="280">
           <caret line="12" column="12" lean-forward="false" selection-start-line="12" selection-start-column="12" selection-end-line="12" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk-9.0.4/lib/src.zip!/java.base/java/lang/Class.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="433">
-          <caret line="3779" column="39" lean-forward="false" selection-start-line="3779" selection-start-column="39" selection-end-line="3779" selection-end-column="39" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1216,7 +1180,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="573">
           <caret line="4679" column="0" lean-forward="true" selection-start-line="4679" selection-start-column="0" selection-end-line="4679" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1224,7 +1187,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="453">
           <caret line="237" column="31" lean-forward="false" selection-start-line="237" selection-start-column="31" selection-end-line="237" selection-end-column="31" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1232,10 +1194,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="453">
           <caret line="307" column="22" lean-forward="false" selection-start-line="307" selection-start-column="22" selection-end-line="307" selection-end-column="22" />
-          <folding>
-            <element signature="e#10010#10011#0" expanded="false" />
-            <element signature="e#10055#10056#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1243,10 +1201,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="453">
           <caret line="259" column="22" lean-forward="false" selection-start-line="259" selection-start-column="22" selection-end-line="259" selection-end-column="22" />
-          <folding>
-            <element signature="e#8135#8136#0" expanded="false" />
-            <element signature="e#8180#8181#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1262,35 +1216,15 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="440">
           <caret line="15" column="5" lean-forward="false" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
-          <folding>
-            <element signature="e#305#306#0" expanded="true" />
-            <element signature="e#351#352#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflect/FunctionSignature.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="640">
-          <caret line="20" column="21" lean-forward="true" selection-start-line="20" selection-start-column="21" selection-end-line="20" selection-end-column="21" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1046#1047#0" expanded="true" />
-            <element signature="e#1073#1074#0" expanded="true" />
-            <element signature="e#1138#1139#0" expanded="true" />
-            <element signature="e#1178#1179#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflect/ReflectedFunctions.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="520">
+        <state relative-caret-position="240">
           <caret line="17" column="24" lean-forward="false" selection-start-line="17" selection-start-column="24" selection-end-line="17" selection-end-column="24" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#821#851#0" expanded="true" />
-            <element signature="e#1039#1069#0" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1299,7 +1233,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
           <caret line="19" column="27" lean-forward="false" selection-start-line="19" selection-start-column="27" selection-end-line="19" selection-end-column="27" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1315,17 +1248,70 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="489">
           <caret line="330" column="19" lean-forward="true" selection-start-line="330" selection-start-column="19" selection-end-line="330" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflect/ReflectedMembers.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1080">
+          <caret line="73" column="10" lean-forward="true" selection-start-line="73" selection-start-column="10" selection-end-line="73" selection-end-column="10" />
           <folding>
-            <element signature="e#11625#11626#0" expanded="true" />
-            <element signature="e#11672#11673#0" expanded="true" />
+            <element signature="initializer##0;class#ReflectedMembers#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/MemoryLayoutVerifier.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="280">
+          <caret line="15" column="4" lean-forward="true" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk-9.0.4/lib/src.zip!/java.base/jdk/internal/reflect/ConstantPool.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1059">
+          <caret line="107" column="3" lean-forward="true" selection-start-line="107" selection-start-column="3" selection-end-line="107" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/util/collections/immutable/ImmutableArrayList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="533">
+          <caret line="34" column="5" lean-forward="true" selection-start-line="34" selection-start-column="5" selection-end-line="34" selection-end-column="5" />
+          <folding>
+            <element signature="e#902#903#0" expanded="true" />
+            <element signature="e#952#953#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk-9.0.4/lib/src.zip!/java.base/java/util/Objects.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="520">
+          <caret line="77" column="5" lean-forward="true" selection-start-line="77" selection-start-column="5" selection-end-line="77" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflect/ReflectedFunction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="920">
+          <caret line="27" column="5" lean-forward="true" selection-start-line="27" selection-start-column="5" selection-end-line="27" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#498#499#0" expanded="true" />
+            <element signature="e#529#530#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/proto/ProtoFileFormatter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1040">
-          <caret line="239" column="13" lean-forward="true" selection-start-line="239" selection-start-column="13" selection-end-line="239" selection-end-column="13" />
+        <state relative-caret-position="-770">
+          <caret line="262" column="13" lean-forward="true" selection-start-line="262" selection-start-column="13" selection-end-line="262" selection-end-column="13" />
           <folding>
             <element signature="method#loadProtoClass#0;class#ProtoFileFormatter#0" expanded="false" />
             <element signature="method#uncapitalize#0;class#ProtoFileFormatter#0" expanded="false" />
@@ -1333,21 +1319,33 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflect/FunctionSignature.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="440">
+          <caret line="27" column="5" lean-forward="true" selection-start-line="27" selection-start-column="5" selection-end-line="27" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1863#1864#0" expanded="true" />
+            <element signature="e#1890#1891#0" expanded="true" />
+            <element signature="e#1955#1956#0" expanded="true" />
+            <element signature="e#1995#1996#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflect/ReflectedClass.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="880">
-          <caret line="41" column="5" lean-forward="true" selection-start-line="41" selection-start-column="5" selection-end-line="41" selection-end-column="5" />
+        <state relative-caret-position="640">
+          <caret line="139" column="5" lean-forward="true" selection-start-line="139" selection-start-column="5" selection-end-line="139" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflect/ReflectedMembers.java">
+    <entry file="jar://C:/Program Files/Java/jdk-9.0.4/lib/src.zip!/java.base/java/lang/Class.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="54" column="4" lean-forward="true" selection-start-line="54" selection-start-column="4" selection-end-line="54" selection-end-column="4" />
-          <folding>
-            <element signature="initializer##0;class#ReflectedMembers#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="305">
+          <caret line="3375" column="5" lean-forward="true" selection-start-line="3375" selection-start-column="5" selection-end-line="3375" selection-end-column="5" />
+          <folding />
         </state>
       </provider>
     </entry>

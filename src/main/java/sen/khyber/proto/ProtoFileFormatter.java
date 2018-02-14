@@ -196,7 +196,7 @@ public class ProtoFileFormatter {
             final ReflectedClass<?> klass) {
         final String getterName = stringGetter.name();
         final ReflectedMethod byteStringGetter =
-                klass.noArgMethod(getterName + "Bytes");
+                klass.method(getterName + "Bytes");
         if (byteStringGetter == null
                 || byteStringGetter.method().getReturnType() != ByteString.class) {
             return false;
@@ -249,8 +249,10 @@ public class ProtoFileFormatter {
                 klass = optionalClass.get();
             }
             final ReflectedClass<?> reflectedClass = Reflector.get().forClass(klass);
-            final FunctionSignature toReplaceSignature = new FunctionSignature(toReplace, int.class);
-            final FunctionSignature replaceWithSignature = new FunctionSignature(replaceWith, int.class);
+            final FunctionSignature toReplaceSignature =
+                    FunctionSignature.forMethod(toReplace, int.class);
+            final FunctionSignature replaceWithSignature =
+                    FunctionSignature.forMethod(replaceWith, int.class);
             if (reflectedClass.hasMethod(toReplaceSignature)
                     && reflectedClass.hasMethod(replaceWithSignature)) {
                 final String newLine = line.substring(0, classNameEnd + ".".length())
