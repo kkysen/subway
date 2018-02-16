@@ -18,6 +18,10 @@ import org.jetbrains.annotations.Nullable;
  */
 public final class FunctionSignature {
     
+    /*
+    TODO maybe split into MethodSignature and ConstructorSignature
+     */
+    
     public static final FunctionSignature ofFunction(final @NotNull Executable function) {
         return new FunctionSignature(function);
     }
@@ -27,7 +31,8 @@ public final class FunctionSignature {
         return new FunctionSignature(name, parameterTypes);
     }
     
-    public static final FunctionSignature forConstructor(final @NotNull Class<?>... parameterTypes) {
+    public static final FunctionSignature forConstructor(
+            final @NotNull Class<?>... parameterTypes) {
         return forMethod(null, parameterTypes);
     }
     

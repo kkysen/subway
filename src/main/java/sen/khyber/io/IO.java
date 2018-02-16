@@ -290,7 +290,17 @@ public final class IO {
     }
     
     public static final MappedByteBuffer mmap(final Path path) throws IOException {
-        return mmap(path, (int) path.toFile().length());
+        final long length = path.toFile().length();
+        final int truncatedLength = (int) Math.min(length, Integer.MAX_VALUE);
+        if (length > Integer.MAX_VALUE) {
+            final String message = "Truncated mmap: "
+                    + path
+                    + " is too big to safely mmap "
+                    + "(length = " + length + " > " + Integer.MAX_VALUE + ')';
+            //noinspection ThrowableNotThrown
+            new IllegalStateException(message).printStackTrace();
+        }
+        return mmap(path, truncatedLength);
     }
     
     public static final ByteBuffer direct(final int size) {

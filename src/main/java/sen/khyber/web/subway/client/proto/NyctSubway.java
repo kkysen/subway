@@ -81,7 +81,7 @@ public final class NyctSubway {
                 "\003\022\010\n\004WEST\020\004\"C\n\022NyctStopTimeUpdate\022\027\n\017sch"
                         + "eduled_track\030\001 \001(\t\022\024\n\014actual_track\030\002 \001(\t"
                         + ":H\n\020nyct_feed_header\022\034.transit_realtime."
-                        + "FeedHeader\030\351\007 \001(\0132\017.NyctFeedHeader:T\n\024ny"
+                        + "FeedHeader\030\351\007 \001(\0132\017.NyctFeedHeader:V\n\024ny"
                         + "ct_trip_descriptor\022 .transit_realtime.Tr"
                         + "ipDescriptor\030\351\007 \001(\0132\023.NyctTripDescriptor"
                         + ":`\n\025nyct_stop_time_update\022+.transit_real"

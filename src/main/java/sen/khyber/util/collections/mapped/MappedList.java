@@ -62,7 +62,7 @@ public class MappedList<T, R> extends Mapper<T, R> implements List<R> {
     }
     
     /**
-     * The next element, using List#get(int) if RandomAccess, else using using Iterator#next()
+     * The next element, using List#value(int) if RandomAccess, else using using Iterator#next()
      */
     private static <T> T next(
             final boolean ram, final int i, final List<? extends T> list,

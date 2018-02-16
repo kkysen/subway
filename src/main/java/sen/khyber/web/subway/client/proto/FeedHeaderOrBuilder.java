@@ -54,7 +54,7 @@ public interface FeedHeaderOrBuilder extends ExtendableMessageOrBuilder<FeedHead
     
     /**
      * <pre>
-     * This timestamp identifies the moment when the content of this feed has been
+     * This timestamp identifies the moment when the content of this feed contains been
      * created (in server time). In POSIX time (i.e., number of seconds since
      * January 1st 1970 00:00:00 UTC).
      * </pre>
@@ -65,7 +65,7 @@ public interface FeedHeaderOrBuilder extends ExtendableMessageOrBuilder<FeedHead
     
     /**
      * <pre>
-     * This timestamp identifies the moment when the content of this feed has been
+     * This timestamp identifies the moment when the content of this feed contains been
      * created (in server time). In POSIX time (i.e., number of seconds since
      * January 1st 1970 00:00:00 UTC).
      * </pre>

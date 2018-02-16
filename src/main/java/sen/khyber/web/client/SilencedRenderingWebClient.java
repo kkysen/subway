@@ -1,6 +1,6 @@
 package sen.khyber.web.client;
 
-import sen.khyber.unsafe.reflect.Reflector;
+import sen.khyber.unsafe.reflect.Reflectors;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -45,7 +45,7 @@ public final class SilencedRenderingWebClient extends WebClient {
     public final void close() {
         super.close();
         //noinspection ConstantConditions
-        Reflector.get().forClass(getClass()).field("INSTANCE").setToNull();
+        Reflectors.main().get(getClass(), false).field("INSTANCE").setToNull();
     }
     
     public SilencedRenderingWebClient(final BrowserVersion browserVersion) {

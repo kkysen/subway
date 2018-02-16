@@ -2,15 +2,16 @@ package sen.khyber.misc;
 
 import sen.khyber.io.IO;
 import sen.khyber.proto.ProtoFileFormatter;
+import sen.khyber.unsafe.reflect.ClassNames;
 import sen.khyber.unsafe.reflect.ReflectedClass;
-import sen.khyber.unsafe.reflect.ReflectedMember;
-import sen.khyber.unsafe.reflect.Reflector;
+import sen.khyber.unsafe.reflect.Reflectors;
 import sen.khyber.util.RegexUtils;
 import sen.khyber.util.exceptions.ExceptionUtils;
 import sen.khyber.web.subway.client.proto.NyctTripDescriptor;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.nio.ByteBuffer;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
@@ -49,8 +50,8 @@ public class Misc {
     
     private static void nullCheckRegex() throws IOException {
         //noinspection ConstantConditions
-        final Pattern pattern = (Pattern) Reflector.get()
-                .forClass(ProtoFileFormatter.class)
+        final Pattern pattern = (Pattern) Reflectors.main()
+                .get(ProtoFileFormatter.class, false)
                 .field("nullCheckPattern")
                 .getObject();
         final Path path = IO.ProjectJava.resolve("misc").resolve("Misc.java");
@@ -65,7 +66,7 @@ public class Misc {
     }
     
     private static void getMethodLineNumber() {
-        final ReflectedClass<?> klass = Reflector.get().forClass(NyctTripDescriptor.class);
+        final ReflectedClass<?> klass = Reflectors.main().get(NyctTripDescriptor.class, false);
         final Object proto = klass.allocateInstance();
         final Object ref = 0;
         klass.field("trainId_").bindUnsafe(proto).setObject(ref);
@@ -80,22 +81,22 @@ public class Misc {
         }
     }
     
-    public static void main(final String[] args) throws IOException {
-        //        testGenerics();
-        //        nullCheckRegex();
+    private static void regexUtilsExpandSpacesToVariableWhitespace() {
         final String s = "             \n  abcsdffgg\n";
         System.out.println(RegexUtils.expandSpacesToVariableWhitespace("[ ]*abc[^ ]*")
                 .matcher(s).matches());
         System.out.println(Pattern.compile("[\\s]*abc[^ ]*").matcher(s).matches());
-        
-        ReflectedMember.useSimpleNameInToString(true);
-        System.out.println(ReflectedMember.isUsingSimpleNameInToString());
-        System.out.println(Reflector.get()
-                .forClass(ProtoFileFormatter.class)
+    }
+    
+    private static void reflectedMemberToStringUsingClassNames() {
+        ClassNames.useSimpleNameInToString(true);
+        System.out.println(ClassNames.isUsingSimpleNameInToString());
+        System.out.println(Reflectors.main()
+                .get(ProtoFileFormatter.class, false)
                 .field("nullCheckPattern"));
-        
-        //        getMethodLineNumber();
-        
+    }
+    
+    private static void comodification() {
         final List<Integer> list = new ArrayList<>();
         list.add(5);
         list.add(10);
@@ -108,6 +109,75 @@ public class Misc {
         subList.add(15);
         System.out.println("list: " + list);
         System.out.println("sub: " + subList);
+    }
+    
+    @SuppressWarnings("OverlyComplexMethod")
+    private static void chicagoCrimeJson(final ByteBuffer buffer, final int rowNum)
+            throws IOException {
+        System.out.println("\n\t" + rowNum + '\n');
+        byte b;
+        while ((b = buffer.get()) != '{' && b != '[') { }
+        System.out.println("start = " + buffer.position());
+        final int start = buffer.position() - 1;
+        {
+            System.out.println((char) b);
+            int objectDepth = b == '{' ? 1 : 0;
+            int arrayDepth = b == '[' ? 1 : 0;
+            while (objectDepth + arrayDepth > 0) {
+                if (buffer.position() % 1000 == 0) {
+                    System.out.println(buffer.position());
+                }
+                switch (buffer.get()) {
+                    case '{':
+                        objectDepth++;
+                        break;
+                    case '}':
+                        objectDepth--;
+                        break;
+                    case '[':
+                        arrayDepth++;
+                        break;
+                    case ']':
+                        arrayDepth--;
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+        System.out.println("buffer = " + buffer);
+        final int end = buffer.position();
+        buffer.limit(end);
+        buffer.position(start);
+        System.out.println("buffer = " + buffer);
+        final ByteBuffer out =
+                IO.mmap(IO.Downloads.resolve("row" + rowNum + ".json"), buffer.remaining());
+        System.out.println("out = " + out);
+        out.put(buffer);
+        // reset to normal size
+        buffer.limit(buffer.capacity());
+        buffer.position(end);
+    }
+    
+    private static void chicagoCrimeJson() throws IOException {
+        final ByteBuffer buffer = IO.mmap(IO.Downloads.resolve("rows.json"));
+        final int startDepth = 2;
+        {
+            int depth = 0;
+            while (depth < startDepth) {
+                if (buffer.get() == '{') {
+                    depth++;
+                }
+            }
+        }
+        buffer.position(buffer.position() - 1);
+        for (int i = 0; i < 10; i++) {
+            chicagoCrimeJson(buffer, i);
+        }
+    }
+    
+    public static void main(final String[] args) throws IOException {
+        //        chicagoCrimeJson();
     }
     
 }

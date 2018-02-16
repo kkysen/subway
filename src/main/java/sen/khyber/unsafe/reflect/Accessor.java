@@ -19,7 +19,7 @@ public final class Accessor {
     static {
         final Field field;
         try {
-            // Reflector not initialized yet, so must use normal reflection
+            // LeakyReflector not initialized yet, so must use normal reflection
             field = AccessibleObject.class.getDeclaredField("override");
         } catch (final NoSuchFieldException e) {
             throw ExceptionUtils.atRuntime(e);

@@ -6,6 +6,7 @@ import sen.khyber.unsafe.reflect.ReflectedField;
 import sen.khyber.unsafe.reflect.ReflectedMember;
 import sen.khyber.unsafe.reflect.ReflectedMethod;
 import sen.khyber.unsafe.reflect.Reflector;
+import sen.khyber.unsafe.reflect.Reflectors;
 import sen.khyber.util.Imports;
 import sen.khyber.util.collections.immutable.ImmutableArrayList;
 import sen.khyber.util.exceptions.ExceptionUtils;
@@ -65,6 +66,8 @@ public class ProtoFileFormatter {
     //    private final List<List<String>> initialLines;
     
     private final Imports imports = new Imports();
+    
+    private final Reflector reflector = Reflectors.main().spawnChild();
     
     public ProtoFileFormatter(final Path path) throws IOException {
         Objects.requireNonNull(path);
@@ -136,7 +139,7 @@ public class ProtoFileFormatter {
     
     private ReflectedClass<?> loadProtoClass() {
         final String fullClassName = packageName() + '.' + className();
-        return Reflector.get().forClassNameUnchecked(fullClassName);
+        return reflector.getUnchecked(fullClassName);
     }
     
     private static String uncapitalize(final String s) {
@@ -201,7 +204,7 @@ public class ProtoFileFormatter {
                 || byteStringGetter.method().getReturnType() != ByteString.class) {
             return false;
         }
-        final String fieldName = uncapitalize(getterName.substring("get".length())) + '_';
+        final String fieldName = uncapitalize(getterName.substring("value".length())) + '_';
         final ReflectedField field = klass.field(fieldName);
         if (field == null || field.field().getType() != Object.class) {
             return false;
@@ -212,13 +215,13 @@ public class ProtoFileFormatter {
     
     public final void refactorStringAndByteStringGetters() {
         final ReflectedClass<?> klass = loadProtoClass();
-        // get all String getters that have a normal and bytes version
+        // value all String getters that have a normal and bytes version
         klass
                 .methods()
                 .stream()
                 .filter(ReflectedMember::isInstance)
                 .filter(method -> method.method().getReturnType() == String.class)
-                .filter(method -> method.name().startsWith("get"))
+                .filter(method -> method.name().startsWith("value"))
                 .map(stringGetter -> refactorStringAndByteStringGetters(stringGetter, klass))
                 .filter(Boolean::booleanValue)
                 .findAny()
@@ -248,7 +251,7 @@ public class ProtoFileFormatter {
                 }
                 klass = optionalClass.get();
             }
-            final ReflectedClass<?> reflectedClass = Reflector.get().forClass(klass);
+            final ReflectedClass<?> reflectedClass = reflector.get(klass);
             final FunctionSignature toReplaceSignature =
                     FunctionSignature.forMethod(toReplace, int.class);
             final FunctionSignature replaceWithSignature =
@@ -274,9 +277,9 @@ public class ProtoFileFormatter {
         };
         
         //        IntStream.range(0, lines.size())
-        //                .mapToObj(i -> Pair.of(i, lines.get(i)))
+        //                .mapToObj(i -> Pair.of(i, lines.value(i)))
         //                .filter(line -> line.getValue().contains(" class "))
-        //                .filter(line -> !lines.get(line.getKey()).contains("*/"))
+        //                .filter(line -> !lines.value(line.getKey()).contains("*/"))
         //                // subList ensures that each insertion doesn't change mess up indices
         //                .map(line -> lines.subList(line.getKey(), line.getKey()))
         //                .forEach(insertionPoint -> insertionPoint.addAll(Arrays.asList(javadoc)));

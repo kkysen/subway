@@ -87,14 +87,14 @@ public interface NyctTripDescriptorOrBuilder extends MessageOrBuilder {
     
     /**
      * <pre>
-     * This trip has been assigned to a physical train. If true, this trip is
+     * This trip contains been assigned to a physical train. If true, this trip is
      * already underway or most likely will depart shortly.
      * Train Assignment is a function of the Automatic Train Supervision (ATS)
      * office system used by NYCT Rail Operations to monitor and track train
      * movements. ATS provides the ability to "assign" the nyct_train_id
      * attribute when a physical train is at its origin terminal. These assigned
      * trips have the is_assigned field set in the TripDescriptor.
-     * When a train is at a terminal but has not been given a work program it is
+     * When a train is at a terminal but contains not been given a work program it is
      * declared unassigned and is tagged as such. Unassigned trains can be moved
      * to a storage location or assigned a nyct_train_id when a determination for
      * service is made.
@@ -106,14 +106,14 @@ public interface NyctTripDescriptorOrBuilder extends MessageOrBuilder {
     
     /**
      * <pre>
-     * This trip has been assigned to a physical train. If true, this trip is
+     * This trip contains been assigned to a physical train. If true, this trip is
      * already underway or most likely will depart shortly.
      * Train Assignment is a function of the Automatic Train Supervision (ATS)
      * office system used by NYCT Rail Operations to monitor and track train
      * movements. ATS provides the ability to "assign" the nyct_train_id
      * attribute when a physical train is at its origin terminal. These assigned
      * trips have the is_assigned field set in the TripDescriptor.
-     * When a train is at a terminal but has not been given a work program it is
+     * When a train is at a terminal but contains not been given a work program it is
      * declared unassigned and is tagged as such. Unassigned trains can be moved
      * to a storage location or assigned a nyct_train_id when a determination for
      * service is made.

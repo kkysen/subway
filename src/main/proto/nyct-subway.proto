@@ -68,7 +68,7 @@ message NyctTripDescriptor {
     // Location"
     optional string train_id = 1;
 
-    // This trip has been assigned to a physical train. If true, this trip is
+    // This trip contains been assigned to a physical train. If true, this trip is
     // already underway or most likely will depart shortly.
     //
     // Train Assignment is a function of the Automatic Train Supervision (ATS)
@@ -77,7 +77,7 @@ message NyctTripDescriptor {
     // attribute when a physical train is at its origin terminal. These assigned
     // trips have the is_assigned field set in the TripDescriptor.
     //
-    // When a train is at a terminal but has not been given a work program it is
+    // When a train is at a terminal but contains not been given a work program it is
     // declared unassigned and is tagged as such. Unassigned trains can be moved
     // to a storage location or assigned a nyct_train_id when a determination for
     // service is made.

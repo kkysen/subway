@@ -1,6 +1,7 @@
 package sen.khyber.unsafe.reflect;
 
 import sen.khyber.unsafe.UnsafeUtils;
+import sen.khyber.util.Lazy;
 import sen.khyber.util.collections.immutable.ImmutableList;
 
 import lombok.Getter;
@@ -29,109 +30,120 @@ public final class ReflectedClass<T> {
     private static final Unsafe unsafe = UnsafeUtils.getUnsafe();
     
     private final @NotNull Class<T> klass;
-    private final @NotNull ReflectedFields fields;
-    private final @NotNull ReflectedMethods methods;
-    private final @NotNull ReflectedConstructors<T> constructors;
+    
+    // lazily load
+    private final @NotNull Lazy<ReflectedFields> fields;
+    private final @NotNull Lazy<ReflectedMethods> methods;
+    private final @NotNull Lazy<ReflectedConstructors<T>> constructors;
     
     ReflectedClass(final @NotNull Class<T> klass) {
         Objects.requireNonNull(klass);
         this.klass = klass;
-        fields = new ReflectedFields(klass);
-        methods = new ReflectedMethods(klass);
-        constructors = new ReflectedConstructors<>(klass);
+        fields = new Lazy<>(() -> new ReflectedFields(klass));
+        methods = new Lazy<>(() -> new ReflectedMethods(klass));
+        constructors = new Lazy<>(() -> new ReflectedConstructors<>(klass));
+    }
+    
+    public final @NotNull Class<T> klass() {
+        return klass;
     }
     
     public final @NotNull ImmutableList<ReflectedField> fields() {
-        return fields.members();
+        return fields.get().members();
     }
     
     public final @NotNull Map<String, ReflectedField> fieldMap() {
-        return fields.membersMap();
+        return fields.get().membersMap();
     }
     
     public final @Nullable ReflectedField field(final @NotNull String name) {
-        return fields.member(name);
+        return fields.get().member(name);
     }
     
     public final @NotNull Field[] rawFields() {
-        return fields.rawMembers();
+        return fields.get().rawMembers();
     }
     
     public final @Nullable Field rawField(final @NotNull String name) {
-        return fields.rawMember(name);
+        return fields.get().rawMember(name);
     }
     
     public final boolean hasField(final @NotNull String name) {
-        return fields.hasMember(name);
+        return fields.get().hasMember(name);
     }
     
     public final @NotNull ImmutableList<ReflectedMethod> methods() {
-        return methods.members();
+        return methods.get().members();
     }
     
     public final @NotNull Map<FunctionSignature, ReflectedMethod> methodMap() {
-        return methods.membersMap();
+        return methods.get().membersMap();
     }
     
     public final @Nullable ReflectedMethod method(final @NotNull FunctionSignature signature) {
-        return methods.member(signature);
+        return methods.get().member(signature);
     }
     
     public final @NotNull Method[] rawMethods() {
-        return methods.rawMembers();
+        return methods.get().rawMembers();
     }
     
     public final @Nullable Method rawMethod(final @NotNull FunctionSignature signature) {
-        return methods.rawMember(signature);
+        return methods.get().rawMember(signature);
     }
     
     public final boolean hasMethod(final @NotNull FunctionSignature signature) {
-        return methods.hasMember(signature);
+        return methods.get().hasMember(signature);
     }
     
-    public final @Nullable ReflectedMethod method(final @NotNull String name, final @NotNull Class<?>... parameterTypes) {
+    public final @Nullable ReflectedMethod method(final @NotNull String name,
+            final @NotNull Class<?>... parameterTypes) {
         return method(FunctionSignature.forMethod(name, parameterTypes));
     }
     
-    public final @Nullable Method rawMethod(final @NotNull String name, final @NotNull Class<?>... parameterTypes) {
+    public final @Nullable Method rawMethod(final @NotNull String name,
+            final @NotNull Class<?>... parameterTypes) {
         return rawMethod(FunctionSignature.forMethod(name, parameterTypes));
     }
     
-    public final boolean hasMethod(final @NotNull String name, final @NotNull Class<?>... parameterTypes) {
+    public final boolean hasMethod(final @NotNull String name,
+            final @NotNull Class<?>... parameterTypes) {
         return hasMethod(FunctionSignature.forMethod(name, parameterTypes));
     }
     
     public final @NotNull ImmutableList<ReflectedConstructor<T>> constructors() {
-        return constructors.members();
+        return constructors.get().members();
     }
     
     public final @NotNull Map<FunctionSignature, ReflectedConstructor<T>> constructorMap() {
-        return constructors.membersMap();
+        return constructors.get().membersMap();
     }
     
     public final @Nullable ReflectedConstructor<T> constructor(
             final @NotNull FunctionSignature signature) {
-        return constructors.member(signature);
+        return constructors.get().member(signature);
     }
     
     public final @NotNull Constructor<T>[] rawConstructors() {
-        return constructors.rawMembers();
+        return constructors.get().rawMembers();
     }
     
     public final @Nullable Constructor<T> rawConstructor(
             final @NotNull FunctionSignature signature) {
-        return constructors.rawMember(signature);
+        return constructors.get().rawMember(signature);
     }
     
     public final boolean hasConstructor(final @NotNull FunctionSignature signature) {
-        return constructors.hasMember(signature);
+        return constructors.get().hasMember(signature);
     }
     
-    public final @Nullable ReflectedConstructor<T> constructor(final @NotNull Class<?>... parameterTypes) {
+    public final @Nullable ReflectedConstructor<T> constructor(
+            final @NotNull Class<?>... parameterTypes) {
         return constructor(FunctionSignature.forConstructor(parameterTypes));
     }
     
-    public final @Nullable Constructor<T> rawConstructor(final @NotNull Class<?>... parameterTypes) {
+    public final @Nullable Constructor<T> rawConstructor(
+            final @NotNull Class<?>... parameterTypes) {
         return rawConstructor(FunctionSignature.forConstructor(parameterTypes));
     }
     
@@ -150,15 +162,20 @@ public final class ReflectedClass<T> {
         }
     }
     
-    final void clear() {
-        fields.clear();
-        methods.clear();
-        constructors.clear();
+    @SuppressWarnings("ConstantConditions")
+    final void clearUnsafe() {
+        final Lazy<ReflectedMembers<?, ?, ?>>[] allMembers =
+                new Lazy[] {fields, methods, constructors};
+        for (final Lazy<ReflectedMembers<?, ?, ?>> members : allMembers) {
+            if (members.isInitialized()) {
+                members.uncheckedGet().clear();
+            }
+        }
     }
     
     @Override
     public final String toString() {
-        return "ReflectedClass[" + klass.getName() + ']';
+        return "ReflectedClass[" + ClassNames.classToName(klass) + ']';
     }
     
 }

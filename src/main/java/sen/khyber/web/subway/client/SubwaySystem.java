@@ -3,7 +3,7 @@ package sen.khyber.web.subway.client;
 import sen.khyber.util.Retrier;
 import sen.khyber.util.Retrier.RetrierBuilders;
 import sen.khyber.web.client.WebClient;
-import sen.khyber.web.client.WebClient.WebResponseImpl;
+import sen.khyber.web.client.WebResponse;
 import sen.khyber.web.subway.client.proto.FeedHeader;
 import sen.khyber.web.subway.client.proto.FeedMessage;
 import sen.khyber.web.subway.client.proto.NyctFeedHeader;
@@ -49,7 +49,7 @@ public class SubwaySystem {
         //        NyctFeedHeader.getDescriptor().getFields()
     }
     
-    private void update(final WebResponseImpl update) throws IOException {
+    private void update(final WebResponse update) throws IOException {
         update(FeedMessage.parseFrom(update.byteBuffer(), registry));
     }
     

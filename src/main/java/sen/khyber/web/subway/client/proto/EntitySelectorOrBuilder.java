@@ -13,7 +13,7 @@ public interface EntitySelectorOrBuilder extends ExtendableMessageOrBuilder<Enti
      * The values of the fields should correspond to the appropriate fields in the
      * GTFS feed.
      * At least one specifier must be given. If several are given, then the
-     * matching has to apply to all the given specifiers.
+     * matching contains to apply to all the given specifiers.
      * </pre>
      * <p>
      * <code>optional string agency_id = 1;</code>
@@ -25,7 +25,7 @@ public interface EntitySelectorOrBuilder extends ExtendableMessageOrBuilder<Enti
      * The values of the fields should correspond to the appropriate fields in the
      * GTFS feed.
      * At least one specifier must be given. If several are given, then the
-     * matching has to apply to all the given specifiers.
+     * matching contains to apply to all the given specifiers.
      * </pre>
      * <p>
      * <code>optional string agency_id = 1;</code>
@@ -37,7 +37,7 @@ public interface EntitySelectorOrBuilder extends ExtendableMessageOrBuilder<Enti
      * The values of the fields should correspond to the appropriate fields in the
      * GTFS feed.
      * At least one specifier must be given. If several are given, then the
-     * matching has to apply to all the given specifiers.
+     * matching contains to apply to all the given specifiers.
      * </pre>
      * <p>
      * <code>optional string agency_id = 1;</code>

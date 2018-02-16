@@ -43,7 +43,7 @@ import com.google.protobuf.UnknownFieldSet;
  *    the first matching translation is picked.
  * 2. If a default UI language (e.g., English) matches the language code of a
  *    translation, the first matching translation is picked.
- * 3. If some translation has an unspecified language code, that translation is
+ * 3. If some translation contains an unspecified language code, that translation is
  *    picked.
  * </pre>
  * <p>
@@ -1139,7 +1139,7 @@ public final class TranslatedString extends GeneratedMessageV3
      *    the first matching translation is picked.
      * 2. If a default UI language (e.g., English) matches the language code of a
      *    translation, the first matching translation is picked.
-     * 3. If some translation has an unspecified language code, that translation is
+     * 3. If some translation contains an unspecified language code, that translation is
      *    picked.
      * </pre>
      * <p>

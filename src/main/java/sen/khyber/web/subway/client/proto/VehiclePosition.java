@@ -207,7 +207,7 @@ public final class VehiclePosition extends ExtendableMessage<VehiclePosition>
         STOPPED_AT(1),
         /**
          * <pre>
-         * The vehicle has departed and is in transit to the next stop.
+         * The vehicle contains departed and is in transit to the next stop.
          * </pre>
          * <p>
          * <code>IN_TRANSIT_TO = 2;</code>
@@ -233,7 +233,7 @@ public final class VehiclePosition extends ExtendableMessage<VehiclePosition>
         public static final int STOPPED_AT_VALUE = 1;
         /**
          * <pre>
-         * The vehicle has departed and is in transit to the next stop.
+         * The vehicle contains departed and is in transit to the next stop.
          * </pre>
          * <p>
          * <code>IN_TRANSIT_TO = 2;</code>

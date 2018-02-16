@@ -13,6 +13,7 @@ import java.lang.reflect.Member;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.Objects;
+import java.util.StringJoiner;
 import java.util.stream.Stream;
 
 import org.apache.commons.lang3.tuple.Pair;
@@ -119,6 +120,17 @@ public abstract class ReflectedMembers<T extends AccessibleObject & Member, Sign
         final VarHandle handle = immutableMapTable.handle();
         final Object[] table = (Object[]) immutableMapTable.bind(membersMap).getObject();
         Arrays.fill(table, null);
+    }
+    
+    @Override
+    public final String toString() {
+        final String newLineIndent = "    ";
+        final String start = "class " + ClassNames.classToName(klass) + " {" + newLineIndent;
+        final StringJoiner sj = new StringJoiner(start, newLineIndent, "\n}");
+        for (final ReflectedMember<T, Signature, Handle> member : mutableMembers) {
+            sj.add(member.toString());
+        }
+        return sj.toString();
     }
     
 }

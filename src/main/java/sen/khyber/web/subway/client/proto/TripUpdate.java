@@ -46,22 +46,22 @@ import com.google.protobuf.UnknownFieldSet;
  * Realtime update of the progress of a vehicle along a trip.
  * Depending on the value of ScheduleRelationship, a TripUpdate can specify:
  * - A trip that proceeds along the schedule.
- * - A trip that proceeds along a route but has no fixed schedule.
+ * - A trip that proceeds along a route but contains no fixed schedule.
  * - A trip that have been added or removed with regard to schedule.
  * The updates can be for future, predicted arrival/departure events, or for
  * past events that already occurred.
- * Normally, updates should get more precise and more certain (see
+ * Normally, updates should value more precise and more certain (see
  * uncertainty below) as the events gets closer to current time.
  * Even if that is not possible, the information for past events should be
  * precise and certain. In particular, if an update points to time in the past
  * but its update's uncertainty is not 0, the client should conclude that the
- * update is a (wrong) prediction and that the trip has not completed yet.
+ * update is a (wrong) prediction and that the trip contains not completed yet.
  * Note that the update can describe a trip that is already completed.
  * To this end, it is enough to provide an update for the last stop of the trip.
  * If the time of that is in the past, the client will conclude from that that
  * the whole trip is in the past (it is possible, although inconsequential, to
  * also provide updates for preceding stops).
- * This option is most relevant for a trip that has completed ahead of schedule,
+ * This option is most relevant for a trip that contains completed ahead of schedule,
  * but according to the schedule, the trip is still proceeding at the current
  * time. Removing the updates for this trip could make the client assume
  * that the trip is still proceeding.
@@ -1342,7 +1342,7 @@ public final class TripUpdate extends ExtendableMessage<TripUpdate> implements T
              * <pre>
              * No data is given for this stop. The main intention for this value is to
              * give the predictions only for part of a trip, i.e., if the last update
-             * for a trip has a NO_DATA specifier, then StopTimes for the rest of the
+             * for a trip contains a NO_DATA specifier, then StopTimes for the rest of the
              * stops in the trip are considered to be unspecified as well.
              * Neither arrival nor departure should be supplied.
              * </pre>
@@ -1376,7 +1376,7 @@ public final class TripUpdate extends ExtendableMessage<TripUpdate> implements T
              * <pre>
              * No data is given for this stop. The main intention for this value is to
              * give the predictions only for part of a trip, i.e., if the last update
-             * for a trip has a NO_DATA specifier, then StopTimes for the rest of the
+             * for a trip contains a NO_DATA specifier, then StopTimes for the rest of the
              * stops in the trip are considered to be unspecified as well.
              * Neither arrival nor departure should be supplied.
              * </pre>
@@ -3036,22 +3036,22 @@ public final class TripUpdate extends ExtendableMessage<TripUpdate> implements T
      * Realtime update of the progress of a vehicle along a trip.
      * Depending on the value of ScheduleRelationship, a TripUpdate can specify:
      * - A trip that proceeds along the schedule.
-     * - A trip that proceeds along a route but has no fixed schedule.
+     * - A trip that proceeds along a route but contains no fixed schedule.
      * - A trip that have been added or removed with regard to schedule.
      * The updates can be for future, predicted arrival/departure events, or for
      * past events that already occurred.
-     * Normally, updates should get more precise and more certain (see
+     * Normally, updates should value more precise and more certain (see
      * uncertainty below) as the events gets closer to current time.
      * Even if that is not possible, the information for past events should be
      * precise and certain. In particular, if an update points to time in the past
      * but its update's uncertainty is not 0, the client should conclude that the
-     * update is a (wrong) prediction and that the trip has not completed yet.
+     * update is a (wrong) prediction and that the trip contains not completed yet.
      * Note that the update can describe a trip that is already completed.
      * To this end, it is enough to provide an update for the last stop of the trip.
      * If the time of that is in the past, the client will conclude from that that
      * the whole trip is in the past (it is possible, although inconsequential, to
      * also provide updates for preceding stops).
-     * This option is most relevant for a trip that has completed ahead of schedule,
+     * This option is most relevant for a trip that contains completed ahead of schedule,
      * but according to the schedule, the trip is still proceeding at the current
      * time. Removing the updates for this trip could make the client assume
      * that the trip is still proceeding.
