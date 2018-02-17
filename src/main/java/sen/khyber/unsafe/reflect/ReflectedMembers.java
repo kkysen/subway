@@ -64,6 +64,7 @@ public abstract class ReflectedMembers<T extends AccessibleObject & Member, Sign
         rawMembers = memberType.rawMembers(klass);
         //noinspection rawtypes
         mutableMembers = Stream.of(rawMembers)
+                .filter(member -> !member.isSynthetic())
                 .map(this::reflectMember)
                 .toArray(ReflectedMember[]::new);
         members = new ImmutableArrayList<>(mutableMembers);
@@ -83,6 +84,13 @@ public abstract class ReflectedMembers<T extends AccessibleObject & Member, Sign
     
     abstract @NotNull ReflectedMember<T, Signature, Handle> reflectMember(T member);
     
+    /**
+     * Gets the raw Members of this class, including synthetic members
+     * (all other methods filter out synthetic members),
+     * which can have identical signatures to other members.
+     *
+     * @return the raw Members of this class, including synthetic members
+     */
     public final @NotNull T[] rawMembers() {
         checkCleared();
         return rawMembers;

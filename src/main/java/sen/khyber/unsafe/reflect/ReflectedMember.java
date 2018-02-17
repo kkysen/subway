@@ -8,6 +8,9 @@ import java.lang.reflect.AccessibleObject;
 import java.lang.reflect.Member;
 import java.lang.reflect.Modifier;
 
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 /**
  * Created by Khyber Sen on 2/9/2018.
  *
@@ -15,16 +18,16 @@ import java.lang.reflect.Modifier;
  */
 public abstract class ReflectedMember<T extends AccessibleObject & Member, Signature, Handle> {
     
-    static final Lookup LOOKUP = MethodHandles.lookup();
+    static final @NotNull Lookup LOOKUP = MethodHandles.lookup();
     
-    private final T member;
-    protected final Signature signature;
-    protected final String name;
+    private final @NotNull T member;
+    protected final @NotNull Signature signature;
+    protected final @NotNull String name;
     protected final boolean isStatic;
     
-    private Handle handle;
+    private @Nullable Handle handle;
     
-    ReflectedMember(final T member) {
+    ReflectedMember(final @NotNull T member) {
         Accessor.setAccessible(member);
         this.member = member;
         signature = getSignature(member);
@@ -32,17 +35,17 @@ public abstract class ReflectedMember<T extends AccessibleObject & Member, Signa
         isStatic = Modifier.isStatic(member.getModifiers());
     }
     
-    protected abstract Signature getSignature(T member);
+    protected abstract @NotNull Signature getSignature(@NotNull T member);
     
-    public final T member() {
+    public final @NotNull T member() {
         return member;
     }
     
-    public final Signature signature() {
+    public final @NotNull Signature signature() {
         return signature;
     }
     
-    public final String name() {
+    public final @NotNull String name() {
         return name;
     }
     
@@ -54,9 +57,9 @@ public abstract class ReflectedMember<T extends AccessibleObject & Member, Signa
         return !isStatic;
     }
     
-    protected abstract Handle convertToHandle() throws IllegalAccessException;
+    protected abstract @NotNull Handle convertToHandle() throws IllegalAccessException;
     
-    public final Handle handle() {
+    public final @NotNull Handle handle() {
         if (handle == null) {
             try {
                 handle = convertToHandle();
@@ -68,9 +71,9 @@ public abstract class ReflectedMember<T extends AccessibleObject & Member, Signa
     }
     
     @Override
-    public final String toString() {
+    public final @NotNull String toString() {
         return getClass().getSimpleName() +
-                '[' + ClassNames.classToName(member.getDeclaringClass()) + "::" + name + ']';
+                '[' + ClassNames.classToName(member.getDeclaringClass()) + "::" + signature + ']';
     }
     
 }

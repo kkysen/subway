@@ -3,6 +3,8 @@ package sen.khyber.unsafe.reflect;
 import java.lang.invoke.MethodHandle;
 import java.lang.reflect.Executable;
 
+import org.jetbrains.annotations.NotNull;
+
 /**
  * Created by Khyber Sen on 2/13/2018.
  *
@@ -11,20 +13,24 @@ import java.lang.reflect.Executable;
 public abstract class ReflectedFunction<T extends Executable>
         extends ReflectedMember<T, FunctionSignature, MethodHandle> {
     
-    private final T function;
+    private final @NotNull T function;
     
-    ReflectedFunction(final T function) {
+    ReflectedFunction(final @NotNull T function) {
         super(function);
         this.function = function;
     }
     
-    public final T function() {
+    public final @NotNull T function() {
         return function;
     }
     
     @Override
-    protected final FunctionSignature getSignature(final T function) {
+    protected final @NotNull FunctionSignature getSignature(final @NotNull T function) {
         return FunctionSignature.ofFunction(function);
     }
+    
+    @SuppressWarnings("AbstractMethodOverridesAbstractMethod")
+    @Override
+    protected abstract @NotNull MethodHandle convertToHandle() throws IllegalAccessException;
     
 }

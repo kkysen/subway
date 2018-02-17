@@ -1,15 +1,11 @@
 package sen.khyber.util;
 
+import sen.khyber.unsafe.fields.ArrayListUtils;
 import sen.khyber.util.collections.mapped.MappedList;
 import sen.khyber.util.function.IntBinaryPredicate;
 
-import lombok.AccessLevel;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
-
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
@@ -20,24 +16,40 @@ import java.util.function.Supplier;
 import java.util.logging.Logger;
 
 import org.apache.commons.lang3.tuple.Pair;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Created by Khyber Sen on 1/31/2018.
  *
  * @author Khyber Sen
  */
-@RequiredArgsConstructor(access = AccessLevel.PROTECTED)
-public class Retrier<T, R> {
+public final class Retrier<T, R> {
     
-    private final BiConsumer<List<T>, List<R>> trier;
-    private final Function<R, T> reconverter;
+    private final @NotNull BiConsumer<List<T>, List<R>> trier;
+    private final @NotNull Function<R, T> reconverter;
     
-    private final IntBinaryPredicate stopTrying;
-    private final IntUnaryOperator sleepLength;
+    private final @NotNull IntBinaryPredicate stopTrying;
+    private final @NotNull IntUnaryOperator sleepLength;
     
-    private final Logger log;
+    private final @Nullable Logger log;
     
-    private boolean tryOnce(final List<T> unfinished, final List<R> failedSynced, int attemptNum) {
+    private Retrier(
+            final @NotNull BiConsumer<List<T>, List<R>> trier,
+            final @NotNull Function<R, T> reconverter,
+            final @NotNull IntBinaryPredicate stopTrying,
+            final @NotNull IntUnaryOperator sleepLength,
+            final @Nullable Logger log) {
+        ObjectUtils.requireNonNull(trier, reconverter, stopTrying, sleepLength);
+        this.trier = trier;
+        this.reconverter = reconverter;
+        this.stopTrying = stopTrying;
+        this.sleepLength = sleepLength;
+        this.log = log;
+    }
+    
+    private boolean tryOnce(final @NotNull List<T> unfinished, final @NotNull List<R> failedSynced,
+            int attemptNum) {
         Parallelism.set(unfinished.size());
         if (log != null) {
             log.info("attempt " + (attemptNum + 1) + ", "
@@ -56,8 +68,8 @@ public class Retrier<T, R> {
     }
     
     // identity case can be more efficient by reducing copying between unfinished and failed lists
-    private List<T> keepTryingIdentity(List<T> unfinished, List<T> failed,
-            final Supplier<List<T>> newListSupplier) {
+    private List<T> keepTryingIdentity(@NotNull List<T> unfinished, @NotNull List<T> failed,
+            final @Nullable Supplier<List<T>> newListSupplier) {
         //noinspection unchecked
         final BiConsumer<List<T>, List<T>> trier =
                 (BiConsumer<List<T>, List<T>>) (BiConsumer<?, ?>) this.trier;
@@ -83,8 +95,8 @@ public class Retrier<T, R> {
         return failed;
     }
     
-    private List<R> keepTrying(List<T> unfinished, List<R> failed,
-            final Supplier<List<R>> newListSupplier) {
+    private List<R> keepTrying(@NotNull List<T> unfinished, @NotNull List<R> failed,
+            final @Nullable Supplier<List<R>> newListSupplier) {
         if (reconverter == Function.identity()) {
             //noinspection unchecked
             return (List<R>) keepTryingIdentity(unfinished, (List<T>) failed,
@@ -113,26 +125,29 @@ public class Retrier<T, R> {
         return failed;
     }
     
-    public List<R> keepTrying(final List<T> unfinished, final List<R> failed) {
+    public final List<R> keepTrying(final @NotNull List<T> unfinished,
+            final @NotNull List<R> failed) {
         return keepTrying(unfinished, failed, null);
     }
     
-    public List<R> keepTrying(final List<T> unfinished) {
+    public final List<R> keepTrying(final @NotNull List<T> unfinished) {
+        Objects.requireNonNull(unfinished);
         return keepTrying(unfinished, new ArrayList<>());
     }
     
-    public List<R> keepTrying(final T[] unfinished) {
-        return keepTrying(Arrays.asList(unfinished), new ArrayList<>(), ArrayList::new);
+    public final List<R> keepTrying(final T[] unfinished) {
+        Objects.requireNonNull(unfinished);
+        return keepTrying(ArrayListUtils.wrap(unfinished), new ArrayList<>(), ArrayList::new);
     }
     
     private static final RetrierBuilders<?> BUILDERS = new RetrierBuilders();
     
     @SuppressWarnings("unchecked")
-    public static <T> RetrierBuilders<T> builders() {
+    public static final <T> RetrierBuilders<T> builders() {
         return (RetrierBuilders<T>) BUILDERS;
     }
     
-    public static <T> RetrierBuilders<T> builders(final Class<T> klass) {
+    public static final <T> RetrierBuilders<T> builders(final @NotNull Class<T> klass) {
         return builders();
     }
     
@@ -140,43 +155,44 @@ public class Retrier<T, R> {
         
         private RetrierBuilders() {}
         
-        public <R> RetrierBuilder<T, R> simple(final BiConsumer<List<T>, List<R>> trier,
-                final Function<R, T> reconverter) {
+        public final <R> @NotNull RetrierBuilder<T, R> simple(
+                final @NotNull BiConsumer<List<T>, List<R>> trier,
+                final @NotNull Function<R, T> reconverter) {
             return new RetrierBuilder<>(trier, reconverter);
         }
         
-        public RetrierBuilder<T, T> identity(final BiConsumer<List<T>, List<T>> trier) {
+        public final @NotNull RetrierBuilder<T, T> identity(
+                final @NotNull BiConsumer<List<T>, List<T>> trier) {
             return new RetrierBuilder<>(trier, Function.identity());
         }
         
-        public <Ex extends Throwable> RetrierBuilder<T, Pair<T, Ex>> exceptional(
-                final BiConsumer<List<T>, List<Pair<T, Ex>>> trier) {
+        public final <Ex extends Throwable> @NotNull RetrierBuilder<T, Pair<T, Ex>> exceptional(
+                final @NotNull BiConsumer<List<T>, List<Pair<T, Ex>>> trier) {
             return new RetrierBuilder<>(trier, Pair::getLeft);
         }
         
-        public RetrierBuilder<T, Pair<T, Exception>> allExceptional(
-                final BiConsumer<List<T>, List<Pair<T, Exception>>> trier) {
+        public final RetrierBuilder<T, Pair<T, Exception>> allExceptional(
+                final @NotNull BiConsumer<List<T>, List<Pair<T, Exception>>> trier) {
             return exceptional(trier);
         }
         
-        public RetrierBuilder<T, Pair<T, RuntimeException>> runtimeExceptional(
-                final BiConsumer<List<T>, List<Pair<T, RuntimeException>>> trier) {
+        public final RetrierBuilder<T, Pair<T, RuntimeException>> runtimeExceptional(
+                final @NotNull BiConsumer<List<T>, List<Pair<T, RuntimeException>>> trier) {
             return exceptional(trier);
         }
         
-        public RetrierBuilder<T, Pair<T, IOException>> exceptionalIO(
-                final BiConsumer<List<T>, List<Pair<T, IOException>>> trier) {
+        public final RetrierBuilder<T, Pair<T, IOException>> exceptionalIO(
+                final @NotNull BiConsumer<List<T>, List<Pair<T, IOException>>> trier) {
             return exceptional(trier);
         }
         
     }
     
-    @RequiredArgsConstructor(access = AccessLevel.PRIVATE)
     public static final class RetrierBuilder<T, R> {
         
-        @NonNull private final BiConsumer<List<T>, List<R>> trier;
+        private final @NotNull BiConsumer<List<T>, List<R>> trier;
         
-        @NonNull private final Function<R, T> reconverter;
+        private final @NotNull Function<R, T> reconverter;
         
         private IntBinaryPredicate stopTrying;
         private IntUnaryOperator sleepLength;
@@ -186,65 +202,80 @@ public class Retrier<T, R> {
         
         private Logger log;
         
-        private static void checkNonNegative(final int i, final String name) {
+        private RetrierBuilder(final @NotNull BiConsumer<List<T>, List<R>> trier,
+                final @NotNull Function<R, T> reconverter) {
+            Objects.requireNonNull(trier);
+            Objects.requireNonNull(reconverter);
+            this.trier = trier;
+            this.reconverter = reconverter;
+        }
+        
+        private static void checkNonNegative(final int i, final @NotNull String name) {
             if (i < 0) {
                 throw new IllegalArgumentException(name + " can't be negative");
             }
         }
         
-        public RetrierBuilder<T, R> stopTrying(final IntBinaryPredicate stopTrying) {
+        public final @NotNull RetrierBuilder<T, R> stopTrying(
+                final @NotNull IntBinaryPredicate stopTrying) {
             Objects.requireNonNull(stopTrying);
             this.stopTrying = stopTrying;
             return this;
         }
         
-        public RetrierBuilder<T, R> stopTrying(final int maxAttempts,
+        public final @NotNull RetrierBuilder<T, R> stopTrying(final int maxAttempts,
                 final int acceptableNumFailures) {
             checkNonNegative(maxAttempts, "maxAttempts");
             checkNonNegative(acceptableNumFailures, "acceptableNumFailures");
-            return stopTrying((numAttempts, numFailures) ->
-                    numAttempts >= maxAttempts || numFailures <= acceptableNumFailures);
+            this.maxAttempts = maxAttempts;
+            this.acceptableNumFailures = acceptableNumFailures;
+            return this;
         }
         
-        public RetrierBuilder<T, R> maxAttempts(final int maxAttempts) {
+        public final @NotNull RetrierBuilder<T, R> maxAttempts(final int maxAttempts) {
             return stopTrying(maxAttempts, 0);
         }
         
-        public RetrierBuilder<T, R> acceptableNumFailures(final int acceptableNumFailures) {
+        public final @NotNull RetrierBuilder<T, R> acceptableNumFailures(
+                final int acceptableNumFailures) {
             return stopTrying(Integer.MAX_VALUE, acceptableNumFailures);
         }
         
-        public RetrierBuilder<T, R> sleepLength(final IntUnaryOperator sleepLength) {
+        public final @NotNull RetrierBuilder<T, R> sleepLength(
+                final @NotNull IntUnaryOperator sleepLength) {
             Objects.requireNonNull(sleepLength);
             this.sleepLength = sleepLength;
             return this;
         }
         
-        public RetrierBuilder<T, R> sleepLength(final int sleepLength) {
+        public final @NotNull RetrierBuilder<T, R> sleepLength(final int sleepLength) {
             checkNonNegative(sleepLength, "sleepLength");
             return sleepLength(i -> sleepLength);
         }
         
-        public RetrierBuilder<T, R> sleepLengthMultiplied(final int sleepLength) {
+        public final @NotNull RetrierBuilder<T, R> sleepLengthMultiplied(final int sleepLength) {
             checkNonNegative(sleepLength, "sleepLength");
             return sleepLength(i -> i * sleepLength);
         }
         
-        public RetrierBuilder<T, R> log(final Logger log) {
+        public final @NotNull RetrierBuilder<T, R> log(final @Nullable Logger log) {
             this.log = log;
             return this;
         }
         
-        public Retrier<T, R> build() {
-            Objects.requireNonNull(trier);
+        public final @NotNull Retrier<T, R> build() {
             if (sleepLength == null) {
                 sleepLength(1000);
             }
-            if (maxAttempts == null) {
-                maxAttempts = Integer.MAX_VALUE;
-            }
-            if (acceptableNumFailures == null) {
-                acceptableNumFailures = Integer.MIN_VALUE;
+            if (stopTrying == null) {
+                if (maxAttempts == null) {
+                    maxAttempts = Integer.MAX_VALUE;
+                }
+                if (acceptableNumFailures == null) {
+                    acceptableNumFailures = Integer.MIN_VALUE;
+                }
+                stopTrying = (numAttempts, numFailures) ->
+                        numAttempts >= maxAttempts || numFailures <= acceptableNumFailures;
             }
             return new Retrier<>(trier, reconverter, stopTrying, sleepLength, log);
         }

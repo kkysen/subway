@@ -28,6 +28,7 @@ public class SubwayClient {
         System.out.println(NyctFeedHeader.getDescriptor().getFields());
         System.out.println(FeedHeader.getDescriptor().getFields());
         final ExtensionRegistry registry = null;
+        
         //        System.out.println(feed.getHeader().getExtension(NyctFeedHeader.getDescriptor());
         //        System.out.println(entity);
         new JsonFormat().printToString(feed);

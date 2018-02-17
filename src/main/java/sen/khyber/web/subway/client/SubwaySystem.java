@@ -21,7 +21,7 @@ import com.google.protobuf.ExtensionRegistry;
  *
  * @author Khyber Sen
  */
-public class SubwaySystem {
+public final class SubwaySystem {
     
     private static final ExtensionRegistry registry = ExtensionRegistry.newInstance();
     
@@ -47,6 +47,7 @@ public class SubwaySystem {
     private void update(final FeedMessage message) {
         final FeedHeader header = message.getHeader();
         //        NyctFeedHeader.getDescriptor().getFields()
+        // TODO
     }
     
     private void update(final WebResponse update) throws IOException {

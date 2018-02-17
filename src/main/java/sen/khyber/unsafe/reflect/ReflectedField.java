@@ -8,6 +8,7 @@ import lombok.experimental.Accessors;
 import java.lang.invoke.VarHandle;
 import java.lang.reflect.Field;
 
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import sun.misc.Unsafe;
@@ -21,13 +22,13 @@ import sun.misc.Unsafe;
 @Getter
 public final class ReflectedField extends ReflectedMember<Field, String, VarHandle> {
     
-    private static final Unsafe unsafe = UnsafeUtils.getUnsafe();
+    private static final @NotNull Unsafe unsafe = UnsafeUtils.getUnsafe();
     
-    private final Field field;
+    private final @NotNull Field field;
     private @Nullable Object object;
     private final long offset;
     
-    public ReflectedField(final Field field) {
+    public ReflectedField(final @NotNull Field field) {
         super(field);
         this.field = field;
         object = isStatic ? field.getDeclaringClass() : null;
@@ -35,21 +36,21 @@ public final class ReflectedField extends ReflectedMember<Field, String, VarHand
     }
     
     @Override
-    protected final String getSignature(final Field field) {
+    protected final @NotNull String getSignature(final @NotNull Field field) {
         return field.getName();
     }
     
     @Override
-    protected final VarHandle convertToHandle() throws IllegalAccessException {
+    protected final @NotNull VarHandle convertToHandle() throws IllegalAccessException {
         return LOOKUP.unreflectVarHandle(field);
     }
     
-    public final ReflectedField bindUnsafe(final Object newObject) {
+    public final @NotNull ReflectedField bindUnsafe(final @Nullable Object newObject) {
         object = newObject;
         return this;
     }
     
-    public final ReflectedField bind(final Object newObject) {
+    public final @NotNull ReflectedField bind(final @Nullable Object newObject) {
         if (isStatic) {
             return this;
         }

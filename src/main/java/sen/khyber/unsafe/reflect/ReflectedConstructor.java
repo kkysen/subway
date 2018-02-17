@@ -3,6 +3,8 @@ package sen.khyber.unsafe.reflect;
 import java.lang.invoke.MethodHandle;
 import java.lang.reflect.Constructor;
 
+import org.jetbrains.annotations.NotNull;
+
 /**
  * Created by Khyber Sen on 2/11/2018.
  *
@@ -10,19 +12,19 @@ import java.lang.reflect.Constructor;
  */
 public final class ReflectedConstructor<T> extends ReflectedFunction<Constructor<T>> {
     
-    private final Constructor<T> constructor;
+    private final @NotNull Constructor<T> constructor;
     
-    public ReflectedConstructor(final Constructor<T> constructor) {
+    public ReflectedConstructor(final @NotNull Constructor<T> constructor) {
         super(constructor);
         this.constructor = constructor;
     }
     
-    public Constructor<T> constructor() {
+    public @NotNull Constructor<T> constructor() {
         return constructor;
     }
     
     @Override
-    protected final MethodHandle convertToHandle() throws IllegalAccessException {
+    protected final @NotNull MethodHandle convertToHandle() throws IllegalAccessException {
         return LOOKUP.unreflectConstructor(constructor);
     }
     

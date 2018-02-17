@@ -53,14 +53,14 @@ public final class Reflector {
         return depth;
     }
     
-    public final @NotNull ReflectedClass<?> get(final @NotNull Class<?> klass,
+    public final <T> @NotNull ReflectedClass<T> get(final @NotNull Class<T> klass,
             final boolean cache) {
         Objects.requireNonNull(klass);
         if (!cache) {
             return new ReflectedClass<>(klass);
         }
         //noinspection ConstantConditions
-        return classes.compute(klass, acquirer::acquire).value();
+        return (ReflectedClass<T>) classes.compute(klass, acquirer::acquire).value();
     }
     
     public final @NotNull Optional<ReflectedClass<?>> get(final @NotNull String className,
@@ -68,7 +68,7 @@ public final class Reflector {
         return classForName(className).map(klass -> get(klass, cache));
     }
     
-    public final @NotNull ReflectedClass<?> get(final @NotNull Class<?> klass) {
+    public final <T> @NotNull ReflectedClass<T> get(final @NotNull Class<T> klass) {
         return get(klass, true);
     }
     
