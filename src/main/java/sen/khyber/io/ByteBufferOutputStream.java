@@ -11,6 +11,7 @@ import org.jetbrains.annotations.NotNull;
 /**
  * @author Khyber Sen
  */
+@Deprecated // doesn't work correctly
 @RequiredArgsConstructor
 public class ByteBufferOutputStream extends OutputStream {
     

@@ -63,36 +63,66 @@ public final class ReflectedField extends ReflectedMember<Field, String, VarHand
     
     // TODO finish for all types
     
-    public final Object getObject() {
+    public final Object getObject(final @Nullable Object object) {
         return unsafe.getObject(object, offset);
     }
     
-    public final void setObject(final @Nullable Object value) {
+    public final Object getObject() {
+        return getObject(object);
+    }
+    
+    public final void setObject(final @Nullable Object object, final @Nullable Object value) {
         unsafe.putObject(object, offset, value);
     }
     
-    public final Object setGetObject(final @Nullable Object value) {
+    public final void setObject(final @Nullable Object value) {
+        setObject(object, value);
+    }
+    
+    public final Object setGetObject(final @Nullable Object object, final @Nullable Object value) {
         return unsafe.getAndSetObject(object, offset, value);
     }
     
+    public final Object setGetObject(final @Nullable Object value) {
+        return setGetObject(object, value);
+    }
+    
+    public final void setToNull(final @Nullable Object object) {
+        setObject(object, null);
+    }
+    
     public final void setToNull() {
-        setObject(null);
+        setToNull(object);
+    }
+    
+    public final Object setGetToNull(final @Nullable Object object) {
+        return setGetObject(object, null);
     }
     
     public final Object setGetToNull() {
-        return setGetObject(null);
+        return setGetToNull(object);
+    }
+    
+    public final int getInt(final @Nullable Object object) {
+        return unsafe.getInt(object, offset);
     }
     
     public final int getInt() {
-        return unsafe.getInt(object, offset);
+        return getInt(object);
     }
+    
+    // TODO add other unbound versions
     
     public final int getIntVolatile() {
         return unsafe.getIntVolatile(object, offset);
     }
     
-    public final void setInt(final int value) {
+    public final void setInt(final @Nullable Object object, final int value) {
         unsafe.putInt(object, offset, value);
+    }
+    
+    public final void setInt(final int value) {
+        setInt(object, value);
     }
     
     public final int getSetInt(final int value) {

@@ -32,10 +32,8 @@ public final class ArrayListUtils {
     public static final <T> ArrayList<T> wrap(final T[] a) {
         Objects.requireNonNull(a);
         final ArrayList<T> list = arrayListClass.allocateInstance();
-        elementDataField.bindUnsafe(list).setObject(a);
-        elementDataField.bindUnsafe(null);
-        sizeField.bindUnsafe(list).setInt(a.length);
-        sizeField.bindUnsafe(null);
+        elementDataField.setObject(list, a);
+        sizeField.setInt(list, a.length);
         return list;
     }
     

@@ -1,6 +1,7 @@
 package sen.khyber.web.subway.client;
 
 import sen.khyber.web.client.WebClient;
+import sen.khyber.web.client.WebResponse;
 import sen.khyber.web.subway.client.proto.FeedEntity;
 import sen.khyber.web.subway.client.proto.FeedHeader;
 import sen.khyber.web.subway.client.proto.FeedMessage;
@@ -22,7 +23,10 @@ public class SubwayClient {
         final String url = "http://datamine.mta.info/mta_esi.php"
                 + "?feed_id=1"
                 + "&key=d7eb784b9ca027e13f9fed6dbe48e2b8";
-        final byte[] bytes = WebClient.get().forUrl(url).bytes();
+        final byte[] bytes;
+        try (WebResponse response = WebClient.get().forUrl(url)) {
+            bytes = response.bytes();
+        }
         final FeedMessage feed = FeedMessage.parseFrom(bytes);
         final FeedEntity entity = feed.getEntity(0);
         System.out.println(NyctFeedHeader.getDescriptor().getFields());
@@ -31,7 +35,8 @@ public class SubwayClient {
         
         //        System.out.println(feed.getHeader().getExtension(NyctFeedHeader.getDescriptor());
         //        System.out.println(entity);
-        new JsonFormat().printToString(feed);
+        final String s = new JsonFormat().printToString(feed);
+        System.out.println(s);
     }
     
 }

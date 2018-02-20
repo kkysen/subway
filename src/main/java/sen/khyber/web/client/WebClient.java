@@ -1,7 +1,10 @@
 package sen.khyber.web.client;
 
 import sen.khyber.io.IO;
+import sen.khyber.io.IOSupplier;
 
+import java.io.ByteArrayInputStream;
+import java.io.CharArrayReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Reader;
@@ -23,7 +26,7 @@ import com.gargoylesoftware.htmlunit.html.HtmlPage;
 
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
-import okhttp3.Request;
+import okhttp3.Request.Builder;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
 
@@ -33,6 +36,8 @@ import okhttp3.ResponseBody;
  * @author Khyber Sen
  */
 public class WebClient {
+    
+    private static Process pythonSimpleHttpServer;
     
     private static final OkHttpClient DEFAULT_CLIENT = new OkHttpClient();
     private static final Charset DEFAULT_CHARSET = StandardCharsets.UTF_8;
@@ -56,9 +61,30 @@ public class WebClient {
     
     private final Map<String, WebResponse> responseCache = new HashMap<>();
     
-    public WebResponse forUrl(final String url) {
+    protected WebResponse newForUrl(final @NotNull String url) {
+        Objects.requireNonNull(url);
+        return new WebResponseImpl(client.newCall(new Builder().url(url).build())::execute);
+    }
+    
+    public final WebResponse forUrl(final @NotNull String url) {
+        Objects.requireNonNull(url);
+        System.out.println(url);
         //noinspection resource
-        return responseCache.computeIfAbsent(url, WebResponseImpl::new).refresh();
+        return responseCache.computeIfAbsent(url, this::newForUrl).refresh();
+    }
+    
+    public final WebResponse forPath(final @NotNull Path path) {
+        Objects.requireNonNull(path);
+        //        if (pythonSimpleHttpServer == null) {
+        //            try {
+        //                pythonSimpleHttpServer = new ProcessBuilder("python", "-m", "http.server")
+        //                        .start();
+        //            } catch (final IOException e) {
+        //                throw ExceptionUtils.atRuntime(e);
+        //            }
+        //        }
+        return forUrl(
+                "http://localhost:8000/" + IO.Home.relativize(path).toString().replace('\\', '/'));
     }
     
     /**
@@ -68,7 +94,7 @@ public class WebClient {
      */
     private final class WebResponseImpl implements WebResponse {
         
-        private final String url;
+        private final @NotNull IOSupplier<Response> responseSupplier;
         
         private @Nullable Response response;
         private @Nullable MediaType contentType;
@@ -80,15 +106,15 @@ public class WebClient {
         private @Nullable HtmlPage renderedPage;
         private @Nullable Document renderedDocument;
         
-        public WebResponseImpl(final @NotNull String url) {
-            Objects.requireNonNull(url);
-            this.url = url;
+        public WebResponseImpl(final @NotNull IOSupplier<Response> responseSupplier) {
+            Objects.requireNonNull(responseSupplier);
+            this.responseSupplier = responseSupplier;
         }
         
         @Override
         public final @NotNull Response response() throws IOException {
             if (response == null) {
-                response = client.newCall(new Request.Builder().url(url).build()).execute();
+                response = responseSupplier.get();
             }
             return response;
         }
@@ -177,17 +203,19 @@ public class WebClient {
         
         @Override
         public final @NotNull InputStream inputStream() throws IOException {
-            return body().byteStream();
+            //            return new ByteBufferInputStream(byteBuffer().duplicate());
+            return new ByteArrayInputStream(bytes());
         }
         
         @Override
         public final @NotNull Reader reader() throws IOException {
-            return body().charStream();
+            //            return new CharBufferReader(charBuffer().duplicate());
+            return new CharArrayReader(chars());
         }
         
         @Override
         public final @NotNull ByteBuffer put(final @NotNull ByteBuffer out) throws IOException {
-            return out.put(byteBuffer());
+            return out.put(byteBuffer().duplicate());
         }
         
         @Override

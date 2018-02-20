@@ -180,8 +180,8 @@ public final class TripUpdate extends ExtendableMessage<TripUpdate> implements T
         
         /**
          * <pre>
-         * Delay (in seconds) can be positive (meaning that the vehicle is late) or
-         * negative (meaning that the vehicle is ahead of schedule). Delay of 0
+         * MTALineStatus (in seconds) can be positive (meaning that the vehicle is late) or
+         * negative (meaning that the vehicle is ahead of schedule). MTALineStatus of 0
          * means that the vehicle is exactly on time.
          * </pre>
          * <p>
@@ -191,8 +191,8 @@ public final class TripUpdate extends ExtendableMessage<TripUpdate> implements T
         
         /**
          * <pre>
-         * Delay (in seconds) can be positive (meaning that the vehicle is late) or
-         * negative (meaning that the vehicle is ahead of schedule). Delay of 0
+         * MTALineStatus (in seconds) can be positive (meaning that the vehicle is late) or
+         * negative (meaning that the vehicle is ahead of schedule). MTALineStatus of 0
          * means that the vehicle is exactly on time.
          * </pre>
          * <p>
@@ -355,8 +355,8 @@ public final class TripUpdate extends ExtendableMessage<TripUpdate> implements T
         
         /**
          * <pre>
-         * Delay (in seconds) can be positive (meaning that the vehicle is late) or
-         * negative (meaning that the vehicle is ahead of schedule). Delay of 0
+         * MTALineStatus (in seconds) can be positive (meaning that the vehicle is late) or
+         * negative (meaning that the vehicle is ahead of schedule). MTALineStatus of 0
          * means that the vehicle is exactly on time.
          * </pre>
          * <p>
@@ -369,8 +369,8 @@ public final class TripUpdate extends ExtendableMessage<TripUpdate> implements T
         
         /**
          * <pre>
-         * Delay (in seconds) can be positive (meaning that the vehicle is late) or
-         * negative (meaning that the vehicle is ahead of schedule). Delay of 0
+         * MTALineStatus (in seconds) can be positive (meaning that the vehicle is late) or
+         * negative (meaning that the vehicle is ahead of schedule). MTALineStatus of 0
          * means that the vehicle is exactly on time.
          * </pre>
          * <p>
@@ -854,8 +854,8 @@ public final class TripUpdate extends ExtendableMessage<TripUpdate> implements T
             
             /**
              * <pre>
-             * Delay (in seconds) can be positive (meaning that the vehicle is late) or
-             * negative (meaning that the vehicle is ahead of schedule). Delay of 0
+             * MTALineStatus (in seconds) can be positive (meaning that the vehicle is late) or
+             * negative (meaning that the vehicle is ahead of schedule). MTALineStatus of 0
              * means that the vehicle is exactly on time.
              * </pre>
              * <p>
@@ -868,8 +868,8 @@ public final class TripUpdate extends ExtendableMessage<TripUpdate> implements T
             
             /**
              * <pre>
-             * Delay (in seconds) can be positive (meaning that the vehicle is late) or
-             * negative (meaning that the vehicle is ahead of schedule). Delay of 0
+             * MTALineStatus (in seconds) can be positive (meaning that the vehicle is late) or
+             * negative (meaning that the vehicle is ahead of schedule). MTALineStatus of 0
              * means that the vehicle is exactly on time.
              * </pre>
              * <p>
@@ -882,8 +882,8 @@ public final class TripUpdate extends ExtendableMessage<TripUpdate> implements T
             
             /**
              * <pre>
-             * Delay (in seconds) can be positive (meaning that the vehicle is late) or
-             * negative (meaning that the vehicle is ahead of schedule). Delay of 0
+             * MTALineStatus (in seconds) can be positive (meaning that the vehicle is late) or
+             * negative (meaning that the vehicle is ahead of schedule). MTALineStatus of 0
              * means that the vehicle is exactly on time.
              * </pre>
              * <p>
@@ -898,8 +898,8 @@ public final class TripUpdate extends ExtendableMessage<TripUpdate> implements T
             
             /**
              * <pre>
-             * Delay (in seconds) can be positive (meaning that the vehicle is late) or
-             * negative (meaning that the vehicle is ahead of schedule). Delay of 0
+             * MTALineStatus (in seconds) can be positive (meaning that the vehicle is late) or
+             * negative (meaning that the vehicle is ahead of schedule). MTALineStatus of 0
              * means that the vehicle is exactly on time.
              * </pre>
              * <p>

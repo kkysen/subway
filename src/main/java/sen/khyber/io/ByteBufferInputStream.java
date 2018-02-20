@@ -9,6 +9,7 @@ import org.jetbrains.annotations.NotNull;
 /**
  * @author Khyber Sen
  */
+@Deprecated // doesn't work correctly
 public class ByteBufferInputStream extends InputStream {
     
     private final ByteBuffer buffer;
