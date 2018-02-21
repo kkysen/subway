@@ -14,6 +14,7 @@ import org.dom4j.Element;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 
 import static sen.khyber.web.subway.client.status.MTADateTimes.clockTimeFormatter;
 import static sen.khyber.web.subway.client.status.MTADateTimes.dateFormatter;
@@ -39,8 +40,8 @@ public final class MTALineStatus implements StringBuilderAppendable {
     private final @NotNull MTAStatus status;
     private final @NotNull LocalDateTime startTime;
     private @Nullable LocalDateTime endTime;
-    private final @Nullable String htmlText;
-    private final @Nullable String text;
+    private final @Nullable String rawHtml;
+    private final @Nullable Document htmlDoc;
     
     private boolean showText = false;
     
@@ -53,8 +54,8 @@ public final class MTALineStatus implements StringBuilderAppendable {
         this.status = status;
         this.startTime = startTime;
         endTime = null;
-        htmlText = text;
-        this.text = text == null ? null : Jsoup.parseBodyFragment(text).text();
+        rawHtml = text;
+        htmlDoc = text == null ? null : Jsoup.parseBodyFragment(text);
     }
     
     static MTALineStatus createDefault(final @NotNull MTALine<?> line) {
@@ -86,7 +87,8 @@ public final class MTALineStatus implements StringBuilderAppendable {
     }
     
     // TODO move this to own util class?
-    private static @Nullable String trimEmptyToNull(@Nullable String s) {
+    private static @Nullable
+    String trimEmptyToNull(@Nullable String s) {
         if (s == null) {
             return null;
         }
@@ -125,7 +127,7 @@ public final class MTALineStatus implements StringBuilderAppendable {
                     break;
                 default:
                     // TODO throw more specific exception
-                    throw new IllegalStateException("extra element");
+                    throw new IllegalStateException("extra element: " + element.getName());
             }
         }
         
@@ -169,8 +171,8 @@ public final class MTALineStatus implements StringBuilderAppendable {
     public final boolean equals(final MTALineStatus lineStatus) {
         return isSameKind(lineStatus)
                 && status == lineStatus.status
-                && Objects.equals(text, lineStatus.text)
-                && Objects.equals(htmlText, lineStatus.htmlText);
+                && Objects.equals(htmlDoc, lineStatus.htmlDoc)
+                && Objects.equals(rawHtml, lineStatus.rawHtml);
     }
     
     @Override
@@ -182,7 +184,7 @@ public final class MTALineStatus implements StringBuilderAppendable {
     
     @Override
     public final int hashCode() {
-        return Objects.hash(line(), status, startTime, htmlText);
+        return Objects.hash(line(), status, startTime, rawHtml);
     }
     
     public final void setSameEndTime(final @Nullable MTALineStatus lineStatus) {
@@ -209,7 +211,19 @@ public final class MTALineStatus implements StringBuilderAppendable {
             start = dateTimeFormatter.format(startTime);
             end = dateTimeFormatter.format(endTime);
         }
-        return start + end;
+        return start + ", " + end;
+    }
+    
+    @Override
+    public final @NotNull StringBuilder appendSelf(final @NotNull StringBuilder sb) {
+        sb.append(status.officialName())
+                .append(" at ")
+                .append(formattedTime());
+        if (showText) {
+            sb.append(": ");
+            sb.append(String.valueOf(htmlDoc));
+        }
+        return sb;
     }
     
     @Override
@@ -217,19 +231,14 @@ public final class MTALineStatus implements StringBuilderAppendable {
         sb.append(type.name())
                 .append("LineStatus[")
                 .append(line().officialName())
-                .append(": ")
-                .append(status.officialName())
-                .append(" at ")
-                .append(formattedTime());
-        if (showText) {
-            sb.append(": ");
-            sb.append(String.valueOf(text));
-        }
+                .append(": ");
+        appendSelf(sb);
         return sb.append(']');
     }
     
     @Override
-    public final @NotNull String toString() {
+    public final @NotNull
+    String toString() {
         return defaultToString();
     }
     

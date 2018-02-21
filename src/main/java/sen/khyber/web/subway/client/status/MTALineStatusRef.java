@@ -40,7 +40,7 @@ public final class MTALineStatusRef implements StringBuilderAppendable {
         return value;
     }
     
-    public final boolean set(final @NotNull MTALineStatus value, final SubwaySystemStatus system) {
+    public final boolean set(final @NotNull MTALineStatus value, final MTASystemStatus system) {
         Objects.requireNonNull(value);
         final MTALineStatus old = this.value;
         if (old != null) {
@@ -61,6 +61,14 @@ public final class MTALineStatusRef implements StringBuilderAppendable {
     public final void init(final @NotNull MTALine<?> line) {
         Objects.requireNonNull(line);
         value = MTALineStatus.createDefault(line);
+    }
+    
+    @Override
+    public final @NotNull StringBuilder appendSelf(final @NotNull StringBuilder sb) {
+        if (value == null) {
+            return sb;
+        }
+        return value.appendSelf(sb);
     }
     
     @Override

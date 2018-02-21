@@ -2,38 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d9e19bf5-212d-4cc6-aaa9-eaf034bf55a1" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__jaxen_jaxen_1_1_6.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_dom4j_dom4j_2_1_0.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/io/IOSupplier.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/fields/EnumUtils.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/util/Iterate.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/util/StringBuilderAppendable.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/util/ref/Ref.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/BridgeOrTunnelLine.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/BusLine.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/LIRRLine.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/MTADateTimes.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/MTALine.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/MTALineStatus.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/MTALineStatusRef.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/MTAStatus.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/MTAType.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/MetroNorthLine.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/SubwayLine.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/SubwaySystemStatus.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/util/Indent.java" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/Subway.iml" afterPath="$PROJECT_DIR$/Subway.iml" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/io/ByteBufferInputStream.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/io/ByteBufferInputStream.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/io/ByteBufferOutputStream.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/io/ByteBufferOutputStream.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/fields/ArrayListUtils.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/fields/ArrayListUtils.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflect/ReflectedField.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflect/ReflectedField.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/web/client/WebClient.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/web/client/WebClient.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/SubwayClient.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/SubwayClient.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/SubwayDelays.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/proto/TripUpdate.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/proto/TripUpdate.java" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/unsafe/fields/StringUtils.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/unsafe/fields/StringUtils.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/util/ObjectUtils.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/util/ObjectUtils.class" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/util/StringBuilderAppendable.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/util/StringBuilderAppendable.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/MTADateTimes.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/MTADateTimes.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/MTALine.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/MTALine.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/MTALineStatus.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/MTALineStatus.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/MTALineStatusRef.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/MTALineStatusRef.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/MTAType.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/MTAType.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/SubwaySystemStatus.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/MTASystemStatus.java" />
       <change beforePath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/GtfsRealtime.class" afterPath="$PROJECT_DIR$/target/classes/sen/khyber/web/subway/client/proto/GtfsRealtime.class" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
@@ -95,40 +72,60 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="750">
-      <file leaf-file-name="SubwaySystemStatus.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/SubwaySystemStatus.java">
+      <file leaf-file-name="MTASystemStatus.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/MTASystemStatus.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="798">
-              <caret line="122" column="34" lean-forward="false" selection-start-line="122" selection-start-column="34" selection-end-line="122" selection-end-column="34" />
+            <state relative-caret-position="514">
+              <caret line="191" column="5" lean-forward="false" selection-start-line="191" selection-start-column="5" selection-end-line="191" selection-end-column="5" />
               <folding>
-                <element signature="e#2127#2128#0" expanded="true" />
-                <element signature="e#2161#2162#0" expanded="true" />
-                <element signature="e#2198#2199#0" expanded="true" />
-                <element signature="e#2225#2226#0" expanded="true" />
-                <element signature="e#5865#5866#0" expanded="true" />
-                <element signature="e#5905#5906#0" expanded="true" />
+                <element signature="e#2211#2212#0" expanded="true" />
+                <element signature="e#2245#2246#0" expanded="true" />
+                <element signature="e#2282#2283#0" expanded="true" />
+                <element signature="e#2309#2310#0" expanded="true" />
+                <element signature="e#6659#6660#0" expanded="true" />
+                <element signature="e#6699#6700#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SubwayClient.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/SubwayClient.java">
+      <file leaf-file-name="MTALine.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/MTALine.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="680">
-              <caret line="31" column="46" lean-forward="true" selection-start-line="31" selection-start-column="46" selection-end-line="31" selection-end-column="46" />
+            <state relative-caret-position="538">
+              <caret line="53" column="5" lean-forward="true" selection-start-line="53" selection-start-column="5" selection-end-line="53" selection-end-column="5" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="NyctFeedHeader.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/proto/NyctFeedHeader.java">
+      <file leaf-file-name="MTAType.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/MTAType.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="773">
-              <caret line="117" column="5" lean-forward="true" selection-start-line="117" selection-start-column="5" selection-end-line="117" selection-end-column="5" />
+            <state relative-caret-position="474">
+              <caret line="55" column="5" lean-forward="false" selection-start-line="55" selection-start-column="5" selection-end-line="55" selection-end-column="5" />
               <folding>
-                <element signature="method#getDescriptor#0;class#NyctFeedHeader#0" expanded="true" />
+                <element signature="e#2707#2708#0" expanded="true" />
+                <element signature="e#2747#2748#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Indent.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/util/Indent.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-206">
+              <caret line="35" column="5" lean-forward="true" selection-start-line="35" selection-start-column="5" selection-end-line="35" selection-end-column="5" />
+              <folding>
+                <element signature="e#302#303#0" expanded="true" />
+                <element signature="e#333#334#0" expanded="true" />
+                <element signature="e#584#585#0" expanded="true" />
+                <element signature="e#618#619#0" expanded="true" />
+                <element signature="e#661#662#0" expanded="true" />
+                <element signature="e#732#733#0" expanded="true" />
+                <element signature="e#1310#1311#0" expanded="true" />
+                <element signature="e#1350#1351#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -137,15 +134,24 @@
       <file leaf-file-name="MTALineStatus.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/MTALineStatus.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="674">
-              <caret line="83" column="9" lean-forward="true" selection-start-line="83" selection-start-column="9" selection-end-line="83" selection-end-column="9" />
+            <state relative-caret-position="520">
+              <caret line="236" column="5" lean-forward="false" selection-start-line="236" selection-start-column="5" selection-end-line="236" selection-end-column="5" />
               <folding>
-                <element signature="e#5501#5502#0" expanded="true" />
-                <element signature="e#5541#5542#0" expanded="true" />
-                <element signature="e#5581#5582#0" expanded="true" />
-                <element signature="e#5611#5612#0" expanded="true" />
-                <element signature="e#6013#6067#0" expanded="true" />
+                <element signature="e#5554#5555#0" expanded="true" />
+                <element signature="e#5594#5595#0" expanded="true" />
+                <element signature="e#5634#5635#0" expanded="true" />
+                <element signature="e#5664#5665#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MTADateTimes.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/MTADateTimes.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="654">
+              <caret line="42" column="1" lean-forward="false" selection-start-line="42" selection-start-column="1" selection-end-line="42" selection-end-column="1" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -153,7 +159,7 @@
       <file leaf-file-name="BusLine.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/BusLine.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="440">
+            <state relative-caret-position="680">
               <caret line="26" column="9" lean-forward="false" selection-start-line="26" selection-start-column="9" selection-end-line="26" selection-end-column="9" />
               <folding />
             </state>
@@ -173,87 +179,9 @@
       <file leaf-file-name="SubwayLine.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/SubwayLine.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="158">
+            <state relative-caret-position="680">
               <caret line="26" column="77" lean-forward="false" selection-start-line="26" selection-start-column="77" selection-end-line="26" selection-end-column="77" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="serviceStatus.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/Downloads/serviceStatus.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="280">
-              <caret line="617" column="9" lean-forward="true" selection-start-line="617" selection-start-column="9" selection-end-line="617" selection-end-column="9" />
-              <folding>
-                <element signature="n#subway#0;n#service#0;n#!!top" expanded="false" />
-                <element signature="n#line#0;n#subway#0;n#service#0;n#!!top" expanded="false" />
-                <element signature="n#text#0;n#line#0;n#subway#0;n#service#0;n#!!top" expanded="false" />
-                <element signature="n#line#1;n#subway#0;n#service#0;n#!!top" expanded="false" />
-                <element signature="n#text#0;n#line#1;n#subway#0;n#service#0;n#!!top" expanded="false" />
-                <element signature="n#line#2;n#subway#0;n#service#0;n#!!top" expanded="false" />
-                <element signature="n#line#3;n#subway#0;n#service#0;n#!!top" expanded="false" />
-                <element signature="n#text#0;n#line#3;n#subway#0;n#service#0;n#!!top" expanded="false" />
-                <element signature="n#line#4;n#subway#0;n#service#0;n#!!top" expanded="false" />
-                <element signature="n#text#0;n#line#4;n#subway#0;n#service#0;n#!!top" expanded="false" />
-                <element signature="n#line#5;n#subway#0;n#service#0;n#!!top" expanded="false" />
-                <element signature="n#text#0;n#line#5;n#subway#0;n#service#0;n#!!top" expanded="false" />
-                <element signature="n#line#6;n#subway#0;n#service#0;n#!!top" expanded="false" />
-                <element signature="n#text#0;n#line#6;n#subway#0;n#service#0;n#!!top" expanded="false" />
-                <element signature="n#line#7;n#subway#0;n#service#0;n#!!top" expanded="false" />
-                <element signature="n#line#8;n#subway#0;n#service#0;n#!!top" expanded="false" />
-                <element signature="n#text#0;n#line#8;n#subway#0;n#service#0;n#!!top" expanded="false" />
-                <element signature="n#line#9;n#subway#0;n#service#0;n#!!top" expanded="false" />
-                <element signature="n#text#0;n#line#9;n#subway#0;n#service#0;n#!!top" expanded="false" />
-                <element signature="n#line#10;n#subway#0;n#service#0;n#!!top" expanded="false" />
-                <element signature="n#line#0;n#bus#0;n#service#0;n#!!top" expanded="false" />
-                <element signature="n#text#0;n#line#0;n#bus#0;n#service#0;n#!!top" expanded="false" />
-                <element signature="n#line#1;n#bus#0;n#service#0;n#!!top" expanded="false" />
-                <element signature="n#text#0;n#line#1;n#bus#0;n#service#0;n#!!top" expanded="false" />
-                <element signature="n#line#2;n#bus#0;n#service#0;n#!!top" expanded="false" />
-                <element signature="n#text#0;n#line#2;n#bus#0;n#service#0;n#!!top" expanded="false" />
-                <element signature="n#line#3;n#bus#0;n#service#0;n#!!top" expanded="false" />
-                <element signature="n#text#0;n#line#3;n#bus#0;n#service#0;n#!!top" expanded="false" />
-                <element signature="n#line#4;n#bus#0;n#service#0;n#!!top" expanded="false" />
-                <element signature="n#line#5;n#bus#0;n#service#0;n#!!top" expanded="false" />
-                <element signature="n#text#0;n#line#5;n#bus#0;n#service#0;n#!!top" expanded="false" />
-                <element signature="n#line#6;n#bus#0;n#service#0;n#!!top" expanded="false" />
-                <element signature="n#text#0;n#line#6;n#bus#0;n#service#0;n#!!top" expanded="false" />
-                <element signature="n#line#7;n#bus#0;n#service#0;n#!!top" expanded="false" />
-                <element signature="n#text#0;n#line#7;n#bus#0;n#service#0;n#!!top" expanded="false" />
-                <element signature="n#line#8;n#bus#0;n#service#0;n#!!top" expanded="false" />
-                <element signature="n#line#9;n#bus#0;n#service#0;n#!!top" expanded="false" />
-                <element signature="n#line#0;n#BT#0;n#service#0;n#!!top" expanded="false" />
-                <element signature="n#line#1;n#BT#0;n#service#0;n#!!top" expanded="false" />
-                <element signature="n#line#2;n#BT#0;n#service#0;n#!!top" expanded="false" />
-                <element signature="n#line#3;n#BT#0;n#service#0;n#!!top" expanded="false" />
-                <element signature="n#line#4;n#BT#0;n#service#0;n#!!top" expanded="false" />
-                <element signature="n#line#5;n#BT#0;n#service#0;n#!!top" expanded="false" />
-                <element signature="n#text#0;n#line#5;n#BT#0;n#service#0;n#!!top" expanded="false" />
-                <element signature="n#line#6;n#BT#0;n#service#0;n#!!top" expanded="false" />
-                <element signature="n#line#7;n#BT#0;n#service#0;n#!!top" expanded="false" />
-                <element signature="n#line#8;n#BT#0;n#service#0;n#!!top" expanded="false" />
-                <element signature="n#line#0;n#LIRR#0;n#service#0;n#!!top" expanded="false" />
-                <element signature="n#line#1;n#LIRR#0;n#service#0;n#!!top" expanded="false" />
-                <element signature="n#line#2;n#LIRR#0;n#service#0;n#!!top" expanded="false" />
-                <element signature="n#line#3;n#LIRR#0;n#service#0;n#!!top" expanded="false" />
-                <element signature="n#line#4;n#LIRR#0;n#service#0;n#!!top" expanded="false" />
-                <element signature="n#line#5;n#LIRR#0;n#service#0;n#!!top" expanded="false" />
-                <element signature="n#line#6;n#LIRR#0;n#service#0;n#!!top" expanded="false" />
-                <element signature="n#line#7;n#LIRR#0;n#service#0;n#!!top" expanded="false" />
-                <element signature="n#line#8;n#LIRR#0;n#service#0;n#!!top" expanded="false" />
-                <element signature="n#line#9;n#LIRR#0;n#service#0;n#!!top" expanded="false" />
-                <element signature="n#line#10;n#LIRR#0;n#service#0;n#!!top" expanded="false" />
-                <element signature="n#line#0;n#MetroNorth#0;n#service#0;n#!!top" expanded="false" />
-                <element signature="n#line#1;n#MetroNorth#0;n#service#0;n#!!top" expanded="false" />
-                <element signature="n#line#2;n#MetroNorth#0;n#service#0;n#!!top" expanded="false" />
-                <element signature="n#line#3;n#MetroNorth#0;n#service#0;n#!!top" expanded="false" />
-                <element signature="n#line#4;n#MetroNorth#0;n#service#0;n#!!top" expanded="false" />
-                <element signature="n#line#5;n#MetroNorth#0;n#service#0;n#!!top" expanded="false" />
-                <element signature="n#line#6;n#MetroNorth#0;n#service#0;n#!!top" expanded="false" />
-                <element signature="n#line#7;n#MetroNorth#0;n#service#0;n#!!top" expanded="false" />
-                <element signature="n#line#8;n#MetroNorth#0;n#service#0;n#!!top" expanded="false" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -264,8 +192,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -330,8 +258,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/fields/StringUtils.java" />
-        <option value="$PROJECT_DIR$/src/main/java/sen/khyber/web/client/SilencedRenderingWebClient.java" />
         <option value="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/SubwaySystem.java" />
         <option value="$PROJECT_DIR$/src/main/java/sen/khyber/util/ObjectUtils.java" />
         <option value="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflect/Reflector.java" />
@@ -360,13 +286,9 @@
         <option value="$PROJECT_DIR$/src/main/java/sen/khyber/util/ref/Ref.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/SubwaySystemStatus.java" />
-        <option value="$PROJECT_DIR$/src/main/java/sen/khyber/util/StringBuilderAppendable.java" />
-        <option value="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/MTAType.java" />
         <option value="$PROJECT_DIR$/src/main/java/sen/khyber/web/client/FileSystemClient.java" />
         <option value="$PROJECT_DIR$/src/main/java/sen/khyber/io/IOSupplier.java" />
-        <option value="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/MTALine.java" />
         <option value="$PROJECT_DIR$/src/main/java/sen/khyber/web/client/WebClient.java" />
-        <option value="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/MTADateTimes.java" />
         <option value="$PROJECT_DIR$/src/main/java/sen/khyber/util/Iterate.java" />
         <option value="$PROJECT_DIR$/src/main/java/sen/khyber/io/ByteBufferInputStream.java" />
         <option value="$PROJECT_DIR$/src/main/java/sen/khyber/io/ByteBufferOutputStream.java" />
@@ -377,10 +299,16 @@
         <option value="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/SubwayLine.java" />
         <option value="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/MTAStatus.java" />
         <option value="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/BusLine.java" />
-        <option value="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/MTALineStatusRef.java" />
-        <option value="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/SubwaySystemStatus.java" />
-        <option value="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/MTALineStatus.java" />
         <option value="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/proto/GtfsRealtime.java" />
+        <option value="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/SubwaySystemStatus.java" />
+        <option value="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/MTAType.java" />
+        <option value="$PROJECT_DIR$/src/main/java/sen/khyber/util/Indent.java" />
+        <option value="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/MTADateTimes.java" />
+        <option value="$PROJECT_DIR$/src/main/java/sen/khyber/util/StringBuilderAppendable.java" />
+        <option value="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/MTALineStatusRef.java" />
+        <option value="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/MTALineStatus.java" />
+        <option value="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/MTALine.java" />
+        <option value="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/MTASystemStatus.java" />
       </list>
     </option>
   </component>
@@ -442,7 +370,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scratches" />
       <pane id="Scope" />
       <pane id="ProjectPane">
@@ -560,10 +487,18 @@
               <item name="client" type="462c0819:PsiDirectoryNode" />
               <item name="status" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="Subway" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Subway" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -622,13 +557,32 @@
     </option>
     <option name="contentProportion" value="0.013253811" />
   </component>
-  <component name="RunManager" selected="Application.SubwaySystemStatus">
+  <component name="RunManager" selected="Application.MTASystemStatus">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="HTML_USED" value="false" />
       <option name="WIDTH" value="400" />
       <option name="HEIGHT" value="300" />
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
       <module />
+    </configuration>
+    <configuration name="MTASystemStatus" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="sen.khyber.web.subway.client.status.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="MAIN_CLASS_NAME" value="sen.khyber.web.subway.client.status.MTASystemStatus" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="Subway" />
+      <envs />
     </configuration>
     <configuration name="Misc" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
@@ -657,25 +611,6 @@
         </pattern>
       </extension>
       <option name="MAIN_CLASS_NAME" value="sen.khyber.web.subway.client.SubwayClient" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="Subway" />
-      <envs />
-    </configuration>
-    <configuration name="SubwaySystemStatus" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="sen.khyber.web.subway.client.status.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="MAIN_CLASS_NAME" value="sen.khyber.web.subway.client.status.SubwaySystemStatus" />
       <option name="VM_PARAMETERS" />
       <option name="PROGRAM_PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
@@ -778,11 +713,11 @@
       <item index="1" class="java.lang.String" itemvalue="Spring Boot.SubwayApplication (1)" />
       <item index="2" class="java.lang.String" itemvalue="Application.SubwayClient" />
       <item index="3" class="java.lang.String" itemvalue="Application.Misc" />
-      <item index="4" class="java.lang.String" itemvalue="Application.SubwaySystemStatus" />
+      <item index="4" class="java.lang.String" itemvalue="Application.MTASystemStatus" />
     </list>
     <recent_temporary>
       <list size="3">
-        <item index="0" class="java.lang.String" itemvalue="Application.SubwaySystemStatus" />
+        <item index="0" class="java.lang.String" itemvalue="Application.MTASystemStatus" />
         <item index="1" class="java.lang.String" itemvalue="Application.SubwayClient" />
         <item index="2" class="java.lang.String" itemvalue="Application.Misc" />
       </list>
@@ -830,7 +765,8 @@
       <workItem from="1519019221562" duration="178000" />
       <workItem from="1519021148247" duration="4184000" />
       <workItem from="1519073387050" duration="1448000" />
-      <workItem from="1519104536726" duration="3947000" />
+      <workItem from="1519104536726" duration="4108000" />
+      <workItem from="1519187602667" duration="6441000" />
     </task>
     <task id="LOCAL-00001" summary="got Hello World example to work in Spring Boot">
       <created>1517269361130</created>
@@ -951,11 +887,18 @@
       <option name="project" value="LOCAL" />
       <updated>1518849596361</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Successfully parsed MTA's serviceStatus.txt, which gives delays et al. on subways et al.">
+      <created>1519157977714</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1519157977714</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="225661000" />
+    <option name="totallyTimeSpent" value="232263000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -968,7 +911,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-16" y="-16" width="3232" height="1732" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="FindBugs-IDEA" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293201" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -993,7 +935,7 @@
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293201" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run Dashboard" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293201" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293201" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3293201" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293201" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293201" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="CheckStyle" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293201" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1003,6 +945,7 @@
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32998705" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25906736" sideWeight="0.5028329" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="JProfiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.38739377" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="JE" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32998705" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Debug with VisualVM" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1012,7 +955,6 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection Results" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293201" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.38739377" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1066,7 +1008,8 @@
     <MESSAGE value="added better methods to ReflectedClass for methods and constructors,&#10;and switched FunctionSignature to using factory methods: &#10;ofFunction, forMethod, and forConstructor,&#10;where the forConstructor uses a null function name &#10;(since it will only be compared to other constructors)" />
     <MESSAGE value="added ChainReference, which holds a chain of reference counts &#10;such that increasing a child's count increase it's parents,&#10;but not vice versa&#10;&#10;used ChainReference in revised Reflector so that spawnChild()&#10;returns a new Reflector with chain()ed ChainReferences,&#10;so that when spawnChild().clear() is called,&#10;the actual ReflectedClasses are only removed from the cache&#10;if all references to it are gone&#10;&#10;Note: all the ChainedReference stuff is all untested" />
     <MESSAGE value="Fixed ReflectedMembers, because FunctionSignatures were clashing&#10;due to synthetic members with identical signatures.&#10;Now, all synthetic members are filtered out, except for in rawMembers.&#10;&#10;Null-annotated Retrier." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed ReflectedMembers, because FunctionSignatures were clashing&#10;due to synthetic members with identical signatures.&#10;Now, all synthetic members are filtered out, except for in rawMembers.&#10;&#10;Null-annotated Retrier." />
+    <MESSAGE value="Successfully parsed MTA's serviceStatus.txt, which gives delays et al. on subways et al." />
+    <option name="LAST_COMMIT_MESSAGE" value="Successfully parsed MTA's serviceStatus.txt, which gives delays et al. on subways et al." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1076,36 +1019,6 @@
           <line>680</line>
           <properties />
           <option name="timeStamp" value="35" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/SubwaySystemStatus.java</url>
-          <line>113</line>
-          <properties />
-          <option name="timeStamp" value="37" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/SubwaySystemStatus.java</url>
-          <line>114</line>
-          <properties />
-          <option name="timeStamp" value="38" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/SubwaySystemStatus.java</url>
-          <line>115</line>
-          <properties />
-          <option name="timeStamp" value="39" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/SubwaySystemStatus.java</url>
-          <line>116</line>
-          <properties />
-          <option name="timeStamp" value="40" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/SubwaySystemStatus.java</url>
-          <line>118</line>
-          <properties />
-          <option name="timeStamp" value="42" />
         </line-breakpoint>
       </breakpoints>
       <option name="time" value="43" />
@@ -1248,95 +1161,6 @@ method.invoke(o);</expression-string>
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://C:/Program Files/Java/jdk-9.0.4/lib/src.zip!/java.base/java/lang/Appendable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="50" column="29" lean-forward="true" selection-start-line="50" selection-start-column="29" selection-end-line="50" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/util/StringBuilderAppendable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="16" column="5" lean-forward="true" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/web/client/FileSystemClient.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/io/IOSupplier.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="9" column="20" lean-forward="true" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk-9.0.4/lib/src.zip!/java.base/java/net/URL.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-560">
-          <caret line="674" column="9" lean-forward="true" selection-start-line="674" selection-start-column="9" selection-end-line="674" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk-9.0.4/lib/src.zip!/java.base/java/net/URI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-902">
-          <caret line="1685" column="9" lean-forward="true" selection-start-line="1685" selection-start-column="9" selection-end-line="1685" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk-9.0.4/lib/src.zip!/java.base/java/util/function/Supplier.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="47" column="12" lean-forward="false" selection-start-line="47" selection-start-column="12" selection-end-line="47" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/MTAType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="278">
-          <caret line="43" column="0" lean-forward="false" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="class#CurrentLineOrdinalOffset#0;class#MTAType#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/com/squareup/okhttp3/okhttp/3.6.0/okhttp-3.6.0-sources.jar!/okhttp3/HttpUrl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="618">
-          <caret line="906" column="3" lean-forward="true" selection-start-line="906" selection-start-column="3" selection-end-line="906" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/com/squareup/okhttp3/okhttp/3.6.0/okhttp-3.6.0-sources.jar!/okhttp3/Request.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4200">
-          <caret line="156" column="5" lean-forward="false" selection-start-line="156" selection-start-column="5" selection-end-line="156" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk-9.0.4/lib/src.zip!/java.base/java/lang/ProcessBuilder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1862">
-          <caret line="189" column="19" lean-forward="false" selection-start-line="189" selection-start-column="19" selection-end-line="189" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk-9.0.4/lib/src.zip!/java.base/java/nio/file/Path.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="298">
-          <caret line="504" column="9" lean-forward="false" selection-start-line="504" selection-start-column="9" selection-end-line="504" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/com/squareup/okhttp3/okhttp/3.6.0/okhttp-3.6.0-sources.jar!/okhttp3/internal/http/HttpHeaders.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="298">
-          <caret line="51" column="21" lean-forward="false" selection-start-line="51" selection-start-column="21" selection-end-line="51" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/com/squareup/okhttp3/okhttp/3.6.0/okhttp-3.6.0-sources.jar!/okhttp3/internal/http/RealResponseBody.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="534">
@@ -1355,10 +1179,6 @@ method.invoke(o);</expression-string>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="600">
           <caret line="113" column="24" lean-forward="false" selection-start-line="113" selection-start-column="24" selection-end-line="113" selection-end-column="24" />
-          <folding>
-            <element signature="e#4450#4451#0" expanded="false" />
-            <element signature="e#4489#4490#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1445,7 +1265,6 @@ method.invoke(o);</expression-string>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="40">
           <caret line="448" column="0" lean-forward="false" selection-start-line="448" selection-start-column="0" selection-end-line="448" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1453,14 +1272,6 @@ method.invoke(o);</expression-string>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="480">
           <caret line="19" column="5" lean-forward="false" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/MTADateTimes.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="40">
-          <caret line="24" column="19" lean-forward="false" selection-start-line="24" selection-start-column="19" selection-end-line="24" selection-end-column="19" />
           <folding />
         </state>
       </provider>
@@ -1507,8 +1318,8 @@ method.invoke(o);</expression-string>
     </entry>
     <entry file="file://$USER_HOME$/Downloads/serviceStatus.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="617" column="9" lean-forward="true" selection-start-line="617" selection-start-column="9" selection-end-line="617" selection-end-column="9" />
+        <state relative-caret-position="1480">
+          <caret line="617" column="9" lean-forward="false" selection-start-line="617" selection-start-column="9" selection-end-line="617" selection-end-column="9" />
           <folding>
             <element signature="n#subway#0;n#service#0;n#!!top" expanded="false" />
             <element signature="n#line#0;n#subway#0;n#service#0;n#!!top" expanded="false" />
@@ -1585,29 +1396,20 @@ method.invoke(o);</expression-string>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="298">
           <caret line="220" column="0" lean-forward="false" selection-start-line="220" selection-start-column="0" selection-end-line="220" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/SubwayLine.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="158">
+        <state relative-caret-position="680">
           <caret line="26" column="77" lean-forward="false" selection-start-line="26" selection-start-column="77" selection-end-line="26" selection-end-column="77" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/MTAStatus.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="520">
-          <caret line="29" column="37" lean-forward="false" selection-start-line="29" selection-start-column="37" selection-end-line="29" selection-end-column="37" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/BusLine.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
+        <state relative-caret-position="680">
           <caret line="26" column="9" lean-forward="false" selection-start-line="26" selection-start-column="9" selection-end-line="26" selection-end-column="9" />
           <folding />
         </state>
@@ -1617,7 +1419,6 @@ method.invoke(o);</expression-string>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="418">
           <caret line="509" column="9" lean-forward="true" selection-start-line="509" selection-start-column="9" selection-end-line="509" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1629,51 +1430,12 @@ method.invoke(o);</expression-string>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/MTALine.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="314">
-          <caret line="54" column="5" lean-forward="false" selection-start-line="54" selection-start-column="5" selection-end-line="54" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#533#534#0" expanded="false" />
-            <element signature="e#572#573#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/MTALineStatusRef.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="53" column="9" lean-forward="false" selection-start-line="53" selection-start-column="9" selection-end-line="53" selection-end-column="9" />
-          <folding>
-            <element signature="e#737#738#0" expanded="true" />
-            <element signature="e#777#778#0" expanded="true" />
-            <element signature="e#817#818#0" expanded="true" />
-            <element signature="e#847#848#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/MTALineStatus.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="674">
-          <caret line="83" column="9" lean-forward="true" selection-start-line="83" selection-start-column="9" selection-end-line="83" selection-end-column="9" />
-          <folding>
-            <element signature="e#5501#5502#0" expanded="true" />
-            <element signature="e#5541#5542#0" expanded="true" />
-            <element signature="e#5581#5582#0" expanded="true" />
-            <element signature="e#5611#5612#0" expanded="true" />
-            <element signature="e#6013#6067#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/proto/GtfsRealtime.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#19676#0" expanded="true" />
+            <element signature="e#0#19676#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1682,29 +1444,6 @@ method.invoke(o);</expression-string>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="280">
           <caret line="41" column="19" lean-forward="false" selection-start-line="41" selection-start-column="19" selection-end-line="41" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/SubwaySystemStatus.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="798">
-          <caret line="122" column="34" lean-forward="false" selection-start-line="122" selection-start-column="34" selection-end-line="122" selection-end-column="34" />
-          <folding>
-            <element signature="e#2127#2128#0" expanded="true" />
-            <element signature="e#2161#2162#0" expanded="true" />
-            <element signature="e#2198#2199#0" expanded="true" />
-            <element signature="e#2225#2226#0" expanded="true" />
-            <element signature="e#5865#5866#0" expanded="true" />
-            <element signature="e#5905#5906#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/SubwayClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="680">
-          <caret line="31" column="46" lean-forward="true" selection-start-line="31" selection-start-column="46" selection-end-line="31" selection-end-column="46" />
           <folding />
         </state>
       </provider>
@@ -1719,10 +1458,198 @@ method.invoke(o);</expression-string>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/proto/NyctFeedHeader.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="773">
+        <state relative-caret-position="3160">
           <caret line="117" column="5" lean-forward="true" selection-start-line="117" selection-start-column="5" selection-end-line="117" selection-end-column="5" />
           <folding>
-            <element signature="method#getDescriptor#0;class#NyctFeedHeader#0" expanded="true" />
+            <element signature="method#getDescriptor#0;class#NyctFeedHeader#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/SubwayClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="680">
+          <caret line="31" column="46" lean-forward="true" selection-start-line="31" selection-start-column="46" selection-end-line="31" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Subway.iml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="0">
+            <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/jsoup/jsoup/1.10.3/jsoup-1.10.3-sources.jar!/org/jsoup/Jsoup.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="298">
+          <caret line="231" column="25" lean-forward="false" selection-start-line="231" selection-start-column="25" selection-end-line="231" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/MTAStatus.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="520">
+          <caret line="29" column="37" lean-forward="false" selection-start-line="29" selection-start-column="37" selection-end-line="29" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/jsoup/jsoup/1.10.3/jsoup-1.10.3-sources.jar!/org/jsoup/parser/TokenQueue.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="23" column="5" lean-forward="true" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/jsoup/jsoup/1.10.3/jsoup-1.10.3-sources.jar!/org/jsoup/select/QueryParser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="358">
+          <caret line="30" column="25" lean-forward="true" selection-start-line="30" selection-start-column="25" selection-end-line="30" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/jsoup/jsoup/1.10.3/jsoup-1.10.3-sources.jar!/org/jsoup/select/Selector.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="518">
+          <caret line="85" column="39" lean-forward="true" selection-start-line="85" selection-start-column="39" selection-end-line="85" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/jsoup/jsoup/1.10.3/jsoup-1.10.3-sources.jar!/org/jsoup/safety/Whitelist.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="538">
+          <caret line="126" column="5" lean-forward="true" selection-start-line="126" selection-start-column="5" selection-end-line="126" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/jsoup/jsoup/1.10.3/jsoup-1.10.3-sources.jar!/org/jsoup/nodes/Element.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="298">
+          <caret line="958" column="26" lean-forward="true" selection-start-line="958" selection-start-column="26" selection-end-line="958" selection-end-column="26" />
+          <folding>
+            <element signature="e#11135#11136#0" expanded="false" />
+            <element signature="e#11189#11190#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/MTAType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="474">
+          <caret line="55" column="5" lean-forward="false" selection-start-line="55" selection-start-column="5" selection-end-line="55" selection-end-column="5" />
+          <folding>
+            <element signature="e#2707#2708#0" expanded="true" />
+            <element signature="e#2747#2748#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/util/Indent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-206">
+          <caret line="35" column="5" lean-forward="true" selection-start-line="35" selection-start-column="5" selection-end-line="35" selection-end-column="5" />
+          <folding>
+            <element signature="e#302#303#0" expanded="true" />
+            <element signature="e#333#334#0" expanded="true" />
+            <element signature="e#584#585#0" expanded="true" />
+            <element signature="e#618#619#0" expanded="true" />
+            <element signature="e#661#662#0" expanded="true" />
+            <element signature="e#732#733#0" expanded="true" />
+            <element signature="e#1310#1311#0" expanded="true" />
+            <element signature="e#1350#1351#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk-9.0.4/lib/src.zip!/java.base/java/time/format/DateTimeFormatter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="298">
+          <caret line="1756" column="18" lean-forward="false" selection-start-line="1756" selection-start-column="18" selection-end-line="1756" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/MTADateTimes.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="654">
+          <caret line="42" column="1" lean-forward="false" selection-start-line="42" selection-start-column="1" selection-end-line="42" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/util/StringBuilderAppendable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="16" column="5" lean-forward="true" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/MTALineStatusRef.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="498">
+          <caret line="71" column="5" lean-forward="true" selection-start-line="71" selection-start-column="5" selection-end-line="71" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/MTALineStatus.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="520">
+          <caret line="236" column="5" lean-forward="false" selection-start-line="236" selection-start-column="5" selection-end-line="236" selection-end-column="5" />
+          <folding>
+            <element signature="e#5554#5555#0" expanded="true" />
+            <element signature="e#5594#5595#0" expanded="true" />
+            <element signature="e#5634#5635#0" expanded="true" />
+            <element signature="e#5664#5665#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/MTALine.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="538">
+          <caret line="53" column="5" lean-forward="true" selection-start-line="53" selection-start-column="5" selection-end-line="53" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/MTASystemStatus.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="514">
+          <caret line="191" column="5" lean-forward="false" selection-start-line="191" selection-start-column="5" selection-end-line="191" selection-end-column="5" />
+          <folding>
+            <element signature="e#2211#2212#0" expanded="true" />
+            <element signature="e#2245#2246#0" expanded="true" />
+            <element signature="e#2282#2283#0" expanded="true" />
+            <element signature="e#2309#2310#0" expanded="true" />
+            <element signature="e#6659#6660#0" expanded="true" />
+            <element signature="e#6699#6700#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -36,7 +36,7 @@ public final class MTADateTimes {
     // e.x. 4:56PM 2/17/2018
     static final DateTimeFormatter dateTimeFormatter = new DateTimeFormatterBuilder()
             .append(timeFormatter)
-            .appendLiteral(' ')
+            .appendLiteral(", ")
             .append(dateFormatter)
             .toFormatter();
     

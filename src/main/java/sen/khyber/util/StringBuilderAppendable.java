@@ -12,6 +12,10 @@ public interface StringBuilderAppendable {
     
     public @NotNull StringBuilder append(@NotNull StringBuilder sb);
     
+    public default @NotNull StringBuilder appendSelf(final @NotNull StringBuilder sb) {
+        return append(sb);
+    }
+    
     public default @NotNull String defaultToString() {
         return append(new StringBuilder()).toString();
     }

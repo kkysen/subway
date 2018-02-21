@@ -45,13 +45,19 @@ public interface MTALine<T extends Enum<T> & MTALine<T>> extends StringBuilderAp
     public int hashCode();
     
     @Override
+    public default @NotNull StringBuilder appendSelf(final @NotNull StringBuilder sb) {
+        sb.append(officialName())
+                .append(": Status[");
+        return lineStatus()
+                .appendSelf(sb)
+                .append(']');
+    }
+    
+    @Override
     public default @NotNull StringBuilder append(final @NotNull StringBuilder sb) {
         sb.append(type().name())
-                .append("Line[")
-                .append(officialName())
-                .append(", status=");
-        return lineStatus().append(sb)
-                .append(']');
+                .append("Line[");
+        return appendSelf(sb).append(']');
     }
     
     @Override

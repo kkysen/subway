@@ -83,6 +83,10 @@ public enum MTAType {
                     .toArray(Pair[]::new)
     );
     
+    public static final @NotNull MTAType get(final int ordinal) {
+        return values()[ordinal];
+    }
+    
     public static final @Nullable MTAType parse(final @NotNull String officialName) {
         Objects.requireNonNull(officialName);
         return officialNameToMTAType.get(officialName);
