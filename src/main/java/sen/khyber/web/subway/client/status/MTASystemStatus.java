@@ -29,8 +29,6 @@ import org.jetbrains.annotations.Nullable;
  */
 public class MTASystemStatus implements StringBuilderAppendable {
     
-    private @Nullable LocalDateTime timeStamp;
-    
     private final @NotNull MTALine<?>[][] linesMap = new MTALine[MTAType.numTypes()][];
     
     private int fillLinesMapAndCountTotalNumLines() {
@@ -48,15 +46,9 @@ public class MTASystemStatus implements StringBuilderAppendable {
     
     private final int totalNumLines = fillLinesMapAndCountTotalNumLines();
     
-    //    private final @NotNull MTALine<?>[] lines = new MTALine[totalNumLines];
-    //    
-    //    {
-    //        for (final MTAType type : MTAType.values()) {
-    //            for (final MTALine<?> line : type.lines()) {
-    //                lines[line.allLinesOrdinal()] = line;
-    //            }
-    //        }
-    //    }
+    private @Nullable LocalDateTime timeStamp;
+    
+    private boolean showOnlyDelayedLines = false;
     
     private boolean debug = true; // TODO change later
     
@@ -66,6 +58,26 @@ public class MTASystemStatus implements StringBuilderAppendable {
                 line.initLineStatus();
             }
         }
+    }
+    
+    public final void showStatusText(final boolean showStatusText) {
+        for (final MTALine<?>[] lines : linesMap) {
+            for (final MTALine<?> line : lines) {
+                line.lineStatus().showText(showStatusText);
+            }
+        }
+    }
+    
+    public final void showStatusText() {
+        showStatusText(true);
+    }
+    
+    public final void showOnlyDelayedLines(final boolean showOnlyDelayedLines) {
+        this.showOnlyDelayedLines = showOnlyDelayedLines;
+    }
+    
+    public final void showOnlyDelayedLines() {
+        showOnlyDelayedLines(true);
     }
     
     public final void debug(final boolean debug) {
@@ -150,14 +162,27 @@ public class MTASystemStatus implements StringBuilderAppendable {
     
     @Override
     public final @NotNull StringBuilder append(final @NotNull StringBuilder sb) {
-        final Indent indent = Indent.get();
+        // save local copy to not allow mutatation in the middle of method
+        final boolean showOnlyDelayedLines = this.showOnlyDelayedLines;
+        
         sb.append("MTASystemStatus {");
         if (timeStamp == null) {
             return sb.append("Never Updated}");
         }
+        
+        final Indent indent = Indent.get();
         indent.indent();
-        indent.append(sb).append("timeStamp: ")
-                .append(MTADateTimes.dateTimeFormatter.format(timeStamp));
+        
+        indent.append(sb)
+                .append("timeStamp: ")
+                .append(MTADateTimes.dateTimeFormatter.format(timeStamp))
+                .append(',');
+        
+        indent.append(sb)
+                .append("delayedLinesOnly: ")
+                .append(showOnlyDelayedLines)
+                .append(',');
+        
         for (int i = 0; i < linesMap.length; i++) {
             indent.append(sb);
             final MTAType type = MTAType.get(i);
@@ -165,12 +190,19 @@ public class MTASystemStatus implements StringBuilderAppendable {
             sb.append(" {");
             indent.indent();
             for (int j = 0; j < linesMap[i].length; j++) {
-                indent.append(sb);
                 final MTALine<?> line = type.line(j);
+                if (showOnlyDelayedLines && line.lineStatus().get().status()
+                        == MTAStatus.GOOD_SERVICE) {
+                    continue;
+                }
+                indent.append(sb);
                 line.appendSelf(sb);
             }
             indent.unindent();
-            indent.append(sb);
+            if (sb.charAt(sb.length() - 1) != '{') {
+                // if last char is '{', just place '}' immediately after
+                indent.append(sb);
+            }
             sb.append("},");
         }
         indent.unindent();
@@ -187,6 +219,7 @@ public class MTASystemStatus implements StringBuilderAppendable {
     public static void main(final String[] args) throws IOException, DocumentException {
         System.out.println(LocalDateTime.now().format(timeStampFormatter));
         final MTASystemStatus mtaSystemStatus = new MTASystemStatus();
+        mtaSystemStatus.showOnlyDelayedLines();
         mtaSystemStatus.update();
         System.out.println(mtaSystemStatus);
     }

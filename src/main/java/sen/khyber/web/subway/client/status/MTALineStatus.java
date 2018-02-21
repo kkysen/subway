@@ -40,8 +40,8 @@ public final class MTALineStatus implements StringBuilderAppendable {
     private final @NotNull MTAStatus status;
     private final @NotNull LocalDateTime startTime;
     private @Nullable LocalDateTime endTime;
-    private final @Nullable String rawHtml;
-    private final @Nullable Document htmlDoc;
+    private final @Nullable String rawHtmlText;
+    private final @Nullable Document htmlTextDoc;
     
     private boolean showText = false;
     
@@ -54,8 +54,8 @@ public final class MTALineStatus implements StringBuilderAppendable {
         this.status = status;
         this.startTime = startTime;
         endTime = null;
-        rawHtml = text;
-        htmlDoc = text == null ? null : Jsoup.parseBodyFragment(text);
+        rawHtmlText = text;
+        htmlTextDoc = text == null ? null : Jsoup.parseBodyFragment(text);
     }
     
     static MTALineStatus createDefault(final @NotNull MTALine<?> line) {
@@ -163,6 +163,10 @@ public final class MTALineStatus implements StringBuilderAppendable {
         return type.line(lineOrdinal);
     }
     
+    public final MTAStatus status() {
+        return status;
+    }
+    
     public final boolean isSameKind(final MTALineStatus lineStatus) {
         return type == lineStatus.type && lineOrdinal == lineStatus.lineOrdinal;
     }
@@ -171,8 +175,8 @@ public final class MTALineStatus implements StringBuilderAppendable {
     public final boolean equals(final MTALineStatus lineStatus) {
         return isSameKind(lineStatus)
                 && status == lineStatus.status
-                && Objects.equals(htmlDoc, lineStatus.htmlDoc)
-                && Objects.equals(rawHtml, lineStatus.rawHtml);
+                && Objects.equals(htmlTextDoc, lineStatus.htmlTextDoc)
+                && Objects.equals(rawHtmlText, lineStatus.rawHtmlText);
     }
     
     @Override
@@ -184,7 +188,7 @@ public final class MTALineStatus implements StringBuilderAppendable {
     
     @Override
     public final int hashCode() {
-        return Objects.hash(line(), status, startTime, rawHtml);
+        return Objects.hash(line(), status, startTime, rawHtmlText);
     }
     
     public final void setSameEndTime(final @Nullable MTALineStatus lineStatus) {
@@ -221,7 +225,7 @@ public final class MTALineStatus implements StringBuilderAppendable {
                 .append(formattedTime());
         if (showText) {
             sb.append(": ");
-            sb.append(String.valueOf(htmlDoc));
+            sb.append(String.valueOf(htmlTextDoc));
         }
         return sb;
     }
