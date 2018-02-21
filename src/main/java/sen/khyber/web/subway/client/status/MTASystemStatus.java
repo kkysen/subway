@@ -7,6 +7,7 @@ import sen.khyber.util.StringBuilderAppendable;
 import sen.khyber.web.client.WebClient;
 import sen.khyber.web.client.WebResponse;
 
+import java.io.Closeable;
 import java.io.IOException;
 import java.io.InputStream;
 import java.time.LocalDateTime;
@@ -14,6 +15,8 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.time.temporal.ChronoField;
 import java.util.Objects;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
@@ -27,7 +30,9 @@ import org.jetbrains.annotations.Nullable;
  *
  * @author Khyber Sen
  */
-public class MTASystemStatus implements StringBuilderAppendable {
+public class MTASystemStatus implements StringBuilderAppendable, Runnable, Closeable {
+    
+    private static final int DEFAULT_INTERVAL_SECONDS = 60;
     
     private final @NotNull MTALine<?>[][] linesMap = new MTALine[MTAType.numTypes()][];
     
@@ -52,12 +57,26 @@ public class MTASystemStatus implements StringBuilderAppendable {
     
     private boolean debug = true; // TODO change later
     
-    public MTASystemStatus() {
+    private final int intervalSeconds;
+    
+    private final WebClient client = WebClient.get(); // could change
+    
+    private final @NotNull Timer timer = new Timer();
+    private final Object runLock = new Object();
+    private volatile boolean isRunning = false;
+    private volatile @Nullable RunMTASystemStatusTask task = null;
+    
+    public MTASystemStatus(final int intervalSeconds) {
+        this.intervalSeconds = intervalSeconds;
         for (final MTALine<?>[] lines : linesMap) {
             for (final MTALine<?> line : lines) {
                 line.initLineStatus();
             }
         }
+    }
+    
+    public MTASystemStatus() {
+        this(DEFAULT_INTERVAL_SECONDS);
     }
     
     public final void showStatusText(final boolean showStatusText) {
@@ -151,13 +170,79 @@ public class MTASystemStatus implements StringBuilderAppendable {
     
     // TODO catch exceptions
     private void update() throws IOException, DocumentException {
-        final WebClient client = WebClient.get();
         final WebResponse response = debug
                 ? client.forPath(IO.Downloads.resolve("serviceStatus.xml"))
                 : client.forUrl("http://web.mta.info/status/serviceStatus.txt");
         try (response) {
             update(response);
         }
+    }
+    
+    private final class RunMTASystemStatusTask extends TimerTask {
+        
+        private void keepUpdating() {
+            //noinspection InfiniteLoopStatement
+            while (true) {
+                //noinspection OverlyBroadCatchBlock
+                try {
+                    update();
+                    // TODO
+                } catch (final Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        
+        @Override
+        public final void run() {
+            try {
+                keepUpdating();
+            } catch (final Throwable e) {
+                synchronized (runLock) {
+                    e.printStackTrace();
+                    task = null;
+                    super.cancel();
+                }
+            }
+        }
+        
+    }
+    
+    @Override
+    public final void run() {
+        if (isRunning) {
+            return;
+        }
+        synchronized (runLock) {
+            if (isRunning) {
+                return;
+            }
+            if (task == null) {
+                task = new RunMTASystemStatusTask();
+            }
+            //noinspection ConstantConditions
+            timer.scheduleAtFixedRate(task, 0, intervalSeconds);
+            isRunning = true;
+        }
+    }
+    
+    public final void cancel() {
+        if (task == null) {
+            return;
+        }
+        synchronized (runLock) {
+            if (task == null) {
+                return;
+            }
+            //noinspection ConstantConditions
+            task.cancel();
+            isRunning = false;
+        }
+    }
+    
+    @Override
+    public final void close() {
+        cancel();
     }
     
     @Override
