@@ -162,6 +162,11 @@ public final class ReflectedClass<T> {
         }
     }
     
+    public final ReflectedClass<T> ensureInitialized() {
+        unsafe.ensureClassInitialized(klass);
+        return this;
+    }
+    
     @SuppressWarnings("ConstantConditions")
     final void clearUnsafe() {
         final Lazy<ReflectedMembers<?, ?, ?>>[] allMembers =

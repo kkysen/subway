@@ -23,7 +23,7 @@ public interface FastSerializable {
     
     private ByteBuffer serialize(final boolean direct) {
         final int length = serializedLength();
-        final ByteBuffer out = direct 
+        final ByteBuffer out = direct
                 ? ByteBuffer.allocateDirect(length)
                 : ByteBuffer.allocate(length);
         ByteBufferUtils.useNativeOrder(out);

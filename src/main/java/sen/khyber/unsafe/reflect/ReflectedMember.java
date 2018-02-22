@@ -27,6 +27,13 @@ public abstract class ReflectedMember<T extends AccessibleObject & Member, Signa
     
     private @Nullable Handle handle;
     
+    ReflectedMember(final @NotNull ReflectedMember<T, Signature, Handle> copy) {
+        member = copy.member;
+        signature = copy.signature;
+        name = copy.name;
+        isStatic = copy.isStatic;
+    }
+    
     ReflectedMember(final @NotNull T member) {
         Accessor.setAccessible(member);
         this.member = member;

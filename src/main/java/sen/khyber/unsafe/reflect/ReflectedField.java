@@ -20,13 +20,27 @@ import sun.misc.Unsafe;
  */
 @Accessors(fluent = true)
 @Getter
-public final class ReflectedField extends ReflectedMember<Field, String, VarHandle> {
+public final class ReflectedField extends ReflectedMember<Field, String, VarHandle>
+        implements Cloneable {
     
     private static final @NotNull Unsafe unsafe = UnsafeUtils.getUnsafe();
     
     private final @NotNull Field field;
     private @Nullable Object object;
     private final long offset;
+    
+    private ReflectedField(final @NotNull ReflectedField copy) {
+        super(copy);
+        field = copy.field;
+        object = copy.object;
+        offset = copy.offset;
+    }
+    
+    @SuppressWarnings("MethodDoesntCallSuperMethod")
+    @Override
+    public ReflectedField clone() {
+        return new ReflectedField(this);
+    }
     
     public ReflectedField(final @NotNull Field field) {
         super(field);

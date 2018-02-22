@@ -176,10 +176,17 @@ public class Misc {
         }
     }
     
+    private static void testNonExportedClassReflection() {
+        ClassNames.useSimpleNameInToString(true);
+        Reflectors.main()
+                .get("sun.nio.ch.NativeThreadSet")
+                .orElseThrow(AssertionError::new)
+                .methods()
+                .forEach(System.out::println);
+    }
+    
     public static void main(final String[] args) throws IOException {
-        //        chicagoCrimeJson();
-        reflectedMemberToStringUsingClassNames();
-        getMethodLineNumber();
+        testNonExportedClassReflection();
     }
     
 }
