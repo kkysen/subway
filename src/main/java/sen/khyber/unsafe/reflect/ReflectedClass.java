@@ -12,9 +12,10 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
+import java.util.function.Supplier;
 
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import sun.misc.Unsafe;
 
@@ -28,6 +29,8 @@ import sun.misc.Unsafe;
 public final class ReflectedClass<T> {
     
     private static final Unsafe unsafe = UnsafeUtils.getUnsafe();
+    
+    private static final Supplier<? extends RuntimeException> newNPE = NullPointerException::new;
     
     private final @NotNull Class<T> klass;
     
@@ -56,16 +59,24 @@ public final class ReflectedClass<T> {
         return fields.get().membersMap();
     }
     
-    public final @Nullable ReflectedField field(final @NotNull String name) {
-        return fields.get().member(name);
+    public final @NotNull Optional<ReflectedField> field(final @NotNull String name) {
+        return Optional.ofNullable(fields.get().member(name));
+    }
+    
+    public final @NotNull ReflectedField fieldUnchecked(final @NotNull String name) {
+        return field(name).orElseThrow(newNPE);
     }
     
     public final @NotNull Field[] rawFields() {
         return fields.get().rawMembers();
     }
     
-    public final @Nullable Field rawField(final @NotNull String name) {
-        return fields.get().rawMember(name);
+    public final @NotNull Optional<Field> rawField(final @NotNull String name) {
+        return Optional.ofNullable(fields.get().rawMember(name));
+    }
+    
+    public final @NotNull Field rawFieldUnchecked(final @NotNull String name) {
+        return rawField(name).orElseThrow(newNPE);
     }
     
     public final boolean hasField(final @NotNull String name) {
@@ -80,30 +91,50 @@ public final class ReflectedClass<T> {
         return methods.get().membersMap();
     }
     
-    public final @Nullable ReflectedMethod method(final @NotNull FunctionSignature signature) {
-        return methods.get().member(signature);
+    public final @NotNull Optional<ReflectedMethod> method(
+            final @NotNull FunctionSignature signature) {
+        return Optional.ofNullable(methods.get().member(signature));
+    }
+    
+    public final @NotNull ReflectedMethod methodUnchecked(
+            final @NotNull FunctionSignature signature) {
+        return method(signature).orElseThrow(newNPE);
     }
     
     public final @NotNull Method[] rawMethods() {
         return methods.get().rawMembers();
     }
     
-    public final @Nullable Method rawMethod(final @NotNull FunctionSignature signature) {
-        return methods.get().rawMember(signature);
+    public final @NotNull Optional<Method> rawMethod(final @NotNull FunctionSignature signature) {
+        return Optional.ofNullable(methods.get().rawMember(signature));
+    }
+    
+    public final @NotNull Method rawMethodUnchecked(final @NotNull FunctionSignature signature) {
+        return rawMethod(signature).orElseThrow(newNPE);
     }
     
     public final boolean hasMethod(final @NotNull FunctionSignature signature) {
         return methods.get().hasMember(signature);
     }
     
-    public final @Nullable ReflectedMethod method(final @NotNull String name,
+    public final @NotNull Optional<ReflectedMethod> method(final @NotNull String name,
             final @NotNull Class<?>... parameterTypes) {
         return method(FunctionSignature.forMethod(name, parameterTypes));
     }
     
-    public final @Nullable Method rawMethod(final @NotNull String name,
+    public final @NotNull ReflectedMethod methodUnchecked(final @NotNull String name,
+            final @NotNull Class<?>... parameterTypes) {
+        return method(name, parameterTypes).orElseThrow(newNPE);
+    }
+    
+    public final @NotNull Optional<Method> rawMethod(final @NotNull String name,
             final @NotNull Class<?>... parameterTypes) {
         return rawMethod(FunctionSignature.forMethod(name, parameterTypes));
+    }
+    
+    public final @NotNull Method rawMethodUnchecked(final @NotNull String name,
+            final @NotNull Class<?>... parameterTypes) {
+        return rawMethod(name, parameterTypes).orElseThrow(newNPE);
     }
     
     public final boolean hasMethod(final @NotNull String name,
@@ -119,32 +150,52 @@ public final class ReflectedClass<T> {
         return constructors.get().membersMap();
     }
     
-    public final @Nullable ReflectedConstructor<T> constructor(
+    public final @NotNull Optional<ReflectedConstructor<T>> constructor(
             final @NotNull FunctionSignature signature) {
-        return constructors.get().member(signature);
+        return Optional.ofNullable(constructors.get().member(signature));
+    }
+    
+    public final @NotNull ReflectedConstructor<T> constructorUnchecked(
+            final @NotNull FunctionSignature signature) {
+        return constructor(signature).orElseThrow(newNPE);
     }
     
     public final @NotNull Constructor<T>[] rawConstructors() {
         return constructors.get().rawMembers();
     }
     
-    public final @Nullable Constructor<T> rawConstructor(
+    public final @NotNull Optional<Constructor<T>> rawConstructor(
             final @NotNull FunctionSignature signature) {
-        return constructors.get().rawMember(signature);
+        return Optional.ofNullable(constructors.get().rawMember(signature));
+    }
+    
+    public final @NotNull Constructor<T> rawConstructorUnchecked(
+            final @NotNull FunctionSignature signature) {
+        return rawConstructor(signature).orElseThrow(newNPE);
     }
     
     public final boolean hasConstructor(final @NotNull FunctionSignature signature) {
         return constructors.get().hasMember(signature);
     }
     
-    public final @Nullable ReflectedConstructor<T> constructor(
+    public final @NotNull Optional<ReflectedConstructor<T>> constructor(
             final @NotNull Class<?>... parameterTypes) {
         return constructor(FunctionSignature.forConstructor(parameterTypes));
     }
     
-    public final @Nullable Constructor<T> rawConstructor(
+    public final @NotNull ReflectedConstructor<T> constructorUnchecked(
+            final @NotNull Class<?>... parameterTypes) {
+        return constructor(parameterTypes).orElseThrow(newNPE);
+    }
+    
+    public final @NotNull Optional<Constructor<T>> rawConstructor(
             final @NotNull Class<?>... parameterTypes) {
         return rawConstructor(FunctionSignature.forConstructor(parameterTypes));
+    }
+    
+    public final @NotNull Constructor<T> rawConstructorUnchecked(
+            final @NotNull Class<?>... parameterTypes) {
+        return rawConstructor(parameterTypes).orElseThrow(newNPE);
     }
     
     public final boolean hasConstructor(final @NotNull Class<?>... parameterTypes) {
