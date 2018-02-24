@@ -5,6 +5,8 @@ import sen.khyber.unsafe.reflect.ReflectedField;
 import sen.khyber.unsafe.reflect.Reflectors;
 import sen.khyber.util.exceptions.ExceptionUtils;
 
+import java.util.Optional;
+
 import sun.misc.Unsafe;
 
 /**
@@ -12,7 +14,9 @@ import sun.misc.Unsafe;
  *
  * @author Khyber Sen
  */
-public class StringUtils {
+public final class StringUtils {
+    
+    private StringUtils() {}
     
     public static final byte LATIN1 = 0;
     public static final byte UTF16 = 1;
@@ -23,11 +27,11 @@ public class StringUtils {
     private static final Unsafe unsafe = UnsafeUtils.getUnsafe();
     
     static {
-        final ReflectedField field =
+        final Optional<ReflectedField> field =
                 Reflectors.main().get(String.class).field("COMPACT_STRINGS");
-        PRE_JAVA_9 = field == null;
+        PRE_JAVA_9 = !field.isPresent();
         //noinspection SimplifiableConditionalExpression, ConstantConditions
-        COMPACT_STRINGS = PRE_JAVA_9 ? false : field.getBoolean();
+        COMPACT_STRINGS = PRE_JAVA_9 ? false : field.get().getBoolean();
     }
     
     public static final byte coder(final String s) {
@@ -64,6 +68,10 @@ public class StringUtils {
         //        return s;
         // FIXME
         return new String(chars);
+    }
+    
+    public static final String newString(final byte[] bytes) {
+        return new String(bytes);
     }
     
 }

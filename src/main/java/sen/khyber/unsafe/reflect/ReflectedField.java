@@ -143,16 +143,24 @@ public final class ReflectedField extends ReflectedMember<Field, String, VarHand
         return unsafe.getAndSetInt(object, offset, value);
     }
     
-    public final long getLong() {
+    public final long getLong(final @Nullable Object object) {
         return unsafe.getLong(object, offset);
+    }
+    
+    public final long getLong() {
+        return getLong(object);
     }
     
     public final long getLongVolatile() {
         return unsafe.getLongVolatile(object, offset);
     }
     
-    public final void setLong(final long value) {
+    public final void setLong(final @Nullable Object object, final long value) {
         unsafe.putLong(object, offset, value);
+    }
+    
+    public final void setLong(final long value) {
+        setLong(object, value);
     }
     
     public final long getSetLong(final long value) {

@@ -20,14 +20,14 @@ import java.nio.channels.FileChannel;
 import java.nio.channels.FileLock;
 import java.nio.channels.ReadableByteChannel;
 import java.nio.channels.WritableByteChannel;
-import java.util.Objects;
 
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * @author Khyber Sen
  */
-=public class LongFileChannel extends FileChannel {
+public class LongFileChannel extends FileChannel {
     
     private static @NotNull ReflectedClass<?> sunNioCh(final @NotNull String className) {
         return Reflectors.main().get("sun.nio.ch." + className).orElseThrow(AssertionError::new);
@@ -44,12 +44,12 @@ import org.jetbrains.annotations.NotNull;
     
     private static @NotNull ReflectedField field(final @NotNull ReflectedClass<?> klass,
             final @NotNull String name) {
-        return Objects.requireNonNull(klass.field(name));
+        return klass.fieldUnchecked(name);
     }
     
     private static @NotNull MethodHandle methodHandle(final @NotNull ReflectedClass<?> klass,
             final @NotNull String name, final @NotNull Class<?>... parameterTypes) {
-        return Objects.requireNonNull(klass.method(name, parameterTypes)).handle();
+        return klass.methodUnchecked(name, parameterTypes).handle();
     }
     
     private static final @NotNull MethodHandle openStaticMethod =
@@ -299,10 +299,10 @@ import org.jetbrains.annotations.NotNull;
         }
     }
     
-    public final UnsafeMappedBuffer longRWMap(final long position, final long size) throws IOException {
+    public final @Nullable UnsafeMappedBuffer longRWMap(final long position, final long size)
+            throws IOException {
         if (size == 0) {
             System.err.println("Warning: size is 0 (" + getClass() + ')');
-            //noinspection ConstantConditions
             return null; // FIXME is this right, or should it be buffer w/ 0 length
         }
         
@@ -318,7 +318,6 @@ import org.jetbrains.annotations.NotNull;
             begin();
             threadId = threadsAdd();
             if (!isOpen()) {
-                //noinspection ConstantConditions
                 return null;
             }
             if (size() < position + size) {

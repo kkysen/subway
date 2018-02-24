@@ -1,9 +1,15 @@
 package sen.khyber.unsafe.fields;
 
 import sen.khyber.unsafe.UnsafeUtils;
+import sen.khyber.unsafe.reflect.ReflectedClass;
+import sen.khyber.unsafe.reflect.ReflectedField;
+import sen.khyber.unsafe.reflect.Reflectors;
 
+import java.nio.Buffer;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
+
+import org.jetbrains.annotations.NotNull;
 
 import sun.misc.Unsafe;
 
@@ -17,17 +23,25 @@ public final class ByteBufferUtils {
     
     private ByteBufferUtils() {}
     
-    private static final Unsafe unsafe = UnsafeUtils.getUnsafe();
+    private static final @NotNull Unsafe unsafe = UnsafeUtils.getUnsafe();
     
-    private static final ByteOrder NON_NATIVE_ORDER =
+    private static final @NotNull ByteOrder NON_NATIVE_ORDER =
             ByteOrder.nativeOrder() == ByteOrder.BIG_ENDIAN
                     ? ByteOrder.LITTLE_ENDIAN : ByteOrder.BIG_ENDIAN;
     
-    public static ByteBuffer useNativeOrder(final ByteBuffer buffer) {
+    private static final @NotNull ReflectedClass<Buffer> BufferClass =
+            Reflectors.main().get(Buffer.class);
+    
+    private static final @NotNull ReflectedField addressField =
+            BufferClass.fieldUnchecked("address");
+    private static final @NotNull ReflectedField capacityField =
+            BufferClass.fieldUnchecked("capacity");
+    
+    public static final ByteBuffer useNativeOrder(final ByteBuffer buffer) {
         return buffer.order(ByteOrder.nativeOrder());
     }
     
-    public static ByteBuffer useNonNativeOrder(final ByteBuffer buffer) {
+    public static final ByteBuffer useNonNativeOrder(final ByteBuffer buffer) {
         return buffer.order(NON_NATIVE_ORDER);
     }
     
@@ -37,7 +51,7 @@ public final class ByteBufferUtils {
      * @param buffer DirectBuffer to be destroyed
      * @return true if the buffer was direct and it was destroyed/cleaned
      */
-    public static boolean free(final ByteBuffer buffer) {
+    public static final boolean free(final ByteBuffer buffer) {
         if (buffer == null) {
             return true;
         }
@@ -46,6 +60,18 @@ public final class ByteBufferUtils {
         }
         unsafe.invokeCleaner(buffer);
         return true;
+    }
+    
+    public static final long getAddress(final @NotNull Buffer buffer) {
+        return addressField.getLong(buffer);
+    }
+    
+    public static final void setAddress(final @NotNull Buffer buffer, final long address) {
+        addressField.setLong(buffer, address);
+    }
+    
+    public static final void setCapacity(final @NotNull Buffer buffer, final long capacity) {
+        capacityField.setLong(buffer, capacity);
     }
     
 }
