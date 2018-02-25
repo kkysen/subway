@@ -11,6 +11,7 @@ import java.nio.ByteBuffer;
 import org.jetbrains.annotations.NotNull;
 
 import static sen.khyber.unsafe.fields.ByteBufferUtils.getUnsignedByte;
+import static sen.khyber.unsafe.fields.ByteBufferUtils.put;
 import static sen.khyber.unsafe.fields.ByteBufferUtils.putUnsignedByte;
 
 
@@ -85,21 +86,23 @@ public interface MTALine<T extends Enum<T> & MTALine<T>> extends StringBuilderAp
     
     @Override
     default long serializedLongLength() {
-        return type().serializedLongLength() + Byte.BYTES + lineStatus().serializedLongLength();
+        return type().serializedLongLength()
+                + Byte.BYTES
+                + lineStatus().serializedLongLength();
     }
     
     @Override
     default void serialize(final @NotNull ByteBuffer out) {
-        type().serialize(out);
+        put(out, type());
         putUnsignedByte(out, ordinal());
-        lineStatus().serialize(out);
+        put(out, lineStatus());
     }
     
     @Override
     default void serializeUnsafe(final @NotNull UnsafeBuffer out) {
-        type().serializeUnsafe(out);
+        out.put(type());
         out.putUnsignedByte(ordinal());
-        lineStatus().serializeUnsafe(out);
+        out.put(lineStatus());
     }
     
     private static @NotNull MTALine<?> deserialize(final @NotNull MTAType type, final int ordinal) {

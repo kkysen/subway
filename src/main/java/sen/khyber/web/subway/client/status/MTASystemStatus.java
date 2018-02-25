@@ -1,6 +1,8 @@
 package sen.khyber.web.subway.client.status;
 
 import sen.khyber.io.IO;
+import sen.khyber.unsafe.buffers.UnsafeBuffer;
+import sen.khyber.unsafe.buffers.UnsafeSerializable;
 import sen.khyber.util.Indent;
 import sen.khyber.util.Iterate;
 import sen.khyber.util.StringBuilderAppendable;
@@ -10,13 +12,17 @@ import sen.khyber.web.client.WebResponse;
 import java.io.Closeable;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.ByteBuffer;
+import java.time.Instant;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.time.temporal.ChronoField;
 import java.util.Objects;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.function.Supplier;
 
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
@@ -25,12 +31,31 @@ import org.dom4j.io.SAXReader;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import static sen.khyber.unsafe.fields.ByteBufferUtils.put;
+
 /**
  * Created by Khyber Sen on 2/16/2018.
  *
  * @author Khyber Sen
  */
-public class MTASystemStatus implements StringBuilderAppendable, Runnable, Closeable {
+public class MTASystemStatus
+        implements StringBuilderAppendable, UnsafeSerializable, Runnable, Closeable {
+    
+    private static final ZoneId ZONE = ZoneId.of("America/New_York");
+    
+    static @Nullable Instant toInstant(final @Nullable LocalDateTime dateTime) {
+        if (dateTime == null) {
+            return null;
+        }
+        return dateTime.atZone(ZONE).toInstant();
+    }
+    
+    static @Nullable LocalDateTime toLocalDateTime(final @Nullable Instant instant) {
+        if (instant == null) {
+            return null;
+        }
+        return instant.atZone(ZONE).toLocalDateTime();
+    }
     
     private static final int DEFAULT_INTERVAL_SECONDS = 60;
     
@@ -61,7 +86,7 @@ public class MTASystemStatus implements StringBuilderAppendable, Runnable, Close
     
     private final WebClient client = WebClient.get(); // could change
     
-    private final @NotNull Timer timer = new Timer();
+    private final @NotNull Timer timer = new Timer(true);
     private final Object runLock = new Object();
     private volatile boolean isRunning = false;
     private volatile @Nullable RunMTASystemStatusTask task = null;
@@ -243,6 +268,7 @@ public class MTASystemStatus implements StringBuilderAppendable, Runnable, Close
     @Override
     public final void close() {
         cancel();
+        timer.cancel();
     }
     
     @Override
@@ -301,13 +327,69 @@ public class MTASystemStatus implements StringBuilderAppendable, Runnable, Close
         return defaultToString();
     }
     
+    @Override
+    public final long serializedLongLength() {
+        long length = Integer.BYTES;
+        for (final MTALine<?>[] lines : linesMap) {
+            for (final MTALine<?> line : lines) {
+                length += line.serializedLongLength();
+            }
+        }
+        return length;
+    }
+    
+    @Override
+    public final void serialize(final @NotNull ByteBuffer out) {
+        out.putInt(intervalSeconds);
+        for (final MTALine<?>[] lines : linesMap) {
+            for (final MTALine<?> line : lines) {
+                put(out, line);
+            }
+        }
+    }
+    
+    @Override
+    public final void serializeUnsafe(final @NotNull UnsafeBuffer out) {
+        out.putInt(intervalSeconds);
+        for (final MTALine<?>[] lines : linesMap) {
+            for (final MTALine<?> line : lines) {
+                out.put(line);
+            }
+        }
+    }
+    
+    private static MTASystemStatus deserialize(final int intervalSeconds,
+            final Supplier<MTALine<?>> deserializer) {
+        //noinspection resource,IOResourceOpenedButNotSafelyClosed
+        final MTASystemStatus mtaSystemStatus = new MTASystemStatus(intervalSeconds);
+        final MTALine<?>[][] linesMap = mtaSystemStatus.linesMap;
+        for (int i = 0; i < linesMap.length; i++) {
+            for (int j = 0; j < linesMap[i].length; j++) {
+                linesMap[i][j] = deserializer.get();
+            }
+        }
+        return mtaSystemStatus;
+    }
+    
+    public static final MTASystemStatus deserialize(final @NotNull ByteBuffer in) {
+        return deserialize(in.getInt(), () -> MTALine.deserialize(in));
+    }
+    
+    public static final MTASystemStatus deserialize(final @NotNull UnsafeBuffer in) {
+        return deserialize(in.getInt(), () -> MTALine.deserialize(in));
+    }
+    
     public static void main(final String[] args) throws IOException, DocumentException {
         System.out.println(LocalDateTime.now().format(timeStampFormatter));
-        final MTASystemStatus mtaSystemStatus = new MTASystemStatus();
-        mtaSystemStatus.debug(false);
-        mtaSystemStatus.showOnlyDelayedLines();
-        mtaSystemStatus.update();
-        System.out.println(mtaSystemStatus);
+        try (final MTASystemStatus mtaSystemStatus = new MTASystemStatus()) {
+            mtaSystemStatus.debug(false);
+            mtaSystemStatus.showOnlyDelayedLines();
+            mtaSystemStatus.update();
+            System.out.println(mtaSystemStatus);
+            System.out.println(mtaSystemStatus.serializedLongLength());
+            mtaSystemStatus.serializeUnsafe(IO.Downloads.resolve("mta.txt"));
+            mtaSystemStatus.serializeCompressedTruncated(IO.Downloads.resolve("mta.txt.lz4"));
+        }
     }
     
 }

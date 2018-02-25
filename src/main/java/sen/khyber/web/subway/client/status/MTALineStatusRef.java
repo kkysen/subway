@@ -60,6 +60,7 @@ public final class MTALineStatusRef implements StringBuilderAppendable, UnsafeSe
                 return false;
             }
         }
+        
         // TODO add to DB
         value.showText(showText);
         this.value = value;

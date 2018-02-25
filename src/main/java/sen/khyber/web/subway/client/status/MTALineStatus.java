@@ -12,9 +12,7 @@ import lombok.Setter;
 import lombok.experimental.Accessors;
 
 import java.nio.ByteBuffer;
-import java.time.Instant;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.time.temporal.ChronoField;
@@ -31,6 +29,8 @@ import static sen.khyber.web.subway.client.status.MTADateTimes.clockTimeFormatte
 import static sen.khyber.web.subway.client.status.MTADateTimes.dateFormatter;
 import static sen.khyber.web.subway.client.status.MTADateTimes.dateTimeFormatter;
 import static sen.khyber.web.subway.client.status.MTADateTimes.timeFormatter;
+import static sen.khyber.web.subway.client.status.MTASystemStatus.toInstant;
+import static sen.khyber.web.subway.client.status.MTASystemStatus.toLocalDateTime;
 
 /**
  * Created by Khyber Sen on 2/17/2018.
@@ -46,8 +46,6 @@ public final class MTALineStatus implements StringBuilderAppendable, UnsafeSeria
             .append(clockTimeFormatter)
             .appendText(ChronoField.AMPM_OF_DAY)
             .toFormatter();
-    
-    private static final ZoneId ZONE = ZoneId.of("America/New_York");
     
     private final @Getter @NotNull MTAType type;
     private final @Getter int lineOrdinal;
@@ -251,20 +249,6 @@ public final class MTALineStatus implements StringBuilderAppendable, UnsafeSeria
     @Override
     public final @NotNull String toString() {
         return defaultToString();
-    }
-    
-    private static @Nullable Instant toInstant(final @Nullable LocalDateTime dateTime) {
-        if (dateTime == null) {
-            return null;
-        }
-        return dateTime.atZone(ZONE).toInstant();
-    }
-    
-    private static @Nullable LocalDateTime toLocalDateTime(final @Nullable Instant instant) {
-        if (instant == null) {
-            return null;
-        }
-        return instant.atZone(ZONE).toLocalDateTime();
     }
     
     @Override

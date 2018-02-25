@@ -74,27 +74,31 @@ public class LongFileChannel extends FileChannel {
     private static final @NotNull ReflectedField ndField = field(FileChannelImplClass, "nd");
     
     private static final @NotNull MethodHandle map0Method =
-            methodHandle(FileChannelImplClass, "map0");
+            methodHandle(FileChannelImplClass, "map0", int.class, long.class, long.class);
     private static final @NotNull MethodHandle unmap0Method =
-            methodHandle(FileChannelImplClass, "unmap0");
+            methodHandle(FileChannelImplClass, "unmap0", long.class, long.class);
     
     private static final @NotNull MethodHandle threadsAddMethod =
             methodHandle(NativeThreadSetClass, "add");
     private static final @NotNull MethodHandle threadsRemoveMethod =
-            methodHandle(NativeThreadSetClass, "remove");
+            methodHandle(NativeThreadSetClass, "remove", int.class);
     
     private static final @NotNull MethodHandle ndDuplicateForMappingMethod =
-            methodHandle(FileDispatcherImplClass, "duplicateForMapping");
+            methodHandle(FileDispatcherImplClass, "duplicateForMapping", FileDescriptor.class);
     private static final @NotNull MethodHandle ndTruncateMethod =
-            methodHandle(FileDispatcherImplClass, "truncate");
+            methodHandle(FileDispatcherImplClass, "truncate", FileDescriptor.class, long.class);
     private static final @NotNull MethodHandle ndCloseMethod =
-            methodHandle(FileDispatcherImplClass, "close");
+            methodHandle(FileDispatcherImplClass, "close", FileDescriptor.class);
+    
+    private @NotNull ReflectedField bind(final @NotNull ReflectedField field) {
+        return field.clone().bind(impl);
+    }
     
     private final FileChannel impl;
     private final FileDescriptor fd;
     
-    private final ReflectedField threads = threadsField.clone().bind(this);
-    private final ReflectedField nd = ndField.clone().bind(this);
+    private final ReflectedField threads;
+    private final ReflectedField nd;
     
     public LongFileChannel(final FileDescriptor fd, final String path, final boolean readable,
             final boolean writable, final Object parent) {
@@ -105,11 +109,15 @@ public class LongFileChannel extends FileChannel {
             throw ExceptionUtils.atRuntime(e);
         }
         this.fd = fd;
+        threads = bind(threadsField);
+        nd = bind(ndField);
     }
     
     public LongFileChannel(final RandomAccessFile raf) throws IOException {
         impl = raf.getChannel();
         fd = raf.getFD();
+        threads = bind(threadsField);
+        nd = bind(ndField);
     }
     
     @Override
@@ -204,7 +212,7 @@ public class LongFileChannel extends FileChannel {
     @Override
     protected final void implCloseChannel() throws IOException {
         try {
-            implCloseChannelMethod.invokeExact(impl);
+            implCloseChannelMethod.invoke(impl);
         } catch (final Throwable e) {
             if (e instanceof IOException) {
                 throw (IOException) e;
@@ -281,7 +289,7 @@ public class LongFileChannel extends FileChannel {
     private long map0(final int iMode, final long position, final long size)
             throws IOException {
         try {
-            return (long) map0Method.invokeExact(impl, iMode, position, size);
+            return (long) map0Method.invoke(impl, iMode, position, size);
         } catch (final Throwable e) {
             if (e instanceof IOException) {
                 throw (IOException) e;
