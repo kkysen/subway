@@ -9,6 +9,9 @@ import java.nio.ByteOrder;
 import java.nio.channels.FileChannel;
 import java.nio.channels.FileChannel.MapMode;
 import java.nio.file.Path;
+import java.util.Objects;
+
+import org.jetbrains.annotations.NotNull;
 
 import net.jpountz.lz4.LZ4Compressor;
 
@@ -19,9 +22,9 @@ public interface FastSerializable {
     
     public int serializedLength();
     
-    public void serialize(ByteBuffer out);
+    public void serialize(@NotNull ByteBuffer out);
     
-    private ByteBuffer serialize(final boolean direct) {
+    private @NotNull ByteBuffer serialize(final boolean direct) {
         final int length = serializedLength();
         final ByteBuffer out = direct
                 ? ByteBuffer.allocateDirect(length)
@@ -31,22 +34,24 @@ public interface FastSerializable {
         return out;
     }
     
-    public default ByteBuffer serialize() {
+    public default @NotNull ByteBuffer serialize() {
         return serialize(false);
     }
     
-    public default ByteBuffer serializeDirect() {
+    public default @NotNull ByteBuffer serializeDirect() {
         return serialize(true);
     }
     
-    public default void serialize(final Path path) throws IOException {
+    public default void serialize(final @NotNull Path path) throws IOException {
+        Objects.requireNonNull(path);
         final ByteBuffer out = IO.mmap(path, serializedLength());
         serialize(out);
         ByteBufferUtils.free(out);
     }
     
-    public default void serializeUnknownSize(final Path path, final int overestimate)
+    public default void serializeUnknownSize(final @NotNull Path path, final int overestimate)
             throws IOException {
+        Objects.requireNonNull(path);
         try (RandomAccessFile raf = new RandomAccessFile(path.toFile(), "rw");
                 FileChannel channel = raf.getChannel()) {
             final ByteBuffer out = channel.map(MapMode.READ_WRITE, 0, overestimate);
@@ -57,12 +62,15 @@ public interface FastSerializable {
         }
     }
     
-    public default void serializeTruncated(final Path path) throws IOException {
+    public default void serializeTruncated(final @NotNull Path path) throws IOException {
+        Objects.requireNonNull(path);
         serializeUnknownSize(path, serializedLength());
     }
     
-    public default void serializeCompressedUnknownSize(final Path path, final int overestimate)
+    public default void serializeCompressedUnknownSize(final @NotNull Path path,
+            final int overestimate)
             throws IOException {
+        Objects.requireNonNull(path);
         final ByteBuffer out = ByteBuffer.allocateDirect(overestimate)
                 .order(ByteOrder.nativeOrder());
         serialize(out);
@@ -84,7 +92,8 @@ public interface FastSerializable {
         }
     }
     
-    public default void serializeCompressedTruncated(final Path path) throws IOException {
+    public default void serializeCompressedTruncated(final @NotNull Path path) throws IOException {
+        Objects.requireNonNull(path);
         serializeCompressedUnknownSize(path, serializedLength());
     }
     

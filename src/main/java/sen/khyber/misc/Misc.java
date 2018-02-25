@@ -52,7 +52,7 @@ public class Misc {
         //noinspection ConstantConditions
         final Pattern pattern = (Pattern) Reflectors.main()
                 .get(ProtoFileFormatter.class, false)
-                .field("nullCheckPattern")
+                .fieldUnchecked("nullCheckPattern")
                 .getObject();
         final Path path = IO.ProjectJava.resolve("misc").resolve("Misc.java");
         System.out.println(path);
@@ -69,9 +69,9 @@ public class Misc {
         final ReflectedClass<?> klass = Reflectors.main().get(NyctTripDescriptor.class, false);
         final Object proto = klass.allocateInstance();
         final Object ref = 0;
-        klass.field("trainId_").bindUnsafe(proto).setObject(ref);
+        klass.fieldUnchecked("trainId_").bindUnsafe(proto).setObject(ref);
         try {
-            klass.rawMethod("getTrainId").invoke(proto);
+            klass.rawMethodUnchecked("getTrainId").invoke(proto);
             throw new IllegalStateException(
                     "should've caused and caught a ClassCastException");
         } catch (final IllegalAccessException e) {

@@ -30,7 +30,7 @@ public enum SubwayLine implements MTALine<SubwayLine> {
     //
     ;
     
-    private @Getter @NotNull final MTALineStatusRef lineStatus = new MTALineStatusRef(this);
+    private final @Getter @NotNull MTALineStatusRef lineStatus = new MTALineStatusRef(this);
     
     private final @Getter @NotNull String officialName;
     

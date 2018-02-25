@@ -1,8 +1,17 @@
 package sen.khyber.web.subway.client.status;
 
+import sen.khyber.unsafe.UnsafeUtils;
+import sen.khyber.unsafe.buffers.UnsafeBuffer;
+import sen.khyber.unsafe.buffers.UnsafeSerializable;
+import sen.khyber.unsafe.reflect.Reflectors;
 import sen.khyber.util.StringBuilderAppendable;
 
+import java.nio.ByteBuffer;
+
 import org.jetbrains.annotations.NotNull;
+
+import static sen.khyber.unsafe.fields.ByteBufferUtils.getUnsignedByte;
+import static sen.khyber.unsafe.fields.ByteBufferUtils.putUnsignedByte;
 
 
 /**
@@ -10,7 +19,12 @@ import org.jetbrains.annotations.NotNull;
  *
  * @author Khyber Sen
  */
-public interface MTALine<T extends Enum<T> & MTALine<T>> extends StringBuilderAppendable {
+public interface MTALine<T extends Enum<T> & MTALine<T>> extends StringBuilderAppendable,
+        UnsafeSerializable {
+    
+    public static @NotNull MTALine<?> get(final int typeOrdinal, final int lineOrdinal) {
+        return MTAType.get(typeOrdinal).line(lineOrdinal);
+    }
     
     public @NotNull MTAType type();
     
@@ -44,6 +58,10 @@ public interface MTALine<T extends Enum<T> & MTALine<T>> extends StringBuilderAp
     @Override
     public int hashCode();
     
+    public default @NotNull T copy() {
+        return UnsafeUtils.shallowCopy((T) this);
+    }
+    
     @Override
     public default @NotNull StringBuilder appendSelf(final @NotNull StringBuilder sb) {
         sb.append(officialName())
@@ -63,6 +81,47 @@ public interface MTALine<T extends Enum<T> & MTALine<T>> extends StringBuilderAp
     @Override
     public default @NotNull String defaultToString() {
         return append(new StringBuilder()).toString();
+    }
+    
+    @Override
+    default long serializedLongLength() {
+        return type().serializedLongLength() + Byte.BYTES + lineStatus().serializedLongLength();
+    }
+    
+    @Override
+    default void serialize(final @NotNull ByteBuffer out) {
+        type().serialize(out);
+        putUnsignedByte(out, ordinal());
+        lineStatus().serialize(out);
+    }
+    
+    @Override
+    default void serializeUnsafe(final @NotNull UnsafeBuffer out) {
+        type().serializeUnsafe(out);
+        out.putUnsignedByte(ordinal());
+        lineStatus().serializeUnsafe(out);
+    }
+    
+    private static @NotNull MTALine<?> deserialize(final @NotNull MTAType type, final int ordinal) {
+        return type.line(ordinal).copy();
+    }
+    
+    private static void setLineStatus(final @NotNull MTALine<?> line,
+            final @NotNull MTALineStatusRef lineStatus) {
+        Reflectors.main().get(line.getClass()).fieldUnchecked("lineStatus")
+                .setObject(line, lineStatus);
+    }
+    
+    public static @NotNull MTALine<?> deserialize(final @NotNull ByteBuffer in) {
+        final MTALine<?> line = deserialize(MTAType.deserialize(in), getUnsignedByte(in));
+        setLineStatus(line, MTALineStatusRef.deserialize(in, line));
+        return line;
+    }
+    
+    public static @NotNull MTALine<?> deserialize(final @NotNull UnsafeBuffer in) {
+        final MTALine<?> line = deserialize(MTAType.deserialize(in), in.getUnsignedByte());
+        setLineStatus(line, MTALineStatusRef.deserialize(in, line));
+        return line;
     }
     
 }

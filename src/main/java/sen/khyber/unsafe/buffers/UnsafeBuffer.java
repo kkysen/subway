@@ -1,5 +1,6 @@
 package sen.khyber.unsafe.buffers;
 
+import sen.khyber.io.SizeType;
 import sen.khyber.unsafe.fields.ByteBufferUtils;
 import sen.khyber.unsafe.fields.StringUtils;
 import sen.khyber.util.StringBuilderAppendable;
@@ -10,9 +11,16 @@ import java.io.RandomAccessFile;
 import java.nio.Buffer;
 import java.nio.ByteBuffer;
 import java.nio.file.Path;
+import java.time.Instant;
 import java.util.Objects;
+import java.util.function.BiFunction;
+import java.util.function.Function;
 
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
+import static sen.khyber.unsafe.fields.StringUtils.coder;
+import static sen.khyber.unsafe.fields.StringUtils.getRawValue;
 
 /**
  * @author Khyber Sen
@@ -498,6 +506,15 @@ public interface UnsafeBuffer extends Cloneable, Closeable, StringBuilderAppenda
     
     // TODO finish other variants of these
     
+    public default void putUnsignedByte(final int value) {
+        assert value < (1 << Byte.SIZE);
+        putByte((byte) (value + Byte.MIN_VALUE));
+    }
+    
+    public default int getUnsignedByte() {
+        return getByte() - Byte.MIN_VALUE;
+    }
+    
     public default @NotNull byte[] getShortBytes() {
         return getBytes(getShort());
     }
@@ -516,12 +533,165 @@ public interface UnsafeBuffer extends Cloneable, Closeable, StringBuilderAppenda
         putChars(array);
     }
     
+    public default <T> @NotNull T get(final @NotNull Function<UnsafeBuffer, T> deserializer) {
+        return deserializer.apply(this);
+    }
+    
+    public default <T> @Nullable T getNullable(
+            final @NotNull Function<UnsafeBuffer, T> deserializer) {
+        if (isNull()) {
+            return null;
+        }
+        return get(deserializer);
+    }
+    
+    public default <T, U> @NotNull T get(final @NotNull BiFunction<UnsafeBuffer, U, T> deserializer,
+            final U context) {
+        return deserializer.apply(this, context);
+    }
+    
+    public default <T, U> @Nullable T getNullable(
+            final @NotNull BiFunction<UnsafeBuffer, U, T> deserializer, final U context) {
+        if (isNull()) {
+            return null;
+        }
+        return get(deserializer, context);
+    }
+    
+    public default void put(final @NotNull UnsafeSerializable serializable) {
+        serializable.serializeUnsafe(this);
+    }
+    
+    public default void putNullable(final @Nullable UnsafeSerializable serializable) {
+        if (serializable == null) {
+            putNull();
+        } else {
+            put(serializable);
+        }
+    }
+    
+    public static final byte NULL_BYTE = -1;
+    
+    public default void putNull() {
+        putByte(NULL_BYTE);
+    }
+    
+    // advance position only if isNull
+    public default boolean isNull() {
+        if (getByte(position()) == NULL_BYTE) {
+            skip(1);
+            return true;
+        }
+        return false;
+    }
+    
+    private @NotNull String getString(final int encodedLength) {
+        final int length = StringUtils.decodeLength(encodedLength);
+        final byte coder = StringUtils.decodeCoder(encodedLength);
+        final byte[] value = getBytes(length);
+        return StringUtils.ofRawValue(value, coder);
+    }
+    
+    public default @NotNull String getString() {
+        return getString(getInt());
+    }
+    
     public default @NotNull String getShortString() {
-        return StringUtils.newString(getShortBytes());
+        return getString(getShort());
+    }
+    
+    public default @NotNull String getSuperShortString() {
+        return getString(getByte());
+    }
+    
+    private void putString(final @NotNull String s, final @NotNull SizeType sizeType) {
+        assert sizeType.isSigned();
+        final byte coder = coder(s);
+        final byte[] value = getRawValue(s);
+        final int length = value.length;
+        final int encodedLength = StringUtils.encodeLength(length, coder);
+        sizeType.serialize(this, encodedLength);
+        putBytes(value);
+    }
+    
+    public default void putString(final @NotNull String s) {
+        putString(s, SizeType.INT);
     }
     
     public default void putShortString(final @NotNull String s) {
-        putShortBytes(StringUtils.getByteArray(s));
+        putString(s, SizeType.SHORT);
+    }
+    
+    public default void putSuperShortString(final @NotNull String s) {
+        putString(s, SizeType.BYTE);
+    }
+    
+    public default @Nullable String getNullableString() {
+        if (isNull()) {
+            return null;
+        }
+        return getString();
+    }
+    
+    public default @Nullable String getNullableShortString() {
+        if (isNull()) {
+            return null;
+        }
+        return getShortString();
+    }
+    
+    public default @Nullable String getNullableSuperShortString() {
+        if (isNull()) {
+            return null;
+        }
+        return getSuperShortString();
+    }
+    
+    public default void putNullableString(final @Nullable String s) {
+        if (s == null) {
+            putNull();
+        } else {
+            putString(s);
+        }
+    }
+    
+    public default void putNullableShortString(final @Nullable String s) {
+        if (s == null) {
+            putNull();
+        } else {
+            putShortString(s);
+        }
+    }
+    
+    public default void putNullableSuperShortString(final @Nullable String s) {
+        if (s == null) {
+            putNull();
+        } else {
+            putSuperShortString(s);
+        }
+    }
+    
+    public default @NotNull Instant getInstantMillis() {
+        return Instant.ofEpochMilli(getLong());
+    }
+    
+    public default void putInstantMillis(final @NotNull Instant instant) {
+        putLong(instant.toEpochMilli());
+    }
+    
+    public default @Nullable Instant getNullableInstantMillis() {
+        if (isNull()) {
+            return null;
+        }
+        return getInstantMillis();
+    }
+    
+    public default void putNullableInstantMillis(final @Nullable Instant instant) {
+        if (instant == null) {
+            putNull();
+        } else {
+            putInstantMillis(instant);
+        }
     }
     
     // end

@@ -45,7 +45,7 @@ public final class SilencedRenderingWebClient extends WebClient {
     public final void close() {
         super.close();
         //noinspection ConstantConditions
-        Reflectors.main().get(getClass(), false).field("INSTANCE").setToNull();
+        Reflectors.main().get(getClass(), false).fieldUnchecked("INSTANCE").setToNull();
     }
     
     public SilencedRenderingWebClient(final BrowserVersion browserVersion) {

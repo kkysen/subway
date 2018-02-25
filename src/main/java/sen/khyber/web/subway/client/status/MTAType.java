@@ -1,10 +1,14 @@
 package sen.khyber.web.subway.client.status;
 
+import sen.khyber.io.SerializeableEnum;
+import sen.khyber.io.SizeType;
+import sen.khyber.unsafe.buffers.UnsafeBuffer;
 import sen.khyber.util.ObjectUtils;
 
 import lombok.Getter;
 import lombok.experimental.Accessors;
 
+import java.nio.ByteBuffer;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.Objects;
@@ -13,6 +17,8 @@ import org.apache.commons.lang3.tuple.Pair;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import static sen.khyber.unsafe.fields.ByteBufferUtils.getUnsignedByte;
+
 /**
  * Created by Khyber Sen on 2/18/2018.
  *
@@ -20,7 +26,7 @@ import org.jetbrains.annotations.Nullable;
  */
 @Accessors(fluent = true)
 @Getter
-public enum MTAType {
+public enum MTAType implements SerializeableEnum<MTAType> {
     
     Subway("subway", SubwayLine.class),
     Bus("bus", BusLine.class),
@@ -87,6 +93,19 @@ public enum MTAType {
         return values()[ordinal];
     }
     
+    @Override
+    public final @NotNull SizeType sizeType() {
+        return SizeType.BYTE;
+    }
+    
+    public static @NotNull MTAType deserialize(final @NotNull ByteBuffer in) {
+        return get(getUnsignedByte(in));
+    }
+    
+    public static @NotNull MTAType deserialize(final @NotNull UnsafeBuffer in) {
+        return get(in.getUnsignedByte());
+    }
+    
     public static final @Nullable MTAType parse(final @NotNull String officialName) {
         Objects.requireNonNull(officialName);
         return officialNameToMTAType.get(officialName);
@@ -94,6 +113,27 @@ public enum MTAType {
     
     public static final int numTypes() {
         return values().length;
+    }
+    
+    @SuppressWarnings("BooleanMethodIsAlwaysInverted")
+    private static boolean fitsInByte(final int value) {
+        return value < (1 << Byte.SIZE);
+    }
+    
+    private static boolean checkMaxOrdinalsFitInByte() {
+        if (!fitsInByte(numTypes())) {
+            return false;
+        }
+        for (final MTAType type : values()) {
+            if (!fitsInByte(type.numLines)) {
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    static {
+        assert checkMaxOrdinalsFitInByte();
     }
     
 }

@@ -199,13 +199,13 @@ public class ProtoFileFormatter {
             final ReflectedClass<?> klass) {
         final String getterName = stringGetter.name();
         final ReflectedMethod byteStringGetter =
-                klass.method(getterName + "Bytes");
+                klass.methodUnchecked(getterName + "Bytes");
         if (byteStringGetter == null
                 || byteStringGetter.method().getReturnType() != ByteString.class) {
             return false;
         }
         final String fieldName = uncapitalize(getterName.substring("value".length())) + '_';
-        final ReflectedField field = klass.field(fieldName);
+        final ReflectedField field = klass.fieldUnchecked(fieldName);
         if (field == null || field.field().getType() != Object.class) {
             return false;
         }

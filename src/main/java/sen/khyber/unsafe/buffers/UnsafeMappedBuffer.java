@@ -15,7 +15,8 @@ public final class UnsafeMappedBuffer extends UnsafeDirectBuffer {
     
     private final @NotNull Unmapper unmapper;
     
-    public UnsafeMappedBuffer(final long address, final long size, final @NotNull Unmapper unmapper) {
+    public UnsafeMappedBuffer(final long address, final long size,
+            final @NotNull Unmapper unmapper) {
         super(address, size);
         this.unmapper = unmapper;
     }

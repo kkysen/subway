@@ -22,8 +22,7 @@ public final class EnumUtils {
     private static final @NotNull ReflectedClass<Enum<?>> enumClass =
             (ReflectedClass<Enum<?>>) (ReflectedClass<?>) Reflectors.main().get(Enum.class);
     
-    private static final @NotNull ReflectedField nameField =
-            Objects.requireNonNull(enumClass.field("name"));
+    private static final @NotNull ReflectedField nameField = enumClass.fieldUnchecked("name");
     
     public static final <T extends Enum<T>> void changeName(final @NotNull T t,
             final String newName) {

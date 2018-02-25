@@ -1,10 +1,20 @@
 package sen.khyber.web.subway.client.status;
 
+import sen.khyber.unsafe.buffers.UnsafeBuffer;
+import sen.khyber.unsafe.buffers.UnsafeSerializable;
+import sen.khyber.unsafe.fields.StringUtils;
 import sen.khyber.util.Iterate;
 import sen.khyber.util.ObjectUtils;
 import sen.khyber.util.StringBuilderAppendable;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.experimental.Accessors;
+
+import java.nio.ByteBuffer;
+import java.time.Instant;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.time.temporal.ChronoField;
@@ -16,6 +26,7 @@ import org.jetbrains.annotations.Nullable;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
+import static sen.khyber.unsafe.fields.ByteBufferUtils.*;
 import static sen.khyber.web.subway.client.status.MTADateTimes.clockTimeFormatter;
 import static sen.khyber.web.subway.client.status.MTADateTimes.dateFormatter;
 import static sen.khyber.web.subway.client.status.MTADateTimes.dateTimeFormatter;
@@ -26,7 +37,8 @@ import static sen.khyber.web.subway.client.status.MTADateTimes.timeFormatter;
  *
  * @author Khyber Sen
  */
-public final class MTALineStatus implements StringBuilderAppendable {
+@Accessors(fluent = true)
+public final class MTALineStatus implements StringBuilderAppendable, UnsafeSerializable {
     
     private static final DateTimeFormatter dateTimeFormatterParser = new DateTimeFormatterBuilder()
             .append(dateFormatter)
@@ -35,27 +47,35 @@ public final class MTALineStatus implements StringBuilderAppendable {
             .appendText(ChronoField.AMPM_OF_DAY)
             .toFormatter();
     
-    private final @NotNull MTAType type;
-    private final int lineOrdinal;
-    private final @NotNull MTAStatus status;
+    private static final ZoneId ZONE = ZoneId.of("America/New_York");
+    
+    private final @Getter @NotNull MTAType type;
+    private final @Getter int lineOrdinal;
+    private final @Getter @NotNull MTAStatus status;
     private final @NotNull LocalDateTime startTime;
     private @Nullable LocalDateTime endTime;
     private final @Nullable String rawHtmlText;
     private final @Nullable Document htmlTextDoc;
     
-    private boolean showText = false;
+    private @Setter boolean showText = false;
     
     private MTALineStatus(final @NotNull MTALine<?> line,
             final @NotNull MTAStatus status, final @NotNull LocalDateTime startTime,
-            final @Nullable String text) {
+            final @Nullable LocalDateTime endTime, final @Nullable String text) {
         ObjectUtils.requireNonNull(line, status, startTime);
         type = line.type();
         lineOrdinal = line.ordinal();
         this.status = status;
         this.startTime = startTime;
-        endTime = null;
+        this.endTime = endTime;
         rawHtmlText = text;
         htmlTextDoc = text == null ? null : Jsoup.parseBodyFragment(text);
+    }
+    
+    private MTALineStatus(final @NotNull MTALine<?> line,
+            final @NotNull MTAStatus status, final @NotNull LocalDateTime startTime,
+            final @Nullable String text) {
+        this(line, status, startTime, null, text);
     }
     
     static MTALineStatus createDefault(final @NotNull MTALine<?> line) {
@@ -143,28 +163,16 @@ public final class MTALineStatus implements StringBuilderAppendable {
         return parse(type, backupDateTime, name, status, dateTime, text);
     }
     
-    public final void showText(final boolean showText) {
-        this.showText = showText;
-    }
-    
     public final void showText() {
         showText(true);
-    }
-    
-    public final MTAType type() {
-        return type;
-    }
-    
-    public final int lineOrdinal() {
-        return lineOrdinal;
     }
     
     public final MTALine<?> line() {
         return type.line(lineOrdinal);
     }
     
-    public final MTAStatus status() {
-        return status;
+    public final @Nullable String text() {
+        return rawHtmlText;
     }
     
     public final boolean isSameKind(final MTALineStatus lineStatus) {
@@ -241,9 +249,73 @@ public final class MTALineStatus implements StringBuilderAppendable {
     }
     
     @Override
-    public final @NotNull
-    String toString() {
+    public final @NotNull String toString() {
         return defaultToString();
+    }
+    
+    private static @Nullable Instant toInstant(final @Nullable LocalDateTime dateTime) {
+        if (dateTime == null) {
+            return null;
+        }
+        return dateTime.atZone(ZONE).toInstant();
+    }
+    
+    private static @Nullable LocalDateTime toLocalDateTime(final @Nullable Instant instant) {
+        if (instant == null) {
+            return null;
+        }
+        return instant.atZone(ZONE).toLocalDateTime();
+    }
+    
+    @Override
+    public final long serializedLongLength() {
+        final long statusLength = status.serializedLongLength();
+        final long timeLength = 2 * Long.BYTES;
+        final long textLength;
+        if (rawHtmlText == null) {
+            textLength = Byte.BYTES;
+        } else {
+            textLength = Short.BYTES + StringUtils.numBytes(rawHtmlText);
+        }
+        return statusLength + timeLength + textLength;
+    }
+    
+    @Override
+    public final void serialize(final @NotNull ByteBuffer out) {
+        status.serialize(out);
+        //noinspection ConstantConditions
+        putInstantMillis(out, toInstant(startTime));
+        putNullableInstantMillis(out, toInstant(endTime));
+        putNullableShortString(out, rawHtmlText);
+    }
+    
+    @Override
+    public final void serializeUnsafe(final @NotNull UnsafeBuffer out) {
+        status.serializeUnsafe(out);
+        //noinspection ConstantConditions
+        out.putInstantMillis(toInstant(startTime));
+        out.putNullableInstantMillis(toInstant(endTime));
+        out.putNullableShortString(rawHtmlText);
+    }
+    
+    public static MTALineStatus deserialize(final @NotNull ByteBuffer in,
+            final @NotNull MTALine<?> line) {
+        final MTAStatus status = MTAStatus.deserialize(in);
+        final LocalDateTime startTime = toLocalDateTime(getInstantMillis(in));
+        final LocalDateTime endTime = toLocalDateTime(getNullableInstantMillis(in));
+        final String text = getNullableShortString(in);
+        //noinspection ConstantConditions
+        return new MTALineStatus(line, status, startTime, endTime, text);
+    }
+    
+    public static MTALineStatus deserialize(final @NotNull UnsafeBuffer in,
+            final @NotNull MTALine<?> line) {
+        final MTAStatus status = MTAStatus.deserialize(in);
+        final LocalDateTime startTime = toLocalDateTime(in.getInstantMillis());
+        final LocalDateTime endTime = toLocalDateTime(in.getNullableInstantMillis());
+        final String text = in.getNullableShortString();
+        //noinspection ConstantConditions
+        return new MTALineStatus(line, status, startTime, endTime, text);
     }
     
 }

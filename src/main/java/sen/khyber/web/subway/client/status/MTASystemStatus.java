@@ -304,6 +304,7 @@ public class MTASystemStatus implements StringBuilderAppendable, Runnable, Close
     public static void main(final String[] args) throws IOException, DocumentException {
         System.out.println(LocalDateTime.now().format(timeStampFormatter));
         final MTASystemStatus mtaSystemStatus = new MTASystemStatus();
+        mtaSystemStatus.debug(false);
         mtaSystemStatus.showOnlyDelayedLines();
         mtaSystemStatus.update();
         System.out.println(mtaSystemStatus);

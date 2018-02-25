@@ -1,12 +1,16 @@
 package sen.khyber.web.subway.client.status;
 
+import sen.khyber.io.SerializeableEnum;
+import sen.khyber.io.SizeType;
+import sen.khyber.unsafe.buffers.UnsafeBuffer;
+import sen.khyber.util.StringBuilderAppendable;
+
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.Accessors;
 
-import java.io.NotSerializableException;
-import java.io.ObjectOutputStream;
+import java.nio.ByteBuffer;
 import java.util.Arrays;
 import java.util.Map;
 
@@ -22,7 +26,7 @@ import org.jetbrains.annotations.Nullable;
  */
 @RequiredArgsConstructor(access = AccessLevel.PRIVATE)
 @Accessors(fluent = true)
-public enum MTAStatus {
+public enum MTAStatus implements StringBuilderAppendable, SerializeableEnum<MTAStatus> {
     
     GOOD_SERVICE("GOOD SERVICE"),
     PLANNED_WORK("PLANNED WORK"),
@@ -32,6 +36,29 @@ public enum MTAStatus {
     ;
     
     private final @NotNull @Getter String officialName;
+    
+    @Override
+    public @NotNull StringBuilder appendSelf(final @NotNull StringBuilder sb) {
+        return sb.append(officialName);
+    }
+    
+    @Override
+    public final @NotNull StringBuilder append(@NotNull final StringBuilder sb) {
+        sb.append("MTAStatus[");
+        appendSelf(sb);
+        sb.append(']');
+        return sb;
+    }
+    
+    @Override
+    public final @NotNull String toString() {
+        return defaultToString();
+    }
+    
+    @Override
+    public final @NotNull SizeType sizeType() {
+        return SizeType.BYTE;
+    }
     
     @SuppressWarnings("rawtypes")
     private static final @NotNull Map<String, MTAStatus> parserMap = Map.ofEntries(
@@ -44,13 +71,12 @@ public enum MTAStatus {
         return parserMap.get(officialName);
     }
     
-    @Override
-    public final String toString() {
-        return "MTAStatus[" + officialName + ']';
+    public static @NotNull MTAStatus deserialize(final @NotNull ByteBuffer in) {
+        return SerializeableEnum.deserialize(MTAStatus.class, in);
     }
     
-    private void writeObject(final ObjectOutputStream out) throws NotSerializableException {
-        throw new NotSerializableException(getClass().getName());
+    public static @NotNull MTAStatus deserialize(final @NotNull UnsafeBuffer in) {
+        return SerializeableEnum.deserialize(MTAStatus.class, in);
     }
     
 }

@@ -23,10 +23,9 @@ public final class ArrayListUtils {
             Reflectors.main().get(ArrayList.class);
     
     private static final @NotNull ReflectedField elementDataField =
-            Objects.requireNonNull(arrayListClass.field("elementData"));
+            arrayListClass.fieldUnchecked("elementData");
     
-    private static final @NotNull ReflectedField sizeField =
-            Objects.requireNonNull(arrayListClass.field("size"));
+    private static final @NotNull ReflectedField sizeField = arrayListClass.fieldUnchecked("size");
     
     @SuppressWarnings("CollectionDeclaredAsConcreteClass")
     public static final <T> ArrayList<T> wrap(final T[] a) {

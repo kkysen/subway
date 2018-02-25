@@ -117,6 +117,14 @@ public final class ReflectedField extends ReflectedMember<Field, String, VarHand
         return setGetToNull(object);
     }
     
+    public final byte getByte(final @Nullable Object object) {
+        return unsafe.getByte(object, offset);
+    }
+    
+    public final void setByte(final @Nullable Object object, final byte value) {
+        unsafe.putByte(object, offset, value);
+    }
+    
     public final int getInt(final @Nullable Object object) {
         return unsafe.getInt(object, offset);
     }
