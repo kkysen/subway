@@ -50,7 +50,7 @@ public final class IO {
     
     private static final int BUFFER_SIZE = 8092;
     
-    public static final Path Home = Paths.get("C:/Users/kkyse");
+    public static final Path Home = Paths.get(System.getProperty("user.home"));
     public static final Path Desktop = Home.resolve("Desktop");
     public static final Path Downloads = Home.resolve("Downloads");
     public static final Path Documents = Home.resolve("Documents");
@@ -71,11 +71,11 @@ public final class IO {
     public static final Path ProjectWebClientResources = ProjectWebResources.resolve("client");
     public static final Path ProjectWebServerResources = ProjectWebResources.resolve("server");
     
-    public static final long B = 1;
-    public static final long KB = B << 10;
-    public static final long MB = KB << 10;
-    public static final long GB = MB << 10;
-    public static final long TB = GB << 10;
+    public static final byte B = 1;
+    public static final short KB = B << 10;
+    public static final int MB = KB << 10;
+    public static final int GB = MB << 10;
+    public static final long TB = ((long) GB) << 10;
     public static final long PB = TB << 10;
     public static final long EB = PB << 10;
     
