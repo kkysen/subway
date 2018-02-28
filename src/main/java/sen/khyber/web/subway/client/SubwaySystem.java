@@ -75,7 +75,7 @@ public final class SubwaySystem {
                                 }
                             });
                 })
-                .sleepLength(sleepLengthMillis)
+                .sleepLengthMillis(sleepLengthMillis)
                 .stopTrying((a, b) -> System.nanoTime() - start >= safeInterval)
                 .log(null)
                 .build()

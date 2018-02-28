@@ -33,13 +33,23 @@ public final class UnsafeMappedBuffer extends UnsafeDirectBuffer {
     
     @Override
     public final @NotNull UnsafeMappedBuffer duplicate() {
-        return new UnsafeMappedBuffer(address, size, unmapper);
+        return (UnsafeMappedBuffer) super.duplicate();
     }
     
     @SuppressWarnings("MethodDoesntCallSuperMethod")
     @Override
     public final @NotNull UnsafeMappedBuffer clone() {
         return duplicate();
+    }
+    
+    @Override
+    public final @NotNull UnsafeMappedBuffer slice(final long offset, final long length) {
+        return new UnsafeMappedBuffer(address + offset, length, unmapper);
+    }
+    
+    @Override
+    public final @NotNull UnsafeMappedBuffer slice() {
+        return (UnsafeMappedBuffer) super.slice();
     }
     
 }

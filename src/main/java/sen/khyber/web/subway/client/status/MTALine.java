@@ -20,7 +20,7 @@ import static sen.khyber.unsafe.fields.ByteBufferUtils.putUnsignedByte;
  *
  * @author Khyber Sen
  */
-public interface MTALine<T extends Enum<T> & MTALine<T>> extends StringBuilderAppendable,
+public interface MTALine<T extends Enum<T> & MTALine<T>> extends MTAEntity, StringBuilderAppendable,
         UnsafeSerializable {
     
     public static @NotNull MTALine<?> get(final int typeOrdinal, final int lineOrdinal) {
@@ -29,8 +29,6 @@ public interface MTALine<T extends Enum<T> & MTALine<T>> extends StringBuilderAp
     
     public @NotNull MTAType type();
     
-    public @NotNull String officialName();
-    
     public @NotNull String name();
     
     public @NotNull MTALineStatusRef lineStatus();
@@ -38,8 +36,6 @@ public interface MTALine<T extends Enum<T> & MTALine<T>> extends StringBuilderAp
     public default void initLineStatus() {
         lineStatus().init(this);
     }
-    
-    public int ordinal();
     
     public default int allLinesOrdinal() {
         return type().lineOrdinalOffset() + ordinal();

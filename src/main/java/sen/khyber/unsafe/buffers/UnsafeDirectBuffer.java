@@ -38,14 +38,24 @@ public class UnsafeDirectBuffer extends AbstractUnsafeBuffer {
     
     @Override
     public @NotNull UnsafeDirectBuffer duplicate() {
-        return new UnsafeDirectBuffer(address, size);
+        return (UnsafeDirectBuffer) super.duplicate();
     }
     
-    @SuppressWarnings({"MethodDoesntCallSuperMethod", "DesignForExtension"})
+    @SuppressWarnings({"MethodDoesntCallSuperMethod", "DesignForExtension", "NonFinalClone"})
     @Override
     public @NotNull UnsafeDirectBuffer clone() {
         //noinspection OverriddenMethodCallDuringObjectConstruction
         return duplicate();
+    }
+    
+    @Override
+    public @NotNull UnsafeDirectBuffer slice(final long offset, final long length) {
+        return new UnsafeDirectBuffer(address + offset, length);
+    }
+    
+    @Override
+    public @NotNull UnsafeDirectBuffer slice() {
+        return (UnsafeDirectBuffer) super.slice();
     }
     
 }

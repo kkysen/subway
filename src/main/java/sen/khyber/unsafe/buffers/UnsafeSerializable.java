@@ -18,6 +18,7 @@ import net.jpountz.lz4.LZ4Compressor;
 /**
  * @author Khyber Sen
  */
+@SuppressWarnings("ClassReferencesSubclass")
 public interface UnsafeSerializable extends FastSerializable {
     
     public long serializedLongLength();

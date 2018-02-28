@@ -577,7 +577,9 @@ public abstract class AbstractUnsafeBuffer implements UnsafeBuffer {
     }
     
     @Override
-    public abstract @NotNull AbstractUnsafeBuffer duplicate();
+    public @NotNull AbstractUnsafeBuffer duplicate() {
+        return slice(0, size);
+    }
     
     @SuppressWarnings({"MethodDoesntCallSuperMethod", "DesignForExtension", "NonFinalClone"})
     @Override
@@ -586,21 +588,35 @@ public abstract class AbstractUnsafeBuffer implements UnsafeBuffer {
         return duplicate();
     }
     
+    @Override
+    public abstract @NotNull AbstractUnsafeBuffer slice(long offset, long length);
+    
+    @Override
+    public @NotNull AbstractUnsafeBuffer slice() {
+        return slice(pos, limit);
+    }
+    
     protected @NotNull String addressString() {
         return String.valueOf(address());
     }
     
     @Override
-    public final @NotNull StringBuilder append(@NotNull final StringBuilder sb) {
-        return sb.append("UnsafeBuffer @")
-                .append(addressString())
-                .append("[pos=")
+    public final @NotNull StringBuilder appendSelf(final @NotNull StringBuilder sb) {
+        return sb.append("pos=")
                 .append(pos)
                 .append(", lim=")
                 .append(limit)
                 .append(", size=")
-                .append(size)
-                .append(']');
+                .append(size);
+    }
+    
+    @Override
+    public final @NotNull StringBuilder append(@NotNull final StringBuilder sb) {
+        sb.append("UnsafeBuffer @")
+                .append(addressString())
+                .append('[');
+        appendSelf(sb);
+        return sb.append(']');
     }
     
     @Override

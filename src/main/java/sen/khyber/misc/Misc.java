@@ -2,6 +2,7 @@ package sen.khyber.misc;
 
 import sen.khyber.io.IO;
 import sen.khyber.proto.ProtoFileFormatter;
+import sen.khyber.unsafe.UnsafeUtils;
 import sen.khyber.unsafe.reflect.ClassNames;
 import sen.khyber.unsafe.reflect.ReflectedClass;
 import sen.khyber.unsafe.reflect.Reflectors;
@@ -186,7 +187,7 @@ public class Misc {
     }
     
     public static void main(final String[] args) throws IOException {
-        testNonExportedClassReflection();
+        System.out.println(UnsafeUtils.getUnsafe().pageSize());
     }
     
 }

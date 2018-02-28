@@ -5,7 +5,10 @@ import sen.khyber.unsafe.buffers.UnsafeBuffer;
 import sen.khyber.unsafe.buffers.UnsafeSerializable;
 import sen.khyber.util.Indent;
 import sen.khyber.util.Iterate;
+import sen.khyber.util.Retrier;
+import sen.khyber.util.Retrier.RetrierBuilders;
 import sen.khyber.util.StringBuilderAppendable;
+import sen.khyber.util.function.IntBinaryPredicate;
 import sen.khyber.web.client.WebClient;
 import sen.khyber.web.client.WebResponse;
 
@@ -13,21 +16,27 @@ import java.io.Closeable;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
+import java.nio.file.Path;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.time.temporal.ChronoField;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.function.Supplier;
 
+import org.apache.commons.lang3.tuple.Pair;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
+import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -43,6 +52,7 @@ public class MTASystemStatus
     
     private static final ZoneId ZONE = ZoneId.of("America/New_York");
     
+    @Contract("null -> null; !null -> !null")
     static @Nullable Instant toInstant(final @Nullable LocalDateTime dateTime) {
         if (dateTime == null) {
             return null;
@@ -50,6 +60,7 @@ public class MTASystemStatus
         return dateTime.atZone(ZONE).toInstant();
     }
     
+    @Contract("null -> null; !null -> !null")
     static @Nullable LocalDateTime toLocalDateTime(final @Nullable Instant instant) {
         if (instant == null) {
             return null;
@@ -59,30 +70,25 @@ public class MTASystemStatus
     
     private static final int DEFAULT_INTERVAL_SECONDS = 60;
     
-    private final @NotNull MTALine<?>[][] linesMap = new MTALine[MTAType.numTypes()][];
+    private final @NotNull MTALine<?>[][] linesMap;
+    private final @NotNull MTALineUpdateProcessor[][] updateProcessorsMap;
+    private final @NotNull MTAUser[][][] usersMap;
     
-    private int fillLinesMapAndCountTotalNumLines() {
-        int totalNumLines = 0;
-        for (final MTAType type : MTAType.values()) {
-            totalNumLines += type.numLines();
-            final MTALine<?>[] lines = new MTALine[type.numLines()];
-            for (final MTALine<?> line : type.lines()) {
-                lines[line.ordinal()] = line;
-            }
-            linesMap[type.ordinal()] = lines;
-        }
-        return totalNumLines;
+    {
+        linesMap = new MTALine[MTAType.numTypes()][];
+        updateProcessorsMap = new MTALineUpdateProcessor[linesMap.length][];
+        usersMap = new MTAUser[linesMap.length][][];
     }
     
-    private final int totalNumLines = fillLinesMapAndCountTotalNumLines();
-    
-    private @Nullable LocalDateTime timeStamp;
+    private @NotNull LocalDateTime timeStamp = LocalDateTime.now();
     
     private boolean showOnlyDelayedLines = false;
     
     private boolean debug = true; // TODO change later
     
     private final int intervalSeconds;
+    
+    private final Object updateLock = new Object();
     
     private final WebClient client = WebClient.get(); // could change
     
@@ -91,16 +97,38 @@ public class MTASystemStatus
     private volatile boolean isRunning = false;
     private volatile @Nullable RunMTASystemStatusTask task = null;
     
-    public MTASystemStatus(final int intervalSeconds) {
-        this.intervalSeconds = intervalSeconds;
-        for (final MTALine<?>[] lines : linesMap) {
-            for (final MTALine<?> line : lines) {
+    // TODO use builder
+    
+    private final @NotNull MTAUserDB userDB; // TODO
+    
+    private final @NotNull Path dir; // TODO
+    
+    private void setupLinesAndUpdateProcessors() throws IOException {
+        int totalNumLines = 0;
+        for (final MTAType type : MTAType.values()) {
+            totalNumLines += type.numLines();
+            final MTALine<?>[] lines = new MTALine[type.numLines()];
+            final MTALineUpdateProcessor[] updateProcessors =
+                    new MTALineUpdateProcessor[lines.length];
+            for (final MTALine<?> line : type.lines()) {
                 line.initLineStatus();
+                final int j = line.ordinal();
+                lines[j] = line;
+                updateProcessors[j] = new MTALineUpdateProcessor(line, dir);
             }
+            final int i = type.ordinal();
+            linesMap[i] = lines;
+            updateProcessorsMap[i] = updateProcessors;
+            usersMap[i] = new MTAUser[lines.length][];
         }
     }
     
-    public MTASystemStatus() {
+    public MTASystemStatus(final int intervalSeconds) throws IOException {
+        this.intervalSeconds = intervalSeconds;
+        setupLinesAndUpdateProcessors();
+    }
+    
+    public MTASystemStatus() throws IOException {
         this(DEFAULT_INTERVAL_SECONDS);
     }
     
@@ -132,17 +160,98 @@ public class MTASystemStatus
         debug(true);
     }
     
-    /**
-     * TODO document
-     *
-     * @param newStatuses new statuses array
-     *                    indexed by {@link MTAType#ordinal} and then {@link MTALine#ordinal}
-     */
-    private void update(final @NotNull MTALineStatus[][] newStatuses) {
+    private @NotNull MTALineStatus[][] rawCurrentStatuses() {
+        final MTALineStatus[][] currentStatuses = new MTALineStatus[linesMap.length][];
+        for (int i = 0; i < linesMap.length; i++) {
+            currentStatuses[i] = new MTALineStatus[linesMap[i].length];
+            for (int j = 0; j < linesMap[i].length; j++) {
+                currentStatuses[i][j] = linesMap[i][j].lineStatus().get();
+            }
+        }
+        return currentStatuses;
+    }
+    
+    public final @NotNull MTACurrentStatus currentStatus() {
+        synchronized (updateLock) {
+            return new MTACurrentStatus(rawCurrentStatuses(), timeStamp);
+        }
+    }
+    
+    private static void updateUsers(final @NotNull List<MTAUser> users,
+            final @NotNull List<Pair<MTAUser, IOException>> failed) {
+        users.parallelStream()
+                .forEach(user -> {
+                    try {
+                        user.update();
+                    } catch (final IOException e) {
+                        failed.add(Pair.of(user, e));
+                    }
+                });
+    }
+    
+    private static final RetrierBuilders<MTAUser> userRetrierBuilders = Retrier.builders();
+    
+    private void updateNoSync(final @NotNull MTALineStatus[][] newStatuses) throws IOException {
+        // TODO make this asynchronous
+        // TODO the status updates are immutable and asynchronous
+        // TODO the user updates are asynchronous but mutable, 
+        // TODO     so must complete after status updates and before next update round
+        
+        final List<int[]> indicesToUpdate = new ArrayList<>(); // process all updates at once
+        
+        // update statuses and get current users
         for (int i = 0; i < newStatuses.length; i++) {
             for (int j = 0; j < newStatuses[i].length; j++) {
-                linesMap[i][j].lineStatus().set(newStatuses[i][j], this);
+                final MTALineUpdateProcessor updateProcessor = updateProcessorsMap[i][j];
+                if (linesMap[i][j].lineStatus().set(newStatuses[i][j])) {
+                    indicesToUpdate.add(new int[] {i, j});
+                }
+                usersMap[i][j] = updateProcessor.users();
             }
+        }
+        
+        final MTAUser[] usersToUpdate = indicesToUpdate
+                .parallelStream()
+                .flatMap(indices -> {
+                    final int i = indices[0];
+                    final int j = indices[1];
+                    MTALineStatus status = newStatuses[i][j];
+                    MTAUser[] users = updateProcessorsMap[i][j].users();
+                    for (MTAUser user : users) {
+                        user.prepareUpdate(status);
+                    }
+                    return Arrays.stream(users);
+                })
+                .toArray(MTAUser[]::new);
+        
+        final double maxTimePercent = 0.5;
+        final int secondsSleep = 1;
+        final long start = System.currentTimeMillis();
+        userRetrierBuilders.exceptionalIO(MTASystemStatus::updateUsers)
+                .sleepLengthMillis(secondsSleep * 1000)
+                .maxAttempts((int) (intervalSeconds / (double) secondsSleep))
+                .stopTrying(IntBinaryPredicate.fromSupplier(() ->
+                        System.currentTimeMillis() - start
+                                > intervalSeconds * 1000 * maxTimePercent
+                ))
+                .build()
+                .keepTrying(usersToUpdate)
+                .forEach(System.out::println); // TODO better error handling
+        // TODO use Retrier and updateUsers method
+        
+        // fetch new users for next time
+        final Instant nextUpdateTime = toInstant(timeStamp).plusSeconds(intervalSeconds);
+        final MTAUserUpdate[][] userUpdates = userDB.fetchNewUsers(usersMap, nextUpdateTime);
+        for (int i = 0; i < newStatuses.length; i++) {
+            for (int j = 0; j < newStatuses[i].length; j++) {
+                updateProcessorsMap[i][j].update(userUpdates[i][j]);
+            }
+        }
+    }
+    
+    private void update(final @NotNull MTALineStatus[][] newStatuses) throws IOException {
+        synchronized (updateLock) {
+            updateNoSync(newStatuses);
         }
     }
     
@@ -202,6 +311,8 @@ public class MTASystemStatus
             update(response);
         }
     }
+    
+    // TODO add updateLock
     
     private final class RunMTASystemStatusTask extends TimerTask {
         
@@ -277,9 +388,6 @@ public class MTASystemStatus
         final boolean showOnlyDelayedLines = this.showOnlyDelayedLines;
         
         sb.append("MTASystemStatus {");
-        if (timeStamp == null) {
-            return sb.append("Never Updated}");
-        }
         
         final Indent indent = Indent.get();
         indent.indent();
@@ -358,25 +466,34 @@ public class MTASystemStatus
         }
     }
     
-    private static MTASystemStatus deserialize(final int intervalSeconds,
-            final Supplier<MTALine<?>> deserializer) {
-        //noinspection resource,IOResourceOpenedButNotSafelyClosed
-        final MTASystemStatus mtaSystemStatus = new MTASystemStatus(intervalSeconds);
-        final MTALine<?>[][] linesMap = mtaSystemStatus.linesMap;
-        for (int i = 0; i < linesMap.length; i++) {
-            for (int j = 0; j < linesMap[i].length; j++) {
-                linesMap[i][j] = deserializer.get();
+    private void deserialize(final Supplier<MTALine<?>> deserializer) throws IOException {
+        // preload deserialization to not interfere with update cycle
+        final MTALine<?>[][] newLinesMap = linesMap.clone();
+        for (int i = 0; i < newLinesMap.length; i++) {
+            newLinesMap[i] = linesMap[i].clone();
+            for (int j = 0; j < newLinesMap[i].length; j++) {
+                newLinesMap[i][j] = deserializer.get();
             }
         }
-        return mtaSystemStatus;
+        
+        // do actual swap synchronized, 
+        // but since it's only an array copy, 
+        // it's fast enough that it won't delay the update cycle at all
+        synchronized (updateLock) {
+            // ok b/c intrinsic
+            //noinspection CallToNativeMethodWhileLocked
+            System.arraycopy(newLinesMap, 0, linesMap, 0, newLinesMap.length);
+        }
     }
     
-    public static final MTASystemStatus deserialize(final @NotNull ByteBuffer in) {
-        return deserialize(in.getInt(), () -> MTALine.deserialize(in));
+    public final void deserialize(final @NotNull ByteBuffer in)
+            throws IOException {
+        deserialize(() -> MTALine.deserialize(in));
     }
     
-    public static final MTASystemStatus deserialize(final @NotNull UnsafeBuffer in) {
-        return deserialize(in.getInt(), () -> MTALine.deserialize(in));
+    public final void deserialize(final @NotNull UnsafeBuffer in)
+            throws IOException {
+        deserialize(() -> MTALine.deserialize(in));
     }
     
     public static void main(final String[] args) throws IOException, DocumentException {

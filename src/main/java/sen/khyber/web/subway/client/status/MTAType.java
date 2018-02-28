@@ -26,7 +26,7 @@ import static sen.khyber.unsafe.fields.ByteBufferUtils.getUnsignedByte;
  */
 @Accessors(fluent = true)
 @Getter
-public enum MTAType implements SerializeableEnum<MTAType> {
+public enum MTAType implements MTAEntity, SerializeableEnum<MTAType> {
     
     Subway("subway", SubwayLine.class),
     Bus("bus", BusLine.class),

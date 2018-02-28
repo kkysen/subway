@@ -48,7 +48,7 @@ public final class MTALineStatusRef implements StringBuilderAppendable, UnsafeSe
         return value;
     }
     
-    public final boolean set(final @NotNull MTALineStatus value, final MTASystemStatus system) {
+    public final boolean set(final @NotNull MTALineStatus value) {
         Objects.requireNonNull(value);
         final MTALineStatus old = this.value;
         if (old != null) {
@@ -56,12 +56,9 @@ public final class MTALineStatusRef implements StringBuilderAppendable, UnsafeSe
                 throw new IllegalArgumentException(value + " is not the same kind as " + old);
             }
             if (old.equals(value)) {
-                old.setSameEndTime(value);
                 return false;
             }
         }
-        
-        // TODO add to DB
         value.showText(showText);
         this.value = value;
         return true;

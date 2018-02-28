@@ -26,7 +26,7 @@ import org.jetbrains.annotations.Nullable;
  */
 @RequiredArgsConstructor(access = AccessLevel.PRIVATE)
 @Accessors(fluent = true)
-public enum MTAStatus implements StringBuilderAppendable, SerializeableEnum<MTAStatus> {
+public enum MTAStatus implements MTAEntity, StringBuilderAppendable, SerializeableEnum<MTAStatus> {
     
     GOOD_SERVICE("GOOD SERVICE"),
     PLANNED_WORK("PLANNED WORK"),

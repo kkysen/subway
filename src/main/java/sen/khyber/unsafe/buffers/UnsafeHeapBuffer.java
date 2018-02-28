@@ -30,27 +30,30 @@ public final class UnsafeHeapBuffer extends AbstractUnsafeBuffer {
     }
     
     private final @NotNull Object array;
-    private final int offset;
+    private final int arrayOffset;
     private final @NotNull Object[] reference;
     
+    private final long offset;
     private volatile long address; // may change
     
-    private UnsafeHeapBuffer(final long size, final Object array) {
+    private UnsafeHeapBuffer(final long size, final @NotNull Object array) {
         super(size);
         this.array = array;
-        offset = unsafe.arrayBaseOffset(array.getClass());
+        arrayOffset = unsafe.arrayBaseOffset(array.getClass());
         reference = new Object[] {array};
+        offset = 0;
         readdress();
         buffers.add(this);
     }
     
-    private UnsafeHeapBuffer(final long size, final @NotNull Object array, final int offset,
-            final @NotNull Object[] reference, final long address) {
+    private UnsafeHeapBuffer(final long size, final @NotNull Object array, final int arrayOffset,
+            final @NotNull Object[] reference, final long address, final long offset) {
         super(size);
         this.array = array;
-        this.offset = offset;
+        this.arrayOffset = arrayOffset;
         this.reference = reference;
         this.address = address;
+        this.offset = offset;
         buffers.add(this);
     }
     
@@ -62,9 +65,9 @@ public final class UnsafeHeapBuffer extends AbstractUnsafeBuffer {
          * for better performance,
          * most other methods using address()
          * and single-register addressing
-         * through unsafe.get<T>(long address)
+         * through unsafe.get<E>(long address)
          * will be changed to use double-register addressing
-         * through unsafe.get<T>(Object o, long offset)
+         * through unsafe.get<E>(Object o, long offset)
          */
         switch (UnsafeUtils.OOP_SIZE) {
             case Integer.BYTES:
@@ -77,7 +80,7 @@ public final class UnsafeHeapBuffer extends AbstractUnsafeBuffer {
     }
     
     private void readdress() {
-        address = arrayAddress() + offset;
+        address = arrayAddress() + arrayOffset + offset;
     }
     
     @Override
@@ -92,7 +95,7 @@ public final class UnsafeHeapBuffer extends AbstractUnsafeBuffer {
         reference[0] = null;
     }
     
-    // TODO implement alternate methods using unsafe.get<T>(Object o, long offset)
+    // TODO implement alternate methods using unsafe.get<E>(Object o, long offset)
     // may still be more performant and safer,
     // but now the address is saved and only updated after a GC,
     // during which the array might be moved.
@@ -104,13 +107,24 @@ public final class UnsafeHeapBuffer extends AbstractUnsafeBuffer {
     
     @Override
     public final @NotNull UnsafeHeapBuffer duplicate() {
-        return new UnsafeHeapBuffer(size, array, offset, reference, address);
+        return slice(0, size);
     }
     
     @SuppressWarnings("MethodDoesntCallSuperMethod")
     @Override
     public final @NotNull UnsafeHeapBuffer clone() {
         return duplicate();
+    }
+    
+    @Override
+    public final @NotNull UnsafeHeapBuffer slice(final long offset, final long length) {
+        return new UnsafeHeapBuffer(length, array, arrayOffset, reference, address,
+                this.offset + offset);
+    }
+    
+    @Override
+    public final @NotNull UnsafeHeapBuffer slice() {
+        return (UnsafeHeapBuffer) super.slice();
     }
     
 }

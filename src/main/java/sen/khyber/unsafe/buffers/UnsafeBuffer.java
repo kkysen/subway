@@ -29,7 +29,8 @@ import static sen.khyber.unsafe.fields.StringUtils.getRawValue;
         "ClassWithTooManyMethods", "OverlyComplexClass", "ClassReferencesSubclass",
         "StaticMethodOnlyUsedInOneClass"
 })
-public interface UnsafeBuffer extends Cloneable, Closeable, StringBuilderAppendable {
+public interface UnsafeBuffer
+        extends UnsafeSerializable, Cloneable, Closeable, StringBuilderAppendable {
     
     public static @NotNull UnsafeDirectBuffer allocate(final long size) {
         return new UnsafeDirectBuffer(size);
@@ -696,6 +697,24 @@ public interface UnsafeBuffer extends Cloneable, Closeable, StringBuilderAppenda
     
     // end
     
-    public @NotNull UnsafeBuffer duplicate();
+    public default @NotNull UnsafeBuffer duplicate() {
+        return slice(0, size());
+    }
+    
+    public @NotNull UnsafeBuffer slice(long offset, long length);
+    
+    public default @NotNull UnsafeBuffer slice() {
+        return slice(position(), limit());
+    }
+    
+    @Override
+    public default long serializedLongLength() {
+        return size();
+    }
+    
+    @Override
+    default void serializeUnsafe(final @NotNull UnsafeBuffer out) {
+        out.putMemory(this);
+    }
     
 }

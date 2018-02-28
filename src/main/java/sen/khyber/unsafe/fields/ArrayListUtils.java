@@ -28,12 +28,17 @@ public final class ArrayListUtils {
     private static final @NotNull ReflectedField sizeField = arrayListClass.fieldUnchecked("size");
     
     @SuppressWarnings("CollectionDeclaredAsConcreteClass")
-    public static final <T> ArrayList<T> wrap(final T[] a) {
+    public static final <E> ArrayList<E> wrap(final E[] a) {
         Objects.requireNonNull(a);
-        final ArrayList<T> list = arrayListClass.allocateInstance();
+        final ArrayList<E> list = arrayListClass.allocateInstance();
         elementDataField.setObject(list, a);
         sizeField.setInt(list, a.length);
         return list;
+    }
+    
+    public static final <E> E[] getArray(final @NotNull ArrayList<E> arrayList) {
+        Objects.requireNonNull(arrayList);
+        return (E[]) elementDataField.getObject(arrayList);
     }
     
     // TODO

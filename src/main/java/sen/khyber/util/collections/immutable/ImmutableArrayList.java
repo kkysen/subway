@@ -1,5 +1,8 @@
 package sen.khyber.util.collections.immutable;
 
+import sen.khyber.unsafe.fields.ArrayListUtils;
+
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -32,6 +35,12 @@ public class ImmutableArrayList<E> extends ImmutableList<E> {
     @SafeVarargs
     public ImmutableArrayList(final E... elements) {
         this(elements, 0, elements.length);
+    }
+    
+    public static <E> ImmutableArrayList<E> sharing(
+            final @NotNull ArrayList<? extends E> arrayList) {
+        Objects.requireNonNull(arrayList);
+        return new ImmutableArrayList(ArrayListUtils.getArray(arrayList), 0, arrayList.size());
     }
     
     @Override

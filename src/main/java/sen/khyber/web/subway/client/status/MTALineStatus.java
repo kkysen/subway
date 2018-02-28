@@ -24,11 +24,13 @@ import org.jetbrains.annotations.Nullable;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
-import static sen.khyber.unsafe.fields.ByteBufferUtils.*;
+import static sen.khyber.unsafe.fields.ByteBufferUtils.getInstantMillis;
+import static sen.khyber.unsafe.fields.ByteBufferUtils.getNullableShortString;
+import static sen.khyber.unsafe.fields.ByteBufferUtils.putInstantMillis;
+import static sen.khyber.unsafe.fields.ByteBufferUtils.putNullableShortString;
 import static sen.khyber.web.subway.client.status.MTADateTimes.clockTimeFormatter;
 import static sen.khyber.web.subway.client.status.MTADateTimes.dateFormatter;
 import static sen.khyber.web.subway.client.status.MTADateTimes.dateTimeFormatter;
-import static sen.khyber.web.subway.client.status.MTADateTimes.timeFormatter;
 import static sen.khyber.web.subway.client.status.MTASystemStatus.toInstant;
 import static sen.khyber.web.subway.client.status.MTASystemStatus.toLocalDateTime;
 
@@ -50,8 +52,7 @@ public final class MTALineStatus implements StringBuilderAppendable, UnsafeSeria
     private final @Getter @NotNull MTAType type;
     private final @Getter int lineOrdinal;
     private final @Getter @NotNull MTAStatus status;
-    private final @NotNull LocalDateTime startTime;
-    private @Nullable LocalDateTime endTime;
+    private final @Getter @NotNull LocalDateTime startTime;
     private final @Nullable String rawHtmlText;
     private final @Nullable Document htmlTextDoc;
     
@@ -59,29 +60,22 @@ public final class MTALineStatus implements StringBuilderAppendable, UnsafeSeria
     
     private MTALineStatus(final @NotNull MTALine<?> line,
             final @NotNull MTAStatus status, final @NotNull LocalDateTime startTime,
-            final @Nullable LocalDateTime endTime, final @Nullable String text) {
+            final @Nullable String text) {
         ObjectUtils.requireNonNull(line, status, startTime);
         type = line.type();
         lineOrdinal = line.ordinal();
         this.status = status;
         this.startTime = startTime;
-        this.endTime = endTime;
         rawHtmlText = text;
         htmlTextDoc = text == null ? null : Jsoup.parseBodyFragment(text);
     }
     
-    private MTALineStatus(final @NotNull MTALine<?> line,
-            final @NotNull MTAStatus status, final @NotNull LocalDateTime startTime,
-            final @Nullable String text) {
-        this(line, status, startTime, null, text);
-    }
-    
-    static MTALineStatus createDefault(final @NotNull MTALine<?> line) {
+    static @NotNull MTALineStatus createDefault(final @NotNull MTALine<?> line) {
         Objects.requireNonNull(line);
         return new MTALineStatus(line, MTAStatus.GOOD_SERVICE, LocalDateTime.now(), "");
     }
     
-    private static MTALineStatus parse(final @NotNull MTAType type,
+    private static @NotNull MTALineStatus parse(final @NotNull MTAType type,
             final @NotNull LocalDateTime backupDateTime,
             final @NotNull String name, final @NotNull String statusText,
             final @Nullable String dateTime, final @Nullable String text) {
@@ -105,8 +99,7 @@ public final class MTALineStatus implements StringBuilderAppendable, UnsafeSeria
     }
     
     // TODO move this to own util class?
-    private static @Nullable
-    String trimEmptyToNull(@Nullable String s) {
+    private static @Nullable String trimEmptyToNull(@Nullable String s) {
         if (s == null) {
             return null;
         }
@@ -114,7 +107,7 @@ public final class MTALineStatus implements StringBuilderAppendable, UnsafeSeria
         return s.isEmpty() ? null : s;
     }
     
-    static final MTALineStatus parse(final @NotNull MTAType type,
+    static final @NotNull MTALineStatus parse(final @NotNull MTAType type,
             final @NotNull LocalDateTime backupDateTime,
             final @NotNull Element lineStatus) {
         Objects.requireNonNull(type);
@@ -165,7 +158,7 @@ public final class MTALineStatus implements StringBuilderAppendable, UnsafeSeria
         showText(true);
     }
     
-    public final MTALine<?> line() {
+    public final @NotNull MTALine<?> line() {
         return type.line(lineOrdinal);
     }
     
@@ -173,12 +166,12 @@ public final class MTALineStatus implements StringBuilderAppendable, UnsafeSeria
         return rawHtmlText;
     }
     
-    public final boolean isSameKind(final MTALineStatus lineStatus) {
+    public final boolean isSameKind(final @NotNull MTALineStatus lineStatus) {
         return type == lineStatus.type && lineOrdinal == lineStatus.lineOrdinal;
     }
     
     @SuppressWarnings("MethodOverloadsMethodOfSuperclass")
-    public final boolean equals(final MTALineStatus lineStatus) {
+    public final boolean equals(final @NotNull MTALineStatus lineStatus) {
         return isSameKind(lineStatus)
                 && status == lineStatus.status
                 && Objects.equals(htmlTextDoc, lineStatus.htmlTextDoc)
@@ -197,31 +190,27 @@ public final class MTALineStatus implements StringBuilderAppendable, UnsafeSeria
         return Objects.hash(line(), status, startTime, rawHtmlText);
     }
     
-    public final void setSameEndTime(final @Nullable MTALineStatus lineStatus) {
-        if (lineStatus != null) {
-            endTime = lineStatus.endTime;
-        }
-    }
-    
-    public final String formattedTime() {
-        if (endTime == null) {
-            return dateTimeFormatter.format(startTime);
-        }
-        final String start;
-        final String end;
-        if (startTime.toLocalDate().isEqual(endTime.toLocalDate())) {
-            //noinspection IfMayBeConditional
-            if (startTime.get(ChronoField.AMPM_OF_DAY) == endTime.get(ChronoField.AMPM_OF_DAY)) {
-                start = clockTimeFormatter.format(startTime);
-            } else {
-                start = timeFormatter.format(startTime);
-            }
-            end = dateTimeFormatter.format(endTime);
-        } else {
-            start = dateTimeFormatter.format(startTime);
-            end = dateTimeFormatter.format(endTime);
-        }
-        return start + ", " + end;
+    public final @NotNull String formattedTime() {
+        return dateTimeFormatter.format(startTime);
+        //        if (endTime == null) {
+        //            return dateTimeFormatter.format(startTime);
+        //        }
+        //        final String start;
+        //        final String end;
+        //        if (startTime.toLocalDate().isEqual(endTime.toLocalDate())) {
+        //            //noinspection IfMayBeConditional
+        //            if (startTime.get(ChronoField.AMPM_OF_DAY) == endTime.get(ChronoField
+        // .AMPM_OF_DAY)) {
+        //                start = clockTimeFormatter.format(startTime);
+        //            } else {
+        //                start = timeFormatter.format(startTime);
+        //            }
+        //            end = dateTimeFormatter.format(endTime);
+        //        } else {
+        //            start = dateTimeFormatter.format(startTime);
+        //            end = dateTimeFormatter.format(endTime);
+        //        }
+        //        return start + ", " + end;
     }
     
     @Override
@@ -254,7 +243,7 @@ public final class MTALineStatus implements StringBuilderAppendable, UnsafeSeria
     @Override
     public final long serializedLongLength() {
         final long statusLength = status.serializedLongLength();
-        final long timeLength = 2 * Long.BYTES;
+        final long timeLength = Long.BYTES;
         final long textLength;
         if (rawHtmlText == null) {
             textLength = Byte.BYTES;
@@ -267,18 +256,14 @@ public final class MTALineStatus implements StringBuilderAppendable, UnsafeSeria
     @Override
     public final void serialize(final @NotNull ByteBuffer out) {
         status.serialize(out);
-        //noinspection ConstantConditions
         putInstantMillis(out, toInstant(startTime));
-        putNullableInstantMillis(out, toInstant(endTime));
         putNullableShortString(out, rawHtmlText);
     }
     
     @Override
     public final void serializeUnsafe(final @NotNull UnsafeBuffer out) {
         status.serializeUnsafe(out);
-        //noinspection ConstantConditions
         out.putInstantMillis(toInstant(startTime));
-        out.putNullableInstantMillis(toInstant(endTime));
         out.putNullableShortString(rawHtmlText);
     }
     
@@ -286,20 +271,16 @@ public final class MTALineStatus implements StringBuilderAppendable, UnsafeSeria
             final @NotNull MTALine<?> line) {
         final MTAStatus status = MTAStatus.deserialize(in);
         final LocalDateTime startTime = toLocalDateTime(getInstantMillis(in));
-        final LocalDateTime endTime = toLocalDateTime(getNullableInstantMillis(in));
         final String text = getNullableShortString(in);
-        //noinspection ConstantConditions
-        return new MTALineStatus(line, status, startTime, endTime, text);
+        return new MTALineStatus(line, status, startTime, text);
     }
     
     public static MTALineStatus deserialize(final @NotNull UnsafeBuffer in,
             final @NotNull MTALine<?> line) {
         final MTAStatus status = MTAStatus.deserialize(in);
         final LocalDateTime startTime = toLocalDateTime(in.getInstantMillis());
-        final LocalDateTime endTime = toLocalDateTime(in.getNullableInstantMillis());
         final String text = in.getNullableShortString();
-        //noinspection ConstantConditions
-        return new MTALineStatus(line, status, startTime, endTime, text);
+        return new MTALineStatus(line, status, startTime, text);
     }
     
 }

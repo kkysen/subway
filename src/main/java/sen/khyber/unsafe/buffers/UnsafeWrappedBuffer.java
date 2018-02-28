@@ -32,10 +32,15 @@ public final class UnsafeWrappedBuffer extends UnsafeDirectBuffer {
     
     private final boolean isMapped;
     
-    public UnsafeWrappedBuffer(final @NotNull ByteBuffer buffer) {
-        super(buffer.capacity(), getAddress(buffer));
+    private UnsafeWrappedBuffer(final long address, final long size,
+            final @NotNull ByteBuffer buffer) {
+        super(address, size);
         wrapped = buffer;
         isMapped = buffer instanceof MappedByteBuffer;
+    }
+    
+    public UnsafeWrappedBuffer(final @NotNull ByteBuffer buffer) {
+        this(getAddress(buffer), buffer.capacity(), buffer);
     }
     
     @Override
@@ -55,13 +60,23 @@ public final class UnsafeWrappedBuffer extends UnsafeDirectBuffer {
     
     @Override
     public final @NotNull UnsafeWrappedBuffer duplicate() {
-        return new UnsafeWrappedBuffer(wrapped);
+        return (UnsafeWrappedBuffer) super.duplicate();
     }
     
     @SuppressWarnings("MethodDoesntCallSuperMethod")
     @Override
     public final @NotNull UnsafeWrappedBuffer clone() {
         return duplicate();
+    }
+    
+    @Override
+    public final @NotNull UnsafeWrappedBuffer slice(final long offset, final long length) {
+        return new UnsafeWrappedBuffer(address + offset, length, wrapped);
+    }
+    
+    @Override
+    public final @NotNull UnsafeWrappedBuffer slice() {
+        return (UnsafeWrappedBuffer) super.slice();
     }
     
 }

@@ -195,7 +195,7 @@ public final class Retrier<T, R> {
         private final @NotNull Function<R, T> reconverter;
         
         private IntBinaryPredicate stopTrying;
-        private IntUnaryOperator sleepLength;
+        private IntUnaryOperator sleepLengthMillis;
         
         private Integer maxAttempts;
         private Integer acceptableNumFailures;
@@ -219,7 +219,11 @@ public final class Retrier<T, R> {
         public final @NotNull RetrierBuilder<T, R> stopTrying(
                 final @NotNull IntBinaryPredicate stopTrying) {
             Objects.requireNonNull(stopTrying);
-            this.stopTrying = stopTrying;
+            if (this.stopTrying == null) {
+                this.stopTrying = stopTrying;
+            } else {
+                this.stopTrying = this.stopTrying.or(stopTrying);
+            }
             return this;
         }
         
@@ -227,9 +231,8 @@ public final class Retrier<T, R> {
                 final int acceptableNumFailures) {
             checkNonNegative(maxAttempts, "maxAttempts");
             checkNonNegative(acceptableNumFailures, "acceptableNumFailures");
-            this.maxAttempts = maxAttempts;
-            this.acceptableNumFailures = acceptableNumFailures;
-            return this;
+            return stopTrying((numAttempts, numFailures) ->
+                    numAttempts >= maxAttempts || numFailures <= acceptableNumFailures);
         }
         
         public final @NotNull RetrierBuilder<T, R> maxAttempts(final int maxAttempts) {
@@ -241,21 +244,22 @@ public final class Retrier<T, R> {
             return stopTrying(Integer.MAX_VALUE, acceptableNumFailures);
         }
         
-        public final @NotNull RetrierBuilder<T, R> sleepLength(
-                final @NotNull IntUnaryOperator sleepLength) {
-            Objects.requireNonNull(sleepLength);
-            this.sleepLength = sleepLength;
+        public final @NotNull RetrierBuilder<T, R> sleepLengthMillis(
+                final @NotNull IntUnaryOperator sleepLengthMillis) {
+            Objects.requireNonNull(sleepLengthMillis);
+            this.sleepLengthMillis = sleepLengthMillis;
             return this;
         }
         
-        public final @NotNull RetrierBuilder<T, R> sleepLength(final int sleepLength) {
-            checkNonNegative(sleepLength, "sleepLength");
-            return sleepLength(i -> sleepLength);
+        public final @NotNull RetrierBuilder<T, R> sleepLengthMillis(final int sleepLengthMillis) {
+            checkNonNegative(sleepLengthMillis, "sleepLengthMillis");
+            return sleepLengthMillis(i -> sleepLengthMillis);
         }
         
-        public final @NotNull RetrierBuilder<T, R> sleepLengthMultiplied(final int sleepLength) {
-            checkNonNegative(sleepLength, "sleepLength");
-            return sleepLength(i -> i * sleepLength);
+        public final @NotNull RetrierBuilder<T, R> sleepLengthMillisMultiplied(
+                final int sleepLengthMillis) {
+            checkNonNegative(sleepLengthMillis, "sleepLengthMillis");
+            return sleepLengthMillis(i -> i * sleepLengthMillis);
         }
         
         public final @NotNull RetrierBuilder<T, R> log(final @Nullable Logger log) {
@@ -264,20 +268,16 @@ public final class Retrier<T, R> {
         }
         
         public final @NotNull Retrier<T, R> build() {
-            if (sleepLength == null) {
-                sleepLength(1000);
+            if (sleepLengthMillis == null) {
+                sleepLengthMillis(1000);
             }
             if (stopTrying == null) {
-                if (maxAttempts == null) {
-                    maxAttempts = Integer.MAX_VALUE;
-                }
-                if (acceptableNumFailures == null) {
-                    acceptableNumFailures = Integer.MIN_VALUE;
-                }
+                maxAttempts = Integer.MAX_VALUE;
+                acceptableNumFailures = Integer.MIN_VALUE;
                 stopTrying = (numAttempts, numFailures) ->
                         numAttempts >= maxAttempts || numFailures <= acceptableNumFailures;
             }
-            return new Retrier<>(trier, reconverter, stopTrying, sleepLength, log);
+            return new Retrier<>(trier, reconverter, stopTrying, sleepLengthMillis, log);
         }
         
     }
