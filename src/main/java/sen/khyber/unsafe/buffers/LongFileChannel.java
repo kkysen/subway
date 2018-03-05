@@ -338,6 +338,7 @@ public class LongFileChannel extends FileChannel {
             final int pagePosition = (int) (position % allocationGranularity);
             final long mapPosition = position - pagePosition;
             final long mapSize = size + pagePosition;
+            //noinspection ErrorNotRethrown
             try {
                 address = map0(iMode, mapPosition, mapSize);
             } catch (final OutOfMemoryError e1) {
@@ -347,6 +348,7 @@ public class LongFileChannel extends FileChannel {
                 } catch (final InterruptedException e2) {
                     Thread.currentThread().interrupt();
                 }
+                //noinspection ErrorNotRethrown
                 try {
                     address = map0(iMode, mapPosition, mapSize);
                 } catch (final OutOfMemoryError e3) {

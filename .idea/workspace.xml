@@ -1,37 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d9e19bf5-212d-4cc6-aaa9-eaf034bf55a1" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/MTACurrentStatus.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/MTAEntity.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/MTALineHistory.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/MTALineUpdateProcessor.java" />
+    <list default="true" id="d9e19bf5-212d-4cc6-aaa9-eaf034bf55a1" name="Default" comment="added system of MTAUser(s) and MTALineUpdateProcessor">
       <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/MTAService.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/MTAUpdateProcessor.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/MTAUser.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/MTAUserDB.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/MTAUserUpdate.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/MTAUsers.java" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/misc/Misc.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/misc/Misc.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/buffers/AbstractUnsafeBuffer.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/buffers/AbstractUnsafeBuffer.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/buffers/UnsafeBuffer.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/buffers/UnsafeBuffer.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/buffers/UnsafeDirectBuffer.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/buffers/UnsafeDirectBuffer.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/buffers/UnsafeHeapBuffer.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/buffers/UnsafeHeapBuffer.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/buffers/UnsafeMappedBuffer.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/buffers/UnsafeMappedBuffer.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/buffers/UnsafeSerializable.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/buffers/UnsafeSerializable.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/buffers/UnsafeWrappedBuffer.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/buffers/UnsafeWrappedBuffer.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/fields/ArrayListUtils.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/fields/ArrayListUtils.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/util/Retrier.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/util/Retrier.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/util/collections/immutable/ImmutableArrayList.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/util/collections/immutable/ImmutableArrayList.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/util/function/IntBinaryPredicate.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/util/function/IntBinaryPredicate.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/SubwaySystem.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/SubwaySystem.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/MTALine.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/MTALine.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/MTALineStatus.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/MTALineStatus.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/MTALineStatusRef.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/MTALineStatusRef.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/MTAStatus.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/MTAStatus.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/MTASystemStatus.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/MTASystemStatus.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/MTAType.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/MTAType.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/UnsafeUtils.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/UnsafeUtils.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/buffers/LongFileChannel.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/buffers/LongFileChannel.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflect/ReflectedField.java" afterPath="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflect/ReflectedField.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -44,7 +19,7 @@
   <component name="CheckStyle-IDEA-workspace">
     <option name="configuration">
       <map>
-        <entry key="last-active-plugin-version" value="5.18.0" />
+        <entry key="last-active-plugin-version" value="5.18.1" />
       </map>
     </option>
   </component>
@@ -91,104 +66,7 @@
     <select />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="750">
-      <file leaf-file-name="MTASystemStatus.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/MTASystemStatus.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="760">
-              <caret line="189" column="5" lean-forward="true" selection-start-line="189" selection-start-column="5" selection-end-line="189" selection-end-column="5" />
-              <folding>
-                <element signature="method#toInstant#0;class#MTASystemStatus#0" expanded="false" />
-                <element signature="method#toLocalDateTime#0;class#MTASystemStatus#0" expanded="false" />
-                <element signature="method#setupLinesAndUpdateProcessors#0;class#MTASystemStatus#0" expanded="false" />
-                <element signature="class#RunMTASystemStatusTask#0;class#MTASystemStatus#0" expanded="false" />
-                <element signature="e#15554#15555#0" expanded="true" />
-                <element signature="e#15594#15595#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MTAService.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/MTAService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="7" column="27" lean-forward="false" selection-start-line="7" selection-start-column="27" selection-end-line="7" selection-end-column="27" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SubwaySystem.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/SubwaySystem.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1600">
-              <caret line="60" column="4" lean-forward="false" selection-start-line="60" selection-start-column="4" selection-end-line="60" selection-end-column="88" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Retrier.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/util/Retrier.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="10200">
-              <caret line="278" column="13" lean-forward="false" selection-start-line="278" selection-start-column="13" selection-end-line="278" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MTAUserDB.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/MTAUserDB.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="760">
-              <caret line="37" column="5" lean-forward="false" selection-start-line="37" selection-start-column="5" selection-end-line="37" selection-end-column="5" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BlockingQueue.java" pinned="false" current-in-tab="false">
-        <entry file="jar://C:/Program Files/Java/jdk-9.0.4/lib/src.zip!/java.base/java/util/concurrent/BlockingQueue.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-341">
-              <caret line="197" column="7" lean-forward="true" selection-start-line="197" selection-start-column="7" selection-end-line="197" selection-end-column="7" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CompletableFuture.java" pinned="false" current-in-tab="false">
-        <entry file="jar://C:/Program Files/Java/jdk-9.0.4/lib/src.zip!/java.base/java/util/concurrent/CompletableFuture.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="433">
-              <caret line="2232" column="36" lean-forward="false" selection-start-line="2232" selection-start-column="36" selection-end-line="2232" selection-end-column="36" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MTAUser.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/MTAUser.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1440">
-              <caret line="54" column="8" lean-forward="false" selection-start-line="54" selection-start-column="8" selection-end-line="54" selection-end-column="8" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="method#equals#1;class#MTAUser#0" expanded="false" />
-                <element signature="e#1038#1039#0" expanded="true" />
-                <element signature="e#1076#1077#0" expanded="true" />
-                <element signature="e#1604#1605#0" expanded="true" />
-                <element signature="e#1644#1645#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="750" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -268,8 +146,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/proto/GtfsRealtime.java" />
-        <option value="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/SubwaySystemStatus.java" />
         <option value="$PROJECT_DIR$/src/main/java/sen/khyber/util/Indent.java" />
         <option value="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/MTADateTimes.java" />
         <option value="$PROJECT_DIR$/src/main/java/sen/khyber/util/StringBuilderAppendable.java" />
@@ -282,14 +158,12 @@
         <option value="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/SubwayLine.java" />
         <option value="$PROJECT_DIR$/src/main/java/sen/khyber/io/ISizeType.java" />
         <option value="$PROJECT_DIR$/src/main/java/sen/khyber/io/SerializeableEnum.java" />
-        <option value="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflect/ReflectedField.java" />
         <option value="$PROJECT_DIR$/src/main/java/sen/khyber/proto/ProtoFileFormatter.java" />
         <option value="$PROJECT_DIR$/src/main/java/sen/khyber/io/SizeType.java" />
         <option value="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/fields/StringUtils.java" />
         <option value="$PROJECT_DIR$/src/main/java/sen/khyber/web/client/SilencedRenderingWebClient.java" />
         <option value="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/fields/EnumUtils.java" />
         <option value="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/fields/ByteBufferUtils.java" />
-        <option value="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/buffers/LongFileChannel.java" />
         <option value="$PROJECT_DIR$/src/main/java/sen/khyber/misc/Misc.java" />
         <option value="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/MTAEntity.java" />
         <option value="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/MTALine.java" />
@@ -319,6 +193,10 @@
         <option value="$PROJECT_DIR$/src/main/java/sen/khyber/util/Retrier.java" />
         <option value="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/MTASystemStatus.java" />
         <option value="$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/MTAUserDB.java" />
+        <option value="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/buffers/LongFileChannel.java" />
+        <option value="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflect/ReflectedField.java" />
+        <option value="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/MemoryLayoutVerifier.java" />
+        <option value="$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/UnsafeUtils.java" />
       </list>
     </option>
   </component>
@@ -380,6 +258,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -420,7 +301,7 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="khyber" type="462c0819:PsiDirectoryNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
+              <item name="unsafe" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Subway" type="b2602c69:ProjectViewProjectNode" />
@@ -429,8 +310,8 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="khyber" type="462c0819:PsiDirectoryNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
-              <item name="subway" type="462c0819:PsiDirectoryNode" />
+              <item name="unsafe" type="462c0819:PsiDirectoryNode" />
+              <item name="buffers" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Subway" type="b2602c69:ProjectViewProjectNode" />
@@ -439,21 +320,8 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="khyber" type="462c0819:PsiDirectoryNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
-              <item name="subway" type="462c0819:PsiDirectoryNode" />
-              <item name="client" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Subway" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Subway" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="khyber" type="462c0819:PsiDirectoryNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
-              <item name="subway" type="462c0819:PsiDirectoryNode" />
-              <item name="client" type="462c0819:PsiDirectoryNode" />
-              <item name="status" type="462c0819:PsiDirectoryNode" />
+              <item name="unsafe" type="462c0819:PsiDirectoryNode" />
+              <item name="reflect" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Subway" type="b2602c69:ProjectViewProjectNode" />
@@ -466,9 +334,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -747,7 +612,8 @@
       <workItem from="1519187602667" duration="37956000" />
       <workItem from="1519525112639" duration="42823000" />
       <workItem from="1519665021332" duration="1259000" />
-      <workItem from="1519754622622" duration="4430000" />
+      <workItem from="1519754622622" duration="4672000" />
+      <workItem from="1520288737061" duration="660000" />
     </task>
     <task id="LOCAL-00001" summary="got Hello World example to work in Spring Boot">
       <created>1517269361130</created>
@@ -945,11 +811,18 @@
       <option name="project" value="LOCAL" />
       <updated>1519614541077</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="added system of MTAUser(s) and MTALineUpdateProcessor">
+      <created>1519798112469</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1519798112469</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="312290000" />
+    <option name="totallyTimeSpent" value="313192000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -962,7 +835,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-16" y="-16" width="3232" height="1732" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="FindBugs-IDEA" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293201" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -992,7 +864,7 @@
       <window_info id="CheckStyle" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293201" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293201" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run with VisualVM" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25906736" sideWeight="0.49716714" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25906736" sideWeight="0.49716714" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32998705" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25906736" sideWeight="0.5028329" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="JProfiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1043,7 +915,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="wrote a more robust Retrier using MappedList&#10;&#10;MappedList wraps a delegate list and using a mapping function,&#10;presents a lazily mapped view of delegated list.&#10;MappedSpliterator is similar, and both inherit from Mapper,&#10;which just contains a few convenience methods &#10;(maybe it should be an interface with default methods).&#10;&#10;Retrier&lt;T, R&gt; uses a BiConsumer&lt;List&lt;T&gt;, List&lt;R&gt;&gt; &#10;to repeatedly try a List&lt;T&gt;, whose errors go into a List&lt;R&gt;.&#10;A reconverter Function&lt;R, T&gt; then maps the errors back for Retrier to try again.&#10;&#10;Retrier supports an optimized version &#10;where the reconverter is the identity, that is T = R.&#10;&#10;Exceptional Retriers can also be used that map a List&lt;T&gt; to a List&lt;Pair&lt;T, Exception&gt;&gt;,&#10;where Exception can be any exception type, &#10;with Exception, RuntimeException, and IOException built in&#10;(accessible through Retrier.builders())." />
     <MESSAGE value="made a few changes to Mapper, MappedList, and MappedSpliterator, incl. documentation" />
     <MESSAGE value="fixed some reflector stuff (incl. always running setAccessible through a method handle (to avoid security checks)&#10;&#10;added some more util classes&#10;&#10;worked on ProtoFileFormatter, which help format generated Java proto files" />
     <MESSAGE value="worked on ProtoFileFormatter, about to convert to IntelliJ plugin module" />
@@ -1068,7 +939,8 @@
     <MESSAGE value="finished serialization code for MTA status classes (untested)&#10;&#10;MTASystemStatus parsing still works on a live download of serviceStatus.txt&#10;&#10;added SerializableEnum default interface &#10;that automatically serializes an enum efficiently using SizeType" />
     <MESSAGE value="fixed LongFileChannel" />
     <MESSAGE value="changed IO.Home to reflect user.home property" />
-    <option name="LAST_COMMIT_MESSAGE" value="changed IO.Home to reflect user.home property" />
+    <MESSAGE value="added system of MTAUser(s) and MTALineUpdateProcessor" />
+    <option name="LAST_COMMIT_MESSAGE" value="added system of MTAUser(s) and MTALineUpdateProcessor" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1220,48 +1092,6 @@ method.invoke(o);</expression-string>
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://C:/Program Files/Java/jdk-9.0.4/lib/src.zip!/java.base/java/util/stream/SortedOps.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="553">
-          <caret line="209" column="9" lean-forward="true" selection-start-line="209" selection-start-column="9" selection-end-line="209" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/util/collections/immutable/ImmutableArrayList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-560">
-          <caret line="32" column="5" lean-forward="true" selection-start-line="32" selection-start-column="5" selection-end-line="32" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk-9.0.4/lib/src.zip!/java.base/java/util/stream/LongPipeline.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="384" column="29" lean-forward="true" selection-start-line="384" selection-start-column="29" selection-end-line="384" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/commons/commons-lang3/3.7/commons-lang3-3.7-sources.jar!/org/apache/commons/lang3/tuple/Pair.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="453">
-          <caret line="69" column="22" lean-forward="false" selection-start-line="69" selection-start-column="22" selection-end-line="69" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/MTALineUpdateProcessor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="859">
-          <caret line="31" column="5" lean-forward="false" selection-start-line="31" selection-start-column="5" selection-end-line="31" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#831#832#0" expanded="false" />
-            <element signature="e#867#868#0" expanded="false" />
-            <element signature="e#944#945#0" expanded="false" />
-            <element signature="e#984#985#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk-9.0.4/lib/src.zip!/java.base/java/lang/System.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="453">
@@ -1274,7 +1104,6 @@ method.invoke(o);</expression-string>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="773">
           <caret line="59" column="5" lean-forward="true" selection-start-line="59" selection-start-column="5" selection-end-line="59" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1282,7 +1111,6 @@ method.invoke(o);</expression-string>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="520">
           <caret line="52" column="79" lean-forward="false" selection-start-line="52" selection-start-column="79" selection-end-line="52" selection-end-column="79" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1297,13 +1125,6 @@ method.invoke(o);</expression-string>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="433">
           <caret line="66" column="25" lean-forward="false" selection-start-line="66" selection-start-column="25" selection-end-line="66" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/buffers/LongFileChannel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="533">
-          <caret line="311" column="24" lean-forward="true" selection-start-line="311" selection-start-column="24" selection-end-line="311" selection-end-column="24" />
         </state>
       </provider>
     </entry>
@@ -1381,16 +1202,6 @@ method.invoke(o);</expression-string>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="490">
           <caret line="56" column="49" lean-forward="true" selection-start-line="56" selection-start-column="49" selection-end-line="56" selection-end-column="49" />
-          <folding>
-            <element signature="method#createDefault#0;class#MTALineStatus#0" expanded="false" />
-            <element signature="method#parse#0;class#MTALineStatus#0" expanded="false" />
-            <element signature="method#trimEmptyToNull#0;class#MTALineStatus#0" expanded="false" />
-            <element signature="method#parse#1;class#MTALineStatus#0" expanded="false" />
-            <element signature="method#isSameKind#0;class#MTALineStatus#0" expanded="false" />
-            <element signature="method#equals#0;class#MTALineStatus#0" expanded="false" />
-            <element signature="method#equals#1;class#MTALineStatus#0" expanded="false" />
-            <element signature="method#append#0;class#MTALineStatus#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1419,13 +1230,6 @@ method.invoke(o);</expression-string>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1480">
           <caret line="53" column="29" lean-forward="false" selection-start-line="53" selection-start-column="29" selection-end-line="53" selection-end-column="29" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1014#1015#0" expanded="true" />
-            <element signature="e#1057#1058#0" expanded="true" />
-            <element signature="e#1324#1325#0" expanded="true" />
-            <element signature="e#1364#1365#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1489,11 +1293,6 @@ method.invoke(o);</expression-string>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1320">
           <caret line="44" column="5" lean-forward="false" selection-start-line="44" selection-start-column="5" selection-end-line="44" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1910#1911#0" expanded="true" />
-            <element signature="e#1950#1951#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1501,30 +1300,6 @@ method.invoke(o);</expression-string>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1000">
           <caret line="49" column="4" lean-forward="false" selection-start-line="49" selection-start-column="4" selection-end-line="49" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/MTAUser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1440">
-          <caret line="54" column="8" lean-forward="false" selection-start-line="54" selection-start-column="8" selection-end-line="54" selection-end-column="8" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#equals#1;class#MTAUser#0" expanded="false" />
-            <element signature="e#1038#1039#0" expanded="true" />
-            <element signature="e#1076#1077#0" expanded="true" />
-            <element signature="e#1604#1605#0" expanded="true" />
-            <element signature="e#1644#1645#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/SubwaySystem.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1600">
-          <caret line="60" column="4" lean-forward="false" selection-start-line="60" selection-start-column="4" selection-end-line="60" selection-end-column="88" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1535,19 +1310,10 @@ method.invoke(o);</expression-string>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/util/Retrier.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="10200">
-          <caret line="278" column="13" lean-forward="false" selection-start-line="278" selection-start-column="13" selection-end-line="278" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk-9.0.4/lib/src.zip!/java.base/java/util/concurrent/Future.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="200">
           <caret line="87" column="17" lean-forward="false" selection-start-line="87" selection-start-column="17" selection-end-line="87" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1555,15 +1321,6 @@ method.invoke(o);</expression-string>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-581">
           <caret line="20" column="17" lean-forward="false" selection-start-line="20" selection-start-column="17" selection-end-line="20" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk-9.0.4/lib/src.zip!/java.base/java/util/concurrent/CompletableFuture.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="433">
-          <caret line="2232" column="36" lean-forward="false" selection-start-line="2232" selection-start-column="36" selection-end-line="2232" selection-end-column="36" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1571,7 +1328,6 @@ method.invoke(o);</expression-string>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="640">
           <caret line="189" column="6" lean-forward="false" selection-start-line="189" selection-start-column="6" selection-end-line="189" selection-end-column="6" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1579,15 +1335,6 @@ method.invoke(o);</expression-string>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="560">
           <caret line="54" column="22" lean-forward="true" selection-start-line="54" selection-start-column="22" selection-end-line="54" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk-9.0.4/lib/src.zip!/java.base/java/util/concurrent/BlockingQueue.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-341">
-          <caret line="197" column="7" lean-forward="true" selection-start-line="197" selection-start-column="7" selection-end-line="197" selection-end-column="7" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1595,12 +1342,52 @@ method.invoke(o);</expression-string>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1793">
           <caret line="641" column="21" lean-forward="true" selection-start-line="641" selection-start-column="21" selection-end-line="641" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/SubwayClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="19" column="13" lean-forward="false" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/MTASystemStatus.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4360">
+          <caret line="189" column="5" lean-forward="false" selection-start-line="189" selection-start-column="5" selection-end-line="189" selection-end-column="5" />
           <folding>
-            <element signature="e#21591#21592#0" expanded="false" />
-            <element signature="e#21646#21647#0" expanded="false" />
-            <element signature="e#53606#53607#0" expanded="false" />
-            <element signature="e#53657#53658#0" expanded="false" />
+            <element signature="method#toInstant#0;class#MTASystemStatus#0" expanded="false" />
+            <element signature="method#toLocalDateTime#0;class#MTASystemStatus#0" expanded="false" />
+            <element signature="method#setupLinesAndUpdateProcessors#0;class#MTASystemStatus#0" expanded="false" />
+            <element signature="class#RunMTASystemStatusTask#0;class#MTASystemStatus#0" expanded="false" />
+            <element signature="e#15554#15555#0" expanded="false" />
+            <element signature="e#15594#15595#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/MTAService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="8" column="4" lean-forward="false" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/SubwaySystem.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="99">
+          <caret line="60" column="4" lean-forward="false" selection-start-line="60" selection-start-column="4" selection-end-line="60" selection-end-column="88" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/util/Retrier.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="819">
+          <caret line="278" column="13" lean-forward="false" selection-start-line="278" selection-start-column="13" selection-end-line="278" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1609,38 +1396,122 @@ method.invoke(o);</expression-string>
         <state relative-caret-position="760">
           <caret line="37" column="5" lean-forward="false" selection-start-line="37" selection-start-column="5" selection-end-line="37" selection-end-column="5" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/SubwayClient.java">
+    <entry file="jar://C:/Program Files/Java/jdk-9.0.4/lib/src.zip!/java.base/java/util/concurrent/BlockingQueue.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="19" column="13" lean-forward="false" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
+        <state relative-caret-position="40">
+          <caret line="197" column="7" lean-forward="false" selection-start-line="197" selection-start-column="7" selection-end-line="197" selection-end-column="7" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/MTASystemStatus.java">
+    <entry file="jar://C:/Program Files/Java/jdk-9.0.4/lib/src.zip!/java.base/java/util/concurrent/CompletableFuture.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="760">
-          <caret line="189" column="5" lean-forward="true" selection-start-line="189" selection-start-column="5" selection-end-line="189" selection-end-column="5" />
+        <state relative-caret-position="40">
+          <caret line="2232" column="36" lean-forward="false" selection-start-line="2232" selection-start-column="36" selection-end-line="2232" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/MTAUser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="419">
+          <caret line="54" column="8" lean-forward="false" selection-start-line="54" selection-start-column="8" selection-end-line="54" selection-end-column="8" />
           <folding>
-            <element signature="method#toInstant#0;class#MTASystemStatus#0" expanded="false" />
-            <element signature="method#toLocalDateTime#0;class#MTASystemStatus#0" expanded="false" />
-            <element signature="method#setupLinesAndUpdateProcessors#0;class#MTASystemStatus#0" expanded="false" />
-            <element signature="class#RunMTASystemStatusTask#0;class#MTASystemStatus#0" expanded="false" />
-            <element signature="e#15554#15555#0" expanded="true" />
-            <element signature="e#15594#15595#0" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="method#equals#1;class#MTAUser#0" expanded="false" />
+            <element signature="e#1038#1039#0" expanded="false" />
+            <element signature="e#1076#1077#0" expanded="false" />
+            <element signature="e#1604#1605#0" expanded="false" />
+            <element signature="e#1644#1645#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/web/subway/client/status/MTAService.java">
+    <entry file="jar://C:/Program Files/Java/jdk-9.0.4/lib/src.zip!/java.base/java/lang/AssertionError.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="7" column="27" lean-forward="false" selection-start-line="7" selection-start-column="27" selection-end-line="7" selection-end-column="27" />
+        <state relative-caret-position="640">
+          <caret line="72" column="11" lean-forward="false" selection-start-line="72" selection-start-column="11" selection-end-line="72" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk-9.0.4/lib/src.zip!/jdk.unsupported/sun/misc/Unsafe.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="663" column="5" lean-forward="true" selection-start-line="663" selection-start-column="5" selection-end-line="663" selection-end-column="5" />
+          <folding>
+            <element signature="e#24535#24536#0" expanded="true" />
+            <element signature="e#24596#24597#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/UnsafeUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1200">
+          <caret line="41" column="13" lean-forward="true" selection-start-line="41" selection-start-column="13" selection-end-line="41" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/MemoryLayoutVerifier.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="659">
+          <caret line="94" column="5" lean-forward="true" selection-start-line="94" selection-start-column="5" selection-end-line="94" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/reflect/ReflectedField.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="880">
+          <caret line="53" column="31" lean-forward="false" selection-start-line="53" selection-start-column="31" selection-end-line="53" selection-end-column="31" />
+          <folding>
+            <element signature="e#1662#1663#0" expanded="true" />
+            <element signature="e#1691#1692#0" expanded="true" />
+            <element signature="e#2749#2750#0" expanded="true" />
+            <element signature="e#2789#2790#0" expanded="true" />
+            <element signature="e#3013#3014#0" expanded="true" />
+            <element signature="e#3053#3054#0" expanded="true" />
+            <element signature="e#3420#3421#0" expanded="true" />
+            <element signature="e#3459#3460#0" expanded="true" />
+            <element signature="e#3500#3501#0" expanded="true" />
+            <element signature="e#3533#3534#0" expanded="true" />
+            <element signature="e#3703#3704#0" expanded="true" />
+            <element signature="e#3746#3747#0" expanded="true" />
+            <element signature="e#4072#4073#0" expanded="true" />
+            <element signature="e#4124#4125#0" expanded="true" />
+            <element signature="e#4161#4162#0" expanded="true" />
+            <element signature="e#4198#4199#0" expanded="true" />
+            <element signature="e#4287#4288#0" expanded="true" />
+            <element signature="e#4347#4348#0" expanded="true" />
+            <element signature="e#4536#4537#0" expanded="true" />
+            <element signature="e#4573#4574#0" expanded="true" />
+            <element signature="e#4853#4854#0" expanded="true" />
+            <element signature="e#4891#4892#0" expanded="true" />
+            <element signature="e#4938#4939#0" expanded="true" />
+            <element signature="e#4999#5000#0" expanded="true" />
+            <element signature="e#5193#5194#0" expanded="true" />
+            <element signature="e#5231#5232#0" expanded="true" />
+            <element signature="e#5400#5401#0" expanded="true" />
+            <element signature="e#5456#5457#0" expanded="true" />
+            <element signature="e#5509#5510#0" expanded="true" />
+            <element signature="e#5573#5574#0" expanded="true" />
+            <element signature="e#5634#5635#0" expanded="true" />
+            <element signature="e#5690#5691#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/sen/khyber/unsafe/buffers/LongFileChannel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="933">
+          <caret line="335" column="13" lean-forward="false" selection-start-line="335" selection-start-column="13" selection-end-line="335" selection-end-column="13" />
           <folding />
         </state>
       </provider>

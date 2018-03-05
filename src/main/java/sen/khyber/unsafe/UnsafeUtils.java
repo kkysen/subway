@@ -5,6 +5,8 @@ import sen.khyber.util.exceptions.ExceptionUtils;
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 
+import org.jetbrains.annotations.Nullable;
+
 import sun.misc.Unsafe;
 
 /**
@@ -12,7 +14,9 @@ import sun.misc.Unsafe;
  *
  * @author Khyber Sen
  */
-public class UnsafeUtils {
+public final class UnsafeUtils {
+    
+    private UnsafeUtils() {}
     
     private static native void registerNatives();
     
@@ -27,8 +31,6 @@ public class UnsafeUtils {
     public static native void pin(Object o);
     
     public static native void unpin(Object o);
-    
-    private UnsafeUtils() {}
     
     private static Unsafe reflectUnsafe() {
         if (System.getSecurityManager() == null) {
@@ -134,7 +136,7 @@ public class UnsafeUtils {
         unsafe.putInt(o, offset, (int) address);
     }
     
-    public static final long rawAddress(final Object o) {
+    public static final long rawAddress(final @Nullable Object o) {
         final Object[] array = REFERENCE;
         array[0] = o;
         final long address = getObjectFieldAddress(array, (long) ARRAY_OFFSET);

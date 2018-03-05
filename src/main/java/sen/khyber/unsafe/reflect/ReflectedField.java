@@ -27,7 +27,8 @@ public final class ReflectedField extends ReflectedMember<Field, String, VarHand
     
     private final @NotNull Field field;
     private @Nullable Object object;
-    private final long offset;
+    private final int offset;
+    // although Unsafe uses a long, no field offset should ever exceed Integer.MAX_VALUE
     
     private ReflectedField(final @NotNull ReflectedField copy) {
         super(copy);
@@ -46,7 +47,17 @@ public final class ReflectedField extends ReflectedMember<Field, String, VarHand
         super(field);
         this.field = field;
         object = isStatic ? field.getDeclaringClass() : null;
-        offset = isStatic ? unsafe.staticFieldOffset(field) : unsafe.objectFieldOffset(field);
+        final long offset = isStatic
+                ? unsafe.staticFieldOffset(field)
+                : unsafe.objectFieldOffset(field);
+        if (offset > Integer.MAX_VALUE) {
+            throw new AssertionError("offset too large: " + offset);
+        }
+        this.offset = (int) offset;
+    }
+    
+    private long offset() {
+        return offset;
     }
     
     @Override
