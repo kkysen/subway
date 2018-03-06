@@ -5,11 +5,14 @@ import sen.khyber.unsafe.fields.ByteBufferUtils;
 import sen.khyber.unsafe.fields.StringUtils;
 import sen.khyber.util.StringBuilderAppendable;
 
+import lombok.ToString;
+
 import java.io.Closeable;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.nio.Buffer;
 import java.nio.ByteBuffer;
+import java.nio.channels.FileChannel.MapMode;
 import java.nio.file.Path;
 import java.time.Instant;
 import java.util.Objects;
@@ -45,26 +48,65 @@ public interface UnsafeBuffer
         return wrap(ByteBufferUtils.useNativeOrder(ByteBuffer.allocateDirect(size)));
     }
     
-    public static @NotNull UnsafeMappedBuffer mmap(final @NotNull Path path, final long offset,
-            final long size)
-            throws IOException {
-        Objects.requireNonNull(path);
-        try (final RandomAccessFile raf = new RandomAccessFile(path.toFile(), "rw");
-                final LongFileChannel channel = new LongFileChannel(raf)) {
-            //noinspection ConstantConditions
-            return channel.longRWMap(offset, size);
+    @ToString
+    public static final class MMapper {
+        
+        private final @NotNull Path path;
+        private long offset = 0;
+        private long size = -1;
+        private @NotNull MapMode mode = MapMode.READ_WRITE;
+        
+        private MMapper(final @NotNull Path path) {
+            Objects.requireNonNull(path);
+            this.path = path;
         }
+    
+        public final MMapper offset(final long offset) {
+            if (size < 0) {
+                throw new IllegalArgumentException("offset must be non-negative: " + offset);
+            }
+            this.offset = offset;
+            return this;
+        }
+    
+        public final MMapper size(final long size) {
+            if (size < 0) {
+                throw new IllegalArgumentException("size must be non-negative: " + size);
+            }
+            this.size = size;
+            return this;
+        }
+    
+        public final MMapper mode(final @NotNull MapMode mode) {
+            Objects.requireNonNull(mode);
+            this.mode = mode;
+            return this;
+        }
+        
+        /**
+         * Defaults:
+         *     offset = 0
+         *     size = path.toFile().length()
+         *     mode = MapMode.READ_WRITE
+         * 
+         * @return the built {@link UnsafeMappedBuffer} with above defaults
+         */
+        public @NotNull UnsafeMappedBuffer mmap() throws IOException {
+            if (size == -1) {
+                size = path.toFile().length();
+            }
+            try (final RandomAccessFile raf = new RandomAccessFile(path.toFile(), "rw");
+                    final LongFileChannel channel = new LongFileChannel(raf)) {
+                //noinspection ConstantConditions
+                return channel.longMap(offset, size, MapMode.READ_WRITE);
+            }
+        }
+        
     }
     
-    public static @NotNull UnsafeMappedBuffer mmap(final @NotNull Path path, final long size)
-            throws IOException {
+    public static @NotNull MMapper mmap(final @NotNull Path path) {
         Objects.requireNonNull(path);
-        return mmap(path, 0, size);
-    }
-    
-    public static @NotNull UnsafeMappedBuffer mmap(final @NotNull Path path) throws IOException {
-        Objects.requireNonNull(path);
-        return mmap(path, path.toFile().length());
+        return new MMapper(path);
     }
     
     public static void wrapExisting(final @NotNull UnsafeDirectBuffer unsafeBuffer,

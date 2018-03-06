@@ -20,6 +20,7 @@ import java.nio.channels.FileChannel;
 import java.nio.channels.FileLock;
 import java.nio.channels.ReadableByteChannel;
 import java.nio.channels.WritableByteChannel;
+import java.util.Objects;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -62,7 +63,9 @@ public class LongFileChannel extends FileChannel {
     private static final long allocationGranularity =
             field(FileChannelImplClass, "allocationGranularity").getLong();
     
+    private static final int MAP_RO = 0;
     private static final int MAP_RW = 1;
+    private static final int MAP_PV = 2;
     
     // from sun.nio.ch.IOStatus
     private static final int EOF = -1;
@@ -307,8 +310,22 @@ public class LongFileChannel extends FileChannel {
         }
     }
     
-    public final @Nullable UnsafeMappedBuffer longRWMap(final long position, final long size)
-            throws IOException {
+    private static int mapModeToIMode(final @NotNull MapMode mode) {
+        if (mode == MapMode.READ_WRITE) {
+            return MAP_RW;
+        }
+        if (mode == MapMode.READ_ONLY) {
+            return MAP_RO;
+        }
+        if (mode == MapMode.PRIVATE) {
+            return MAP_PV;
+        }
+        throw new AssertionError("invalid MapMode: " + mode);
+    }
+    
+    public final @Nullable UnsafeMappedBuffer longMap(final long position, final long size,
+            final @NotNull MapMode mode) throws IOException {
+        Objects.requireNonNull(mode);
         if (size == 0) {
             System.err.println("Warning: size is 0 (" + getClass() + ')');
             return null; // FIXME is this right, or should it be buffer w/ 0 length
@@ -317,7 +334,8 @@ public class LongFileChannel extends FileChannel {
         ensureOpen();
         assert position >= 0;
         assert size >= 0;
-        final int iMode = MAP_RW;
+        
+        final int iMode = mapModeToIMode(mode);
         
         long address = -1;
         int threadId = -1;

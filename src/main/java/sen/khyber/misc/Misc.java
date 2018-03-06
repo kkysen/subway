@@ -2,7 +2,7 @@ package sen.khyber.misc;
 
 import sen.khyber.io.IO;
 import sen.khyber.proto.ProtoFileFormatter;
-import sen.khyber.unsafe.UnsafeUtils;
+import sen.khyber.unsafe.buffers.UnsafeBuffer;
 import sen.khyber.unsafe.reflect.ClassNames;
 import sen.khyber.unsafe.reflect.ReflectedClass;
 import sen.khyber.unsafe.reflect.Reflectors;
@@ -186,8 +186,25 @@ public class Misc {
                 .forEach(System.out::println);
     }
     
+    private static void testUnsafeAllocateMemory() {
+        final long[] sizes = {
+                //                0,
+                //                1,
+                //                IO.GB,
+                //                20L * O.GB,
+                49L * IO.GB, // ~ 53 GB: limit on my 16 GB RAM computer
+                //                IO.TB,
+        };
+        for (final long size : sizes) {
+            System.out.print(size + ": ");
+            final UnsafeBuffer buffer = UnsafeBuffer.allocate(size);
+            System.out.println(buffer);
+            buffer.free();
+        }
+    }
+    
     public static void main(final String[] args) throws IOException {
-        System.out.println(UnsafeUtils.getUnsafe().pageSize());
+        testUnsafeAllocateMemory();
     }
     
 }

@@ -48,7 +48,10 @@ public interface UnsafeSerializable extends FastSerializable {
     
     public default void serializeUnsafe(final @NotNull Path path) throws IOException {
         Objects.requireNonNull(path);
-        final UnsafeBuffer out = UnsafeBuffer.mmap(path, serializedLongLength());
+        final UnsafeBuffer out = UnsafeBuffer
+                .mmap(path)
+                .size(serializedLongLength())
+                .mmap();
         serializeUnsafe(out);
         out.free();
     }
@@ -59,7 +62,7 @@ public interface UnsafeSerializable extends FastSerializable {
         Objects.requireNonNull(path);
         try (RandomAccessFile raf = new RandomAccessFile(path.toFile(), "rw");
                 LongFileChannel channel = new LongFileChannel(raf)) {
-            final UnsafeBuffer out = channel.longRWMap(0, overestimate);
+            final UnsafeBuffer out = channel.longMap(0, overestimate, MapMode.READ_WRITE);
             //noinspection resource
             Objects.requireNonNull(out);
             serializeUnsafe(out);
