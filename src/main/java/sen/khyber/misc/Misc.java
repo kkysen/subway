@@ -117,7 +117,8 @@ public class Misc {
             throws IOException {
         System.out.println("\n\t" + rowNum + '\n');
         byte b;
-        while ((b = buffer.get()) != '{' && b != '[') { }
+        while ((b = buffer.get()) != '{' && b != '[') {
+        }
         System.out.println("start = " + buffer.position());
         final int start = buffer.position() - 1;
         {

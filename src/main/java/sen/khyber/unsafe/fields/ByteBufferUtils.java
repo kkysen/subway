@@ -30,7 +30,8 @@ import static sen.khyber.unsafe.fields.StringUtils.getRawValue;
  */
 public final class ByteBufferUtils {
     
-    private ByteBufferUtils() {}
+    private ByteBufferUtils() {
+    }
     
     private static final @NotNull Unsafe unsafe = UnsafeUtils.getUnsafe();
     
@@ -93,12 +94,12 @@ public final class ByteBufferUtils {
     }
     
     public static final <T> @NotNull T get(final @NotNull ByteBuffer buffer,
-            final @NotNull Function<ByteBuffer, T> deserializer) {
+                                           final @NotNull Function<ByteBuffer, T> deserializer) {
         return deserializer.apply(buffer);
     }
     
     public static final <T> @Nullable T getNullable(final @NotNull ByteBuffer buffer,
-            final @NotNull Function<ByteBuffer, T> deserializer) {
+                                                    final @NotNull Function<ByteBuffer, T> deserializer) {
         if (isNull(buffer)) {
             return null;
         }
@@ -106,13 +107,13 @@ public final class ByteBufferUtils {
     }
     
     public static final <T, U> @NotNull T get(final @NotNull ByteBuffer buffer,
-            final @NotNull BiFunction<ByteBuffer, U, T> deserializer,
-            final U context) {
+                                              final @NotNull BiFunction<ByteBuffer, U, T> deserializer,
+                                              final U context) {
         return deserializer.apply(buffer, context);
     }
     
     public static final <T, U> @Nullable T getNullable(final @NotNull ByteBuffer buffer,
-            final @NotNull BiFunction<ByteBuffer, U, T> deserializer, final U context) {
+                                                       final @NotNull BiFunction<ByteBuffer, U, T> deserializer, final U context) {
         if (isNull(buffer)) {
             return null;
         }
@@ -120,12 +121,12 @@ public final class ByteBufferUtils {
     }
     
     public static final void put(final @NotNull ByteBuffer buffer,
-            final @NotNull UnsafeSerializable serializable) {
+                                 final @NotNull UnsafeSerializable serializable) {
         serializable.serialize(buffer);
     }
     
     public static final void putNullable(final @NotNull ByteBuffer buffer,
-            final @Nullable UnsafeSerializable serializable) {
+                                         final @Nullable UnsafeSerializable serializable) {
         if (serializable == null) {
             putNull(buffer);
         } else {
@@ -149,7 +150,7 @@ public final class ByteBufferUtils {
     }
     
     private static @NotNull String getString(final @NotNull ByteBuffer buffer,
-            final int encodedLength) {
+                                             final int encodedLength) {
         final int length = StringUtils.decodeLength(encodedLength);
         final byte coder = StringUtils.decodeCoder(encodedLength);
         final byte[] value = new byte[length];
@@ -170,7 +171,7 @@ public final class ByteBufferUtils {
     }
     
     private static void putString(final @NotNull ByteBuffer buffer, final @NotNull String s,
-            final @NotNull SizeType sizeType) {
+                                  final @NotNull SizeType sizeType) {
         assert sizeType.isSigned();
         final byte coder = coder(s);
         final byte[] value = getRawValue(s);
@@ -185,12 +186,12 @@ public final class ByteBufferUtils {
     }
     
     public static final void putShortString(final @NotNull ByteBuffer buffer,
-            final @NotNull String s) {
+                                            final @NotNull String s) {
         putString(buffer, s, SizeType.SHORT);
     }
     
     public static final void putSuperShortString(final @NotNull ByteBuffer buffer,
-            final @NotNull String s) {
+                                                 final @NotNull String s) {
         putString(buffer, s, SizeType.BYTE);
     }
     
@@ -217,7 +218,7 @@ public final class ByteBufferUtils {
     }
     
     public static final void putNullableString(final @NotNull ByteBuffer buffer,
-            final @Nullable String s) {
+                                               final @Nullable String s) {
         if (s == null) {
             putNull(buffer);
         } else {
@@ -226,7 +227,7 @@ public final class ByteBufferUtils {
     }
     
     public static final void putNullableShortString(final @NotNull ByteBuffer buffer,
-            final @Nullable String s) {
+                                                    final @Nullable String s) {
         if (s == null) {
             putNull(buffer);
         } else {
@@ -235,7 +236,7 @@ public final class ByteBufferUtils {
     }
     
     public static final void putNullableSuperShortString(final @NotNull ByteBuffer buffer,
-            final @Nullable String s) {
+                                                         final @Nullable String s) {
         if (s == null) {
             putNull(buffer);
         } else {
@@ -248,7 +249,7 @@ public final class ByteBufferUtils {
     }
     
     public static final void putInstantMillis(final @NotNull ByteBuffer buffer,
-            final @NotNull Instant instant) {
+                                              final @NotNull Instant instant) {
         buffer.putLong(instant.toEpochMilli());
     }
     
@@ -261,7 +262,7 @@ public final class ByteBufferUtils {
     }
     
     public static final void putNullableInstantMillis(final @NotNull ByteBuffer buffer,
-            final @Nullable Instant instant) {
+                                                      final @Nullable Instant instant) {
         if (instant == null) {
             putNull(buffer);
         } else {
